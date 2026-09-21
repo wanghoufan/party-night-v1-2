@@ -66,6 +66,14 @@ describe("main-session pack switcher candidates", () => {
     expect(enabledPackIds([])).toEqual(builtinIds);
     expect(enabledPackIds([customPack("custom-on", true), customPack("custom-off", false)])).toEqual([...builtinIds, "custom-on"]);
   });
+
+  it("drops built-in packs the user disabled in the pack page (T199 / FR-044)", () => {
+    expect(enabledPackIds([], ["truth-dare", "most-likely"])).toEqual(builtinIds.filter((id) => id !== "truth-dare" && id !== "most-likely"));
+
+    const session = createSession(config({ players: players(4) }), BUILTIN_SEED_CARDS);
+    expect(listSwitchablePacks(session, [], ["most-likely"]).map((pack) => pack.id)).not.toContain("most-likely");
+    expect(switchPackAndDeal(session, "most-likely", [], () => 0, {}, ["most-likely"])).toBe(session);
+  });
 });
 
 describe("switchPackAndDeal", () => {

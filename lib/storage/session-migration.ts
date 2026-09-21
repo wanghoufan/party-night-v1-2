@@ -2,6 +2,9 @@ import { SESSION_SCHEMA_VERSION, gameSessionSchema, sessionConfigSchema, type Ga
 
 export const CURRENT_SESSION_SCHEMA_VERSION = SESSION_SCHEMA_VERSION;
 
+/** 坏记录被隔离的原因标记：读取路径与启动 reconcile 只写这一种，便于诊断与后续数据修复。 */
+export const QUARANTINE_REASON = "deserialize-failed";
+
 /** 迁移前的最后一版（V1.0 / V1.1 落库形态）。 */
 const MIGRATABLE_SESSION_SCHEMA_VERSIONS = [1];
 

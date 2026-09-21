@@ -1,9 +1,9 @@
 import { gameSessionSchema, type GameSession } from "@/lib/domain/schemas";
-import { migrateSessionRecord } from "./session-migration";
+import { classifySchemaVersion } from "./session-maintenance";
+import { migrateSessionRecord, QUARANTINE_REASON } from "./session-migration";
 import { getDb, type QuarantinedSessionRecord } from "./db";
 
-/** 坏记录被隔离的原因标记：读取路径只写这一种，便于诊断与后续数据修复。 */
-export const QUARANTINE_REASON = "deserialize-failed";
+export { QUARANTINE_REASON };
 
 /**
  * 隔离坏记录（T190 / Plan 12.6）：先留原始副本，再把坏记录从 sessions 摘掉。
@@ -21,6 +21,14 @@ async function isolateUnreadableSession(key: string, raw: unknown): Promise<void
   await db.delete("sessions", key);
 }
 
+/**
+ * 版本错位 guard（T201）：更高版本 App 写的数据（schemaVersion > 当前 bundle）只读保留，
+ * 既不当作坏记录隔离，也不尝试按旧 schema 解释——避免旧 bundle 把新数据删掉。
+ */
+function isNewerSchema(raw: unknown): boolean {
+  return classifySchemaVersion((raw as { schemaVersion?: unknown } | undefined)?.schemaVersion) === "newer";
+}
+
 export const sessionRepository = {
   async save(session: GameSession): Promise<void> {
     const db = await getDb();
@@ -29,6 +37,7 @@ export const sessionRepository = {
   async get(id: string): Promise<GameSession | undefined> {
     const db = await getDb();
     const raw = await db.get("sessions", id);
+    if (isNewerSchema(raw)) return undefined;
     const migrated = migrateSessionRecord(raw);
     if (migrated) return migrated;
     if (raw !== undefined) await isolateUnreadableSession(id, raw);
@@ -39,6 +48,7 @@ export const sessionRepository = {
     const [keys, records] = await Promise.all([db.getAllKeys("sessions"), db.getAll("sessions")]);
     const valid: GameSession[] = [];
     for (const [index, record] of records.entries()) {
+      if (isNewerSchema(record)) continue;
       const migrated = migrateSessionRecord(record);
       if (migrated) valid.push(migrated);
       else await isolateUnreadableSession(keys[index]!, record);

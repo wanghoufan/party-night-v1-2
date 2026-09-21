@@ -25,6 +25,8 @@ describe("AI deck prompt", () => {
     expect(prompt).toContain("禁止输出中文说明或其他值");
   });
 
+  // Phase18（T202 / FR-046）在 V1.0 prompt 里加入固定安全行（未成年/露骨性内容禁令）后重新冻结 fixture；
+  // 除这一行外，V1.0 四包的 prompt 仍逐字不变。
   it("keeps the V1.0 four-pack prompt byte-identical to the frozen regression fixture", () => {
     expect(buildDeckPrompt(config(), 10, packsFor(V10_PACK_IDS))).toBe(promptV10Fixture.prompt);
   });

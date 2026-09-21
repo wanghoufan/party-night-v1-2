@@ -1,10 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { CustomGamePack, GameSession, Intensity, SessionConfig } from "@/lib/domain/schemas";
 
-const mocks = vi.hoisted(() => ({ list: vi.fn(), getLatestUnfinished: vi.fn(), save: vi.fn() }));
+const mocks = vi.hoisted(() => ({ list: vi.fn(), getLatestUnfinished: vi.fn(), save: vi.fn(), loadDisabledPackIds: vi.fn() }));
 
 vi.mock("@/lib/storage/game-pack-repository", () => ({ gamePackRepository: { list: mocks.list } }));
 vi.mock("@/lib/storage/session-repository", () => ({ sessionRepository: { getLatestUnfinished: mocks.getLatestUnfinished, save: mocks.save } }));
+vi.mock("@/lib/storage/pack-enablement", () => ({ loadDisabledPackIds: mocks.loadDisabledPackIds }));
 
 import { resolvePackRoute } from "@/lib/engine/pack-entry";
 import { BUILTIN_PACK_IDS } from "@/lib/domain/constants";
@@ -59,6 +60,7 @@ describe("resolvePackRoute（T160 首页/更多玩法共用入口）", () => {
     vi.clearAllMocks();
     mocks.list.mockResolvedValue([] as CustomGamePack[]);
     mocks.save.mockResolvedValue(undefined);
+    mocks.loadDisabledPackIds.mockResolvedValue([] as string[]);
   });
 
   it("没有进行中的局时复用既有 quick setup，不新建第二套向导", async () => {
@@ -92,5 +94,15 @@ describe("resolvePackRoute（T160 首页/更多玩法共用入口）", () => {
   it("暂停中的局也回到主局，而不是重新组局", async () => {
     mocks.getLatestUnfinished.mockResolvedValue(session("paused"));
     await expect(resolvePackRoute("spin-bottle")).resolves.toBe("/game?session=session-paused");
+  });
+
+  it("被禁用的玩法（FR-044）不从这里启动，只引导回游戏包", async () => {
+    mocks.loadDisabledPackIds.mockResolvedValue(["ai-improv"]);
+    mocks.getLatestUnfinished.mockResolvedValue(session("active"));
+
+    await expect(resolvePackRoute("ai-improv")).resolves.toBe("/packs");
+    expect(mocks.save).not.toHaveBeenCalled();
+    // 同一个禁用名单下，其他玩法照常可进
+    await expect(resolvePackRoute("would-you-rather")).resolves.toBe("/game?session=session-active");
   });
 });

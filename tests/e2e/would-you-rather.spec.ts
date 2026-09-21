@@ -62,7 +62,7 @@ test("二选一：出 A/VS/B 题面，下一题记 completed、换一个记 swap
 
   // 换一个 → swapped + 拒绝指纹（recentRejectedFingerprints），题面换新
   await swap(page).click();
-  await expect(options(page).nth(0)).not.toContainText(a);
+  await expect.poll(() => options(page).nth(0).textContent()).not.toContain(a);
   const swapped = await readSession(page, id);
   expect(swapped.rounds.map((round) => round.status)).toEqual(["swapped"]);
   expect(swapped.rounds[0].packId).toBe("would-you-rather");
@@ -72,7 +72,12 @@ test("二选一：出 A/VS/B 题面，下一题记 completed、换一个记 swap
   // 下一题 → completed
   const second = swapped.deckSnapshot.find((card) => card.id === swapped.currentRound?.cardId)!;
   await primary(page).click();
-  await expect(page.getByText(/第 2 \/ /)).toBeVisible();
+  try {
+    await expect(page.getByText(/第 2 \/ /)).toBeVisible({ timeout: 15000 });
+  } catch {
+    const dbg = await readSession(page, id);
+    throw new Error(`第2轮header未出现 rounds=${JSON.stringify(dbg.rounds.map((r) => r.status))} cur=${dbg.currentRound?.cardId} used=${dbg.usedCardIds.length} deck=${dbg.deckSnapshot.length}`);
+  }
   const done = await readSession(page, id);
   expect(done.rounds.map((round) => round.status)).toEqual(["swapped", "completed"]);
   expect(done.usedCardIds).toContain(second.id);

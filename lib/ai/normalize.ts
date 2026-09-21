@@ -1,5 +1,6 @@
 import type { GameCard } from "@/lib/domain/schemas";
 import { getGamePack } from "@/lib/game-packs/registry";
+import { sanitizeUntrustedText, UNTRUSTED_TEXT_LIMITS } from "@/lib/security/untrusted-text";
 
 export function normalizeText(value: string): string {
   return value.normalize("NFKC").replace(/\s+/g, " ").trim();
@@ -43,17 +44,30 @@ function hasStructuredFields(type: keyof typeof STRUCTURED_CARD_RULES, card: Rec
 }
 
 function structuredContent(type: keyof typeof STRUCTURED_CARD_RULES, card: Record<string, unknown>): string {
-  if (type === "would-you-rather") return `${String(card.optionA)} VS ${String(card.optionB)}`;
-  return String(card.prompt);
+  const part = (value: unknown) => sanitizeUntrustedText(String(value), UNTRUSTED_TEXT_LIMITS.cardContent);
+  if (type === "would-you-rather") return `${part(card.optionA)} VS ${part(card.optionB)}`;
+  return part(card.prompt);
+}
+
+/** AI 文本一律按不可信处理：去控制字符 + 按契约钳制长度，渲染交给 React 默认转义（T196/T197）。 */
+function cleanInstruction(value: unknown, fallback?: string): string {
+  const text = typeof value === "string" && value ? value : fallback ?? "";
+  return sanitizeUntrustedText(text, UNTRUSTED_TEXT_LIMITS.cardInstruction);
 }
 
 /**
  * 把一张已通过 schema 校验的 AI 卡归一化成可入库的 GameCard：
- * V1.0 content 卡原样返回；新玩法结构化卡补齐 content/instruction/participantMode/minPlayers。
+ * V1.0 content 卡原样返回（仅清洗不可信文本）；新玩法结构化卡补齐 content/instruction/participantMode/minPlayers。
  */
 export function normalizeAICard(card: Record<string, unknown>): GameCard {
   const type = String(card.type);
-  if (!isStructuredCardType(type) || !hasStructuredFields(type, card)) return card as unknown as GameCard;
+  if (!isStructuredCardType(type) || !hasStructuredFields(type, card)) {
+    return {
+      ...card,
+      content: sanitizeUntrustedText(String(card.content ?? ""), UNTRUSTED_TEXT_LIMITS.cardContent),
+      ...(typeof card.instruction === "string" ? { instruction: cleanInstruction(card.instruction) } : {}),
+    } as unknown as GameCard;
+  }
   const rule = STRUCTURED_CARD_RULES[type];
   const packId = String(card.packId ?? rule.packId);
   return {
@@ -61,7 +75,7 @@ export function normalizeAICard(card: Record<string, unknown>): GameCard {
     packId,
     type,
     content: structuredContent(type, card),
-    instruction: typeof card.instruction === "string" && card.instruction ? card.instruction : rule.instruction,
+    instruction: cleanInstruction(card.instruction, rule.instruction),
     intensity: card.intensity as GameCard["intensity"],
     tags: (card.tags as string[] | undefined) ?? [],
     boundaryTags: (card.boundaryTags as GameCard["boundaryTags"] | undefined) ?? [],

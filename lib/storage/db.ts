@@ -7,6 +7,8 @@ export interface AppPreferences {
   recentPlayers: Player[];
   lastSessionConfig?: SessionConfig;
   activeProviderId?: string;
+  /** 用户在“游戏包”里禁用的内置玩法：内置默认启用，这里只记禁用名单（FR-044）。 */
+  disabledPackIds?: string[];
   updatedAt: string;
 }
 

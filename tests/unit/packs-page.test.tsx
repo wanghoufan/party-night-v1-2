@@ -46,13 +46,15 @@ beforeEach(() => {
 afterEach(() => vi.clearAllMocks());
 
 describe("我的游戏包 · 玩法分区（T164/T165）", () => {
-  it("默认进玩法：8 个内置玩法全列出，保持原有“已启用”状态标签", async () => {
+  it("默认进玩法：8 个内置玩法全列出，每个都有启用开关且默认开启（T164/T199）", async () => {
     render(<PacksPage />);
 
     expect(screen.getByRole("heading", { name: "内置玩法" })).toBeInTheDocument();
     expect(BUILTIN_GAME_PACKS).toHaveLength(8);
-    for (const pack of BUILTIN_GAME_PACKS) expect(screen.getByText(pack.name)).toBeInTheDocument();
-    expect(screen.getAllByText("已启用")).toHaveLength(8);
+    for (const pack of BUILTIN_GAME_PACKS) {
+      expect(screen.getByText(pack.name)).toBeInTheDocument();
+      await waitFor(() => expect(screen.getByLabelText(`启用${pack.name}`)).toBeChecked());
+    }
     await waitFor(() => expect(screen.getByText(CUSTOM.definition.name)).toBeInTheDocument());
   });
 

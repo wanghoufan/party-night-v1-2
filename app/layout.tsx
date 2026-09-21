@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { ServiceWorkerRegistration } from "@/components/brand/ServiceWorkerRegistration";
+import { StorageGuard } from "@/components/brand/StorageGuard";
 
 export const metadata: Metadata = {
   title: "Party Night",
@@ -24,7 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <head><Script id="party-night-theme-init" strategy="beforeInteractive">{themeInitScript}</Script></head>
-      <body>{children}<ServiceWorkerRegistration /></body>
+      <body>{children}<StorageGuard /><ServiceWorkerRegistration /></body>
     </html>
   );
 }

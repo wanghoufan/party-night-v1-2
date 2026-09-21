@@ -24,6 +24,7 @@ export function buildDeckPrompt(config: SessionConfig, targetCardCount: number, 
     `自定义雷区：${config.boundaries.customText || "无"}；只需避开，不得把自定义文字写入 boundaryTags。`,
     `boundaryTags 只能包含这些英文枚举值：${allowedBoundaryTags.join("、")}；不涉及则必须输出空数组，禁止输出中文说明或其他值。`,
     "禁止强迫饮酒、危险行为、违法行为、未经同意身体接触、羞辱或泄露隐私。任何任务都允许跳过。",
+    "禁止涉及未成年人的任何露骨性内容；参与者年龄未知时不得生成露骨性任务或问题，不得把醉酒状态当作同意。",
     `JSON schema：{"cards":[{"id":"unique-id","packId":"${packs.map((pack) => pack.id).join("|")}","type":"string","content":"string","instruction":"string","intensity":1,"tags":[],"boundaryTags":[],"minPlayers":2,"participantMode":"none|single|pair|all","source":"ai"}],"meta":{"generatedCount":0,"provider":"configured-provider"}}`,
   ];
   const hints = packs.map((pack) => STRUCTURED_PACK_HINTS[pack.id]).filter((hint): hint is string => Boolean(hint));

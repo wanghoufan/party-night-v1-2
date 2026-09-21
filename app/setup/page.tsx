@@ -16,6 +16,7 @@ import type { Intensity, Player, SessionConfig } from "@/lib/domain/schemas";
 import { createSession } from "@/lib/engine/session-engine";
 import { deriveQuickStartConfig } from "@/lib/engine/quick-start";
 import { preferencesRepository } from "@/lib/storage/preferences-repository";
+import { loadDisabledPackIds } from "@/lib/storage/pack-enablement";
 import { sessionRepository } from "@/lib/storage/session-repository";
 import { createId } from "@/lib/utils/create-id";
 
@@ -32,6 +33,8 @@ function SetupPageContent() {
   const [vibes, setVibes] = useState<string[]>(["funny"]);
   const [intensity, setIntensity] = useState<Intensity>(3);
   const [previous, setPrevious] = useState<SessionConfig>();
+  // 用户在“游戏包”禁用的玩法不进混合出题池（FR-044）：禁用就是禁用，不能从组局侧绕回去。
+  const [disabledPackIds, setDisabledPackIds] = useState<string[]>([]);
 
   useEffect(() => {
     void preferencesRepository.get().then((preference) => {
@@ -39,11 +42,14 @@ function SetupPageContent() {
       if (!config) return;
       setPrevious(config); setPlayers(config.players); setRelationship(config.relationship); setVibes(config.vibes); setIntensity(config.intensity);
     });
+    void loadDisabledPackIds().then(setDisabledPackIds);
   }, []);
 
   function draftConfig(): SessionConfig {
-    const validPack = targetPack && BUILTIN_PACK_IDS.includes(targetPack as never) ? targetPack : undefined;
-    return { players, relationship, vibes: vibes.length ? vibes : ["random"], intensity, boundaries: previous?.boundaries ?? { ...DEFAULT_BOUNDARIES }, enabledPackIds: validPack ? [validPack] : [...BUILTIN_PACK_IDS], mode: validPack ? "single" : "mixed" };
+    const enabledBuiltin = BUILTIN_PACK_IDS.filter((id) => !disabledPackIds.includes(id));
+    const validPack = targetPack && enabledBuiltin.includes(targetPack as never) ? targetPack : undefined;
+    const mixed = enabledBuiltin.length ? enabledBuiltin : [...BUILTIN_PACK_IDS];
+    return { players, relationship, vibes: vibes.length ? vibes : ["random"], intensity, boundaries: previous?.boundaries ?? { ...DEFAULT_BOUNDARIES }, enabledPackIds: validPack ? [validPack] : mixed, mode: validPack ? "single" : "mixed" };
   }
 
   function next() {
