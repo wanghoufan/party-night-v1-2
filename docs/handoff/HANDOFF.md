@@ -11,8 +11,7 @@
 - CHANGE_REQUEST：（NONE）
 - Stage ID（本阶段叫什么）：迁移整理（2026-09-21）
 - 剩 P0（没完的才列，多一条都不行）：
-  - 清理后的最终 E2E 重跑未执行（旧交接下一步第 1 项；需确认端口空闲后跑 `PARTY_NIGHT_PRODUCTION_SMOKE=true pnpm test:e2e`，预期 21/21）。
-  - Git 首次提交+推送未做（旧交接下一步第 2–6 项；以最新用户指令为准，旧授权已暂停）。
+  - 无。E2E 最终重跑已于 2026-09-21 完成 21/21（含 production-offline，production build 下通过）；Git 首推已完成（`b891692`+`185f4fe` 在 `origin/main`，About 三格已写）。旧版备份 `docs/handoff/HANDOFF.md.旧版-2026-09-13` 备查。
 - 当前 Task（正干到哪）（累计打回 n/2，supervisor每次打回时TM同步更新）：迁移整理已完工，无在途 Task，打回 0/2。
 - 执行链/Session（可选，仅真 resume 通道填，普通 subagent 可空；TM 只记录/引用，ID 由基础设施返回，不手造、不要求用户复制；返工确认是否原链；senior 升级开新链后更新）：本窗口单次整理，无链。
 - 未闭环评审意见（code-reviewer/qa 留的还没改的）：无。
