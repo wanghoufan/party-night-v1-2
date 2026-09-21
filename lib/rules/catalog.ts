@@ -6,7 +6,7 @@ import { missCardRule } from "./entries/miss-card";
 import { numberBombRule } from "./entries/number-bomb";
 import { sevenPassRule } from "./entries/seven-pass";
 import { threeGardensRule } from "./entries/three-gardens";
-import { ruleEntrySchema, type RuleEntry } from "./types";
+import { ruleEntrySchema, type RuleCategory, type RuleEntry } from "./types";
 
 /**
  * 规则库首批 8 条（T176 / Spec §8 / FR-030）。
@@ -25,6 +25,39 @@ export const RULE_CATALOG: RuleEntry[] = [
 
 export function getRuleEntry(id: string): RuleEntry | undefined {
   return RULE_CATALOG.find((entry) => entry.id === id);
+}
+
+/** 分类 chips 的中文标签（T179，与 RuleCategory 一一对应）。 */
+export const RULE_CATEGORY_LABELS: Record<RuleCategory, string> = {
+  cards: "扑克",
+  dice: "骰子",
+  gesture: "手势",
+  "no-prop": "无道具",
+  other: "其他",
+};
+
+/**
+ * 列表搜索/分类过滤（T179）。纯本地字符串匹配，命中标题、别名、摘要、道具与步骤说明；
+ * 搜不到就返回空数组，让 UI 走空状态——规则库绝不联网猜规则（T183 / Spec §9）。
+ */
+export function filterRuleEntries(
+  query: string,
+  category?: RuleCategory,
+  entries: RuleEntry[] = RULE_CATALOG,
+): RuleEntry[] {
+  const keyword = query.trim().toLowerCase();
+  return entries.filter((entry) => {
+    if (category && entry.category !== category) return false;
+    if (!keyword) return true;
+    const haystack = [
+      entry.title,
+      ...entry.aliases,
+      entry.quickSummary,
+      ...entry.props,
+      ...entry.steps.map((step) => `${step.label ?? ""} ${step.detail}`),
+    ].join(" ").toLowerCase();
+    return haystack.includes(keyword);
+  });
 }
 
 export interface RuleCatalogIssue {

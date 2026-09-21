@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({ list: vi.fn(), save: vi.fn(), remove: vi.fn(),
 
 vi.mock("@/lib/storage/game-pack-repository", () => ({ gamePackRepository: { list: mocks.list, save: mocks.save, delete: mocks.remove } }));
 vi.mock("@/lib/storage/session-repository", () => ({ sessionRepository: { getLatestUnfinished: mocks.getLatestUnfinished } }));
-vi.mock("next/navigation", () => ({ usePathname: () => "/packs" }));
+vi.mock("next/navigation", () => ({ usePathname: () => "/packs", useSearchParams: () => new URLSearchParams() }));
 
 import PacksPage from "@/app/packs/page";
 import { BUILTIN_GAME_PACKS } from "@/lib/game-packs/registry";
@@ -104,17 +104,20 @@ describe("我的游戏包 · 玩法分区（T164/T165）", () => {
   });
 });
 
-describe("我的游戏包 · 规则分区（T163）", () => {
-  it("切到规则：玩法分区整体退场，规则内容占位不假装已上线", async () => {
+describe("我的游戏包 · 规则分区（T179/T181）", () => {
+  it("切到规则：玩法分区整体退场，改为可搜索的规则列表", async () => {
     render(<PacksPage />);
     await screen.findByText(CUSTOM.definition.name);
 
     fireEvent.click(segment("规则"));
-    expect(screen.getByRole("heading", { name: "规则库整理中" })).toBeInTheDocument();
+
+    expect(screen.getByRole("searchbox", { name: "搜索规则" })).toBeInTheDocument();
+    expect(within(screen.getByRole("region", { name: "规则" })).getAllByRole("link")).toHaveLength(8);
     expect(screen.queryByRole("heading", { name: "内置玩法" })).toBeNull();
     expect(screen.queryByText(CUSTOM.definition.name)).toBeNull();
-    // 规则页不给“开始游戏”类主 CTA（US8 第 5 条）
-    expect(screen.queryByRole("link", { name: /开始/ })).toBeNull();
+    expect(screen.queryByRole("heading", { name: "规则库整理中" })).toBeNull();
+    // 规则页不给“开始游戏”类主 CTA（US8 第 5 条 / T181）
+    expect(screen.queryByRole("link", { name: /开始游戏|开始手机游戏|开始一局/ })).toBeNull();
   });
 
   it("切回玩法：内置玩法与自定义玩法原样回来", async () => {
@@ -126,7 +129,7 @@ describe("我的游戏包 · 规则分区（T163）", () => {
 
     expect(screen.getByRole("heading", { name: "内置玩法" })).toBeInTheDocument();
     expect(screen.getByText(CUSTOM.definition.name)).toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: "规则库整理中" })).toBeNull();
+    expect(screen.queryByRole("searchbox", { name: "搜索规则" })).toBeNull();
   });
 
   it("分区切换只发生在游戏包页内，底部仍是原来 4 个 Tab", async () => {
