@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { boundaryTagSchema, gameCardSchema } from "@/lib/domain/schemas";
 import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
+import { RANDOM_LAUNCHER_PACK_ID } from "@/lib/game-packs/random-launcher";
 
 /** 需要可离线 seed 的 AI 玩法（转瓶子纯本地，按 Plan 7.1 不配 seed）。 */
 const SEEDED_PACKS: Array<{ packId: string; type: string }> = [
@@ -53,5 +54,10 @@ describe("built-in offline seeds", () => {
 
   it("never seeds the purely-local spin-bottle pack", () => {
     expect(seedsOf("spin-bottle")).toHaveLength(0);
+  });
+
+  /** V1.4 R-047：`ai-improv` 的题卡玩法已退役（id 只留作迁移锚），不能再有 seed 进任意牌堆。 */
+  it("never seeds the retired ai-improv launcher", () => {
+    expect(seedsOf(RANDOM_LAUNCHER_PACK_ID)).toHaveLength(0);
   });
 });

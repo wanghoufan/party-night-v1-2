@@ -9,8 +9,12 @@ export function getSessionStage(session: Pick<GameSession, "rounds">, plannedRou
   return "heat-up";
 }
 
+/**
+ * 混合模式的阶段出题偏好。V1.4：退役的「AI 即兴」不再占据原来的 20% 槽位（R-047），
+ * 混合分布只在真实题卡玩法之间调整；preferred 抽不到时仍回落到本局启用集合，不空转。
+ */
 export function getStagePackPreference(stage: SessionStage): string[] {
   if (stage === "warm-up") return ["most-likely", "never-have", "truth-dare"];
-  if (stage === "heat-up") return ["truth-dare", "ai-improv", "most-likely"];
-  return ["truth-dare", "most-likely", "never-have", "ai-improv"];
+  if (stage === "heat-up") return ["truth-dare", "most-likely"];
+  return ["truth-dare", "most-likely", "never-have"];
 }

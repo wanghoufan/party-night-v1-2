@@ -106,3 +106,44 @@ describe("resolvePackRoute（T160 首页/更多玩法共用入口）", () => {
     await expect(resolvePackRoute("would-you-rather")).resolves.toBe("/game?session=session-active");
   });
 });
+
+/** V1.4 R-052：第 4 格「随机玩一个」复用既有入口——有局换玩法、没局复用 quick setup，随机源可注入。 */
+describe("resolvePackRoute · 随机玩一个", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mocks.list.mockResolvedValue([] as CustomGamePack[]);
+    mocks.save.mockResolvedValue(undefined);
+    mocks.loadDisabledPackIds.mockResolvedValue([] as string[]);
+  });
+
+  it("没有进行中的局时随机预选一个真实玩法，走同一条 quick setup", async () => {
+    mocks.getLatestUnfinished.mockResolvedValue(undefined);
+    await expect(resolvePackRoute("ai-improv", () => 0)).resolves.toBe("/setup?pack=truth-dare");
+    await expect(resolvePackRoute("ai-improv", () => 0.999999)).resolves.toBe("/setup?pack=spin-bottle");
+    expect(mocks.save).not.toHaveBeenCalled();
+  });
+
+  it("有进行中的局时在同一 Session 内换成随机玩法，Session/config/历史保持不变", async () => {
+    mocks.getLatestUnfinished.mockResolvedValue(session("active"));
+
+    await expect(resolvePackRoute("ai-improv", () => 0)).resolves.toBe("/game?session=session-active");
+    expect(mocks.save).toHaveBeenCalledTimes(1);
+    const saved = mocks.save.mock.calls[0]![0] as GameSession;
+    expect(saved.id).toBe("session-active");
+    expect(saved.config).toEqual(CONFIG);
+    expect([...saved.rounds, ...(saved.currentRound ? [saved.currentRound] : [])].every((item) => item.packId !== "ai-improv")).toBe(true);
+    expect(saved.currentPackId).toBe("truth-dare");
+  });
+
+  it("只从启用集合里挑：禁用项与启动器自己都不会被选中", async () => {
+    mocks.loadDisabledPackIds.mockResolvedValue(["truth-dare", "most-likely", "never-have"]);
+    mocks.getLatestUnfinished.mockResolvedValue(undefined);
+    await expect(resolvePackRoute("ai-improv", () => 0)).resolves.toBe("/setup?pack=would-you-rather");
+  });
+
+  it("没有可玩的真实玩法时停在游戏包页，不静默选一个已退役玩法", async () => {
+    mocks.loadDisabledPackIds.mockResolvedValue(BUILTIN_PACK_IDS.filter((id) => id !== "ai-improv"));
+    mocks.getLatestUnfinished.mockResolvedValue(undefined);
+    await expect(resolvePackRoute("ai-improv", () => 0)).resolves.toBe("/packs");
+  });
+});

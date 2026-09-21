@@ -52,7 +52,7 @@ export const gameCardSchema = z.object({
 });
 export type GameCard = z.infer<typeof gameCardSchema>;
 
-export const packRendererSchema = z.enum(["card", "binary-choice", "pointing", "compatibility", "spin"]);
+export const packRendererSchema = z.enum(["card", "binary-choice", "pointing", "compatibility", "spin", "random-launcher"]);
 export type PackRenderer = z.infer<typeof packRendererSchema>;
 
 /** Pack 能力声明：只描述玩法需要什么、由哪个 renderer 承载，不含 Session 业务逻辑。 */

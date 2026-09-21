@@ -3,11 +3,11 @@
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
 - Captured at（YYYY-MM-DD HH:MM）：2026-09-22 上午
-- PROJECT_PHASE：（DEVELOP：V1.1 玩法扩展与主局整合；supervisor 放行附条件，暂停待真机验收）
-- PLAN_VERSION：（V1.1 玩法扩展与主局整合-计划）
-- PLAN_READINESS_SCORE：（空；DEVELOP 阶段不评分）
-- PLAN_GATE：（IN_PROGRESS）
-- DEV_BASELINE：（V1.1-玩法扩展与主局整合-计划-V1.1）
+- PROJECT_PHASE：（DEVELOP：V1.4，Human Gate 已批准）
+- PLAN_VERSION：（PRODUCT_PLAN_V1.4）
+- PLAN_READINESS_SCORE：（98）
+- PLAN_GATE：（APPROVED）
+- DEV_BASELINE：（PRODUCT_PLAN_V1.4）
 - CHANGE_REQUEST：（NONE）
 - Stage ID（本阶段叫什么）：V1.1-玩法扩展与主局整合开发
 - 剩 P0（没完的才列，多一条都不行）：

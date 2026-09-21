@@ -41,7 +41,7 @@ test("首页适配 360 / 390 / 430 宽度且无横向溢出（T162）", async ({
     await expect(page.getByRole("link", { name: /今晚开局/ })).toBeVisible();
     await expect(page.getByRole("button", { name: /更多玩法/ })).toBeVisible();
     // 4 张核心卡仍在原位，且没有因为新增入口把首页撑出横向滚动
-    for (const name of ["真心话大冒险", "谁最可能", "我从来没有", "AI 即兴"]) await expect(page.getByRole("link", { name: new RegExp(name) })).toBeVisible();
+    for (const name of ["真心话大冒险", "谁最可能", "我从来没有", "随机玩一个"]) await expect(page.getByRole("link", { name: new RegExp(name) })).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow, `${width}px 首页不应横向溢出`).toBeLessThanOrEqual(0);
     await page.screenshot({ path: `test-results/visual/home-${width}.png`, fullPage: true });

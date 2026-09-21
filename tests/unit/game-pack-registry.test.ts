@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { packCapabilitySchema } from "@/lib/domain/schemas";
 import { resolvePackCapability } from "@/lib/domain/pack-capability";
 import { BUILTIN_GAME_PACKS, createGamePackRegistry, getGamePack, resolvePackRendererById } from "@/lib/game-packs/registry";
+import { RANDOM_LAUNCHER_PACK_ID, isRandomLauncherPackId } from "@/lib/game-packs/random-launcher";
 
 /** V1.1 Phase 3 新增的四个玩法，默认启用策略与 V1.0 内置一致。 */
 const NEW_PACK_IDS = ["would-you-rather", "pointing-game", "compatibility-test", "spin-bottle"] as const;
@@ -30,7 +31,8 @@ describe("game pack registry", () => {
       const capability = resolvePackCapability(pack);
       expect(packCapabilitySchema.safeParse(capability).success).toBe(true);
       expect(capability.minPlayers).toBe(pack.minPlayers);
-      expect(capability.supportsLocalSeed).toBe(true);
+      // 启动器不出任何题卡，因此没有本地 seed；其余内置玩法都能离线补位。
+      expect(capability.supportsLocalSeed).toBe(!isRandomLauncherPackId(pack.id));
     }
   });
 
@@ -47,5 +49,21 @@ describe("game pack registry", () => {
     expect(resolvePackRendererById("spin-bottle")).toBe("spin");
     expect(resolvePackRendererById("truth-dare")).toBe("card");
     expect(resolvePackRendererById("custom-pack")).toBe("card");
+  });
+
+  /** V1.4 R-047/R-050：`ai-improv` 这个 id 只留作迁移锚，玩法本体已是动作型「随机玩一个」。 */
+  describe("retired ai-improv id reused as the random launcher", () => {
+    it("keeps the legacy id but exposes a launcher definition instead of a playable pack", () => {
+      const pack = getGamePack(RANDOM_LAUNCHER_PACK_ID);
+      expect(isRandomLauncherPackId(RANDOM_LAUNCHER_PACK_ID)).toBe(true);
+      expect(pack).toMatchObject({ id: "ai-improv", name: "随机玩一个", mixable: false });
+      expect(resolvePackRendererById(RANDOM_LAUNCHER_PACK_ID)).toBe("random-launcher");
+      expect(resolvePackCapability(pack!).supportsMixedMode).toBe(false);
+    });
+
+    it("stays out of the mixed rotation and carries no seeds of its own", () => {
+      expect(resolvePackCapability(getGamePack(RANDOM_LAUNCHER_PACK_ID)!).requiresAIContent).toBe(false);
+      expect(resolvePackCapability(getGamePack(RANDOM_LAUNCHER_PACK_ID)!).supportsLocalSeed).toBe(false);
+    });
   });
 });

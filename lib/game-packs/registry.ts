@@ -1,6 +1,6 @@
 import type { CustomGamePack, GamePackDefinition, PackRenderer } from "@/lib/domain/schemas";
 import { resolvePackCapability } from "@/lib/domain/pack-capability";
-import { aiImprovPack } from "./ai-improv";
+import { randomLauncherPack } from "./random-launcher";
 import { compatibilityTestPack } from "./compatibility-test";
 import { mostLikelyPack } from "./most-likely";
 import { neverHaveIEverPack } from "./never-have-i-ever";
@@ -10,7 +10,7 @@ import { truthOrDarePack } from "./truth-or-dare";
 import { wouldYouRatherPack } from "./would-you-rather";
 
 export const BUILTIN_GAME_PACKS = [
-  truthOrDarePack, mostLikelyPack, neverHaveIEverPack, aiImprovPack,
+  truthOrDarePack, mostLikelyPack, neverHaveIEverPack, randomLauncherPack,
   wouldYouRatherPack, pointingGamePack, compatibilityTestPack, spinBottlePack,
 ] as const;
 

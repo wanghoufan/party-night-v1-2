@@ -105,8 +105,7 @@ describe("session migration", () => {
   });
 });
 
-/** GAP-02：V2 早期把 pack-local state 按 state key 平铺；新口径按 packId 分键，读取时在内存里补齐。 */
-describe("pack state backfill (GAP-02)", () => {
+/** GAP-02：V2 早期把 pack-local state 按 state key 平铺；新口径按 packId 分键，读取时在内存里补齐。 */describe("pack state backfill (GAP-02)", () => {
   const currentRecord = (currentPackState: Record<string, unknown>) =>
     legacyRecord({ schemaVersion: CURRENT_SESSION_SCHEMA_VERSION, currentPackId: COMPATIBILITY_PACK_ID, currentPackState, recentRejectedFingerprints: [] });
 
@@ -133,5 +132,105 @@ describe("pack state backfill (GAP-02)", () => {
 
     expect(migrated?.currentPackState).toEqual(nested);
     expect(migrateSessionRecord(migrated)?.currentPackState).toEqual(nested);
+  });
+});
+
+/**
+ * V1.4 R-048 / R-049：`ai-improv` 玩法退役，id 只留作迁移锚。
+ * 迁移只做「丢弃 + 回落」：旧卡绝不转写进真心话，历史轮次原样保留。
+ */
+describe("retired ai-improv migration（V1.4）", () => {
+  const TRUTH = card("t9", "truth-dare");
+  const RETIRED = card("i1", "ai-improv");
+  const NEVER = card("n1", "never-have");
+
+  const currentRecordWithRetiredData = (overrides: Record<string, unknown> = {}) =>
+    legacyRecord({
+      schemaVersion: CURRENT_SESSION_SCHEMA_VERSION,
+      currentPackId: "ai-improv",
+      deckSnapshot: [TRUTH, RETIRED, NEVER],
+      usedCardIds: ["t9", "i1"],
+      rounds: [],
+      currentRound: { id: "r9", cardId: "i1", packId: "ai-improv", participantIds: ["a"], startedAt: "2026-09-20T01:00:00.000Z" },
+      recentRejectedFingerprints: [],
+      currentPackState: {},
+      ...overrides,
+    });
+
+  it("直接丢弃 ai-improv 旧卡，不转写、不并入真心话（负断言：真心话题库未被污染）", () => {
+    const migrated = migrateSessionRecord(currentRecordWithRetiredData())!;
+
+    expect(migrated.deckSnapshot.map((item) => item.id)).toEqual(["t9", "n1"]);
+    expect(migrated.deckSnapshot.some((item) => item.packId === "ai-improv")).toBe(false);
+    // 真心话卡片数量与内容逐字不变：退役卡的内容没有以任何形式跑进来
+    expect(migrated.deckSnapshot.filter((item) => item.packId === "truth-dare")).toEqual([TRUTH]);
+    expect(migrated.deckSnapshot.some((item) => item.content === RETIRED.content)).toBe(false);
+    expect(migrated.deckSnapshot.some((item) => item.id === RETIRED.id)).toBe(false);
+  });
+
+  it("清掉指向旧卡的使用记录与未完成轮", () => {
+    const migrated = migrateSessionRecord(currentRecordWithRetiredData())!;
+
+    expect(migrated.usedCardIds).toEqual(["t9"]);
+    expect(migrated.currentRound).toBeUndefined();
+  });
+
+  it("currentPackId 命中退役 id 时回落真心话（已启用且可玩）", () => {
+    expect(migrateSessionRecord(currentRecordWithRetiredData())?.currentPackId).toBe("truth-dare");
+  });
+
+  it("真心话被禁用时回落规范启用序列里第一个可玩玩法", () => {
+    const migrated = migrateSessionRecord(currentRecordWithRetiredData({
+      config: { ...legacyRecord().config, enabledPackIds: ["never-have", "ai-improv"] },
+    }));
+
+    expect(migrated?.currentPackId).toBe("never-have");
+  });
+
+  it("旧版本记录里最近一轮是退役玩法时同样回落，不把退役 id 当当前玩法", () => {
+    const migrated = migrateSessionRecord(legacyRecord({
+      deckSnapshot: [TRUTH, RETIRED],
+      usedCardIds: ["t9"],
+      rounds: [round({ packId: "ai-improv", cardId: "i1" })],
+    }));
+
+    expect(migrated?.currentPackId).toBe("truth-dare");
+    expect(migrated?.deckSnapshot.map((item) => item.id)).toEqual(["t9"]);
+  });
+
+  it("已完成历史保留原 packId，不改名、不重入出题池", () => {
+    const migrated = migrateSessionRecord(currentRecordWithRetiredData({
+      rounds: [round({ packId: "ai-improv", cardId: "i1", status: "completed" })],
+    }))!;
+
+    expect(migrated.rounds[0]).toMatchObject({ packId: "ai-improv", cardId: "i1", status: "completed" });
+    expect(migrated.deckSnapshot.some((item) => item.id === "i1")).toBe(false);
+  });
+
+  it("极端旧局只启用了退役玩法时仍兜底真心话，不丢局", () => {
+    const migrated = migrateSessionRecord(currentRecordWithRetiredData({
+      config: { ...legacyRecord().config, enabledPackIds: ["ai-improv"] },
+    }));
+
+    expect(migrated?.currentPackId).toBe("truth-dare");
+  });
+
+  it("幂等：重复迁移同一份 fixture 结果完全相同，不再删改非退役数据", () => {
+    const once = migrateSessionRecord(currentRecordWithRetiredData())!;
+    expect(migrateSessionRecord(once)).toEqual(once);
+    expect(migrateSessionRecord(JSON.parse(JSON.stringify(once)))).toEqual(once);
+  });
+
+  it("读取路径也按同一规则清理（不留下白屏的退役 currentPackId）", async () => {
+    const db = await getDb();
+    await db.put("sessions", currentRecordWithRetiredData() as never);
+
+    const restored = await sessionRepository.get("legacy-1");
+    expect(restored?.currentPackId).toBe("truth-dare");
+    expect(restored?.deckSnapshot.some((item) => item.packId === "ai-improv")).toBe(false);
+    // 原记录仍留在库里（非破坏），只是读出来已清理
+    expect(await db.get("sessions", "legacy-1")).toBeTruthy();
+
+    await sessionRepository.delete("legacy-1");
   });
 });

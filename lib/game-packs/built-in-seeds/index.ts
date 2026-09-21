@@ -90,15 +90,4 @@ const compatibility = build("compatibility-test", "compatibility", "pair", [
   ["对方最近一次为开销发过愁吗？", 4, "不愿意可无惩罚跳过", ["money"]],
 ]);
 
-const improv = build("ai-improv", "improv", "single", [
-  ["用三个词给今晚命名。", 1, "十秒内完成"],
-  ["假装你是深夜电台主播，为现场播一句开场白。", 2, "十五秒内完成"],
-  ["选一件身边的物品，为它拍一段十秒广告。", 2, "不需要真的拍摄"],
-  ["为下一轮设计一个不会让任何人尴尬的庆祝动作。", 2, "大家可以一起学"],
-  ["把今天发生的一件小事讲成悬疑片预告。", 3, "二十秒内完成"],
-  ["和另一位玩家用一句话共同编完一个故事。", 2, "每人半句"],
-  ["用天气预报的方式描述今晚的气氛。", 2, "十五秒内完成"],
-  ["给在场所有人颁一个有趣但友善的奖。", 3, "避免冒犯"],
-]);
-
-export const BUILTIN_SEED_CARDS: GameCard[] = [...truth, ...dare, ...likely, ...never, ...improv, ...rather, ...pointing, ...compatibility];
+export const BUILTIN_SEED_CARDS: GameCard[] = [...truth, ...dare, ...likely, ...never, ...rather, ...pointing, ...compatibility];

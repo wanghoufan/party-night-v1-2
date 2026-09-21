@@ -1,5 +1,8 @@
-import { SESSION_SCHEMA_VERSION, gameSessionSchema, sessionConfigSchema, type GameSession } from "@/lib/domain/schemas";
+import { SESSION_SCHEMA_VERSION, gameSessionSchema, sessionConfigSchema, type GameSession, type SessionConfig } from "@/lib/domain/schemas";
+import { resolvePackCapability } from "@/lib/domain/pack-capability";
 import { COMPATIBILITY_PACK_ID, COMPATIBILITY_STATE_KEY } from "@/lib/game-packs/compatibility-test";
+import { getGamePack } from "@/lib/game-packs/registry";
+import { isRandomLauncherPackId } from "@/lib/game-packs/random-launcher";
 import { SPIN_BOTTLE_PACK_ID, SPIN_BOTTLE_STATE_KEY } from "@/lib/game-packs/spin-bottle";
 
 export const CURRENT_SESSION_SCHEMA_VERSION = SESSION_SCHEMA_VERSION;
@@ -45,6 +48,48 @@ function nonEmptyString(value: unknown): string | undefined {
   return typeof value === "string" && value.length > 0 ? value : undefined;
 }
 
+/** 旧局丢弃退役启动器卡后，currentPackId 的回落锚点：真心话大冒险始终是内置首选（R-049）。 */
+const TRUTH_DARE_PACK_ID = "truth-dare";
+
+/**
+ * R-049：旧 Session 的 currentPackId 指向已退役的启动器（`ai-improv`）时按固定顺序回落——
+ * 先选「已启用且当前人数可玩」的真心话大冒险，否则取规范启用序列里第一个同样可玩的玩法。
+ * 规范序列＝Session 快照自身的顺序（内置 registry 固定顺序在前、自定义 createdAt/id 升序在后）。
+ */
+export function fallbackPackIdForRetiredLauncher(enabledPackIds: string[], playerCount: number): string {
+  const playable = enabledPackIds.filter((id) => {
+    if (isRandomLauncherPackId(id)) return false;
+    const definition = getGamePack(id);
+    return definition ? resolvePackCapability(definition).minPlayers <= playerCount : false;
+  });
+  if (playable.includes(TRUTH_DARE_PACK_ID)) return TRUTH_DARE_PACK_ID;
+  return playable[0] ?? TRUTH_DARE_PACK_ID;
+}
+
+const activePlayerCount = (config: SessionConfig): number => config.players.filter((player) => player.active).length;
+
+/**
+ * R-048 / R-049：退役玩法（`ai-improv`）只清理、不改写——
+ * - `deckSnapshot` 里的旧卡**直接丢弃**，绝不转成真心话/其他包，也绝不进任何回落包；
+ * - 指向这些卡的 `usedCardIds` 与未完成 `currentRound` 一并清掉；
+ * - 已完成 `rounds` 保留原始 `packId` 作为历史事实，不改名、不重入出题池；
+ * - `currentPackId` 命中退役 id 时按 `fallbackPackIdForRetiredLauncher` 回落。
+ * 幂等：没有旧卡且 currentPackId 已不是退役 id 时原样返回，二次迁移结果完全相同。
+ */
+function stripRetiredLauncher(session: GameSession): GameSession {
+  const retiredCardIds = new Set(session.deckSnapshot.filter((card) => isRandomLauncherPackId(card.packId)).map((card) => card.id));
+  const needsFallback = isRandomLauncherPackId(session.currentPackId);
+  if (!retiredCardIds.size && !needsFallback) return session;
+  const dropsOpenRound = Boolean(session.currentRound && (retiredCardIds.has(session.currentRound.cardId) || isRandomLauncherPackId(session.currentRound.packId)));
+  return {
+    ...session,
+    deckSnapshot: session.deckSnapshot.filter((card) => !retiredCardIds.has(card.id)),
+    usedCardIds: session.usedCardIds.filter((id) => !retiredCardIds.has(id)),
+    currentRound: dropsOpenRound ? undefined : session.currentRound,
+    currentPackId: needsFallback ? fallbackPackIdForRetiredLauncher(session.config.enabledPackIds, activePlayerCount(session.config)) : session.currentPackId,
+  };
+}
+
 function packIdFrom(entry: unknown): string | undefined {
   return isRecord(entry) ? nonEmptyString(entry.packId) : undefined;
 }
@@ -85,11 +130,11 @@ export function migrateSessionRecord(raw: unknown): GameSession | undefined {
   if (!isRecord(raw)) return undefined;
 
   const current = gameSessionSchema.safeParse(raw);
-  if (current.success) return withBackfilledPackState(current.data);
+  if (current.success) return stripRetiredLauncher(withBackfilledPackState(current.data));
 
   const version = raw.schemaVersion;
   if (version !== undefined && !MIGRATABLE_SESSION_SCHEMA_VERSIONS.includes(version as number)) return undefined;
 
   const migrated = gameSessionSchema.safeParse(upgradeToCurrent(raw));
-  return migrated.success ? withBackfilledPackState(migrated.data) : undefined;
+  return migrated.success ? stripRetiredLauncher(withBackfilledPackState(migrated.data)) : undefined;
 }
