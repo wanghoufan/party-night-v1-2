@@ -25,11 +25,23 @@ export interface AICryptoKeyRecord {
   createdAt: string;
 }
 
+/**
+ * 反序列化失败的 Session 原始副本（T190）：隔离坏记录，既不重复失败也不直接清掉用户数据。
+ * 主页/主局的读取路径只认 sessions，隔离区不参与正常流程。
+ */
+export interface QuarantinedSessionRecord {
+  id: string;
+  reason: string;
+  quarantinedAt: string;
+  raw: unknown;
+}
+
 interface PartyNightDB extends DBSchema {
   players: { key: string; value: Player };
   preferences: { key: string; value: AppPreferences };
   gamePacks: { key: string; value: CustomGamePack };
   sessions: { key: string; value: GameSession; indexes: { "by-updatedAt": string; "by-status": string } };
+  sessionQuarantine: { key: string; value: QuarantinedSessionRecord };
   sessionSummaries: { key: string; value: SessionSummary };
   aiProviderProfiles: { key: string; value: AIProviderProfile };
   aiSecrets: { key: string; value: AISecretRecord };
@@ -40,18 +52,22 @@ let dbPromise: Promise<IDBPDatabase<PartyNightDB>> | undefined;
 
 export function getDb(): Promise<IDBPDatabase<PartyNightDB>> {
   if (!dbPromise) {
-    dbPromise = openDB<PartyNightDB>("party-night-v1", 1, {
+    // v1 → v2：新增 sessionQuarantine（坏记录隔离位）。升级只补缺失的 store，不动 sessions 里的任何一条记录。
+    dbPromise = openDB<PartyNightDB>("party-night-v1", 2, {
       upgrade(db) {
-        db.createObjectStore("players", { keyPath: "id" });
-        db.createObjectStore("preferences", { keyPath: "id" });
-        db.createObjectStore("gamePacks", { keyPath: "definition.id" });
-        const sessions = db.createObjectStore("sessions", { keyPath: "id" });
-        sessions.createIndex("by-updatedAt", "updatedAt");
-        sessions.createIndex("by-status", "status");
-        db.createObjectStore("sessionSummaries", { keyPath: "id" });
-        db.createObjectStore("aiProviderProfiles", { keyPath: "id" });
-        db.createObjectStore("aiSecrets", { keyPath: "providerProfileId" });
-        db.createObjectStore("aiCryptoKeys", { keyPath: "id" });
+        if (!db.objectStoreNames.contains("players")) db.createObjectStore("players", { keyPath: "id" });
+        if (!db.objectStoreNames.contains("preferences")) db.createObjectStore("preferences", { keyPath: "id" });
+        if (!db.objectStoreNames.contains("gamePacks")) db.createObjectStore("gamePacks", { keyPath: "definition.id" });
+        if (!db.objectStoreNames.contains("sessions")) {
+          const sessions = db.createObjectStore("sessions", { keyPath: "id" });
+          sessions.createIndex("by-updatedAt", "updatedAt");
+          sessions.createIndex("by-status", "status");
+        }
+        if (!db.objectStoreNames.contains("sessionQuarantine")) db.createObjectStore("sessionQuarantine", { keyPath: "id" });
+        if (!db.objectStoreNames.contains("sessionSummaries")) db.createObjectStore("sessionSummaries", { keyPath: "id" });
+        if (!db.objectStoreNames.contains("aiProviderProfiles")) db.createObjectStore("aiProviderProfiles", { keyPath: "id" });
+        if (!db.objectStoreNames.contains("aiSecrets")) db.createObjectStore("aiSecrets", { keyPath: "providerProfileId" });
+        if (!db.objectStoreNames.contains("aiCryptoKeys")) db.createObjectStore("aiCryptoKeys", { keyPath: "id" });
       },
       blocked() { console.warn("Party Night 数据库升级被其他页面阻塞"); },
     });

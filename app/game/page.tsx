@@ -22,7 +22,7 @@ import { SPIN_BOTTLE_STATE_KEY, readSpinBottleState, recordSpinResult } from "@/
 import { pairNames } from "@/components/game/CompatibilityPairPicker";
 import { getGamePack, packIsCardless } from "@/lib/game-packs/registry";
 import { gamePackRepository } from "@/lib/storage/game-pack-repository";
-import { sessionRepository } from "@/lib/storage/session-repository";
+import { sessionRepository, createSessionAutosave } from "@/lib/storage/session-repository";
 
 /** 还没有 pack-local state 时，从在场玩家取默认两人；不足 2 人返回 undefined（玩法不可用）。 */
 function pairFromDefaults(session: GameSession) {
@@ -39,8 +39,11 @@ function GamePageContent() {
   const [customPacks, setCustomPacks] = useState<CustomGamePack[]>([]);
   useEffect(() => { if (!id) return router.replace("/"); void sessionRepository.get(id).then(async (stored) => { if (!stored) return router.replace("/"); const next = stored.currentRound ? stored : startRound(stored); await sessionRepository.save(next); setSession(next); }); }, [id, router]);
   useEffect(() => { void gamePackRepository.list().then(setCustomPacks); }, []);
+  // 重要动作（切玩法 / 完成 / 换一个 / 跳过 / 默契分数 / 转瓶子落点）共用一条串行 autosave，
+  // 保证快速连点或动画期间刷新时，落库顺序与动作顺序一致（T187）。
+  const autosave = useMemo(() => createSessionAutosave(), []);
   const switchablePacks = useMemo(() => session ? listSwitchablePacks(session, customPacks) : [], [session, customPacks]);
-  async function commit(next: GameSession) { await sessionRepository.save(next); setSession(next); }
+  async function commit(next: GameSession) { await autosave.save(next); setSession(next); }
   async function resolve(action: "complete" | "swap" | "skip") { if (!session) return; const resolved = action === "complete" ? completeRound(session) : action === "swap" ? swapRound(session) : skipRound(session); const next = startRound(resolved); if (!next.currentRound) { const finished = finishSession(resolved); await commit(finished); router.push(`/summary?session=${finished.id}`); } else await commit(next); }
   // 切玩法：同一 Session 内换 currentPackId → 目标玩法 seed 立即补位 → 出下一题并 autosave（不重建 Session、不改 config）。
   async function switchTo(packId: string) { setSwitcherOpen(false); if (!session) return; const next = switchPackAndDeal(session, packId, customPacks); if (next !== session) await commit(next); }

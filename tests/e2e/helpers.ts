@@ -54,6 +54,23 @@ function readIndexedDb<T>(page: Page, read: IdbRead): Promise<T> {
 
 /** 读回本地 Session 记录：断言“同一局”而不是 UI 缓存。 */
 export const readSession = (page: Page, id: string): Promise<GameSession> => readIndexedDb<GameSession>(page, { mode: "get", key: id });
+/** 读隔离区记录：断言坏 Session 被隔离而非删除。 */
+export const readQuarantinedSession = (page: Page, id: string): Promise<{ reason: string; raw?: unknown } | undefined> =>
+  page.evaluate((key) => new Promise<{ reason: string; raw?: unknown } | undefined>((resolve, reject) => {
+    const request = indexedDB.open("party-night-v1");
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      try {
+        const db = request.result;
+        if (!db.objectStoreNames.contains("sessionQuarantine")) { db.close(); resolve(undefined); return; }
+        const result = db.transaction("sessionQuarantine").objectStore("sessionQuarantine").get(key);
+        result.onsuccess = () => { db.close(); resolve(result.result as { reason: string } | undefined); };
+        result.onerror = () => { db.close(); reject(result.error); };
+      } catch (error) {
+        reject(error);
+      }
+    };
+  }), id);
 
 export const countSessions = (page: Page): Promise<number> => readIndexedDb<number>(page, { mode: "count" });
 
@@ -64,14 +81,13 @@ export const countSessions = (page: Page): Promise<number> => readIndexedDb<numb
 export async function seedSession(page: Page, session: GameSession): Promise<void> {
   await page.goto("/");
   await page.evaluate((record) => new Promise<void>((resolve, reject) => {
-    // 不删库（delete 在上下文残留连接时会 blocked 悬挂）：以 v1 打开（与 App 一致，
-    // idb 拒绝低版本打开故不可用高版本），缺 store 时走 onupgradeneeded 补齐；
-    // 同步异常全部转为 reject，15s 无结果直接报错不悬挂。
+    // 不删库：以与 App 相同的版本打开（当前 v2，见 lib/storage/db.ts），
+    // 缺 store 时走 onupgradeneeded 补齐；同步异常全部转为 reject，15s 无结果直接报错不悬挂。
     let settled = false;
     const timer = window.setTimeout(() => { if (!settled) { settled = true; reject(new Error("seedSession-idb-timeout")); } }, 15000);
     const done = (fn: () => void) => { if (!settled) { settled = true; window.clearTimeout(timer); fn(); } };
     try {
-      const request = indexedDB.open("party-night-v1", 1);
+      const request = indexedDB.open("party-night-v1", 2);
       request.onupgradeneeded = () => {
         const db = request.result;
         const ensure = (name: string, keyPath: string) => { if (!db.objectStoreNames.contains(name)) db.createObjectStore(name, { keyPath }); };
@@ -83,6 +99,7 @@ export async function seedSession(page: Page, session: GameSession): Promise<voi
           sessions.createIndex("by-updatedAt", "updatedAt");
           sessions.createIndex("by-status", "status");
         }
+        ensure("sessionQuarantine", "id");
         ensure("sessionSummaries", "id");
         ensure("aiProviderProfiles", "id");
         ensure("aiSecrets", "providerProfileId");
