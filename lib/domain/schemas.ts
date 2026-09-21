@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+/** 本地持久化 schema 版本：V1 记录读取时必须先经 lib/storage/session-migration 迁移。 */
+export const SESSION_SCHEMA_VERSION = 2 as const;
+
 export const intensitySchema = z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5)]);
 export type Intensity = z.infer<typeof intensitySchema>;
 
@@ -49,6 +52,20 @@ export const gameCardSchema = z.object({
 });
 export type GameCard = z.infer<typeof gameCardSchema>;
 
+export const packRendererSchema = z.enum(["card", "binary-choice", "pointing", "compatibility", "spin"]);
+export type PackRenderer = z.infer<typeof packRendererSchema>;
+
+/** Pack 能力声明：只描述玩法需要什么、由哪个 renderer 承载，不含 Session 业务逻辑。 */
+export const packCapabilitySchema = z.object({
+  requiresAIContent: z.boolean(),
+  minPlayers: z.number().int().min(2),
+  maxPlayers: z.number().int().min(2).optional(),
+  supportsMixedMode: z.boolean(),
+  supportsLocalSeed: z.boolean(),
+  renderer: packRendererSchema,
+});
+export type PackCapability = z.infer<typeof packCapabilitySchema>;
+
 export const gamePackDefinitionSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1).max(40),
@@ -59,6 +76,7 @@ export const gamePackDefinitionSchema = z.object({
   supportedCardTypes: z.array(z.string()).min(1),
   weight: z.number().positive().default(1),
   source: z.enum(["builtin", "custom"]).default("builtin"),
+  capability: packCapabilitySchema.optional(),
 });
 export type GamePackDefinition = z.infer<typeof gamePackDefinitionSchema>;
 
@@ -79,6 +97,7 @@ export const roundHistorySchema = z.object({
   packId: z.string(),
   participantIds: z.array(z.string()),
   status: z.enum(["completed", "swapped", "skipped"]),
+  result: z.record(z.string(), z.unknown()).optional(),
   startedAt: z.string(),
   endedAt: z.string(),
 });
@@ -94,7 +113,7 @@ export const activeRoundSchema = z.object({
 export type ActiveRound = z.infer<typeof activeRoundSchema>;
 
 export const gameSessionSchema = z.object({
-  schemaVersion: z.literal(1),
+  schemaVersion: z.literal(SESSION_SCHEMA_VERSION),
   id: z.string(),
   status: z.enum(["generating", "active", "paused", "finished"]),
   mode: z.enum(["mixed", "single"]),
@@ -103,6 +122,12 @@ export const gameSessionSchema = z.object({
   usedCardIds: z.array(z.string()),
   rounds: z.array(roundHistorySchema),
   currentRound: activeRoundSchema.optional(),
+  /** 当前玩法（局内切换只改这里，不重建 Session）。 */
+  currentPackId: z.string().min(1),
+  /** 当前玩法的局部状态（如默契测试的 pair/score），随 Session 一起恢复。 */
+  currentPackState: z.record(z.string(), z.unknown()).optional(),
+  /** 最近“换一个”拒绝的指纹，用于短期避免重复题面。 */
+  recentRejectedFingerprints: z.array(z.string()).optional(),
   startedAt: z.string().optional(),
   endedAt: z.string().optional(),
   updatedAt: z.string(),

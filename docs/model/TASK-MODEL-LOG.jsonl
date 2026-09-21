@@ -1,0 +1,1 @@
+{"task":"T109-T117 Domain与Session基础","project":"028-ing-酒吧聚会社交导演","date":"2026-09-21","role":"builder","model":"codebuddy/deepseek-v4.1-flash","result":"PASS","rework":0,"escalated":"NO","escalation_reason":null,"tokens":null,"cost_cny":null,"note":"test-first 21项先失败再实现；121例全过；仅lib domain/engine/storage+tests"}
