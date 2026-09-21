@@ -70,6 +70,7 @@ test("10 轮指人游戏：指令卡 + 3/2/1 + 指，不输入票数也能一路
     await pointFast(page);
     await expect(page.getByRole("status")).toContainText("指！");
     await page.getByRole("button", { name: "下一题" }).click();
+    if (round < ROUNDS) await expect(page.getByText(`第 ${round + 1} / ${ROUNDS} 轮`)).toBeVisible();
   }
 
   await expect(page).toHaveURL(new RegExp(`/summary\\?session=${SESSION_ID}`));
@@ -121,7 +122,7 @@ test("换一个＝拒绝当前题面，记录 swapped 并换出不同指令", as
   await page.getByRole("button", { name: "换一个" }).click();
 
   await expect(card(page)).toBeVisible();
-  expect(await page.locator(".pointing-game h1").textContent()).not.toBe(before);
+  await expect.poll(() => page.locator(".pointing-game h1").textContent()).not.toBe(before);
   const stored = await readSession(page, SESSION_ID);
   expect(stored.rounds.map((round) => round.status)).toEqual(["swapped"]);
 });

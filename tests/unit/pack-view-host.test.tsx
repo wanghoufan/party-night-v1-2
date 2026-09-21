@@ -8,6 +8,9 @@ const base: Omit<GameCard, "id" | "packId" | "type" | "content"> = { intensity: 
 const wyrCard: GameCard = { ...base, id: "w1", packId: "would-you-rather", type: "would-you-rather", content: "奶茶加珍珠 VS 咖啡加双份糖" };
 const truthCard: GameCard = { ...base, id: "t1", packId: "truth-dare", type: "truth", content: "最近一次让你笑到停不下来的事是什么？" };
 const pointingCard: GameCard = { ...base, id: "p1", packId: "pointing-game", type: "pointing", content: "指一个你觉得今晚最有梗的人。", minPlayers: 3 };
+const compatCard: GameCard = { ...base, id: "c1", packId: "compatibility-test", type: "compatibility", content: "对方最讨厌的食物是什么？", participantMode: "pair" };
+
+const players = [{ id: "alex", displayName: "Alex", active: true, createdAt: "x", lastUsedAt: "x" }, { id: "emma", displayName: "Emma", active: true, createdAt: "x", lastUsedAt: "x" }];
 
 const actions = () => ({ onComplete: vi.fn(), onSwap: vi.fn(), onSkip: vi.fn() });
 
@@ -39,6 +42,28 @@ describe("PackViewHost", () => {
     expect(handlers.onComplete).toHaveBeenCalledTimes(1);
   });
 
+  it("renders the compatibility view for 默契测试 with pair context and shared actions", () => {
+    const handlers = actions();
+    const onAnswer = vi.fn();
+    const onComplete = handlers.onComplete;
+    render(
+      <PackViewHost
+        packId="compatibility-test"
+        card={compatCard}
+        participantNames={["Alex", "Emma"]}
+        actions={handlers}
+        compatibility={{ players, pair: { playerAId: "alex", playerBId: "emma", names: { a: "Alex", b: "Emma" }, state: { playerAId: "alex", playerBId: "emma", score: 2, rounds: 3 } }, onChangePair: vi.fn(), onAnswer }}
+      />,
+    );
+    expect(screen.getByText("默契测试")).toBeInTheDocument();
+    expect(screen.getByText(/Alex × Emma/)).toBeInTheDocument();
+    expect(screen.getByText(/默契 2\/3/)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "一样 ❤️" }));
+    expect(onAnswer).toHaveBeenCalledWith("same");
+    fireEvent.click(screen.getByRole("button", { name: "下一题" }));
+    expect(onComplete).toHaveBeenCalledTimes(1);
+  });
+
   it("falls back to the generic card view for unknown packs", () => {
     render(<PackViewHost packId="custom-unknown" card={truthCard} participantNames={[]} actions={actions()} />);
     expect(screen.getByRole("heading", { name: truthCard.content })).toBeInTheDocument();
@@ -49,6 +74,7 @@ describe("packViewOwnsActions", () => {
   it("reports which renderers carry their own action bar", () => {
     expect(packViewOwnsActions("would-you-rather")).toBe(true);
     expect(packViewOwnsActions("pointing-game")).toBe(true);
+    expect(packViewOwnsActions("compatibility-test")).toBe(true);
     expect(packViewOwnsActions("truth-dare")).toBe(false);
     expect(packViewOwnsActions("custom-unknown")).toBe(false);
   });

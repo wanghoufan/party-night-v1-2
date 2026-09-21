@@ -57,4 +57,4 @@ export const DEFAULT_BOUNDARIES = {
   customText: "",
 } as const;
 
-export const BUILTIN_PACK_IDS = ["truth-dare", "most-likely", "never-have", "ai-improv"] as const;
+export const BUILTIN_PACK_IDS = ["truth-dare", "most-likely", "never-have", "ai-improv", "would-you-rather", "pointing-game", "compatibility-test", "spin-bottle"] as const;

@@ -13,11 +13,19 @@ import { RoundActions } from "@/components/game/RoundActions";
 import { RoundHeader } from "@/components/game/RoundHeader";
 import { RoundTimer } from "@/components/game/RoundTimer";
 import type { CustomGamePack, GameSession, Intensity, Player } from "@/lib/domain/schemas";
-import { completeRound, finishSession, pauseSession, resumeSession, skipRound, startRound, swapRound, updateIntensity, updatePlayers } from "@/lib/engine/session-engine";
+import { completeRound, finishSession, pauseSession, resumeSession, skipRound, startRound, swapRound, updateIntensity, updatePackState, updatePlayers } from "@/lib/engine/session-engine";
 import { listSwitchablePacks, switchPackAndDeal } from "@/lib/engine/pack-switcher";
+import { COMPATIBILITY_STATE_KEY, createCompatibilityState, defaultCompatibilityPair, readCompatibilityState, recordCompatibilityAnswer } from "@/lib/game-packs/compatibility-test";
+import { pairNames } from "@/components/game/CompatibilityPairPicker";
 import { getGamePack } from "@/lib/game-packs/registry";
 import { gamePackRepository } from "@/lib/storage/game-pack-repository";
 import { sessionRepository } from "@/lib/storage/session-repository";
+
+/** 还没有 pack-local state 时，从在场玩家取默认两人；不足 2 人返回 undefined（玩法不可用）。 */
+function pairFromDefaults(session: GameSession) {
+  const pair = defaultCompatibilityPair(session.config.players);
+  return pair ? createCompatibilityState(pair[0]!.id, pair[1]!.id) : undefined;
+}
 
 function GamePageContent() {
   const router = useRouter();
@@ -35,6 +43,9 @@ function GamePageContent() {
   async function switchTo(packId: string) { setSwitcherOpen(false); if (!session) return; const next = switchPackAndDeal(session, packId, customPacks); if (next !== session) await commit(next); }
   async function changeIntensity(value: Intensity) { if (session) await commit(updateIntensity(session, value)); }
   async function changePlayers(value: Player[]) { if (session && value.filter((player) => player.active).length >= 2) await commit(updatePlayers(session, value)); }
+  // 默契测试 pack-local state：读不到就从在场玩家取默认两人并落库；刷新后原样恢复（score/pair 不丢）。
+  async function changePair(playerId: string) { if (!session) return; const current = readCompatibilityState(session) ?? pairFromDefaults(session); if (!current || current.playerBId === playerId) return; const next = { playerAId: current.playerBId, playerBId: playerId }; await commit(updatePackState(session, COMPATIBILITY_STATE_KEY, createCompatibilityState(next.playerAId, next.playerBId))); }
+  async function answerPair(answer: "same" | "different") { if (!session) return; const current = readCompatibilityState(session) ?? pairFromDefaults(session); if (!current) return; await commit(updatePackState(session, COMPATIBILITY_STATE_KEY, recordCompatibilityAnswer(current, answer))); }
   async function togglePause() { if (!session) return; await commit(session.status === "paused" ? resumeSession(session) : pauseSession(session)); }
   async function end() { if (!session) return; const finished = finishSession(session); await commit(finished); router.push(`/summary?session=${finished.id}`); }
   if (!session) return <NeonBackground><main className="screen game-screen"><p>正在恢复本局…</p></main></NeonBackground>;
@@ -46,7 +57,10 @@ function GamePageContent() {
   // 自带动作条的玩法（如二选一）自己渲染下一题/换一个；主局不再叠加一套共享动作条。
   const viewOwnsActions = packViewOwnsActions(session.currentRound.packId);
   const roundActions = { onComplete: () => void resolve("complete"), onSwap: () => void resolve("swap"), onSkip: () => void resolve("skip") };
-  return <NeonBackground className="game-bg"><main className="screen game-screen"><RoundHeader current={session.rounds.length + 1} planned={Math.min(40, session.deckSnapshot.length)} onSettings={() => setSettingsOpen(true)} />{session.status === "paused" && <div className="paused-banner">本局已暂停</div>}<PackViewHost key={card.id} packId={session.currentRound.packId} card={card} participantNames={participantNames} actions={roundActions} /><RoundTimer roundId={session.currentRound.id} />{!viewOwnsActions && <RoundActions {...roundActions} />}<button className="pack-switch-entry" type="button" onClick={() => setSwitcherOpen(true)}><Icon name="cube" />切换玩法 · {currentPackName}</button><p className="game-motto">Good Friends · Wilder Nights</p>{switcher}<InGameSettings open={settingsOpen} intensity={session.config.intensity} players={session.config.players} paused={session.status === "paused"} onIntensity={(value) => void changeIntensity(value)} onPlayers={(value) => void changePlayers(value)} onPause={() => void togglePause()} onFinish={() => void end()} onClose={() => setSettingsOpen(false)} /></main></NeonBackground>;
+  // 默契测试配对：优先用已持久化的 state，没有则用默认两人（首次进入时落库，刷新后可恢复）。
+  const compatibilityState = readCompatibilityState(session) ?? pairFromDefaults(session);
+  const compatibility = { players: session.config.players, pair: compatibilityState ? { playerAId: compatibilityState.playerAId, playerBId: compatibilityState.playerBId, names: pairNames(session.config.players, compatibilityState), state: compatibilityState } : undefined, onChangePair: (playerId: string) => void changePair(playerId), onAnswer: (answer: "same" | "different") => void answerPair(answer) };
+  return <NeonBackground className="game-bg"><main className="screen game-screen"><RoundHeader current={session.rounds.length + 1} planned={Math.min(40, session.deckSnapshot.length)} onSettings={() => setSettingsOpen(true)} />{session.status === "paused" && <div className="paused-banner">本局已暂停</div>}<PackViewHost key={card.id} packId={session.currentRound.packId} card={card} participantNames={participantNames} actions={roundActions} compatibility={compatibility} /><RoundTimer roundId={session.currentRound.id} />{!viewOwnsActions && <RoundActions {...roundActions} />}<button className="pack-switch-entry" type="button" onClick={() => setSwitcherOpen(true)}><Icon name="cube" />切换玩法 · {currentPackName}</button><p className="game-motto">Good Friends · Wilder Nights</p>{switcher}<InGameSettings open={settingsOpen} intensity={session.config.intensity} players={session.config.players} paused={session.status === "paused"} onIntensity={(value) => void changeIntensity(value)} onPlayers={(value) => void changePlayers(value)} onPause={() => void togglePause()} onFinish={() => void end()} onClose={() => setSettingsOpen(false)} /></main></NeonBackground>;
 }
 
 export default function GamePage() {

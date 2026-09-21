@@ -63,20 +63,43 @@ export const countSessions = (page: Page): Promise<number> => readIndexedDb<numb
  */
 export async function seedSession(page: Page, session: GameSession): Promise<void> {
   await page.goto("/");
-  await page.waitForFunction(() => new Promise<boolean>((resolve) => {
-    const request = indexedDB.open("party-night-v1");
-    request.onsuccess = () => { const db = request.result; const ready = db.objectStoreNames.contains("sessions"); db.close(); resolve(ready); };
-    request.onerror = () => resolve(false);
-  }));
   await page.evaluate((record) => new Promise<void>((resolve, reject) => {
-    const request = indexedDB.open("party-night-v1");
-    request.onerror = () => reject(request.error);
-    request.onsuccess = () => {
-      const db = request.result;
-      const transaction = db.transaction("sessions", "readwrite");
-      transaction.objectStore("sessions").put(record);
-      transaction.oncomplete = () => { db.close(); resolve(); };
-      transaction.onerror = () => { db.close(); reject(transaction.error); };
-    };
+    // 不删库（delete 在上下文残留连接时会 blocked 悬挂）：以 v1 打开（与 App 一致，
+    // idb 拒绝低版本打开故不可用高版本），缺 store 时走 onupgradeneeded 补齐；
+    // 同步异常全部转为 reject，15s 无结果直接报错不悬挂。
+    let settled = false;
+    const timer = window.setTimeout(() => { if (!settled) { settled = true; reject(new Error("seedSession-idb-timeout")); } }, 15000);
+    const done = (fn: () => void) => { if (!settled) { settled = true; window.clearTimeout(timer); fn(); } };
+    try {
+      const request = indexedDB.open("party-night-v1", 1);
+      request.onupgradeneeded = () => {
+        const db = request.result;
+        const ensure = (name: string, keyPath: string) => { if (!db.objectStoreNames.contains(name)) db.createObjectStore(name, { keyPath }); };
+        ensure("players", "id");
+        ensure("preferences", "id");
+        ensure("gamePacks", "definition.id");
+        if (!db.objectStoreNames.contains("sessions")) {
+          const sessions = db.createObjectStore("sessions", { keyPath: "id" });
+          sessions.createIndex("by-updatedAt", "updatedAt");
+          sessions.createIndex("by-status", "status");
+        }
+        ensure("sessionSummaries", "id");
+        ensure("aiProviderProfiles", "id");
+        ensure("aiSecrets", "providerProfileId");
+        ensure("aiCryptoKeys", "id");
+      };
+      request.onerror = () => done(() => reject(request.error));
+      request.onblocked = () => done(() => reject(new Error("seedSession-idb-blocked")));
+      request.onsuccess = () => {
+        try {
+          const db = request.result;
+          const transaction = db.transaction("sessions", "readwrite");
+          transaction.objectStore("sessions").put(record);
+          transaction.oncomplete = () => { db.close(); done(resolve); };
+          transaction.onerror = () => { db.close(); done(() => reject(transaction.error)); };
+          transaction.onabort = () => { db.close(); done(() => reject(transaction.error ?? new Error("seedSession-tx-abort"))); };
+        } catch (error) { done(() => reject(error instanceof Error ? error : new Error(String(error)))); }
+      };
+    } catch (error) { done(() => reject(error instanceof Error ? error : new Error(String(error)))); }
   }), session);
 }

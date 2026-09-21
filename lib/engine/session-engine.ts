@@ -127,6 +127,14 @@ export function updateIntensity(session: GameSession, intensity: Intensity): Gam
   return { ...session, config: { ...session.config, intensity }, updatedAt: now() };
 }
 
+/**
+ * 写当前玩法的局部状态：只合并一个键（如 compatibility），不覆盖其他玩法的状态。
+ * 玩法 UI 用它在“一样/不一样”“换 pair”后立即落库，刷新可恢复（FR-035 / T147）。
+ */
+export function updatePackState(session: GameSession, key: string, value: unknown): GameSession {
+  return { ...session, currentPackState: { ...session.currentPackState, [key]: value }, updatedAt: now() };
+}
+
 export function updatePlayers(session: GameSession, players: SessionConfig["players"]): GameSession {
   return { ...session, config: { ...session.config, players }, updatedAt: now() };
 }
