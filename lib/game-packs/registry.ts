@@ -1,4 +1,5 @@
-import type { CustomGamePack, GamePackDefinition } from "@/lib/domain/schemas";
+import type { CustomGamePack, GamePackDefinition, PackRenderer } from "@/lib/domain/schemas";
+import { resolvePackCapability } from "@/lib/domain/pack-capability";
 import { aiImprovPack } from "./ai-improv";
 import { compatibilityTestPack } from "./compatibility-test";
 import { mostLikelyPack } from "./most-likely";
@@ -22,4 +23,10 @@ export function createGamePackRegistry(customPacks: CustomGamePack[] = []): Map<
 
 export function getGamePack(id: string, customPacks: CustomGamePack[] = []): GamePackDefinition | undefined {
   return createGamePackRegistry(customPacks).get(id);
+}
+
+/** 主局 renderer host 用：按 packId 取 registry 声明的 renderer，未知/自定义玩法回落到通用题卡视图。 */
+export function resolvePackRendererById(id: string, customPacks: CustomGamePack[] = []): PackRenderer {
+  const pack = getGamePack(id, customPacks);
+  return pack ? resolvePackCapability(pack).renderer : "card";
 }

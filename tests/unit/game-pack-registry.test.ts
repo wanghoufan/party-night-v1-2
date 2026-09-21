@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { packCapabilitySchema } from "@/lib/domain/schemas";
 import { resolvePackCapability } from "@/lib/domain/pack-capability";
-import { BUILTIN_GAME_PACKS, createGamePackRegistry, getGamePack } from "@/lib/game-packs/registry";
+import { BUILTIN_GAME_PACKS, createGamePackRegistry, getGamePack, resolvePackRendererById } from "@/lib/game-packs/registry";
 
 /** V1.1 Phase 3 新增的四个玩法，默认启用策略与 V1.0 内置一致。 */
 const NEW_PACK_IDS = ["would-you-rather", "pointing-game", "compatibility-test", "spin-bottle"] as const;
@@ -37,5 +37,15 @@ describe("game pack registry", () => {
   it("enables the four new packs by default like the V1.0 packs", () => {
     for (const id of NEW_PACK_IDS) expect(getGamePack(id)?.enabledByDefault).toBe(true);
     expect(BUILTIN_GAME_PACKS.every((pack) => pack.enabledByDefault)).toBe(true);
+  });
+
+  /** 主局 renderer host 只认 registry 声明的 renderer，未知/自定义玩法一律回落到通用题卡视图。 */
+  it("resolves the renderer of a pack id straight from the registry", () => {
+    expect(resolvePackRendererById("would-you-rather")).toBe("binary-choice");
+    expect(resolvePackRendererById("pointing-game")).toBe("pointing");
+    expect(resolvePackRendererById("compatibility-test")).toBe("compatibility");
+    expect(resolvePackRendererById("spin-bottle")).toBe("spin");
+    expect(resolvePackRendererById("truth-dare")).toBe("card");
+    expect(resolvePackRendererById("custom-pack")).toBe("card");
   });
 });

@@ -98,4 +98,27 @@ describe("switchPack", () => {
     expect(await sessionRepository.get(switched.id)).toEqual(switched);
     await sessionRepository.delete(switched.id);
   });
+
+  it("deals the switched pack next when the caller pins it (home / in-game entry)", () => {
+    const enabled = [...BUILTIN_PACK_IDS, "would-you-rather"];
+    const switched = switchPack(createSession(config({ enabledPackIds: enabled, mode: "mixed" }), BUILTIN_SEED_CARDS), "would-you-rather", { enabledPackIds: enabled });
+    const dealt = startRound(switched, () => 0, { preferPackIds: ["would-you-rather"] });
+
+    expect(dealt.currentRound?.packId).toBe("would-you-rather");
+    expect(dealt.currentPackId).toBe("would-you-rather");
+  });
+
+  it("keeps V1.0 mixed rotation when the caller passes no preference", () => {
+    const session = createSession(config({ enabledPackIds: [...BUILTIN_PACK_IDS], mode: "mixed" }), BUILTIN_SEED_CARDS);
+    const dealt = startRound(session, () => 0);
+
+    expect(["most-likely", "never-have", "truth-dare"]).toContain(dealt.currentRound?.packId);
+  });
+
+  it("never lets a preference pull a single session off its current pack", () => {
+    const session = createSession(config(), BUILTIN_SEED_CARDS);
+    const dealt = startRound(session, () => 0, { preferPackIds: ["truth-dare"] });
+
+    expect(dealt.currentRound?.packId).toBe("never-have");
+  });
 });

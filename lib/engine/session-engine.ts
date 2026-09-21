@@ -34,11 +34,21 @@ export function activateSession(session: GameSession, cards: GameCard[]): GameSe
   return { ...session, status: "active", deckSnapshot: structuredClone(cards), startedAt: session.startedAt ?? timestamp, updatedAt: timestamp };
 }
 
-export function startRound(session: GameSession, random: RandomSource = Math.random): GameSession {
+export interface StartRoundOptions {
+  /** 明确切换玩法后的下一题偏好：只影响这一次出题，不改 config、不锁死后续轮次。 */
+  preferPackIds?: string[];
+}
+
+export function startRound(session: GameSession, random: RandomSource = Math.random, options: StartRoundOptions = {}): GameSession {
   if (session.status !== "active" || session.currentRound) return session;
   const activePlayers = session.config.players.filter((player) => player.active);
   // single 模式只从当前玩法出卡；mixed 模式沿用 V1.0 的阶段混合出卡，currentPackId 跟随抽到的题卡。
   const single = session.config.mode === "single";
+  const preferredPackIds = single
+    ? [session.currentPackId]
+    : options.preferPackIds?.length
+      ? options.preferPackIds
+      : getStagePackPreference(getSessionStage(session));
   const card = selectCard({
     cards: session.deckSnapshot,
     usedCardIds: session.usedCardIds,
@@ -46,7 +56,7 @@ export function startRound(session: GameSession, random: RandomSource = Math.ran
     playerCount: activePlayers.length,
     intensity: session.config.intensity,
     boundaries: session.config.boundaries,
-    preferredPackIds: single ? [session.currentPackId] : getStagePackPreference(getSessionStage(session)),
+    preferredPackIds,
     recentRejectedFingerprints: session.recentRejectedFingerprints ?? [],
     random,
   });
