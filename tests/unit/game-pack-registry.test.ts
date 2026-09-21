@@ -1,10 +1,41 @@
 import { describe, expect, it } from "vitest";
-import { BUILTIN_GAME_PACKS, createGamePackRegistry } from "@/lib/game-packs/registry";
+import { packCapabilitySchema } from "@/lib/domain/schemas";
+import { resolvePackCapability } from "@/lib/domain/pack-capability";
+import { BUILTIN_GAME_PACKS, createGamePackRegistry, getGamePack } from "@/lib/game-packs/registry";
+
+/** V1.1 Phase 3 新增的四个玩法，默认启用策略与 V1.0 内置一致。 */
+const NEW_PACK_IDS = ["would-you-rather", "pointing-game", "compatibility-test", "spin-bottle"] as const;
 
 describe("game pack registry", () => {
-  it("exposes four decoupled built-in packs", () => {
-    expect(BUILTIN_GAME_PACKS).toHaveLength(4);
-    expect(createGamePackRegistry().size).toBe(4);
-    expect(BUILTIN_GAME_PACKS.every((pack) => pack.mixable)).toBe(true);
+  it("exposes eight decoupled built-in packs", () => {
+    expect(BUILTIN_GAME_PACKS).toHaveLength(8);
+    expect(createGamePackRegistry().size).toBe(8);
+  });
+
+  it("resolves every built-in pack by a unique id", () => {
+    const ids = BUILTIN_GAME_PACKS.map((pack) => pack.id);
+    expect(new Set(ids).size).toBe(BUILTIN_GAME_PACKS.length);
+    for (const pack of BUILTIN_GAME_PACKS) expect(getGamePack(pack.id)).toBe(pack);
+  });
+
+  it("keeps every built-in pack on a legal minPlayers", () => {
+    for (const pack of BUILTIN_GAME_PACKS) {
+      expect(Number.isInteger(pack.minPlayers)).toBe(true);
+      expect(pack.minPlayers).toBeGreaterThanOrEqual(2);
+    }
+  });
+
+  it("declares a complete, resolvable capability block for every built-in pack", () => {
+    for (const pack of BUILTIN_GAME_PACKS) {
+      const capability = resolvePackCapability(pack);
+      expect(packCapabilitySchema.safeParse(capability).success).toBe(true);
+      expect(capability.minPlayers).toBe(pack.minPlayers);
+      expect(capability.supportsLocalSeed).toBe(true);
+    }
+  });
+
+  it("enables the four new packs by default like the V1.0 packs", () => {
+    for (const id of NEW_PACK_IDS) expect(getGamePack(id)?.enabledByDefault).toBe(true);
+    expect(BUILTIN_GAME_PACKS.every((pack) => pack.enabledByDefault)).toBe(true);
   });
 });
