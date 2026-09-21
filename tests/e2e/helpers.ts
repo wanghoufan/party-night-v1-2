@@ -56,3 +56,27 @@ function readIndexedDb<T>(page: Page, read: IdbRead): Promise<T> {
 export const readSession = (page: Page, id: string): Promise<GameSession> => readIndexedDb<GameSession>(page, { mode: "get", key: id });
 
 export const countSessions = (page: Page): Promise<number> => readIndexedDb<number>(page, { mode: "count" });
+
+/**
+ * 直接落一个 Session 到本地库：单玩法“必须凑满 N 轮”的 E2E 用它保证题卡数量确定，
+ * 不依赖混合模式的随机出题。写入的是真实落库形态，主局按正常读库路径恢复。
+ */
+export async function seedSession(page: Page, session: GameSession): Promise<void> {
+  await page.goto("/");
+  await page.waitForFunction(() => new Promise<boolean>((resolve) => {
+    const request = indexedDB.open("party-night-v1");
+    request.onsuccess = () => { const db = request.result; const ready = db.objectStoreNames.contains("sessions"); db.close(); resolve(ready); };
+    request.onerror = () => resolve(false);
+  }));
+  await page.evaluate((record) => new Promise<void>((resolve, reject) => {
+    const request = indexedDB.open("party-night-v1");
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      const db = request.result;
+      const transaction = db.transaction("sessions", "readwrite");
+      transaction.objectStore("sessions").put(record);
+      transaction.oncomplete = () => { db.close(); resolve(); };
+      transaction.onerror = () => { db.close(); reject(transaction.error); };
+    };
+  }), session);
+}

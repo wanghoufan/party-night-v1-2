@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { InGameSettings } from "@/components/game/InGameSettings";
 import { PackSwitcherSheet } from "@/components/game/PackSwitcherSheet";
-import { PackViewHost } from "@/components/game/PackViewHost";
+import { PackViewHost, packViewOwnsActions } from "@/components/game/PackViewHost";
 import { RoundActions } from "@/components/game/RoundActions";
 import { RoundHeader } from "@/components/game/RoundHeader";
 import { RoundTimer } from "@/components/game/RoundTimer";
@@ -43,7 +43,10 @@ function GamePageContent() {
   if (!card || !session.currentRound) return <NeonBackground><main className="screen game-screen"><section className="empty-deck"><h1>这个玩法暂时没有可玩的题卡</h1><Button type="button" onClick={() => setSwitcherOpen(true)}>切换玩法</Button><Button variant="ghost" type="button" onClick={() => void end()}>查看总结</Button><Link href="/">返回首页</Link></section>{switcher}</main></NeonBackground>;
   const participantNames = session.currentRound.participantIds.map((playerId) => session.config.players.find((player) => player.id === playerId)?.displayName).filter((name): name is string => Boolean(name));
   const currentPackName = switchablePacks.find((pack) => pack.id === session.currentPackId)?.name ?? getGamePack(session.currentPackId)?.name ?? session.currentPackId;
-  return <NeonBackground className="game-bg"><main className="screen game-screen"><RoundHeader current={session.rounds.length + 1} planned={Math.min(40, session.deckSnapshot.length)} onSettings={() => setSettingsOpen(true)} />{session.status === "paused" && <div className="paused-banner">本局已暂停</div>}<PackViewHost key={card.id} packId={session.currentRound.packId} card={card} participantNames={participantNames} /><RoundTimer roundId={session.currentRound.id} /><RoundActions onComplete={() => void resolve("complete")} onSwap={() => void resolve("swap")} onSkip={() => void resolve("skip")} /><button className="pack-switch-entry" type="button" onClick={() => setSwitcherOpen(true)}><Icon name="cube" />切换玩法 · {currentPackName}</button><p className="game-motto">Good Friends · Wilder Nights</p>{switcher}<InGameSettings open={settingsOpen} intensity={session.config.intensity} players={session.config.players} paused={session.status === "paused"} onIntensity={(value) => void changeIntensity(value)} onPlayers={(value) => void changePlayers(value)} onPause={() => void togglePause()} onFinish={() => void end()} onClose={() => setSettingsOpen(false)} /></main></NeonBackground>;
+  // 自带动作条的玩法（如二选一）自己渲染下一题/换一个；主局不再叠加一套共享动作条。
+  const viewOwnsActions = packViewOwnsActions(session.currentRound.packId);
+  const roundActions = { onComplete: () => void resolve("complete"), onSwap: () => void resolve("swap"), onSkip: () => void resolve("skip") };
+  return <NeonBackground className="game-bg"><main className="screen game-screen"><RoundHeader current={session.rounds.length + 1} planned={Math.min(40, session.deckSnapshot.length)} onSettings={() => setSettingsOpen(true)} />{session.status === "paused" && <div className="paused-banner">本局已暂停</div>}<PackViewHost key={card.id} packId={session.currentRound.packId} card={card} participantNames={participantNames} actions={roundActions} /><RoundTimer roundId={session.currentRound.id} />{!viewOwnsActions && <RoundActions {...roundActions} />}<button className="pack-switch-entry" type="button" onClick={() => setSwitcherOpen(true)}><Icon name="cube" />切换玩法 · {currentPackName}</button><p className="game-motto">Good Friends · Wilder Nights</p>{switcher}<InGameSettings open={settingsOpen} intensity={session.config.intensity} players={session.config.players} paused={session.status === "paused"} onIntensity={(value) => void changeIntensity(value)} onPlayers={(value) => void changePlayers(value)} onPause={() => void togglePause()} onFinish={() => void end()} onClose={() => setSettingsOpen(false)} /></main></NeonBackground>;
 }
 
 export default function GamePage() {

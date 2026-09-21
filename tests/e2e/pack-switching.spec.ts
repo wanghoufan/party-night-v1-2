@@ -15,7 +15,8 @@ test("同一局连续切换玩法，Session ID / 配置 / 尺度不变", async (
   await expect(sheet(page).getByRole("button", { name: /我从来没有/ })).toHaveAttribute("aria-current", "true");
   await sheet(page).getByRole("button", { name: /二选一/ }).click();
   await expect(switchEntry(page)).toContainText("二选一");
-  await expect(page.locator(".game-card h1")).toContainText("VS");
+  // 二选一由 binary-choice renderer（WouldYouRatherView）承载，题面是 A/VS/B
+  await expect(page.locator(".would-you-rather__options")).toContainText("VS");
 
   // 二选一 → 转瓶子：切到目前还没有题卡内容的玩法，不得白屏，入口仍在
   await switchEntry(page).click();

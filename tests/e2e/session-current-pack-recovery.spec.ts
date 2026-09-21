@@ -10,12 +10,12 @@ test("刷新后恢复切换过的当前玩法与同一张题卡", async ({ page 
   await switchEntry(page).click();
   await page.getByRole("dialog", { name: "切换玩法" }).getByRole("button", { name: /二选一/ }).click();
   await expect(switchEntry(page)).toContainText("二选一");
-  const dealt = await page.locator(".game-card h1").textContent();
+  const dealt = await page.locator(".would-you-rather").getAttribute("data-card-id");
 
   await page.reload();
 
   await expect(switchEntry(page)).toContainText("二选一");
-  await expect(page.locator(".game-card h1")).toHaveText(dealt ?? "");
+  await expect(page.locator(".would-you-rather")).toHaveAttribute("data-card-id", dealt ?? "");
   const restored = await readSession(page, id);
   expect(restored.currentPackId).toBe("would-you-rather");
   expect(restored.currentRound?.packId).toBe("would-you-rather");
