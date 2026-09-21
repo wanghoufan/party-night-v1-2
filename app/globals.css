@@ -469,6 +469,20 @@ textarea {
 .empty-custom-pack h3, .empty-custom-pack p { margin: 0; }
 .empty-custom-pack p { color: var(--color-text-muted); font-size: .78rem; line-height: 1.6; }
 .empty-custom-pack a { display: grid; place-items: center; margin-top: .3rem; text-decoration: none; }
+/* 游戏包页 玩法/规则 二级分区（T163 / FR-029）：页面内切换，底部导航不变。 */
+.pack-segments { display: grid; grid-template-columns: 1fr 1fr; gap: .3rem; margin-bottom: 1.5rem; padding: .3rem; border: 1px solid rgba(152,92,255,.3); border-radius: 999px; background: rgba(12,15,36,.86); box-shadow: inset 0 0 22px rgba(152,92,255,.08); }
+.pack-segments button { min-height: 2.75rem; border: 0; border-radius: 999px; color: var(--color-text-muted); font-size: .88rem; font-weight: 700; background: transparent; cursor: pointer; transition: color .16s ease, background .16s ease, box-shadow .16s ease; }
+.pack-segments button[aria-pressed="true"] { color: white; background: linear-gradient(100deg, rgba(255,46,154,.3), rgba(152,92,255,.34)); box-shadow: inset 0 0 0 1px rgba(152,92,255,.66), var(--glow-purple); text-shadow: var(--glow-purple); }
+.pack-segments button:focus-visible { outline: 2px solid var(--color-neon-blue); outline-offset: 2px; }
+/* 快捷工具分区（T165）：工具没有启用/禁用语义，是“打开即用”的行，不是开关行。 */
+.pack-tools { display: grid; gap: .6rem; margin-top: .75rem; }
+.pack-tools > button { display: grid; grid-template-columns: 2.5rem 1fr auto; align-items: center; gap: .65rem; min-height: 4.2rem; padding: .75rem; border: 1px solid rgba(0,209,255,.28); border-radius: .8rem; color: white; text-align: left; background: rgba(14,26,49,.86); box-shadow: inset 0 0 20px rgba(0,209,255,.06); cursor: pointer; }
+.pack-tools > button > svg:first-child { width: 1.65rem; color: #7fe3ff; filter: drop-shadow(0 0 8px rgba(0,209,255,.45)); }
+.pack-tools > button > svg:last-child { width: 1.15rem; color: var(--color-text-muted); }
+.pack-tools > button > span { display: grid; gap: .2rem; }
+.pack-tools strong { font-size: .92rem; }
+.pack-tools small, .pack-tools__badge { color: var(--color-text-muted); font-size: .7rem; }
+.pack-tools__badge { letter-spacing: .08em; }
 .pack-meta { display: grid; grid-template-columns: 5rem 1fr; gap: .7rem; }
 .pack-meta label { display: grid; gap: .4rem; color: #c4c8df; font-size: .78rem; }
 .pack-meta input { min-width: 0; min-height: 3rem; border: 1px solid rgba(113,128,192,.3); border-radius: .7rem; padding: .65rem; color: white; background: #12172f; }
@@ -621,6 +635,11 @@ textarea {
 :root[data-theme="light"] .pack-list article > a { color: var(--color-text-primary); }
 :root[data-theme="light"] .pack-section-heading a,
 :root[data-theme="light"] .pack-section-heading button { color: #6335a8; }
+:root[data-theme="light"] .pack-segments { border-color: rgba(91,61,154,.22); background: rgba(240,237,248,.9); box-shadow: none; }
+:root[data-theme="light"] .pack-segments button { color: #6a6480; }
+:root[data-theme="light"] .pack-segments button[aria-pressed="true"] { color: #3b1f6b; background: linear-gradient(100deg, rgba(255,46,154,.16), rgba(152,92,255,.2)); text-shadow: none; }
+:root[data-theme="light"] .pack-tools > button { color: var(--color-text-primary); border-color: rgba(91,61,154,.16); background: rgba(255,255,255,.86); box-shadow: 0 9px 24px rgba(53,40,91,.06); }
+:root[data-theme="light"] .pack-tools > button > svg:first-child { color: #0f7fa8; filter: none; }
 :root[data-theme="light"] .pack-meta label,
 :root[data-theme="light"] .card-editor-list article label { color: #5d566e; }
 :root[data-theme="light"] .pack-meta input,

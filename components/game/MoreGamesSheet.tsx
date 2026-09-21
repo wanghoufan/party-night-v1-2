@@ -3,26 +3,18 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
-import { RandomGroupTool } from "@/components/tools/RandomGroupTool";
-import { RandomPlayerTool } from "@/components/tools/RandomPlayerTool";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { packIconName } from "@/components/game/pack-icon";
+import { PARTY_TOOLS, PartyToolPanel, type PartyToolId } from "@/components/tools/PartyToolPanel";
 import { CORE_PACK_IDS } from "@/lib/domain/constants";
 import type { Player } from "@/lib/domain/schemas";
 import { resolvePackRoute } from "@/lib/engine/pack-entry";
 import { BUILTIN_GAME_PACKS } from "@/lib/game-packs/registry";
 import { sessionRepository } from "@/lib/storage/session-repository";
 
-type ToolId = "random-player" | "random-groups";
-
 /** 核心 2×2 之外的内置玩法（4 个新玩法）都从“更多玩法”进，不在首页铺开（Spec 5.2）。 */
 const morePacks = BUILTIN_GAME_PACKS.filter((pack) => !(CORE_PACK_IDS as readonly string[]).includes(pack.id));
-
-const TOOLS: ReadonlyArray<{ id: ToolId; name: string; note: string; icon: "spark" | "users" }> = [
-  { id: "random-player", name: "随机点名", note: "抽一个人", icon: "spark" },
-  { id: "random-groups", name: "随机分组", note: "2 组 / 3 组", icon: "users" },
-];
 
 /**
  * 首页低侵入的“更多玩法”入口 + 面板（T159/T160/T161）：4 个新玩法与 2 个快捷工具放在同一个 sheet 里，
@@ -31,7 +23,7 @@ const TOOLS: ReadonlyArray<{ id: ToolId; name: string; note: string; icon: "spar
 export function MoreGamesSheet() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [tool, setTool] = useState<ToolId>();
+  const [tool, setTool] = useState<PartyToolId>();
   const [players, setPlayers] = useState<Player[]>([]);
 
   useEffect(() => {
@@ -70,13 +62,7 @@ export function MoreGamesSheet() {
         <div className="sheet-backdrop" role="presentation" onMouseDown={(event) => event.currentTarget === event.target && close()}>
           <section className="sheet" role="dialog" aria-modal="true" aria-label="更多玩法">
             {tool ? (
-              <>
-                <div className="sheet__toolbar">
-                  <button type="button" aria-label="返回玩法列表" onClick={() => setTool(undefined)}><Icon name="back" /></button>
-                  <h2>{TOOLS.find((item) => item.id === tool)!.name}</h2>
-                </div>
-                {tool === "random-player" ? <RandomPlayerTool players={players} /> : <RandomGroupTool players={players} />}
-              </>
+              <PartyToolPanel tool={tool} players={players} onBack={() => setTool(undefined)} />
             ) : (
               <>
                 <header className="sheet__header"><h2>更多玩法</h2><p>和主局共用同一份玩家名单；已有进行中的局就直接换玩法，不重开设置</p></header>
@@ -87,7 +73,7 @@ export function MoreGamesSheet() {
                     </button>
                   ))}
                   <p className="sheet__group-label">快捷工具 · 纯本地</p>
-                  {TOOLS.map((item) => (
+                  {PARTY_TOOLS.map((item) => (
                     <button className="sheet-option" type="button" key={item.id} onClick={() => setTool(item.id)}>
                       <Icon name={item.icon} /><strong>{item.name}</strong><small>{item.note}</small>
                     </button>
