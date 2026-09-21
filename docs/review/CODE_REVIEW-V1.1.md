@@ -21,3 +21,14 @@
 - P3：HANDOFF.md 仍为迁移整理旧快照，未同步 V1.1 DEV_BASELINE 进度；建议 TM 收尾更新（非 blocking）。
 
 - 验证：`npm test` 70 文件/437 用例全过；`npx tsc --noEmit` 干净。
+
+## GAP补丁复核（7383306，只审补丁不管旧账）
+
+- Task: CONVERGE-V1.1 GAP-01（FR-032）/ GAP-02（FR-035）
+- Commit: 7383306
+- Reviewer: code-reviewer
+- Result: PASS
+- GAP-01：`tests/unit/rule-catalog.test.ts` 8条逐条断言 hasHouseRules/variant 非空/去重/region 标注，与 CONVERGE §1 FR-032 描述一致；期望表 id 顺序与 catalog 对齐防漏条。无业务改动。
+- GAP-02：`session-engine.ts` switchPack 只重置目标 pack 一格、保留他格；`updatePackState(session, packId, value)` 全调用方（page.tsx/单测）已同步改签名，无残留旧 key 调用；`schemas.ts` 收窄为 record-of-record，`session-migration.ts` backfill 把旧平铺键（compatibility→compatibility-test）内存归位且幂等，非 record 碎片丢弃可接受。回切重进目标格清空语义由单测显式锁定，符合“重进干净起”预期。
+- would-you-rather.spec：第2→第3轮断言修正：swap 落一轮 swapped 后再 primary 即第 3 轮 header，rounds 期望 ["swapped","completed"] 与之自洽，属修测试对齐行为非掩盖。
+- 七查：无越界（改动限 GAP-01/02+对应测试/E2E断言修正）；无 P0/P1；P2 旧项（switchPack 清空整表）已由本补丁关闭。61/61 相关单测通过（switch/catalog/migration/compatibility-state）。
