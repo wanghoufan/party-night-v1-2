@@ -42,10 +42,12 @@ export async function POST(request: Request) {
         return NextResponse.json(parsed, { headers: noStore });
       } catch { lastCode = "INVALID_OUTPUT"; }
     }
+    console.error(`[generate-session] failed code=${lastCode}`);
     return NextResponse.json({ ok: false, code: lastCode }, { status: 422, headers: noStore });
   } catch (error) {
     const safe = safeErrorMessage(error);
     const code = providerErrorCodeForException(safe);
+    console.error(`[generate-session] failed code=${code}`);
     return NextResponse.json({ ok: false, code }, { status: 400, headers: noStore });
   }
 }
