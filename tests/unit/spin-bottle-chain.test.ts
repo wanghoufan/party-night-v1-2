@@ -2,7 +2,8 @@ import { describe, expect, it } from "vitest";
 import { gameSessionSchema, type GameSession, type Player } from "@/lib/domain/schemas";
 import { createSession, startRound, updatePackState } from "@/lib/engine/session-engine";
 import { chainSpinToTruthOrDare, SPIN_CHAIN_PACK_ID } from "@/lib/engine/spin-chain";
-import { readSpinBottleState, recordSpinResult, SPIN_BOTTLE_STATE_KEY, spinBottleStateSchema } from "@/lib/game-packs/spin-bottle";
+import { COMPATIBILITY_PACK_ID } from "@/lib/game-packs/compatibility-test";
+import { readSpinBottleState, recordSpinResult, SPIN_BOTTLE_PACK_ID, spinBottleStateSchema } from "@/lib/game-packs/spin-bottle";
 import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
 import { DEFAULT_BOUNDARIES } from "@/lib/domain/constants";
 
@@ -83,20 +84,20 @@ describe("转瓶子结果链入现有真心话大冒险 (T152 / FR-021)", () => 
 
 describe("转瓶子落点持久化 (T187 · 刷新只恢复结果)", () => {
   it("writes the target under its own pack-state key without clobbering other packs", () => {
-    const session = updatePackState(updatePackState(spinSession(), "compatibility", { playerAId: "p1", playerBId: "p2", score: 1, rounds: 1 }), SPIN_BOTTLE_STATE_KEY, recordSpinResult("p2"));
-    expect(session.currentPackState?.[SPIN_BOTTLE_STATE_KEY]).toEqual({ lastSelectedPlayerId: "p2" });
-    expect(session.currentPackState?.compatibility).toEqual({ playerAId: "p1", playerBId: "p2", score: 1, rounds: 1 });
+    const session = updatePackState(updatePackState(spinSession(), COMPATIBILITY_PACK_ID, { playerAId: "p1", playerBId: "p2", score: 1, rounds: 1 }), SPIN_BOTTLE_PACK_ID, recordSpinResult("p2"));
+    expect(session.currentPackState?.[SPIN_BOTTLE_PACK_ID]).toEqual({ lastSelectedPlayerId: "p2" });
+    expect(session.currentPackState?.[COMPATIBILITY_PACK_ID]).toEqual({ playerAId: "p1", playerBId: "p2", score: 1, rounds: 1 });
   });
 
   it("survives a serialize/deserialize round trip through the session schema", () => {
-    const session = updatePackState(spinSession(), SPIN_BOTTLE_STATE_KEY, recordSpinResult("p3"));
+    const session = updatePackState(spinSession(), SPIN_BOTTLE_PACK_ID, recordSpinResult("p3"));
     const reloaded = gameSessionSchema.parse(JSON.parse(JSON.stringify(session)));
     expect(readSpinBottleState(reloaded)).toEqual({ lastSelectedPlayerId: "p3" });
   });
 
   it("returns undefined for a missing or corrupted state instead of guessing a target", () => {
     expect(readSpinBottleState(spinSession())).toBeUndefined();
-    expect(readSpinBottleState({ currentPackState: { [SPIN_BOTTLE_STATE_KEY]: { lastSelectedPlayerId: "" } } })).toBeUndefined();
+    expect(readSpinBottleState({ currentPackState: { [SPIN_BOTTLE_PACK_ID]: { lastSelectedPlayerId: "" } } })).toBeUndefined();
     expect(spinBottleStateSchema.safeParse({ lastSelectedPlayerId: 7 }).success).toBe(false);
   });
 });

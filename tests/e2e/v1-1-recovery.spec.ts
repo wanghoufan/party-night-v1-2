@@ -141,7 +141,7 @@ test("默契测试：判分落库后重新打开这一局（冷启动）仍恢�
   await expect(page.locator(".compat-game__score")).toHaveText("默契 1/2");
   const restored = await readSession(page, id);
   expect(restored.currentPackId).toBe("compatibility-test");
-  expect(restored.currentPackState?.compatibility).toMatchObject({ score: 1, rounds: 2 });
+  expect(restored.currentPackState?.["compatibility-test"]).toMatchObject({ score: 1, rounds: 2 });
   // 首轮是切玩法前那一轮的 skipped 收尾，之后才是默契测试自己的完成轮
   expect(restored.rounds.map((round) => round.status)).toEqual(["skipped", "completed"]);
 });

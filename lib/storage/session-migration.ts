@@ -1,4 +1,6 @@
 import { SESSION_SCHEMA_VERSION, gameSessionSchema, sessionConfigSchema, type GameSession } from "@/lib/domain/schemas";
+import { COMPATIBILITY_PACK_ID, COMPATIBILITY_STATE_KEY } from "@/lib/game-packs/compatibility-test";
+import { SPIN_BOTTLE_PACK_ID, SPIN_BOTTLE_STATE_KEY } from "@/lib/game-packs/spin-bottle";
 
 export const CURRENT_SESSION_SCHEMA_VERSION = SESSION_SCHEMA_VERSION;
 
@@ -8,8 +10,35 @@ export const QUARANTINE_REASON = "deserialize-failed";
 /** 迁移前的最后一版（V1.0 / V1.1 落库形态）。 */
 const MIGRATABLE_SESSION_SCHEMA_VERSIONS = [1];
 
+/**
+ * GAP-02：旧口径把 pack-local state 平铺在 currentPackState 里（按 state key），新口径按 packId 分键。
+ * 表里只登记两者不同的键；转瓶子的旧键恰好等于玩法 id，天然无需改键。
+ */
+const LEGACY_PACK_STATE_KEYS: Record<string, string> = {
+  [COMPATIBILITY_STATE_KEY]: COMPATIBILITY_PACK_ID,
+  [SPIN_BOTTLE_STATE_KEY]: SPIN_BOTTLE_PACK_ID,
+};
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+/**
+ * 读取时在内存里补齐 pack-local state：旧平铺键归到对应玩法 id，非 record 的碎片丢掉。
+ * 幂等——已是新口径的记录原样返回，不重写、不猜内容（GAP-02）。
+ */
+function backfillPackState(state: unknown): Record<string, Record<string, unknown>> {
+  if (!isRecord(state)) return {};
+  const normalized: Record<string, Record<string, unknown>> = {};
+  for (const [key, value] of Object.entries(state)) {
+    if (!isRecord(value)) continue;
+    normalized[LEGACY_PACK_STATE_KEYS[key] ?? key] = value;
+  }
+  return normalized;
+}
+
+function withBackfilledPackState(session: GameSession): GameSession {
+  return { ...session, currentPackState: backfillPackState(session.currentPackState) };
 }
 
 function nonEmptyString(value: unknown): string | undefined {
@@ -56,11 +85,11 @@ export function migrateSessionRecord(raw: unknown): GameSession | undefined {
   if (!isRecord(raw)) return undefined;
 
   const current = gameSessionSchema.safeParse(raw);
-  if (current.success) return current.data;
+  if (current.success) return withBackfilledPackState(current.data);
 
   const version = raw.schemaVersion;
   if (version !== undefined && !MIGRATABLE_SESSION_SCHEMA_VERSIONS.includes(version as number)) return undefined;
 
   const migrated = gameSessionSchema.safeParse(upgradeToCurrent(raw));
-  return migrated.success ? migrated.data : undefined;
+  return migrated.success ? withBackfilledPackState(migrated.data) : undefined;
 }

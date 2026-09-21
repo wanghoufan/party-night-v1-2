@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_BOUNDARIES } from "@/lib/domain/constants";
 import type { GameCard } from "@/lib/domain/schemas";
+import { COMPATIBILITY_PACK_ID, COMPATIBILITY_STATE_KEY, readCompatibilityState } from "@/lib/game-packs/compatibility-test";
+import { SPIN_BOTTLE_PACK_ID, SPIN_BOTTLE_STATE_KEY, readSpinBottleState } from "@/lib/game-packs/spin-bottle";
 import { getDb } from "@/lib/storage/db";
 import { CURRENT_SESSION_SCHEMA_VERSION, migrateSessionRecord } from "@/lib/storage/session-migration";
 import { sessionRepository } from "@/lib/storage/session-repository";
@@ -100,5 +102,36 @@ describe("session migration", () => {
     const second = await sessionRepository.get("legacy-1");
     expect(second).toEqual(first);
     await sessionRepository.delete("legacy-1");
+  });
+});
+
+/** GAP-02：V2 早期把 pack-local state 按 state key 平铺；新口径按 packId 分键，读取时在内存里补齐。 */
+describe("pack state backfill (GAP-02)", () => {
+  const currentRecord = (currentPackState: Record<string, unknown>) =>
+    legacyRecord({ schemaVersion: CURRENT_SESSION_SCHEMA_VERSION, currentPackId: COMPATIBILITY_PACK_ID, currentPackState, recentRejectedFingerprints: [] });
+
+  it("moves a flat compatibility state under its pack id", () => {
+    const compatibility = { playerAId: "a", playerBId: "b", score: 2, rounds: 3 };
+    const migrated = migrateSessionRecord(currentRecord({ [COMPATIBILITY_STATE_KEY]: compatibility }));
+
+    expect(migrated?.currentPackState).toEqual({ [COMPATIBILITY_PACK_ID]: compatibility });
+    expect(migrated ? readCompatibilityState(migrated) : undefined).toEqual(compatibility);
+  });
+
+  it("keeps the spin-bottle state readable and defaults a missing map", () => {
+    const spin = { lastSelectedPlayerId: "b" };
+    const migrated = migrateSessionRecord(currentRecord({ [SPIN_BOTTLE_STATE_KEY]: spin }));
+
+    expect(migrated?.currentPackState).toEqual({ [SPIN_BOTTLE_PACK_ID]: spin });
+    expect(migrated ? readSpinBottleState(migrated) : undefined).toEqual(spin);
+    expect(migrateSessionRecord(legacyRecord({ schemaVersion: CURRENT_SESSION_SCHEMA_VERSION, currentPackId: "never-have" }))?.currentPackState).toEqual({});
+  });
+
+  it("keeps both packs' states of an already-nested record untouched", () => {
+    const nested = { [COMPATIBILITY_PACK_ID]: { playerAId: "a", playerBId: "b", score: 1, rounds: 1 }, [SPIN_BOTTLE_PACK_ID]: { lastSelectedPlayerId: "c" } };
+    const migrated = migrateSessionRecord(currentRecord(nested));
+
+    expect(migrated?.currentPackState).toEqual(nested);
+    expect(migrateSessionRecord(migrated)?.currentPackState).toEqual(nested);
   });
 });

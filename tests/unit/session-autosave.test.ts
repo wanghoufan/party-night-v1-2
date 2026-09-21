@@ -3,8 +3,8 @@ import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
 import { DEFAULT_BOUNDARIES } from "@/lib/domain/constants";
 import type { GameSession, Player, SessionConfig } from "@/lib/domain/schemas";
 import { completeRound, createSession, skipRound, startRound, swapRound, switchPack, updatePackState } from "@/lib/engine/session-engine";
-import { COMPATIBILITY_STATE_KEY, createCompatibilityState, recordCompatibilityAnswer } from "@/lib/game-packs/compatibility-test";
-import { SPIN_BOTTLE_STATE_KEY, recordSpinResult } from "@/lib/game-packs/spin-bottle";
+import { COMPATIBILITY_PACK_ID, createCompatibilityState, recordCompatibilityAnswer } from "@/lib/game-packs/compatibility-test";
+import { SPIN_BOTTLE_PACK_ID, recordSpinResult } from "@/lib/game-packs/spin-bottle";
 import { createSessionAutosave, sessionRepository } from "@/lib/storage/session-repository";
 
 const players = (count: number): Player[] =>
@@ -99,16 +99,16 @@ describe("autosave after important actions", () => {
     expect(stored?.rounds.map((round) => round.status)).toEqual(["completed", "swapped", "skipped"]);
 
     // 3) 默契测试分数：只在“一样”时 +1，落库即可恢复
-    session = updatePackState(session, COMPATIBILITY_STATE_KEY, recordCompatibilityAnswer(createCompatibilityState("a", "b"), "same"));
+    session = updatePackState(session, COMPATIBILITY_PACK_ID, recordCompatibilityAnswer(createCompatibilityState("a", "b"), "same"));
     await autosave.save(session);
     stored = await sessionRepository.get(session.id);
-    expect(stored?.currentPackState?.[COMPATIBILITY_STATE_KEY]).toEqual({ playerAId: "a", playerBId: "b", score: 1, rounds: 1 });
+    expect(stored?.currentPackState?.[COMPATIBILITY_PACK_ID]).toEqual({ playerAId: "a", playerBId: "b", score: 1, rounds: 1 });
 
     // 4) 转瓶子 stable result：动画之前就落库，刷新只恢复最终落点
-    session = updatePackState(session, SPIN_BOTTLE_STATE_KEY, recordSpinResult("b"));
+    session = updatePackState(session, SPIN_BOTTLE_PACK_ID, recordSpinResult("b"));
     await autosave.save(session);
     stored = await sessionRepository.get(session.id);
-    expect(stored?.currentPackState?.[SPIN_BOTTLE_STATE_KEY]).toEqual({ lastSelectedPlayerId: "b" });
+    expect(stored?.currentPackState?.[SPIN_BOTTLE_PACK_ID]).toEqual({ lastSelectedPlayerId: "b" });
 
     await autosave.flush();
     await sessionRepository.delete(session.id);

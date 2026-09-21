@@ -17,8 +17,8 @@ import { completeRound, finishSession, pauseSession, resumeSession, skipRound, s
 import { listSwitchablePacks, switchPackAndDeal } from "@/lib/engine/pack-switcher";
 import { selectEligiblePlayer } from "@/lib/engine/player-selector";
 import { chainSpinToTruthOrDare } from "@/lib/engine/spin-chain";
-import { COMPATIBILITY_STATE_KEY, createCompatibilityState, defaultCompatibilityPair, readCompatibilityState, recordCompatibilityAnswer } from "@/lib/game-packs/compatibility-test";
-import { SPIN_BOTTLE_STATE_KEY, readSpinBottleState, recordSpinResult } from "@/lib/game-packs/spin-bottle";
+import { COMPATIBILITY_PACK_ID, createCompatibilityState, defaultCompatibilityPair, readCompatibilityState, recordCompatibilityAnswer } from "@/lib/game-packs/compatibility-test";
+import { SPIN_BOTTLE_PACK_ID, readSpinBottleState, recordSpinResult } from "@/lib/game-packs/spin-bottle";
 import { pairNames } from "@/components/game/CompatibilityPairPicker";
 import { getGamePack, packIsCardless } from "@/lib/game-packs/registry";
 import { gamePackRepository } from "@/lib/storage/game-pack-repository";
@@ -53,10 +53,10 @@ function GamePageContent() {
   async function changeIntensity(value: Intensity) { if (session) await commit(updateIntensity(session, value)); }
   async function changePlayers(value: Player[]) { if (session && value.filter((player) => player.active).length >= 2) await commit(updatePlayers(session, value)); }
   // 默契测试 pack-local state：读不到就从在场玩家取默认两人并落库；刷新后原样恢复（score/pair 不丢）。
-  async function changePair(playerId: string) { if (!session) return; const current = readCompatibilityState(session) ?? pairFromDefaults(session); if (!current || current.playerBId === playerId) return; const next = { playerAId: current.playerBId, playerBId: playerId }; await commit(updatePackState(session, COMPATIBILITY_STATE_KEY, createCompatibilityState(next.playerAId, next.playerBId))); }
-  async function answerPair(answer: "same" | "different") { if (!session) return; const current = readCompatibilityState(session) ?? pairFromDefaults(session); if (!current) return; await commit(updatePackState(session, COMPATIBILITY_STATE_KEY, recordCompatibilityAnswer(current, answer))); }
+  async function changePair(playerId: string) { if (!session) return; const current = readCompatibilityState(session) ?? pairFromDefaults(session); if (!current || current.playerBId === playerId) return; const next = { playerAId: current.playerBId, playerBId: playerId }; await commit(updatePackState(session, COMPATIBILITY_PACK_ID, createCompatibilityState(next.playerAId, next.playerBId))); }
+  async function answerPair(answer: "same" | "different") { if (!session) return; const current = readCompatibilityState(session) ?? pairFromDefaults(session); if (!current) return; await commit(updatePackState(session, COMPATIBILITY_PACK_ID, recordCompatibilityAnswer(current, answer))); }
   // 转瓶子：结果先由本地 selector 定下并立即落库（动画只表现），再交给视图播动画；被指到的人参与下一题。
-  function spinPlayer(): Player | undefined { if (!session) return undefined; const target = selectEligiblePlayer(session.config.players, { avoidPlayerId: readSpinBottleState(session)?.lastSelectedPlayerId }); if (!target) return undefined; void commit(updatePackState(session, SPIN_BOTTLE_STATE_KEY, recordSpinResult(target.id))); return target; }
+  function spinPlayer(): Player | undefined { if (!session) return undefined; const target = selectEligiblePlayer(session.config.players, { avoidPlayerId: readSpinBottleState(session)?.lastSelectedPlayerId }); if (!target) return undefined; void commit(updatePackState(session, SPIN_BOTTLE_PACK_ID, recordSpinResult(target.id))); return target; }
   function chainSpin(kind: "truth" | "dare") { if (!session) return; const selected = readSpinBottleState(session)?.lastSelectedPlayerId; if (!selected) return; const next = chainSpinToTruthOrDare(session, selected, kind, customPacks); if (next !== session) void commit(next); }
   async function togglePause() { if (!session) return; await commit(session.status === "paused" ? resumeSession(session) : pauseSession(session)); }
   async function end() { if (!session) return; const finished = finishSession(session); await commit(finished); router.push(`/summary?session=${finished.id}`); }

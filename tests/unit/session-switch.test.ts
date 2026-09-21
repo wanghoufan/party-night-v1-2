@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { BUILTIN_PACK_IDS, DEFAULT_BOUNDARIES } from "@/lib/domain/constants";
-import type { Player, SessionConfig } from "@/lib/domain/schemas";
+import type { GameSession, Player, SessionConfig } from "@/lib/domain/schemas";
 import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
+import { COMPATIBILITY_PACK_ID, readCompatibilityState } from "@/lib/game-packs/compatibility-test";
+import { SPIN_BOTTLE_STATE_KEY, readSpinBottleState } from "@/lib/game-packs/spin-bottle";
 import { completeRound, createSession, pauseSession, startRound, switchPack } from "@/lib/engine/session-engine";
 import { sessionRepository } from "@/lib/storage/session-repository";
 
@@ -71,7 +73,7 @@ describe("switchPack", () => {
     expect(switched.rounds[0]).toMatchObject({ id: abandoned.id, cardId: abandoned.cardId, packId: "never-have", status: "skipped" });
     expect(switched.currentRound).toBeUndefined();
     expect(switched.currentPackId).toBe("truth-dare");
-    expect(switched.currentPackState).toEqual({});
+    expect(switched.currentPackState).toEqual({ "truth-dare": {} });
   });
 
   it("deals the next card from the switched pack inside the same session", () => {
@@ -120,5 +122,65 @@ describe("switchPack", () => {
     const dealt = startRound(session, () => 0, { preferPackIds: ["truth-dare"] });
 
     expect(dealt.currentRound?.packId).toBe("never-have");
+  });
+});
+
+/** GAP-02：pack-local state 按 packId 分键，切玩法只动目标玩法那一格。 */
+const COMPATIBILITY_STATE = { playerAId: "a", playerBId: "b", score: 3, rounds: 4 };
+const SPIN_STATE = { lastSelectedPlayerId: "b" };
+
+const sessionWithPackStates = (): GameSession => ({
+  ...createSession(config({ enabledPackIds: ["never-have", "truth-dare", COMPATIBILITY_PACK_ID, "spin-bottle"] }), BUILTIN_SEED_CARDS),
+  currentPackId: COMPATIBILITY_PACK_ID,
+  currentPackState: { [COMPATIBILITY_PACK_ID]: COMPATIBILITY_STATE, [SPIN_BOTTLE_STATE_KEY]: SPIN_STATE },
+});
+
+describe("switchPack keeps pack-local state of the packs you leave (GAP-02)", () => {
+  it("initializes the target pack's own slot without wiping the others", () => {
+    const session = sessionWithPackStates();
+    const switched = switchPack(session, "truth-dare", { enabledPackIds: ["never-have", "truth-dare", COMPATIBILITY_PACK_ID, "spin-bottle"] });
+
+    expect(switched.currentPackState).toEqual({
+      [COMPATIBILITY_PACK_ID]: COMPATIBILITY_STATE,
+      [SPIN_BOTTLE_STATE_KEY]: SPIN_STATE,
+      "truth-dare": {},
+    });
+    expect(switched.currentPackState).not.toBe(session.currentPackState);
+  });
+
+  it("keeps scoring and pairing of a pack you switched away from", () => {
+    const switched = switchPack(sessionWithPackStates(), "never-have", { enabledPackIds: ["never-have", "truth-dare", COMPATIBILITY_PACK_ID, "spin-bottle"] });
+
+    expect(readCompatibilityState(switched)).toEqual(COMPATIBILITY_STATE);
+    expect(readSpinBottleState(switched)).toEqual(SPIN_STATE);
+  });
+
+  it("resets only the target pack's own slot when switching into it", () => {
+    const switched = switchPack(sessionWithPackStates(), "spin-bottle", { enabledPackIds: ["never-have", "truth-dare", COMPATIBILITY_PACK_ID, "spin-bottle"] });
+
+    expect(switched.currentPackState).toEqual({ [COMPATIBILITY_PACK_ID]: COMPATIBILITY_STATE, [SPIN_BOTTLE_STATE_KEY]: {} });
+    // 重新进入转瓶子＝从干净的落点起（不会沿用上一次的“避开某人”）
+    expect(readSpinBottleState(switched)?.lastSelectedPlayerId).toBeUndefined();
+  });
+
+  it("keeps scoring and pairing of the pack you left even after re-entering another pack", () => {
+    const enabled = ["never-have", "truth-dare", COMPATIBILITY_PACK_ID, "spin-bottle"];
+    const away = switchPack(sessionWithPackStates(), "truth-dare", { enabledPackIds: enabled });
+    const back = switchPack(away, COMPATIBILITY_PACK_ID, { enabledPackIds: enabled });
+
+    expect(back.currentPackId).toBe(COMPATIBILITY_PACK_ID);
+    // 离开期间另一玩法的 state 一直在；重新进入默契测试则从干净的 state 起（由 UI 走默认配对重建）。
+    expect(away.currentPackState?.[COMPATIBILITY_PACK_ID]).toEqual(COMPATIBILITY_STATE);
+    expect(readCompatibilityState(back)).toBeUndefined();
+  });
+
+  it("round-trips the per-pack state through the repository", async () => {
+    const switched = switchPack(sessionWithPackStates(), "truth-dare", { enabledPackIds: ["never-have", "truth-dare", COMPATIBILITY_PACK_ID, "spin-bottle"] });
+    await sessionRepository.save(switched);
+
+    const stored = await sessionRepository.get(switched.id);
+    expect(stored?.currentPackState).toEqual(switched.currentPackState);
+    expect(stored ? readCompatibilityState(stored) : undefined).toEqual(COMPATIBILITY_STATE);
+    await sessionRepository.delete(switched.id);
   });
 });

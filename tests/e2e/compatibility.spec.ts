@@ -71,7 +71,7 @@ test("默契测试：配对 → 5 题（一样/不一样混判）→ 刷新 → 
   expect(new Set(seen).size).toBe(ROUNDS);
 
   const before = await readSession(page, SESSION_ID);
-  expect(before.currentPackState?.compatibility).toEqual({ playerAId: "p1", playerBId: "p2", score: 3, rounds: 5 });
+  expect(before.currentPackState?.["compatibility-test"]).toEqual({ playerAId: "p1", playerBId: "p2", score: 3, rounds: 5 });
 
   // 刷新：分数、配对、题目一起恢复
   await page.reload();
@@ -79,13 +79,13 @@ test("默契测试：配对 → 5 题（一样/不一样混判）→ 刷新 → 
   await expect(page.getByText(/Alex × Emma/)).toBeVisible();
   await expect(score(page)).toHaveText("默契 3/5");
   const restored = await readSession(page, SESSION_ID);
-  expect(restored.currentPackState?.compatibility).toEqual({ playerAId: "p1", playerBId: "p2", score: 3, rounds: 5 });
+  expect(restored.currentPackState?.["compatibility-test"]).toEqual({ playerAId: "p1", playerBId: "p2", score: 3, rounds: 5 });
 
   // 继续：第 6 题判“一样” → 4/6
   await same(page).click();
   await expect(score(page)).toHaveText("默契 4/6");
   const continued = await readSession(page, SESSION_ID);
-  expect(continued.currentPackState?.compatibility).toEqual({ playerAId: "p1", playerBId: "p2", score: 4, rounds: 6 });
+  expect(continued.currentPackState?.["compatibility-test"]).toEqual({ playerAId: "p1", playerBId: "p2", score: 4, rounds: 6 });
 });
 
 test("默契测试：换 pair 后分数与题数从 0 重计，刷新仍用新配对", async ({ page }) => {
@@ -107,7 +107,7 @@ test("默契测试：换 pair 后分数与题数从 0 重计，刷新仍用新�
   await expect(page.getByText(/Emma × Kai/)).toBeVisible();
   await expect(score(page)).toHaveText("默契 0/0");
   const stored = await readSession(page, SESSION_ID);
-  expect(stored.currentPackState?.compatibility).toEqual({ playerAId: "p2", playerBId: "p3", score: 0, rounds: 0 });
+  expect(stored.currentPackState?.["compatibility-test"]).toEqual({ playerAId: "p2", playerBId: "p3", score: 0, rounds: 0 });
 });
 
 test("默契测试：不一样不加分，只累加题数；换一个记 swapped", async ({ page }) => {
@@ -122,7 +122,7 @@ test("默契测试：不一样不加分，只累加题数；换一个记 swapped
   await expect.poll(() => readSession(page, SESSION_ID).then((s) => s.rounds.length)).toBe(2);
   const stored = await readSession(page, SESSION_ID);
   expect(stored.rounds.map((round) => round.status)).toEqual(["completed", "swapped"]);
-  expect(stored.currentPackState?.compatibility).toMatchObject({ score: 0, rounds: 1 });
+  expect(stored.currentPackState?.["compatibility-test"]).toMatchObject({ score: 0, rounds: 1 });
 });
 
 async function next(page: Page, round: number) {

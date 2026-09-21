@@ -120,10 +120,13 @@ export function switchPack(session: GameSession, packId: string, options: Switch
 
   // 未完成的 round 记 skipped（无惩罚跳过），避免它凭空消失；已完成的轮次与 usedCardIds 一动不动。
   const abandoned = session.currentRound ? { ...session.currentRound, status: "skipped" as const, endedAt: now() } : undefined;
+  // GAP-02：pack-local state 按 packId 分键。切玩法只重置目标玩法那一格（重新进入＝从干净的 state 起），
+  // 其他玩法的局部状态原样保留，不再整表清空。
+  const packStates = session.currentPackState ?? {};
   return {
     ...session,
     currentPackId: packId,
-    currentPackState: {},
+    currentPackState: { ...packStates, [packId]: {} },
     currentRound: undefined,
     rounds: abandoned ? [...session.rounds, abandoned] : session.rounds,
     updatedAt: now(),
@@ -135,11 +138,11 @@ export function updateIntensity(session: GameSession, intensity: Intensity): Gam
 }
 
 /**
- * 写当前玩法的局部状态：只合并一个键（如 compatibility），不覆盖其他玩法的状态。
- * 玩法 UI 用它在“一样/不一样”“换 pair”后立即落库，刷新可恢复（FR-035 / T147）。
+ * 写某个玩法的局部状态：按 packId 分键只覆盖该玩法那一格，不碰其他玩法的状态（GAP-02）。
+ * 玩法 UI 用它在“一样/不一样”“换 pair”“转瓶子落点”后立即落库，刷新可恢复（FR-035 / T147）。
  */
-export function updatePackState(session: GameSession, key: string, value: unknown): GameSession {
-  return { ...session, currentPackState: { ...session.currentPackState, [key]: value }, updatedAt: now() };
+export function updatePackState(session: GameSession, packId: string, value: Record<string, unknown>): GameSession {
+  return { ...session, currentPackState: { ...session.currentPackState, [packId]: value }, updatedAt: now() };
 }
 
 export function updatePlayers(session: GameSession, players: SessionConfig["players"]): GameSession {

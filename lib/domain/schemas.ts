@@ -124,8 +124,11 @@ export const gameSessionSchema = z.object({
   currentRound: activeRoundSchema.optional(),
   /** 当前玩法（局内切换只改这里，不重建 Session）。 */
   currentPackId: z.string().min(1),
-  /** 当前玩法的局部状态（如默契测试的 pair/score），随 Session 一起恢复。 */
-  currentPackState: z.record(z.string(), z.unknown()).optional(),
+  /**
+   * 各玩法的局部状态，按 packId 分键（Plan §5.1 `packStates: Record<packId, state>` 的等价结构：
+   * 字段名沿用 Spec §7 的 currentPackState）。切玩法只重置目标玩法那一格，其他玩法原样保留（GAP-02 / FR-035）。
+   */
+  currentPackState: z.record(z.string(), z.record(z.string(), z.unknown())).optional(),
   /** 最近“换一个”拒绝的指纹，用于短期避免重复题面。 */
   recentRejectedFingerprints: z.array(z.string()).optional(),
   startedAt: z.string().optional(),

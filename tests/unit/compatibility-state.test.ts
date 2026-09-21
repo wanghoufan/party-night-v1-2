@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { gameSessionSchema, type GameSession, type Player } from "@/lib/domain/schemas";
 import {
-  COMPATIBILITY_STATE_KEY,
+  COMPATIBILITY_PACK_ID,
   compatibilityStateSchema,
   createCompatibilityState,
   defaultCompatibilityPair,
@@ -89,12 +89,12 @@ describe("compatibility score reducer (T147)", () => {
 });
 
 describe("compatibility state persistence (T147/T148)", () => {
-  it("writes the state under the compatibility key without clobbering other pack state", () => {
-    const session = { ...builtinCompatibilitySession(), currentPackState: { spin: { lastSelectedPlayerId: "alex" } } } as GameSession;
-    const next = updatePackState(session, COMPATIBILITY_STATE_KEY, createCompatibilityState("alex", "emma"));
+  it("writes the state under the compatibility pack id without clobbering other pack state", () => {
+    const session = { ...builtinCompatibilitySession(), currentPackState: { "spin-bottle": { lastSelectedPlayerId: "alex" } } } as GameSession;
+    const next = updatePackState(session, COMPATIBILITY_PACK_ID, createCompatibilityState("alex", "emma"));
     expect(next.currentPackState).toEqual({
-      spin: { lastSelectedPlayerId: "alex" },
-      compatibility: { playerAId: "alex", playerBId: "emma", score: 0, rounds: 0 },
+      "spin-bottle": { lastSelectedPlayerId: "alex" },
+      "compatibility-test": { playerAId: "alex", playerBId: "emma", score: 0, rounds: 0 },
     });
     expect(next.id).toBe(session.id);
     expect(next.config).toEqual(session.config);
@@ -102,26 +102,26 @@ describe("compatibility state persistence (T147/T148)", () => {
   });
 
   it("survives a JSON serialize/deserialize round trip through the session schema", () => {
-    const session = updatePackState(builtinCompatibilitySession(), COMPATIBILITY_STATE_KEY, state(4, 7));
+    const session = updatePackState(builtinCompatibilitySession(), COMPATIBILITY_PACK_ID, state(4, 7));
     const reloaded = gameSessionSchema.parse(JSON.parse(JSON.stringify(session)));
     expect(readCompatibilityState(reloaded)).toEqual(state(4, 7));
   });
 
   it("reads back the same score and pair a refresh would see", () => {
-    const session = updatePackState(builtinCompatibilitySession(), COMPATIBILITY_STATE_KEY, recordCompatibilityAnswer(state(2, 1), "same"));
+    const session = updatePackState(builtinCompatibilitySession(), COMPATIBILITY_PACK_ID, recordCompatibilityAnswer(state(2, 1), "same"));
     const restored = readCompatibilityState(gameSessionSchema.parse(JSON.parse(JSON.stringify(session))));
     expect(restored).toEqual({ playerAId: "alex", playerBId: "emma", score: 3, rounds: 2 });
   });
 
   it("returns undefined for a missing or corrupted pack state instead of guessing a score", () => {
     expect(readCompatibilityState(builtinCompatibilitySession())).toBeUndefined();
-    expect(readCompatibilityState({ currentPackState: { [COMPATIBILITY_STATE_KEY]: { playerAId: "", playerBId: "emma", score: -1, rounds: 0 } } })).toBeUndefined();
+    expect(readCompatibilityState({ currentPackState: { [COMPATIBILITY_PACK_ID]: { playerAId: "", playerBId: "emma", score: -1, rounds: 0 } } })).toBeUndefined();
     expect(compatibilityStateSchema.safeParse({ playerAId: "alex", playerBId: "emma", score: 1.5, rounds: 0 }).success).toBe(false);
   });
 
   it("keeps score at zero after 不一样 and only counts the round", () => {
-    const session = updatePackState(builtinCompatibilitySession(), COMPATIBILITY_STATE_KEY, createCompatibilityState("alex", "emma"));
-    const afterOne = updatePackState(session, COMPATIBILITY_STATE_KEY, recordCompatibilityAnswer(readCompatibilityState(session)!, "different"));
+    const session = updatePackState(builtinCompatibilitySession(), COMPATIBILITY_PACK_ID, createCompatibilityState("alex", "emma"));
+    const afterOne = updatePackState(session, COMPATIBILITY_PACK_ID, recordCompatibilityAnswer(readCompatibilityState(session)!, "different"));
     expect(readCompatibilityState(afterOne)).toEqual(state(0, 1));
   });
 });

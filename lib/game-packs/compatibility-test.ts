@@ -1,7 +1,10 @@
 import { z } from "zod";
 import type { GamePackDefinition, GameSession, Player } from "@/lib/domain/schemas";
 
-/** 默契测试状态在 Session.currentPackState 里的键：与其他玩法的局部状态互不覆盖。 */
+/** 默契测试的玩法 id：pack-local state 在 Session.currentPackState 里就按它分键。 */
+export const COMPATIBILITY_PACK_ID = "compatibility-test";
+
+/** 旧口径（GAP-02 前）把 pack-local state 平铺在 Session.currentPackState 里用的键；只用于旧数据的内存补齐。 */
 export const COMPATIBILITY_STATE_KEY = "compatibility";
 
 /**
@@ -44,9 +47,10 @@ export function defaultCompatibilityPair(players: Player[]): [Player, Player] | 
 
 /**
  * 从 Session 读回默契测试状态：字段缺失/损坏时返回 undefined，由调用方安全重建，不猜分。
+ * pack-local state 按 packId 分键（GAP-02），所以只认自己那一格，不会读到别的玩法。
  */
 export function readCompatibilityState(session: Pick<GameSession, "currentPackState">): CompatibilityState | undefined {
-  const raw = session.currentPackState?.[COMPATIBILITY_STATE_KEY];
+  const raw = session.currentPackState?.[COMPATIBILITY_PACK_ID];
   const parsed = compatibilityStateSchema.safeParse(raw);
   return parsed.success ? parsed.data : undefined;
 }
@@ -65,7 +69,7 @@ export function recordCompatibilityAnswer(state: CompatibilityState, answer: "sa
 }
 
 export const compatibilityTestPack: GamePackDefinition = {
-  id: "compatibility-test", name: "默契测试", icon: "heart", enabledByDefault: true,
+  id: COMPATIBILITY_PACK_ID, name: "默契测试", icon: "heart", enabledByDefault: true,
   mixable: false, minPlayers: 2, supportedCardTypes: ["compatibility"], weight: 1, source: "builtin",
   capability: {
     requiresAIContent: true, minPlayers: 2, supportsMixedMode: false, supportsLocalSeed: true,
