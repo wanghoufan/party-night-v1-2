@@ -1,0 +1,156 @@
+# Party Night V1.2 开发交接
+
+更新时间：2026-09-21（Asia/Shanghai）
+
+## 1. 当前工作进度
+
+### 产品状态
+
+- Party Night V1.2 的 T001–T123 已全部实现并在正式 TASKS 基线中标记完成。
+- FR-001–FR-058、SC-001–SC-013 已完成实现与收敛核对。
+- 正式生产地址：<https://party-night-v1-2.vercel.app>
+- Vercel 项目名：`party-night-v1-2`；本机 `.vercel/` 已链接但被 Git 忽略。
+- Note 11T Pro 已完成真实生产环境测试，并已把 Party Night 安装到主屏幕。
+- PWA 从主屏幕启动时运行在独立 `WebappActivity`，没有浏览器地址栏。
+- 深色模式是当前主用与正式验收主题。浅色模式已实现基础能力，但用户明确要求不再为其继续投入优化。
+
+### 已验证的核心能力
+
+- DeepSeek 官方是默认 Provider。
+- 手机端真实 API Key 已成功生成完整 40 张 AI Deck。
+- OpenCode Go 仅作为实验性、手动启用 Provider，不是默认或自动 fallback。
+- Custom OpenAI Compatible 的服务器端 SSRF 防护已在生产验证：私网地址返回 `URL_REJECTED`。
+- API Key 使用 Web Crypto 加密保存，不进入 URL、普通状态、日志或服务端持久化。
+- Danger Zone 的首次点击不删除、取消保留、明确二次确认后才清空均已覆盖。
+- 已验证 AI Deck 生成后离线继续、刷新恢复、PWA 重启恢复、本地题库 fallback、自定义 Game Pack、结束总结。
+- 生产首页、PWA manifest、安全响应头及安装条件均已验证。
+
+### 最近一次自动验证
+
+清理后重新安装依赖并验证：
+
+- `pnpm lint`：通过。
+- `pnpm typecheck`：通过。
+- `pnpm test`：28 个测试文件、92 项测试全部通过。
+- `pnpm build`：通过，Next.js 16.3.3，11 个页面/路由正常生成。
+- `pnpm test:e2e`：清理前最近一次为 21/21 通过；清理后的最终重跑尚未执行，任务在检查 3000 端口后被暂停。
+
+### 工作区与 Git 状态
+
+- 当前目录刚初始化为 Git 仓库，当前分支是 `main`。
+- 尚无 commit，尚未配置 remote，所有正式文件目前仍是未跟踪状态。
+- 用户此前明确要求完成洁癖后 `commit + push（main）`，但在执行 E2E、提交和推送前暂停并改为本次交接。
+- `.env.local`、`.vercel/`、`.next/`、`node_modules/`、测试报告和 TypeScript 缓存均被 `.gitignore` 排除。
+- `.env.example` 已修正为可正常纳入 Git。
+- `tsconfig.json` 已移除退役 `expo-go-preview` 的死引用。
+
+### 已完成的残留清理
+
+以下约 1.4GB 内容已移动到 macOS 废纸篓目录，可恢复，并非永久删除：
+
+`/Users/zzymima0000/.Trash/PartyNight-cleanup-2026-09-21-0125`
+
+其中包括：
+
+- 已被正式 PWA 方案替代的 `expo-go-preview`。
+- 任务状态过期的 `docs/plan/Party Night SDD V1.2` 重复副本。
+- 已解压且内容重复的 SDD/UI 原始压缩包。
+- 旧 `.next`、测试报告、测试结果、项目内 `.pnpm-store`、旧 `node_modules`、`tsconfig.tsbuildinfo` 和 `.DS_Store`。
+
+之后为了重新验证，已重新执行 `pnpm install --frozen-lockfile` 和 `pnpm build`，因此当前又存在被忽略的 `node_modules/`、`.next/` 和 `tsconfig.tsbuildinfo`，这是正常可重建产物。
+
+当前唯一正式 SDD 基线保留在：
+
+`Party Night SDD V1.2/`
+
+方案 A 实现用设计资产同时保留在：
+
+`docs/design-assets/`
+
+## 2. 下一步任务
+
+按顺序继续：
+
+1. 确认 3000 端口空闲后运行：
+
+   ```bash
+   PARTY_NIGHT_PRODUCTION_SMOKE=true pnpm test:e2e
+   ```
+
+   预期结果：21/21 通过。
+
+2. 运行最终 Git 安全检查：
+
+   ```bash
+   git status --short --ignored
+   git add -n .
+   git check-ignore -v .env.local .vercel/project.json .env.example
+   ```
+
+   确认 `.env.local` 和 `.vercel/` 被忽略、`.env.example` 会进入提交。
+
+3. 暂存全部正式文件并复核：
+
+   ```bash
+   git add .
+   git diff --cached --stat
+   git diff --cached --check
+   ```
+
+4. 创建首次提交。建议提交信息：
+
+   ```text
+   feat: complete Party Night V1.2
+   ```
+
+5. 当前没有 remote。若恢复时仍无既有远端，根据用户此前的明确授权，在 GitHub 账号 `wanghoufan` 下创建私有仓库 `party-night-v1-2`，将其配置为 `origin`，然后推送 `main`。创建前先再次执行 `git remote -v` 和 `gh repo view wanghoufan/party-night-v1-2`，避免重复建仓。
+
+6. 推送后核对 GitHub `main` 的 commit SHA，并再次访问生产地址确认线上仍为可用版本。不要因为 GitHub 首次推送而覆盖当前正常的 Vercel 生产部署配置。
+
+7. 若继续新功能开发，必须先从当前 SDD 的范围与 TASKS 继续；不要重新引入账号、支付、云数据库、多人实时房间或社区功能。
+
+## 3. 注意事项及相关规则
+
+### 密钥与安全
+
+- 绝对不要查看、复制到对话、提交或推送 `.env.local` 中的真实密钥和 Token。
+- 不得提交 `.vercel/`；其中包含本机项目绑定信息。
+- 手机端 API Key 属于对应浏览器/PWA 本地数据，不会因为电脑端配置自动同步。
+- 测试密钥只能使用明显的测试 fixture；提交前继续检查是否存在疑似真实 `sk-`、GitHub Token 或 Bearer Token。
+- 不得降低 Custom Provider 的 SSRF 防护，也不得允许跨主机自动重定向。
+
+### 产品基线
+
+- 行为以 SPEC 为真源，架构以 PLAN 为约束，开发顺序以 TASKS 为准，视觉以方案 A 为基线。
+- Party Game Engine 与 Game Pack 必须解耦。
+- AI 采用整局预生成 Deck；游戏过程不得逐轮依赖 AI。
+- 生成后必须可以离线继续当前 Session。
+- DeepSeek 官方继续保持默认；OpenCode Go 不得成为默认或自动 fallback。
+- Danger Zone 必须保持红色独立分区和二次确认流程。
+- 主用主题是深色；除非用户重新提出，不继续投入浅色模式精修。
+
+### 设备与预览
+
+- Note 11T Pro 上使用 Kiwi Browser 访问生产站点并安装 PWA成功。
+- Chrome 当时受 NekoBox 分应用路由影响，访问 Vercel 会失败；不要据此误判生产站点不可用，也不要擅自修改用户 VPN 配置。
+- 手机桌面快捷方式安装需要给 Kiwi 开启 MIUI 的“桌面快捷方式”权限；该权限已开启。
+
+### 开发规则
+
+- 使用中文回复。
+- 修改代码后必须运行适当的 lint、typecheck、test、E2E 和 build。
+- 启动服务前先检查端口占用；端口冲突时不要关闭其他服务。
+- Next.js 版本为 16.3.3；修改 Next.js API、约定或配置前先阅读 `node_modules/next/dist/docs/` 中的对应文档。
+- 文档新建或修改前先给用户草案；用户明确确认后再写入。
+- 未经用户明确要求，不执行 commit 或 push；本轮此前已有一次明确的 `commit + push（main）` 授权，但当前任务已暂停，恢复时应以最新用户指令为准。
+- `neat-freak` 只允许用户显式点名时使用，不要根据“交接、整理、收尾”等语义自动触发。
+
+## 当前事实面状态
+
+- 代码：`verified-current`。
+- 生产运行态：`verified-current`。
+- 文档：`changed-and-verified`（本交接文档为当前恢复入口）。
+- 项目规则：`verified-current`。
+- Git 远端：`pending`（未提交、未配置 remote、未推送）。
+- 清理后的最终 E2E：`pending`（最近一次完整结果为清理前 21/21 通过）。
+- Agent 长期记忆：`not-applicable`，本次未修改。

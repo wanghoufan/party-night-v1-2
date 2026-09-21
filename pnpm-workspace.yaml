@@ -1,0 +1,6 @@
+allowBuilds:
+  esbuild: true
+  unrs-resolver: true
+confirmModulesPurge: false
+nodeLinker: hoisted
+verifyDepsBeforeRun: false
