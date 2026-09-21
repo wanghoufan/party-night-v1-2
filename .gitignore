@@ -10,3 +10,5 @@ test-results/
 *.tsbuildinfo
 .DS_Store
 .vercel
+# 治理软链（指母版，跨机器悬空）：本地保留，不入仓
+USER_MODEL_OVERRIDE.md
