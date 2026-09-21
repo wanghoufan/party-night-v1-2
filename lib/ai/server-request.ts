@@ -26,7 +26,7 @@ export async function requestJsonPinned(endpoint: SafeEndpoint, path: string, in
   return new Promise((resolve, reject) => {
     const request = transport.request(target, {
       method: init.method ?? "POST", headers: init.headers, lookup: pinnedLookup,
-      servername: target.hostname, timeout: 15_000,
+      servername: target.hostname, timeout: 120_000,
     }, (response) => {
       const chunks: Buffer[] = [];
       let size = 0;

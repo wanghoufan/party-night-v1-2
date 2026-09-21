@@ -10,6 +10,7 @@ import { sessionConfigSchema } from "@/lib/domain/schemas";
 import { BUILTIN_GAME_PACKS } from "@/lib/game-packs/registry";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 120;
 const noStore = { "Cache-Control": "no-store, max-age=0" };
 const requestSchema = z.object({ profile: aiProviderProfileSchema, sessionConfig: sessionConfigSchema, targetCardCount: z.number().int().min(10).max(60), sessionId: z.string().min(1).max(100) });
 
