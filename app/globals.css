@@ -217,11 +217,17 @@ textarea {
 .home-primary { display: flex; align-items: center; justify-content: center; gap: .65rem; min-height: 3.8rem; border-radius: .9rem; color: white; background: linear-gradient(100deg, var(--color-hot-pink), #c643fa 55%, var(--color-electric-purple)); box-shadow: var(--glow-pink); font-size: 1.1rem; font-weight: 800; text-decoration: none; }
 .home-primary svg { width: 1.25rem; }
 .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; margin-top: 1rem; }
-.mode-grid a { display: grid; grid-template-columns: 2rem 1fr; align-items: center; min-height: 5rem; padding: .85rem; border: 1px solid rgba(152,92,255,.42); border-radius: .85rem; color: white; background: linear-gradient(145deg, rgba(28,30,65,.9), rgba(9,12,30,.92)); text-decoration: none; }
+.mode-grid a, .mode-grid button { display: grid; grid-template-columns: 2rem 1fr; align-items: center; min-height: 5rem; padding: .85rem; border: 1px solid rgba(152,92,255,.42); border-radius: .85rem; color: white; background: linear-gradient(145deg, rgba(28,30,65,.9), rgba(9,12,30,.92)); text-decoration: none; }
+.mode-grid button { width: 100%; font: inherit; text-align: left; cursor: pointer; }
 .mode-grid svg { grid-row: 1/3; width: 1.65rem; color: #d595ff; filter: drop-shadow(0 0 6px #985cff); }
 .mode-grid strong { font-size: .86rem; }
 .mode-grid small { color: var(--color-text-muted); font-size: .68rem; }
+/* 玩法被游戏包禁用：卡片留在原位，但只引导重新启用，不当作可开局入口。 */
+.mode-grid [aria-disabled="true"] { border-style: dashed; border-color: rgba(142,145,166,.45); opacity: .72; }
+.mode-grid [aria-disabled="true"] svg { color: #8f93ad; filter: none; }
+.mode-grid [aria-disabled="true"] small { color: #ffb3c8; }
 .home-row { display: grid; grid-template-columns: 2rem 1fr 1.2rem; align-items: center; gap: .65rem; min-height: 4rem; margin-top: .7rem; padding: .75rem 1rem; border: 1px solid rgba(131,143,201,.3); border-radius: .85rem; color: white; background: rgba(20,23,51,.76); text-decoration: none; }
+.home-row--button { width: 100%; font: inherit; text-align: left; cursor: pointer; }
 .home-row svg { width: 1.45rem; color: #c9abff; }
 .home-row span { display: grid; gap: .15rem; }
 .home-row small { color: var(--color-text-muted); font-size: .7rem; }
@@ -409,6 +415,28 @@ textarea {
 .sheet-option strong { font-size: .9rem; }
 .sheet-option[aria-current="true"] { border-color: rgba(152,92,255,.85); background: linear-gradient(100deg, rgba(86,55,158,.42), rgba(18,22,49,.9)); box-shadow: inset 0 0 18px rgba(152,92,255,.16); opacity: 1; }
 .sheet-option[aria-current="true"] svg { filter: drop-shadow(0 0 6px #985cff); }
+.sheet__group-label { margin: .45rem 0 0; color: var(--color-text-muted); font-size: .68rem; letter-spacing: .14em; }
+.sheet__toolbar { display: flex; align-items: center; gap: .5rem; }
+.sheet__toolbar h2 { margin: 0; font-size: 1.05rem; }
+.sheet__toolbar button { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 0; color: #c9abff; background: transparent; }
+.sheet__toolbar button svg { width: 1.3rem; }
+/* 快捷工具（T158）：与玩法卡同一套霓虹 token；只做本地随机，不出现 AI/网络字段。 */
+.party-tool { display: grid; align-content: start; align-items: start; gap: .7rem; padding: 1rem; border: 1px solid rgba(152,92,255,.34); border-radius: .9rem; background: linear-gradient(145deg, rgba(28,30,65,.9), rgba(9,12,30,.92)); }
+.party-tool__lead, .party-tool__empty, .party-tool__note { margin: 0; color: var(--color-text-muted); font-size: .74rem; }
+.party-tool__note { color: #ffb3c8; }
+.party-tool__result { margin: 0; color: #ffd6ff; text-align: center; font-size: clamp(1.6rem, 8vw, 2.2rem); font-weight: 800; text-shadow: var(--glow-pink); }
+.party-tool__actions { display: flex; align-items: center; }
+.party-tool__actions .button { display: flex; flex: 1; align-items: center; justify-content: center; gap: .5rem; }
+.party-tool__actions .button svg { width: 1.15rem; flex: none; }
+.party-tool__modes { display: flex; gap: .5rem; }
+.party-tool__modes button { flex: 1; min-height: 2.75rem; border: 1px solid rgba(113,128,192,.35); border-radius: .7rem; color: white; background: rgba(18,22,49,.84); font-size: .8rem; }
+.party-tool__modes button[aria-pressed="true"] { border-color: rgba(152,92,255,.85); background: linear-gradient(100deg, rgba(86,55,158,.5), rgba(18,22,49,.9)); box-shadow: inset 0 0 16px rgba(152,92,255,.16); }
+.party-tool__groups { display: grid; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+.party-tool__groups li { display: grid; gap: .15rem; padding: .6rem .75rem; border: 1px solid rgba(113,128,192,.28); border-radius: .7rem; background: rgba(18,22,49,.84); }
+.party-tool__groups strong { color: #d8c7ff; font-size: .78rem; }
+.party-tool__groups span { font-size: .85rem; }
+.party-tool__groups small { color: var(--color-text-muted); font-size: .68rem; }
+.party-tool__source { color: #707996; font-size: .65rem; }
 @keyframes sheet-rise { from { translate: 0 12%; opacity: .4; } }
 .game-motto { margin: 1rem 0 0; color: #ff78df; text-align: center; font-size: .82rem; font-style: italic; text-shadow: var(--glow-pink); }
 .empty-deck { display: grid; align-self: center; gap: 1rem; text-align: center; }
@@ -547,7 +575,18 @@ textarea {
 :root[data-theme="light"] .hero-promise { color: #5d5671; }
 :root[data-theme="light"] .home-stage p { color: #a51872; text-shadow: none; }
 :root[data-theme="light"] .mode-grid a,
+:root[data-theme="light"] .mode-grid button,
 :root[data-theme="light"] .home-row { color: var(--color-text-primary); border-color: rgba(91,61,154,.2); background: rgba(255,255,255,.78); box-shadow: 0 10px 26px rgba(53,40,91,.07); }
+:root[data-theme="light"] .mode-grid [aria-disabled="true"] { opacity: .72; }
+:root[data-theme="light"] .mode-grid [aria-disabled="true"] small { color: #b3259a; }
+:root[data-theme="light"] .sheet__toolbar button { color: #6737b0; }
+:root[data-theme="light"] .party-tool { border-color: rgba(91,61,154,.2); background: rgba(255,255,255,.82); box-shadow: 0 9px 24px rgba(53,40,91,.06); }
+:root[data-theme="light"] .party-tool__result { color: #b3259a; text-shadow: none; }
+:root[data-theme="light"] .party-tool__note { color: #b3259a; }
+:root[data-theme="light"] .party-tool__modes button { color: #302947; border-color: rgba(91,61,154,.2); background: rgba(255,255,255,.82); }
+:root[data-theme="light"] .party-tool__modes button[aria-pressed="true"] { color: #4f2383; background: rgba(152,92,255,.12); box-shadow: none; }
+:root[data-theme="light"] .party-tool__groups li { border-color: rgba(91,61,154,.18); background: rgba(255,255,255,.86); }
+:root[data-theme="light"] .party-tool__groups strong { color: #533c7e; }
 :root[data-theme="light"] .resume-session { background: rgba(0,140,184,.07); }
 :root[data-theme="light"] .resume-session a { color: #086c8e; }
 :root[data-theme="light"] .setup-progress i { background: #d7d2df; }

@@ -4,10 +4,8 @@ import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { packIconName } from "@/components/game/pack-icon";
 import type { GamePackDefinition } from "@/lib/domain/schemas";
-
-/** pack.icon 用的是玩法语义名，落到现有图标集上，认不出的一律用 spark，避免出现空白图标。 */
-const ICONS: Record<string, "heart" | "users" | "glass" | "spark"> = { heart: "heart", people: "users", users: "users", glass: "glass", spark: "spark" };
 
 export function PackSwitcherSheet({ open, packs, currentPackId, onSelect, onClose }: {
   open: boolean;
@@ -30,7 +28,7 @@ export function PackSwitcherSheet({ open, packs, currentPackId, onSelect, onClos
         <div className="sheet__list">
           {packs.map((pack) => {
             const current = pack.id === currentPackId;
-            return <button className="sheet-option" type="button" key={pack.id} aria-current={current ? "true" : undefined} disabled={current} onClick={() => onSelect(pack.id)}><Icon name={ICONS[pack.icon] ?? "spark"} /><strong>{pack.name}</strong>{current && <span className="tag">当前</span>}</button>;
+            return <button className="sheet-option" type="button" key={pack.id} aria-current={current ? "true" : undefined} disabled={current} onClick={() => onSelect(pack.id)}><Icon name={packIconName(pack.icon)} /><strong>{pack.name}</strong>{current && <span className="tag">当前</span>}</button>;
           })}
         </div>
         <Button variant="ghost" type="button" onClick={onClose}>取消</Button>

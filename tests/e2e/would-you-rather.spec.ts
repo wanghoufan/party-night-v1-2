@@ -8,12 +8,13 @@ const primary = (page: Page) => page.getByRole("button", { name: "下一题" });
 const swap = (page: Page) => page.getByRole("button", { name: "换一个" });
 
 /**
- * 从首页进入“二选一”单玩法一局，走到生成页为止。
+ * 从首页“更多玩法”进入“二选一”单玩法一局，走到生成页为止（T160：新玩法不再直接铺在首页 2×2 上）。
  * 默认尺度调到 5 并放开手机隐私/公开发布两个雷区，让本地 11 张二选一 seed 全部可玩（覆盖 10 轮＋换题）。
  */
 async function prepareWouldYouRather(page: Page, intensity = "5") {
   await page.goto("/");
-  await page.getByRole("link", { name: /二选一/ }).click();
+  await page.getByRole("button", { name: /更多玩法/ }).click();
+  await page.getByRole("dialog", { name: "更多玩法" }).getByRole("button", { name: /二选一/ }).click();
   await expect(page).toHaveURL(/\/setup\?pack=would-you-rather/);
   await page.getByLabel("游戏强度").fill(intensity);
   await page.getByRole("button", { name: /下一步：雷区设置/ }).click();

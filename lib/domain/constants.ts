@@ -58,3 +58,6 @@ export const DEFAULT_BOUNDARIES = {
 } as const;
 
 export const BUILTIN_PACK_IDS = ["truth-dare", "most-likely", "never-have", "ai-improv", "would-you-rather", "pointing-game", "compatibility-test", "spin-bottle"] as const;
+
+/** 首页 2×2 核心玩法（Spec 2.2 / 5.2 冻结）：其余内置玩法与工具走“更多玩法”入口，不挤占核心卡位置。 */
+export const CORE_PACK_IDS = ["truth-dare", "most-likely", "never-have", "ai-improv"] as const;
