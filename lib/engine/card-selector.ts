@@ -15,6 +15,8 @@ export interface CardSelectionInput {
   intensity: Intensity;
   boundaries: BoundaryProfile;
   preferredPackIds?: string[];
+  /** 只在指定题卡类型里抽（如转瓶子→真心话只出 truth 卡）；该类型没有可用卡时退回既有候选，不空转。 */
+  preferredCardTypes?: string[];
   recentRejectedFingerprints?: string[];
   random?: RandomSource;
 }
@@ -79,7 +81,11 @@ export function selectCard(input: CardSelectionInput): GameCard | undefined {
   const preferred = input.preferredPackIds?.length
     ? allowed.filter((card) => input.preferredPackIds!.includes(card.packId))
     : allowed;
-  const pool = preferred.length ? preferred : allowed;
+  const packPool = preferred.length ? preferred : allowed;
+  const typed = input.preferredCardTypes?.length
+    ? packPool.filter((card) => input.preferredCardTypes!.includes(card.type))
+    : packPool;
+  const pool = typed.length ? typed : packPool;
   const rejected = input.recentRejectedFingerprints ?? [];
   const fresh = rejected.length ? pool.filter((card) => !isRecentlyRejected(card, rejected)) : pool;
   // 全部候选都被换过时不空转：宁可重复题面，也不能卡住现场。

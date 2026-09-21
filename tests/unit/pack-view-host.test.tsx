@@ -64,6 +64,29 @@ describe("PackViewHost", () => {
     expect(onComplete).toHaveBeenCalledTimes(1);
   });
 
+  it("renders the spin view for 转瓶子 without needing a card, and wires its own actions", () => {
+    // reduced-motion：跳过旋转表演，落点立即揭晓（动画过程由 spin-bottle-view.test.tsx 覆盖），
+    // 这样这里只验证 host 把视图和它自己的动作接上了。
+    const original = window.matchMedia;
+    Object.defineProperty(window, "matchMedia", {
+      configurable: true,
+      writable: true,
+      value: (query: string) => ({ matches: query.includes("prefers-reduced-motion"), media: query, onchange: null, addEventListener: vi.fn(), removeEventListener: vi.fn(), addListener: vi.fn(), removeListener: vi.fn(), dispatchEvent: vi.fn() }),
+    });
+    try {
+      const onSpin = vi.fn(() => players[0]);
+      const onChain = vi.fn();
+      render(<PackViewHost packId="spin-bottle" participantNames={[]} spin={{ players, onSpin, onChain }} />);
+      expect(screen.getByText("转瓶子")).toBeInTheDocument();
+      fireEvent.click(screen.getByRole("button", { name: "开始旋转" }));
+      expect(onSpin).toHaveBeenCalledTimes(1);
+      fireEvent.click(screen.getByRole("button", { name: "真心话" }));
+      expect(onChain).toHaveBeenCalledWith("truth");
+    } finally {
+      Object.defineProperty(window, "matchMedia", { configurable: true, writable: true, value: original });
+    }
+  });
+
   it("falls back to the generic card view for unknown packs", () => {
     render(<PackViewHost packId="custom-unknown" card={truthCard} participantNames={[]} actions={actions()} />);
     expect(screen.getByRole("heading", { name: truthCard.content })).toBeInTheDocument();
@@ -75,6 +98,7 @@ describe("packViewOwnsActions", () => {
     expect(packViewOwnsActions("would-you-rather")).toBe(true);
     expect(packViewOwnsActions("pointing-game")).toBe(true);
     expect(packViewOwnsActions("compatibility-test")).toBe(true);
+    expect(packViewOwnsActions("spin-bottle")).toBe(true);
     expect(packViewOwnsActions("truth-dare")).toBe(false);
     expect(packViewOwnsActions("custom-unknown")).toBe(false);
   });

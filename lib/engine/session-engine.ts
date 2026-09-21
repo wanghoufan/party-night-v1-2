@@ -1,6 +1,6 @@
 import { SESSION_SCHEMA_VERSION, gameSessionSchema, type GamePackDefinition, type GameSession, type Intensity, type SessionConfig } from "@/lib/domain/schemas";
 import { resolvePackCapability } from "@/lib/domain/pack-capability";
-import { getGamePack } from "@/lib/game-packs/registry";
+import { getGamePack, packIsCardless } from "@/lib/game-packs/registry";
 import { recordRejection, selectCard } from "./card-selector";
 import { selectParticipants } from "./player-selector";
 import { getSessionStage, getStagePackPreference } from "./stage-controller";
@@ -37,10 +37,16 @@ export function activateSession(session: GameSession, cards: GameCard[]): GameSe
 export interface StartRoundOptions {
   /** 明确切换玩法后的下一题偏好：只影响这一次出题，不改 config、不锁死后续轮次。 */
   preferPackIds?: string[];
+  /** 只在指定题卡类型里出题（转瓶子→真心话/大冒险）。 */
+  preferCardTypes?: string[];
+  /** 明确指定本轮参与者（转瓶子链入真心话时，被指到的人作答）。 */
+  participantIds?: string[];
 }
 
 export function startRound(session: GameSession, random: RandomSource = Math.random, options: StartRoundOptions = {}): GameSession {
   if (session.status !== "active" || session.currentRound) return session;
+  // 纯本地玩法（转瓶子）不需要题卡：结果由 player-selector 现场决定，也不该被别的 pack 的卡顶掉。
+  if (packIsCardless(session.currentPackId)) return session;
   const activePlayers = session.config.players.filter((player) => player.active);
   // single 模式只从当前玩法出卡；mixed 模式沿用 V1.0 的阶段混合出卡，currentPackId 跟随抽到的题卡。
   const single = session.config.mode === "single";
@@ -57,6 +63,7 @@ export function startRound(session: GameSession, random: RandomSource = Math.ran
     intensity: session.config.intensity,
     boundaries: session.config.boundaries,
     preferredPackIds,
+    preferredCardTypes: options.preferCardTypes,
     recentRejectedFingerprints: session.recentRejectedFingerprints ?? [],
     random,
   });
@@ -69,7 +76,7 @@ export function startRound(session: GameSession, random: RandomSource = Math.ran
       id: uid(),
       cardId: card.id,
       packId: card.packId,
-      participantIds: selectParticipants(card.participantMode, session.config.players, session.rounds, random),
+      participantIds: options.participantIds ?? selectParticipants(card.participantMode, session.config.players, session.rounds, random),
       startedAt: now(),
     },
     updatedAt: now(),

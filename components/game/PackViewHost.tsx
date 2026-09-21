@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { CompatibilityView } from "@/components/game/CompatibilityView";
 import { GameCardView } from "@/components/game/GameCardView";
 import { PointingGameView } from "@/components/game/PointingGameView";
+import { SpinBottleView, type SpinBottleHandlers } from "@/components/game/SpinBottleView";
 import { WouldYouRatherView } from "@/components/game/WouldYouRatherView";
 import type { GameCard, PackRenderer, Player } from "@/lib/domain/schemas";
 import type { CompatibilityState } from "@/lib/game-packs/compatibility-test";
@@ -29,6 +30,8 @@ export interface PackViewProps {
   actions?: RoundActionHandlers;
   /** 只有默契测试等需要玩家参与方上下文的玩法会拿到。 */
   compatibility?: CompatibilityHandlers;
+  /** 只有转瓶子这类纯本地玩法会拿到。 */
+  spin?: SpinBottleHandlers;
 }
 
 /**
@@ -43,13 +46,19 @@ const RENDERER_VIEWS: Partial<Record<PackRenderer, ComponentType<PackViewProps>>
 };
 
 /** 自带动作条的 renderer（一屏一主一辅）；主局据此不再渲染共享动作条，避免出现两套主按钮。 */
-const RENDERERS_WITH_OWN_ACTIONS: PackRenderer[] = ["binary-choice", "pointing", "compatibility"];
+const RENDERERS_WITH_OWN_ACTIONS: PackRenderer[] = ["binary-choice", "pointing", "compatibility", "spin"];
 
 export function packViewOwnsActions(packId: string): boolean {
   return RENDERERS_WITH_OWN_ACTIONS.includes(resolvePackRendererById(packId));
 }
 
-export function PackViewHost({ packId, card, participantNames, actions, compatibility }: { packId: string; card: GameCard; participantNames: string[] } & Pick<PackViewProps, "actions" | "compatibility">) {
+/** 主局没给转瓶子上下文时的兜底：只显示空桌，不猜人、不自己随机。 */
+const NO_SPIN: SpinBottleHandlers = { players: [], onSpin: () => undefined, onChain: () => {} };
+
+export function PackViewHost({ packId, card, participantNames, actions, compatibility, spin }: { packId: string; card?: GameCard; participantNames: string[] } & Pick<PackViewProps, "actions" | "compatibility" | "spin">) {
+  // 转瓶子是纯本地玩法：没有题卡，由 SpinBottleView 自己承载玩家与结果（Plan 8.4）。
+  if (resolvePackRendererById(packId) === "spin") return <SpinBottleView spin={spin ?? NO_SPIN} />;
+  if (!card) return null;
   const View = RENDERER_VIEWS[resolvePackRendererById(packId)] ?? GameCardView;
-  return <View card={card} participantNames={participantNames} actions={actions} compatibility={compatibility} />;
+  return <View card={card} participantNames={participantNames} actions={actions} compatibility={compatibility} spin={spin} />;
 }

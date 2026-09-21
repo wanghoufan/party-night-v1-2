@@ -18,11 +18,11 @@ test("同一局连续切换玩法，Session ID / 配置 / 尺度不变", async (
   // 二选一由 binary-choice renderer（WouldYouRatherView）承载，题面是 A/VS/B
   await expect(page.locator(".would-you-rather__options")).toContainText("VS");
 
-  // 二选一 → 转瓶子：切到目前还没有题卡内容的玩法，不得白屏，入口仍在
+  // 二选一 → 转瓶子：纯本地玩法（Phase 9 起不再是无卡空页），切过去直接进转瓶子主界面
   await switchEntry(page).click();
   await sheet(page).getByRole("button", { name: /转瓶子/ }).click();
-  await expect(page.getByRole("heading", { name: /暂时没有可玩的题卡/ })).toBeVisible();
-  await expect(page.getByRole("link", { name: "返回首页" })).toBeVisible();
+  await expect(page.locator(".spin-bottle")).toBeVisible();
+  await expect(page.getByRole("button", { name: "开始旋转" })).toBeVisible();
   await switchEntry(page).click();
   await expect(sheet(page).getByRole("button", { name: /转瓶子/ })).toHaveAttribute("aria-current", "true");
 

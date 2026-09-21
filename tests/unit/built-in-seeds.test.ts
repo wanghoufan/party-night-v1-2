@@ -28,6 +28,14 @@ describe("built-in offline seeds", () => {
     }
   });
 
+  it("gives every builtin seed a globally unique id, even when a pack has several card types", () => {
+    // 真心话/大冒险同属 truth-dare 却分属两个 type：id 撞车会让按 id 查卡串到另一类型的题面。
+    const ids = BUILTIN_SEED_CARDS.map((card) => card.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    const truthDare = seedsOf("truth-dare");
+    expect(truthDare.map((card) => card.type).sort()).toEqual(["dare", "dare", "dare", "dare", "dare", "dare", "truth", "truth", "truth", "truth", "truth", "truth"]);
+  });
+
   it("covers the session intensity scale so every setting can start offline", () => {
     for (const { packId } of SEEDED_PACKS) {
       const intensities = new Set(seedsOf(packId).map((card) => card.intensity));

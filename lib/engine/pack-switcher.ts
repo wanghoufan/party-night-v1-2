@@ -1,7 +1,7 @@
 import { resolvePackCapability } from "@/lib/domain/pack-capability";
 import type { CustomGamePack, GamePackDefinition, GameSession } from "@/lib/domain/schemas";
 import { ensurePackPlayable } from "@/lib/ai/generate-deck";
-import { startRound, switchPack } from "./session-engine";
+import { startRound, switchPack, type StartRoundOptions } from "./session-engine";
 import type { RandomSource } from "./types";
 import { createGamePackRegistry } from "@/lib/game-packs/registry";
 
@@ -25,10 +25,11 @@ export function listSwitchablePacks(session: GameSession, customPacks: CustomGam
 /**
  * 切换玩法的完整编排（主局入口与首页入口共用）：同一 Session 换玩法 → 目标玩法用本地 seed 立即补位
  * → 出下一题。不联网、不阻塞；不满足启用/人数条件时原样返回（调用方按引用判断未切换）。
+ * options 透传给出题（如转瓶子→真心话只出 truth 卡、并由被指到的人作答）；纯本地玩法（转瓶子）不出卡。
  */
-export function switchPackAndDeal(session: GameSession, packId: string, customPacks: CustomGamePack[] = [], random: RandomSource = Math.random): GameSession {
+export function switchPackAndDeal(session: GameSession, packId: string, customPacks: CustomGamePack[] = [], random: RandomSource = Math.random, options: StartRoundOptions = {}): GameSession {
   const switched = switchPack(session, packId, { enabledPackIds: enabledPackIds(customPacks) });
   if (switched === session) return session;
   const { deck } = ensurePackPlayable(switched.deckSnapshot, switched.config, packId, switched.usedCardIds);
-  return startRound({ ...switched, deckSnapshot: deck }, random, { preferPackIds: [packId] });
+  return startRound({ ...switched, deckSnapshot: deck }, random, { preferPackIds: [packId], ...options });
 }

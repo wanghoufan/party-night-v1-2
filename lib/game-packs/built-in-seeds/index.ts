@@ -4,7 +4,8 @@ type Seed = [string, Intensity, string, BoundaryTag[]?];
 
 const build = (packId: string, type: string, participantMode: GameCard["participantMode"], seeds: Seed[], minPlayers = 2): GameCard[] =>
   seeds.map(([content, intensity, instruction, boundaryTags = []], index) => ({
-    id: `seed-${packId}-${index + 1}`, packId, type, content, instruction, intensity,
+    // 一个 pack 可能有多种题卡类型（如真心话/大冒险）：id 带上 type 才能全局唯一，否则按 id 查卡会串类型。
+    id: `seed-${packId}-${type}-${index + 1}`, packId, type, content, instruction, intensity,
     tags: [], boundaryTags, minPlayers, participantMode, source: "builtin",
   }));
 

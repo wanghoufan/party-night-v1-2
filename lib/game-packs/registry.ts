@@ -30,3 +30,10 @@ export function resolvePackRendererById(id: string, customPacks: CustomGamePack[
   const pack = getGamePack(id, customPacks);
   return pack ? resolvePackCapability(pack).renderer : "card";
 }
+
+/** 不需要任何题卡的纯本地玩法（转瓶子）：renderer 自己就是完整玩法，主局不出卡、也不被别的 pack 的卡顶掉。 */
+const CARDLESS_RENDERERS: PackRenderer[] = ["spin"];
+
+export function packIsCardless(id: string, customPacks: CustomGamePack[] = []): boolean {
+  return CARDLESS_RENDERERS.includes(resolvePackRendererById(id, customPacks));
+}
