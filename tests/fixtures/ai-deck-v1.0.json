@@ -1,0 +1,9 @@
+{
+  "cards": [
+    { "id": "ai-truth-1", "packId": "truth-dare", "type": "truth", "content": "说一件今天最想感谢的事。", "instruction": "轮到的玩家回答", "intensity": 1, "tags": ["warm"], "boundaryTags": [], "minPlayers": 2, "participantMode": "single", "source": "ai" },
+    { "id": "ai-likely-1", "packId": "most-likely", "type": "vote", "content": "谁最可能半夜点外卖？", "instruction": "倒数三秒，一起指向那个人", "intensity": 1, "tags": [], "boundaryTags": [], "minPlayers": 3, "participantMode": "all", "source": "ai" },
+    { "id": "ai-never-1", "packId": "never-have", "type": "statement", "content": "我从来没有在开会时偷偷走神。", "instruction": "做过的人举手", "intensity": 1, "tags": [], "boundaryTags": [], "minPlayers": 2, "participantMode": "all", "source": "ai" },
+    { "id": "ai-improv-1", "packId": "ai-improv", "type": "improv", "content": "用一句话给今晚写一个片尾字幕。", "instruction": "十秒内完成", "intensity": 1, "tags": [], "boundaryTags": [], "minPlayers": 2, "participantMode": "single", "source": "ai" }
+  ],
+  "meta": { "generatedCount": 4, "provider": "configured-provider" }
+}

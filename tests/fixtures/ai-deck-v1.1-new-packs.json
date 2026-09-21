@@ -1,0 +1,8 @@
+{
+  "cards": [
+    { "id": "ai-wyr-1", "packId": "would-you-rather", "type": "would-you-rather", "optionA": "凌晨三点吃火锅", "optionB": "清晨六点看日出", "intensity": 2, "tags": ["funny"], "boundaryTags": [] },
+    { "id": "ai-point-1", "packId": "pointing-game", "type": "pointing", "prompt": "指一个你觉得今晚最有梗的人。", "intensity": 2, "tags": [] },
+    { "id": "ai-compat-1", "packId": "compatibility-test", "type": "compatibility", "prompt": "对方最讨厌的食物是什么？", "answerMode": "open", "intensity": 1, "tags": [] }
+  ],
+  "meta": { "generatedCount": 3, "provider": "configured-provider" }
+}
