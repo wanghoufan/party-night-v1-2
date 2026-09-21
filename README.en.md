@@ -10,6 +10,8 @@ A zero-account, offline-capable mobile party-game PWA for starting games quickly
 
 - Configure two or more players, relationships, vibes, intensity, and content boundaries before starting a full game.
 - Play Truth or Dare, Most Likely To, Never Have I Ever, and AI Improv either separately or in mixed mode.
+- Also play Would You Rather, Pointing Game, Compatibility Test, or Spin the Bottle separately, or switch games mid-session without losing the session, players, or intensity.
+- Use the Random Picker and Random Groups tools to warm up; look up 8 common drinking-table rules (Miss Card, King's Cup, etc., with variants and no-alcohol options) in the game-pack rule library.
 - Prepare the entire deck before play. Once saved, the current session can continue, swap cards, skip, refresh, and recover without a network connection.
 - Start entirely from local seed cards, or configure DeepSeek Official, OpenCode Go, or a custom OpenAI-compatible provider.
 - Create, edit, enable, disable, and delete custom game packs stored only on the current device.
