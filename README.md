@@ -47,11 +47,11 @@ cp .env.example .env.local
 ```
 
 ```dotenv
-PARTY_NIGHT_ENABLE_ENV_AI_FALLBACK=true
+PARTY_NIGHT_ENABLE_ENV_AI_FALLBACK=false
 PARTY_NIGHT_DEV_AI_API_KEY=
 ```
 
-只在非 production 环境、显式开启开关且请求未携带用户 Key 时才会使用该 fallback。不得将 `.env.local` 或真实 Key 提交到仓库，也不得使用 `NEXT_PUBLIC_` 前缀暴露密钥。
+样例默认关闭，需要联调时把 `false` 改为 `true`。只在非 production 环境、显式开启开关且请求未携带用户 Key 时才会使用该 fallback。不得将 `.env.local` 或真实 Key 提交到仓库，也不得使用 `NEXT_PUBLIC_` 前缀暴露密钥。
 
 ## 数据与安全
 
@@ -74,7 +74,7 @@ V1 暂无内置数据导出/导入。如需保留本地数据，请备份对应�
 pnpm lint
 pnpm typecheck
 pnpm test
-pnpm exec playwright test
+pnpm test:e2e
 pnpm build
 pnpm start
 ```

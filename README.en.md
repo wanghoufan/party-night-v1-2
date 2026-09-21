@@ -47,11 +47,11 @@ cp .env.example .env.local
 ```
 
 ```dotenv
-PARTY_NIGHT_ENABLE_ENV_AI_FALLBACK=true
+PARTY_NIGHT_ENABLE_ENV_AI_FALLBACK=false
 PARTY_NIGHT_DEV_AI_API_KEY=
 ```
 
-This fallback is used only outside production, only when explicitly enabled, and only when the request does not carry a user key. Never commit `.env.local` or a real key, and never expose a secret through a `NEXT_PUBLIC_` variable.
+The sample defaults to off; change `false` to `true` for local integration work. This fallback is used only outside production, only when explicitly enabled, and only when the request does not carry a user key. Never commit `.env.local` or a real key, and never expose a secret through a `NEXT_PUBLIC_` variable.
 
 ## Data and security
 
@@ -74,7 +74,7 @@ Production deployments should use HTTPS; localhost is the development exception.
 pnpm lint
 pnpm typecheck
 pnpm test
-pnpm exec playwright test
+pnpm test:e2e
 pnpm build
 pnpm start
 ```
