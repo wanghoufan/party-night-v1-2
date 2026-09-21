@@ -3,8 +3,10 @@
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
 - Captured at（YYYY-MM-DD HH:MM）：2026-09-21 09:45
-- PROJECT_PHASE：（空：Party Night V1.2 已完成实现，未开新阶段；旧项目事实交接见备份 `docs/handoff/HANDOFF.md.旧版-2026-09-13`）
-- PLAN_VERSION：（空）
+- PROJECT_PHASE：（DEVELOP：V1.1 玩法扩展与主局整合，用户连续开发指令 2026-09-21）
+- PLAN_VERSION：（V1.1 玩法扩展与主局整合-计划）
+- DEV_BASELINE：（V1.1-玩法扩展与主局整合-计划-V1.1）
+- CHANGE_REQUEST：（NONE）
 - PLAN_READINESS_SCORE：（空；定义以 docs/pm/PRODUCT_PLAN.template.md 为准）
 - PLAN_GATE：（IN_PROGRESS）
 - DEV_BASELINE：（空）
