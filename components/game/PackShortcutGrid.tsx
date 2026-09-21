@@ -2,36 +2,29 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
 import { packIconName } from "@/components/game/pack-icon";
-import { BUILTIN_PACK_IDS } from "@/lib/domain/constants";
 import { resolvePackRoute } from "@/lib/engine/pack-entry";
-import { corePackCards } from "@/lib/game-packs/home-cards";
-import { isRandomLauncherPackId } from "@/lib/game-packs/random-launcher";
-import { loadEnabledPackIds } from "@/lib/storage/pack-enablement";
+import { homePackCards } from "@/lib/game-packs/home-cards";
 
 /**
- * 首页 2×2 核心玩法卡（T160）：前三格是原来的固定玩法，第 4 格是动作型「随机玩一个」（V1.4 R-050）。
+ * 首页玩法卡（V1.4 R-050）：7 个真实内置玩法 + 动作卡「随机玩一个」全部直出。
  * 卡片仍是链接（/setup?pack= 预选后复用既有 quick setup），已有一局在进行时改为同一 Session 内切换玩法。
- * 玩法被禁用时卡片保留原位并显示禁用态，点击只引导去游戏包重新启用，绝不绕过 registry 直接开局（FR-044）。
+ * 游戏包开关只圈 AI 组局，不挡这里的单玩，所以不再有禁用态卡片。
  */
 export function PackShortcutGrid() {
   const router = useRouter();
-  // 首屏按默认全启用渲染；读到本地启用集合（内置可禁用 + 自定义）后刷新。
-  const [enabledIds, setEnabledIds] = useState<string[]>([...BUILTIN_PACK_IDS]);
-  useEffect(() => { void loadEnabledPackIds().then(setEnabledIds); }, []);
   async function open(packId: string) { router.push(await resolvePackRoute(packId)); }
 
   return (
-    <section className="mode-grid" aria-label="快速模式">
-      {corePackCards(enabledIds).map(({ pack, disabled }) => {
-        const subtitle = disabled ? "已在游戏包禁用" : isRandomLauncherPackId(pack.id) ? "随机挑一个玩法" : pack.supportedCardTypes.join(" · ");
-        const body = <><Icon name={packIconName(pack.icon)} /><strong>{pack.name}</strong><small>{subtitle}</small></>;
-        return disabled
-          ? <button type="button" key={pack.id} aria-label={`${pack.name}已禁用，去游戏包重新启用`} onClick={() => router.push("/packs")}>{body}</button>
-          : <Link href={`/setup?pack=${pack.id}`} key={pack.id} onClick={(event) => { event.preventDefault(); void open(pack.id); }}>{body}</Link>;
-      })}
+    <section className="mode-grid" aria-label="玩法">
+      {homePackCards().map(({ pack, launcher }) => (
+        <Link href={`/setup?pack=${pack.id}`} key={pack.id} onClick={(event) => { event.preventDefault(); void open(pack.id); }}>
+          <Icon name={packIconName(pack.icon)} />
+          <strong>{pack.name}</strong>
+          <small>{launcher ? "随机挑一个玩法" : pack.supportedCardTypes.join(" · ")}</small>
+        </Link>
+      ))}
     </section>
   );
 }

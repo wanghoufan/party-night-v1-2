@@ -22,29 +22,28 @@ function toolsSession(): GameSession {
   };
 }
 
-const sheet = (page: Page) => page.getByRole("dialog", { name: "更多玩法" });
+/** V1.4 R-053：工具从首页独立分区进（不再有“更多玩法”面板）。 */
+const tools = (page: Page) => page.getByRole("region", { name: "快捷工具" });
+const toolDialog = (page: Page) => page.getByRole("dialog", { name: "快捷工具" });
 
-async function openSheetWithSession(page: Page) {
+async function openHomeToolsWithSession(page: Page) {
   await seedSession(page, toolsSession());
   await page.goto("/");
-  await page.getByRole("button", { name: /更多玩法/ }).click();
-  await expect(sheet(page)).toBeVisible();
+  await expect(tools(page)).toBeVisible();
 }
 
-test("更多玩法面板：4 个新玩法 + 2 个快捷工具，底部仍是原来的 4 个 Tab（T159/T161）", async ({ page }) => {
-  await openSheetWithSession(page);
+test("首页快捷工具分区：随机点名 + 随机分组两行，底部仍是原来的 4 个 Tab", async ({ page }) => {
+  await openHomeToolsWithSession(page);
 
   expect(await page.getByRole("navigation", { name: "主导航" }).getByRole("link").count()).toBe(4);
-  for (const name of [/二选一/, /指人游戏/, /默契测试/, /转瓶子/, /随机点名/, /随机分组/]) {
-    await expect(sheet(page).getByRole("button", { name })).toBeVisible();
-  }
-  // 核心 4 玩法不重复出现在这里
-  await expect(sheet(page).getByRole("button", { name: /真心话大冒险/ })).toHaveCount(0);
+  await expect(tools(page).getByRole("button", { name: /随机点名/ })).toBeVisible();
+  await expect(tools(page).getByRole("button", { name: /随机分组/ })).toBeVisible();
+  await expect(tools(page).getByText(/纯本地/)).toBeVisible();
 });
 
 test("随机点名：复用本局玩家名单，再抽一个不点同一人（T158 / FR-022）", async ({ page }) => {
-  await openSheetWithSession(page);
-  await sheet(page).getByRole("button", { name: /随机点名/ }).click();
+  await openHomeToolsWithSession(page);
+  await tools(page).getByRole("button", { name: /随机点名/ }).click();
 
   const tool = page.getByLabel("随机点名");
   await expect(tool).toContainText("4 位在场玩家");
@@ -59,8 +58,8 @@ test("随机点名：复用本局玩家名单，再抽一个不点同一人（T1
 });
 
 test("随机分组：默认 2 组、可切两人一组，人数差最多 1（T158 / FR-023）", async ({ page }) => {
-  await openSheetWithSession(page);
-  await sheet(page).getByRole("button", { name: /随机分组/ }).click();
+  await openHomeToolsWithSession(page);
+  await tools(page).getByRole("button", { name: /随机分组/ }).click();
 
   const tool = page.getByLabel("随机分组");
   await tool.getByRole("button", { name: "开始分组" }).click();
@@ -72,8 +71,8 @@ test("随机分组：默认 2 组、可切两人一组，人数差最多 1（T15
   await tool.getByRole("button", { name: /重新分组/ }).click();
   await expect(tool.getByRole("listitem")).toHaveCount(2);
 
-  // 关掉再打开回到玩法列表，工具页不残留
+  // 关掉再打开回到工具列表，工具页不残留
   await page.getByRole("button", { name: "返回玩法列表" }).click();
   await page.keyboard.press("Escape");
-  await expect(sheet(page)).toHaveCount(0);
+  await expect(toolDialog(page)).toHaveCount(0);
 });

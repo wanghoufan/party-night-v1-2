@@ -10,6 +10,7 @@ vi.mock("next/navigation", () => ({ usePathname: () => "/packs", useSearchParams
 
 import PacksPage from "@/app/packs/page";
 import { BUILTIN_GAME_PACKS } from "@/lib/game-packs/registry";
+import { isRandomLauncherPackId } from "@/lib/game-packs/random-launcher";
 
 const CUSTOM: CustomGamePack = {
   schemaVersion: 1,
@@ -46,15 +47,18 @@ beforeEach(() => {
 afterEach(() => vi.clearAllMocks());
 
 describe("我的游戏包 · 玩法分区（T164/T165）", () => {
-  it("默认进玩法：8 个内置玩法全列出，每个都有启用开关且默认开启（T164/T199）", async () => {
+  it("8 个内置玩法全列出：7 个真实玩法各有开关且默认开启，动作卡「随机玩一个」不带开关", async () => {
     render(<PacksPage />);
 
     expect(screen.getByRole("heading", { name: "内置玩法" })).toBeInTheDocument();
     expect(BUILTIN_GAME_PACKS).toHaveLength(8);
-    for (const pack of BUILTIN_GAME_PACKS) {
-      expect(screen.getByText(pack.name)).toBeInTheDocument();
-      await waitFor(() => expect(screen.getByLabelText(`启用${pack.name}`)).toBeChecked());
-    }
+    for (const pack of BUILTIN_GAME_PACKS) expect(screen.getByText(pack.name)).toBeInTheDocument();
+    const realPacks = BUILTIN_GAME_PACKS.filter((pack) => !isRandomLauncherPackId(pack.id));
+    expect(realPacks).toHaveLength(7);
+    for (const pack of realPacks) await waitFor(() => expect(screen.getByLabelText(`启用${pack.name}`)).toBeChecked());
+    expect(screen.queryByLabelText("启用随机玩一个")).toBeNull();
+    // 开关语义写在行里：关掉只是不加入 AI 组局
+    expect(screen.getAllByText("关闭则不加入 AI 组局")).toHaveLength(7);
     await waitFor(() => expect(screen.getByText(CUSTOM.definition.name)).toBeInTheDocument());
   });
 
@@ -87,6 +91,24 @@ describe("我的游戏包 · 玩法分区（T164/T165）", () => {
     fireEvent.click(await screen.findByRole("button", { name: /随机点名/ }));
     const dialog = await screen.findByRole("dialog", { name: "快捷工具" });
     expect(within(dialog).getByLabelText("随机点名")).toHaveTextContent("还没有在场玩家");
+  });
+
+  it("关掉最后一个玩法被拒绝：开关保持开启、给出可见提示、库里不写关闭名单（R-054/R-055）", async () => {
+    mocks.list.mockResolvedValue([]);
+    render(<PacksPage />);
+
+    const realPacks = BUILTIN_GAME_PACKS.filter((pack) => !isRandomLauncherPackId(pack.id));
+    const [last, ...rest] = [...realPacks].reverse();
+    for (const pack of rest) {
+      fireEvent.click(screen.getByLabelText(`启用${pack.name}`));
+      await waitFor(() => expect(screen.getByLabelText(`启用${pack.name}`)).not.toBeChecked());
+    }
+
+    fireEvent.click(screen.getByLabelText(`启用${last!.name}`));
+
+    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent(/至少保留一个玩法/));
+    expect(screen.getByLabelText(`启用${last!.name}`)).toBeChecked();
+    expect(mocks.save).not.toHaveBeenCalled();
   });
 
   it("自定义玩法的新建/启用/删除照旧（T164 保留自定义 CRUD）", async () => {

@@ -4,7 +4,7 @@ import type { CustomGamePack, Player, SessionConfig } from "@/lib/domain/schemas
 import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
 import { BUILTIN_GAME_PACKS } from "@/lib/game-packs/registry";
 import { createSession } from "@/lib/engine/session-engine";
-import { enabledPackIds, listSwitchablePacks, switchPackAndDeal } from "@/lib/engine/pack-switcher";
+import { listSwitchablePacks, mixedCandidatePackIds, switchPackAndDeal } from "@/lib/engine/pack-switcher";
 
 const players = (total: number, active = total): Player[] =>
   ["a", "b", "c", "d"].slice(0, total).map((id, index) => ({ id, displayName: `玩家${id}`, active: index < active, createdAt: "x", lastUsedAt: "x" }));
@@ -23,7 +23,7 @@ const customPack = (id: string, enabled: boolean, minPlayers = 2): CustomGamePac
 const builtinIds = BUILTIN_GAME_PACKS.map((pack) => pack.id);
 
 describe("main-session pack switcher candidates", () => {
-  it("offers every enabled built-in pack the active players can support", () => {
+  it("offers every registered pack the active players can support", () => {
     const session = createSession(config({ players: players(4) }), BUILTIN_SEED_CARDS);
     expect(listSwitchablePacks(session).map((pack) => pack.id)).toEqual(builtinIds);
   });
@@ -62,17 +62,25 @@ describe("main-session pack switcher candidates", () => {
     expect(ids.indexOf("most-likely")).toBe(0);
   });
 
-  it("returns the enabled pack ids the switcher may switch into", () => {
-    expect(enabledPackIds([])).toEqual(builtinIds);
-    expect(enabledPackIds([customPack("custom-on", true), customPack("custom-off", false)])).toEqual([...builtinIds, "custom-on"]);
+  it("returns the mixed candidates AI dealing may use (launcher itself excluded)", () => {
+    expect(mixedCandidatePackIds([])).toEqual(builtinIds.filter((id) => id !== "ai-improv"));
+    expect(mixedCandidatePackIds([customPack("custom-on", true), customPack("custom-off", false)])).toEqual([...builtinIds.filter((id) => id !== "ai-improv"), "custom-on"]);
   });
 
-  it("drops built-in packs the user disabled in the pack page (T199 / FR-044)", () => {
-    expect(enabledPackIds([], ["truth-dare", "most-likely"])).toEqual(builtinIds.filter((id) => id !== "truth-dare" && id !== "most-likely"));
+  it("开关只圈混合候选：主局 switcher 与主动切换照样能选到被关闭的玩法（R-057）", () => {
+    const disabled = ["truth-dare", "most-likely"];
+    expect(mixedCandidatePackIds([], disabled)).toEqual(builtinIds.filter((id) => !disabled.includes(id) && id !== "ai-improv"));
 
     const session = createSession(config({ players: players(4) }), BUILTIN_SEED_CARDS);
-    expect(listSwitchablePacks(session, [], ["most-likely"]).map((pack) => pack.id)).not.toContain("most-likely");
-    expect(switchPackAndDeal(session, "most-likely", [], () => 0, {}, ["most-likely"])).toBe(session);
+    expect(listSwitchablePacks(session, []).map((pack) => pack.id)).toContain("most-likely");
+    expect(switchPackAndDeal(session, "most-likely", [], () => 0).currentPackId).toBe("most-likely");
+  });
+
+  it("single / mixed 两种 mode 的 switcher 候选一致，不受 mixable 限制（R-057）", () => {
+    const single = createSession(config({ players: players(4), mode: "single" }), BUILTIN_SEED_CARDS);
+    const mixed = createSession(config({ players: players(4), mode: "mixed" }), BUILTIN_SEED_CARDS);
+    expect(listSwitchablePacks(single).map((pack) => pack.id)).toEqual(listSwitchablePacks(mixed).map((pack) => pack.id));
+    expect(listSwitchablePacks(single).map((pack) => pack.id)).toContain("spin-bottle");
   });
 });
 
@@ -103,5 +111,13 @@ describe("switchPackAndDeal", () => {
     expect(next.currentPackId).toBe("spin-bottle");
     expect(next.currentRound).toBeUndefined();
     expect(next.deckSnapshot).toEqual(session.deckSnapshot);
+  });
+
+  it("不碰 config.enabledPackIds：切玩法不重写本局的混合快照（R-056）", () => {
+    const session = createSession(config({ enabledPackIds: ["never-have", "truth-dare"], mode: "mixed" }), BUILTIN_SEED_CARDS);
+    const next = switchPackAndDeal(session, "spin-bottle", [], () => 0);
+
+    expect(next.config).toEqual(session.config);
+    expect(next.config.enabledPackIds).toEqual(["never-have", "truth-dare"]);
   });
 });

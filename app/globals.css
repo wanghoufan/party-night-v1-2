@@ -233,16 +233,8 @@ textarea {
 .mode-grid svg { grid-row: 1/3; width: 1.65rem; color: #d595ff; filter: drop-shadow(0 0 6px #985cff); }
 .mode-grid strong { font-size: .86rem; }
 .mode-grid small { color: var(--color-text-muted); font-size: .68rem; }
-/* 玩法被游戏包禁用：卡片留在原位，但只引导重新启用，不当作可开局入口。 */
-.mode-grid [aria-disabled="true"] { border-style: dashed; border-color: rgba(142,145,166,.45); opacity: .72; }
-.mode-grid [aria-disabled="true"] svg { color: #8f93ad; filter: none; }
-.mode-grid [aria-disabled="true"] small { color: #ffb3c8; }
-.home-row { display: grid; grid-template-columns: 2rem 1fr 1.2rem; align-items: center; gap: .65rem; min-height: 4rem; margin-top: .7rem; padding: .75rem 1rem; border: 1px solid rgba(131,143,201,.3); border-radius: .85rem; color: white; background: rgba(20,23,51,.76); text-decoration: none; }
-.home-row--button { width: 100%; font: inherit; text-align: left; cursor: pointer; }
-.home-row svg { width: 1.45rem; color: #c9abff; }
-.home-row span { display: grid; gap: .15rem; }
-.home-row small { color: var(--color-text-muted); font-size: .7rem; }
-.ai-row { border-color: rgba(0,209,255,.25); }
+/* 首页下半屏与「快捷工具」之间的分隔：工具是纯本地小工具，和玩法不是一类东西。 */
+.home-tools { margin-top: 1.5rem; padding-top: 1.1rem; border-top: 1px solid rgba(131,143,201,.26); }
 .resume-session { display: flex; align-items: center; justify-content: space-between; gap: .7rem; margin-bottom: .75rem; padding: .7rem .8rem; border: 1px solid rgba(0,209,255,.45); border-radius: var(--radius-xs); background: rgba(0,100,145,.14); box-shadow: inset 0 0 18px rgba(0,209,255,.06); }
 .resume-session > div { display: flex; align-items: center; gap: .55rem; }
 .resume-session > div > svg { width: 1.3rem; color: var(--color-neon-blue); }
@@ -275,6 +267,9 @@ textarea {
 .intensity-label { display: flex; justify-content: space-between; align-items: center; color: var(--color-text-muted); font-size: .7rem; }
 .intensity-label strong { color: #ddd5ff; font-size: .76rem; }
 .sticky-cta { position: sticky; bottom: calc(.75rem + env(safe-area-inset-bottom)); z-index: 5; width: 100%; margin-top: .5rem; }
+/* R-059：setup 上直接显示“本局 AI 组局候选 N”，N 就是最终落库的 enabledPackIds 长度。 */
+.setup-mixed-count { margin: .2rem 0 0; color: var(--color-text-muted); font-size: .78rem; }
+.setup-mixed-count strong { color: #d595ff; font-size: .95rem; }
 .screen--with-tabs .sticky-cta { bottom: calc(4.7rem + env(safe-area-inset-bottom)); }
 
 .boundary-intro p { margin: -.35rem 0 1.2rem; color: var(--color-text-muted); font-size: .78rem; }
@@ -477,6 +472,9 @@ textarea {
 .pack-emoji { font-size: 1.65rem; text-align: center; }
 .pack-section-heading { display: flex; justify-content: space-between; align-items: center; }
 .pack-section-heading a, .pack-section-heading button { min-height: 2.75rem; border: 0; color: #c4adff; background: transparent; text-decoration: none; }
+/* 开关语义说明与「至少保留一个玩法」的可见提示（R-054/R-055）。 */
+.pack-section-note { margin: .35rem 0 .6rem; color: var(--color-text-muted); font-size: .72rem; line-height: 1.5; }
+.pack-notice { margin: 0 0 1rem; padding: .65rem .8rem; border: 1px solid rgba(255,179,200,.6); border-radius: var(--radius-xs); color: #ffd7e4; font-size: .8rem; background: rgba(120,20,60,.34); }
 .empty-custom-pack { display: grid; justify-items: center; gap: .65rem; padding: 1.5rem; border: 1px dashed rgba(152,92,255,.42); border-radius: 1rem; text-align: center; background: rgba(19,19,48,.62); }
 .empty-custom-pack > svg { width: 2.6rem; color: #ba91ff; }
 .empty-custom-pack h3, .empty-custom-pack p { margin: 0; }
@@ -645,10 +643,8 @@ textarea {
 :root[data-theme="light"] .hero-promise { color: #5d5671; }
 :root[data-theme="light"] .home-stage p { color: #a51872; text-shadow: none; }
 :root[data-theme="light"] .mode-grid a,
-:root[data-theme="light"] .mode-grid button,
-:root[data-theme="light"] .home-row { color: var(--color-text-primary); border-color: rgba(91,61,154,.2); background: rgba(255,255,255,.78); box-shadow: 0 10px 26px rgba(53,40,91,.07); }
-:root[data-theme="light"] .mode-grid [aria-disabled="true"] { opacity: .72; }
-:root[data-theme="light"] .mode-grid [aria-disabled="true"] small { color: #b3259a; }
+:root[data-theme="light"] .mode-grid button { color: var(--color-text-primary); border-color: rgba(91,61,154,.2); background: rgba(255,255,255,.78); box-shadow: 0 10px 26px rgba(53,40,91,.07); }
+:root[data-theme="light"] .home-tools { border-top-color: rgba(91,61,154,.18); }
 :root[data-theme="light"] .sheet__toolbar button { color: #6737b0; }
 :root[data-theme="light"] .party-tool { border-color: rgba(91,61,154,.2); background: rgba(255,255,255,.82); box-shadow: 0 9px 24px rgba(53,40,91,.06); }
 :root[data-theme="light"] .party-tool__result { color: #b3259a; text-shadow: none; }

@@ -15,7 +15,7 @@ test("核心操作具有语义、焦点样式与移动端触控面积", async ({
   await start.focus();
   await expect(start).toBeFocused();
   await expect(start).toHaveCSS("outline-style", "solid");
-  for (const name of ["真心话大冒险", "谁最可能", "我从来没有", "随机玩一个"]) await expectTouchTarget(page.getByRole("link", { name: new RegExp(name) }));
+  for (const name of ["真心话大冒险", "谁最可能", "我从来没有", "二选一", "指人游戏", "默契测试", "转瓶子", "随机玩一个"]) await expectTouchTarget(page.getByRole("link", { name: new RegExp(name) }));
 
   await page.goto("/settings/ai");
   await expect(page.getByRole("textbox", { name: "API Key", exact: true })).toHaveAttribute("type", "password");

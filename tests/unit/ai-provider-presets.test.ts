@@ -8,7 +8,7 @@ describe("AI provider presets", () => {
   });
   it("keeps OpenCode Go experimental and manual-only", () => {
     expect(OPENCODE_GO_PROFILE).toMatchObject({ experimental: true, enabled: false, autoFallback: false });
-    expect(getOpenCodeHeaders("stable")).toMatchObject({ "x-opencode-session": "stable", "User-Agent": "PartyNight/1.2.0" });
+    expect(getOpenCodeHeaders("stable")).toMatchObject({ "x-opencode-session": "stable", "User-Agent": "PartyNight/1.4.0" });
   });
   it("does not register free Zen", () => expect(AI_PROVIDER_PRESETS.some((profile) => /zen/i.test(profile.name))).toBe(false));
   it("creates custom profiles without default fallback", () => expect(createCustomProfile({ name: "Local", baseUrl: "https://example.com/v1", modelId: "m" })).toMatchObject({ type: "custom-openai", isDefault: false, autoFallback: false }));

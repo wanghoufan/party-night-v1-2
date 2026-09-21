@@ -12,9 +12,11 @@ import { RelationshipSelector } from "@/components/party/RelationshipSelector";
 import { VibeSelector } from "@/components/party/VibeSelector";
 import { IntensitySelector } from "@/components/party/IntensitySelector";
 import { DEFAULT_BOUNDARIES, BUILTIN_PACK_IDS } from "@/lib/domain/constants";
-import type { Intensity, Player, SessionConfig } from "@/lib/domain/schemas";
+import type { CustomGamePack, Intensity, Player, SessionConfig } from "@/lib/domain/schemas";
 import { createSession } from "@/lib/engine/session-engine";
 import { deriveQuickStartConfig } from "@/lib/engine/quick-start";
+import { listManualPlayablePacks, mixedCandidatePackIds } from "@/lib/engine/pack-switcher";
+import { gamePackRepository } from "@/lib/storage/game-pack-repository";
 import { preferencesRepository } from "@/lib/storage/preferences-repository";
 import { loadDisabledPackIds } from "@/lib/storage/pack-enablement";
 import { sessionRepository } from "@/lib/storage/session-repository";
@@ -33,8 +35,9 @@ function SetupPageContent() {
   const [vibes, setVibes] = useState<string[]>(["funny"]);
   const [intensity, setIntensity] = useState<Intensity>(3);
   const [previous, setPrevious] = useState<SessionConfig>();
-  // 用户在“游戏包”禁用的玩法不进混合出题池（FR-044）：禁用就是禁用，不能从组局侧绕回去。
+  // 游戏包开关只圈 AI 组局的混合候选（R-056）：这里一次性读出最终集合，不在 boundaries 页二次追加。
   const [disabledPackIds, setDisabledPackIds] = useState<string[]>([]);
+  const [customPacks, setCustomPacks] = useState<CustomGamePack[]>([]);
 
   useEffect(() => {
     void preferencesRepository.get().then((preference) => {
@@ -43,12 +46,17 @@ function SetupPageContent() {
       setPrevious(config); setPlayers(config.players); setRelationship(config.relationship); setVibes(config.vibes); setIntensity(config.intensity);
     });
     void loadDisabledPackIds().then(setDisabledPackIds);
+    void gamePackRepository.list().then(setCustomPacks);
   }, []);
 
+  // 最终混合候选（R-059）：内置真实玩法（未关闭）+ 已启用自定义，去重、规范顺序——UI 的 N 与落库的 config 同源。
+  const mixedPackIds = mixedCandidatePackIds(customPacks, disabledPackIds);
+  const mixedCustomCount = mixedPackIds.filter((id) => customPacks.some((pack) => pack.definition.id === id)).length;
+  const playablePackIds = listManualPlayablePacks(customPacks).map((pack) => pack.id);
+
   function draftConfig(): SessionConfig {
-    const enabledBuiltin = BUILTIN_PACK_IDS.filter((id) => !disabledPackIds.includes(id));
-    const validPack = targetPack && enabledBuiltin.includes(targetPack as never) ? targetPack : undefined;
-    const mixed = enabledBuiltin.length ? enabledBuiltin : [...BUILTIN_PACK_IDS];
+    const validPack = targetPack && playablePackIds.includes(targetPack) ? targetPack : undefined;
+    const mixed = mixedPackIds.length ? mixedPackIds : [...BUILTIN_PACK_IDS];
     return { players, relationship, vibes: vibes.length ? vibes : ["random"], intensity, boundaries: previous?.boundaries ?? { ...DEFAULT_BOUNDARIES }, enabledPackIds: validPack ? [validPack] : mixed, mode: validPack ? "single" : "mixed" };
   }
 
@@ -74,6 +82,7 @@ function SetupPageContent() {
         <RelationshipSelector value={relationship} onChange={setRelationship} />
         <VibeSelector value={vibes} onChange={setVibes} />
         <IntensitySelector value={intensity} onChange={setIntensity} />
+        {!targetPack && <p className="setup-mixed-count">本局 AI 组局候选：<strong>{mixedPackIds.length}</strong> 个玩法{mixedCustomCount ? `（含自定义 ${mixedCustomCount} 个）` : ""}</p>}
         <Button className="sticky-cta" type="button" onClick={next}>下一步：雷区设置 →</Button>
       </main>
       <BottomTabBar />

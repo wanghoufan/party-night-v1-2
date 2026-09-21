@@ -55,15 +55,16 @@ const TRUTH_DARE_PACK_ID = "truth-dare";
  * R-049：旧 Session 的 currentPackId 指向已退役的启动器（`ai-improv`）时按固定顺序回落——
  * 先选「已启用且当前人数可玩」的真心话大冒险，否则取规范启用序列里第一个同样可玩的玩法。
  * 规范序列＝Session 快照自身的顺序（内置 registry 固定顺序在前、自定义 createdAt/id 升序在后）。
+ * 快照里已删除/从未注册的包判为不可用；一个合法候选都没有时返回 undefined——宁可安全回首页，也不激活不可玩的局。
  */
-export function fallbackPackIdForRetiredLauncher(enabledPackIds: string[], playerCount: number): string {
+export function fallbackPackIdForRetiredLauncher(enabledPackIds: string[], playerCount: number): string | undefined {
   const playable = enabledPackIds.filter((id) => {
     if (isRandomLauncherPackId(id)) return false;
     const definition = getGamePack(id);
     return definition ? resolvePackCapability(definition).minPlayers <= playerCount : false;
   });
   if (playable.includes(TRUTH_DARE_PACK_ID)) return TRUTH_DARE_PACK_ID;
-  return playable[0] ?? TRUTH_DARE_PACK_ID;
+  return playable[0];
 }
 
 const activePlayerCount = (config: SessionConfig): number => config.players.filter((player) => player.active).length;
@@ -75,18 +76,21 @@ const activePlayerCount = (config: SessionConfig): number => config.players.filt
  * - 已完成 `rounds` 保留原始 `packId` 作为历史事实，不改名、不重入出题池；
  * - `currentPackId` 命中退役 id 时按 `fallbackPackIdForRetiredLauncher` 回落。
  * 幂等：没有旧卡且 currentPackId 已不是退役 id 时原样返回，二次迁移结果完全相同。
+ * 回落不出任何合法候选（快照只剩退役包/已删除包/人数不足）时返回 undefined，由读取路径按坏记录安全隔离。
  */
-function stripRetiredLauncher(session: GameSession): GameSession {
+function stripRetiredLauncher(session: GameSession): GameSession | undefined {
   const retiredCardIds = new Set(session.deckSnapshot.filter((card) => isRandomLauncherPackId(card.packId)).map((card) => card.id));
   const needsFallback = isRandomLauncherPackId(session.currentPackId);
   if (!retiredCardIds.size && !needsFallback) return session;
+  const fallbackPackId = needsFallback ? fallbackPackIdForRetiredLauncher(session.config.enabledPackIds, activePlayerCount(session.config)) : session.currentPackId;
+  if (!fallbackPackId) return undefined;
   const dropsOpenRound = Boolean(session.currentRound && (retiredCardIds.has(session.currentRound.cardId) || isRandomLauncherPackId(session.currentRound.packId)));
   return {
     ...session,
     deckSnapshot: session.deckSnapshot.filter((card) => !retiredCardIds.has(card.id)),
     usedCardIds: session.usedCardIds.filter((id) => !retiredCardIds.has(id)),
     currentRound: dropsOpenRound ? undefined : session.currentRound,
-    currentPackId: needsFallback ? fallbackPackIdForRetiredLauncher(session.config.enabledPackIds, activePlayerCount(session.config)) : session.currentPackId,
+    currentPackId: fallbackPackId,
   };
 }
 

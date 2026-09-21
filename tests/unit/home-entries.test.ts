@@ -9,8 +9,9 @@ vi.mock("@/lib/storage/pack-enablement", () => ({ loadDisabledPackIds: mocks.loa
 
 import { resolvePackRoute } from "@/lib/engine/pack-entry";
 import { BUILTIN_PACK_IDS } from "@/lib/domain/constants";
-import { corePackCards } from "@/lib/game-packs/home-cards";
 import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
+import { homePackCards } from "@/lib/game-packs/home-cards";
+import { listManualPlayablePacks } from "@/lib/engine/pack-switcher";
 
 const CONFIG: SessionConfig = {
   players: ["Alex", "Emma", "Kai"].map((displayName, index) => ({ id: `p${index + 1}`, displayName, active: true, createdAt: "x", lastUsedAt: "x" })),
@@ -35,27 +36,25 @@ function session(status: GameSession["status"], currentPackId = "never-have"): G
   };
 }
 
-describe("corePackCards（T160 首页 2×2 核心卡）", () => {
-  it("只放原来的 4 个核心玩法，顺序与设计稿一致", () => {
-    const cards = corePackCards([...BUILTIN_PACK_IDS]);
-    expect(cards.map(({ pack }) => pack.id)).toEqual(["truth-dare", "most-likely", "never-have", "ai-improv"]);
-    expect(cards.every(({ disabled }) => !disabled)).toBe(true);
+describe("homePackCards（V1.4 R-050 首页玩法卡）", () => {
+  it("7 个真实内置玩法直出，顺序沿用 registry，第 4 格仍是动作卡「随机玩一个」", () => {
+    const cards = homePackCards();
+
+    expect(cards.map(({ pack }) => pack.id)).toEqual([...BUILTIN_PACK_IDS]);
+    expect(cards.map(({ launcher }) => launcher)).toEqual([false, false, false, true, false, false, false, false]);
+    expect(cards.filter(({ launcher }) => !launcher)).toHaveLength(7);
   });
 
-  it("新玩法不进核心卡（它们走“更多玩法”入口）", () => {
-    const ids = corePackCards([...BUILTIN_PACK_IDS]).map(({ pack }) => pack.id);
-    for (const id of ["would-you-rather", "pointing-game", "compatibility-test", "spin-bottle"]) expect(ids).not.toContain(id);
-  });
-
-  it("玩法被禁用时卡片保留位置，但标记为不可直接开局", () => {
-    const cards = corePackCards(["truth-dare", "most-likely", "never-have"]);
-    expect(cards.map(({ pack }) => pack.id)).toEqual(["truth-dare", "most-likely", "never-have", "ai-improv"]);
-    expect(cards.find(({ pack }) => pack.id === "ai-improv")!.disabled).toBe(true);
-    expect(cards.filter(({ disabled }) => disabled)).toHaveLength(1);
+  it("卡片不受游戏包开关影响：开关只圈 AI 组局候选（R-057），所以没有禁用态输入", () => {
+    const ids = homePackCards().map(({ pack }) => pack.id);
+    // 除动作卡外，首页玩法卡与「手工可玩集合」完全一致（同一个注册表，同一个顺序）
+    expect(ids.filter((id) => id !== "ai-improv")).toEqual(listManualPlayablePacks().map((pack) => pack.id));
+    expect(ids).toContain("spin-bottle");
+    expect(ids).toContain("ai-improv");
   });
 });
 
-describe("resolvePackRoute（T160 首页/更多玩法共用入口）", () => {
+describe("resolvePackRoute（首页玩法卡共用入口）", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.list.mockResolvedValue([] as CustomGamePack[]);
@@ -96,14 +95,24 @@ describe("resolvePackRoute（T160 首页/更多玩法共用入口）", () => {
     await expect(resolvePackRoute("spin-bottle")).resolves.toBe("/game?session=session-paused");
   });
 
-  it("被禁用的玩法（FR-044）不从这里启动，只引导回游戏包", async () => {
-    mocks.loadDisabledPackIds.mockResolvedValue(["ai-improv"]);
+  it("被游戏包关掉 AI 组局的玩法照样能单玩（开关只圈组局，R-057）", async () => {
+    mocks.loadDisabledPackIds.mockResolvedValue(["spin-bottle"]);
     mocks.getLatestUnfinished.mockResolvedValue(session("active"));
 
-    await expect(resolvePackRoute("ai-improv")).resolves.toBe("/packs");
+    await expect(resolvePackRoute("spin-bottle")).resolves.toBe("/game?session=session-active");
+    expect(mocks.save).toHaveBeenCalledTimes(1);
+    expect((mocks.save.mock.calls[0]![0] as GameSession).currentPackId).toBe("spin-bottle");
+  });
+
+  it("注册表里找不到的玩法不从这里启动，只引导回游戏包", async () => {
+    mocks.list.mockResolvedValue([{
+      schemaVersion: 1, enabled: false, updatedAt: "2026-01-01T00:00:00.000Z", cards: [],
+      definition: { id: "custom-off", name: "已停用自定义", icon: "🎲", enabledByDefault: true, mixable: true, minPlayers: 2, supportedCardTypes: ["custom"], weight: 1, source: "custom" },
+    }]);
+    mocks.getLatestUnfinished.mockResolvedValue(session("active"));
+
+    await expect(resolvePackRoute("custom-off")).resolves.toBe("/packs");
     expect(mocks.save).not.toHaveBeenCalled();
-    // 同一个禁用名单下，其他玩法照常可进
-    await expect(resolvePackRoute("would-you-rather")).resolves.toBe("/game?session=session-active");
   });
 });
 
@@ -135,15 +144,18 @@ describe("resolvePackRoute · 随机玩一个", () => {
     expect(saved.currentPackId).toBe("truth-dare");
   });
 
-  it("只从启用集合里挑：禁用项与启动器自己都不会被选中", async () => {
+  it("随机池是全部真实玩法：被关掉 AI 组局的玩法照样可能被抽到，启动器自己不会", async () => {
     mocks.loadDisabledPackIds.mockResolvedValue(["truth-dare", "most-likely", "never-have"]);
     mocks.getLatestUnfinished.mockResolvedValue(undefined);
-    await expect(resolvePackRoute("ai-improv", () => 0)).resolves.toBe("/setup?pack=would-you-rather");
+    await expect(resolvePackRoute("ai-improv", () => 0)).resolves.toBe("/setup?pack=truth-dare");
   });
 
-  it("没有可玩的真实玩法时停在游戏包页，不静默选一个已退役玩法", async () => {
-    mocks.loadDisabledPackIds.mockResolvedValue(BUILTIN_PACK_IDS.filter((id) => id !== "ai-improv"));
+  it("自定义玩法开着时也进随机池，排在规范序列最后", async () => {
+    mocks.list.mockResolvedValue([{
+      schemaVersion: 1, enabled: true, updatedAt: "2026-01-01T00:00:00.000Z", cards: [],
+      definition: { id: "custom-1", name: "朋友梗", icon: "🎲", enabledByDefault: true, mixable: true, minPlayers: 2, supportedCardTypes: ["custom"], weight: 1, source: "custom" },
+    }]);
     mocks.getLatestUnfinished.mockResolvedValue(undefined);
-    await expect(resolvePackRoute("ai-improv", () => 0)).resolves.toBe("/packs");
+    await expect(resolvePackRoute("ai-improv", () => 0.999999)).resolves.toBe("/setup?pack=custom-1");
   });
 });

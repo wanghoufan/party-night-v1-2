@@ -31,6 +31,6 @@ export function createCustomProfile(input: { id?: string; name: string; baseUrl:
   };
 }
 
-export function getOpenCodeHeaders(sessionId: string, version = "1.2.0"): Record<string, string> {
+export function getOpenCodeHeaders(sessionId: string, version = "1.4.0"): Record<string, string> {
   return { "User-Agent": `PartyNight/${version}`, "x-opencode-session": sessionId };
 }

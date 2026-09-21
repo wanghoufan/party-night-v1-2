@@ -207,12 +207,20 @@ describe("retired ai-improv migration（V1.4）", () => {
     expect(migrated.deckSnapshot.some((item) => item.id === "i1")).toBe(false);
   });
 
-  it("极端旧局只启用了退役玩法时仍兜底真心话，不丢局", () => {
+  it("极端旧局只启用了退役玩法时没有任何合法候选，不激活该局（安全回首页）", () => {
     const migrated = migrateSessionRecord(currentRecordWithRetiredData({
       config: { ...legacyRecord().config, enabledPackIds: ["ai-improv"] },
     }));
 
-    expect(migrated?.currentPackId).toBe("truth-dare");
+    expect(migrated).toBeUndefined();
+  });
+
+  it("快照里的包都已退役/不存在时同样不猜、不激活", () => {
+    const migrated = migrateSessionRecord(currentRecordWithRetiredData({
+      config: { ...legacyRecord().config, enabledPackIds: ["ai-improv", "deleted-custom"] },
+    }));
+
+    expect(migrated).toBeUndefined();
   });
 
   it("幂等：重复迁移同一份 fixture 结果完全相同，不再删改非退役数据", () => {
