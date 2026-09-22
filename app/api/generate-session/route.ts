@@ -38,8 +38,13 @@ export async function POST(request: Request) {
         continue;
       }
       try {
-        const parsed = aiDeckResponseSchema.parse(JSON.parse(extractMessageContent(result.body)));
-        return NextResponse.json(parsed, { headers: noStore });
+        const parsed = aiDeckResponseSchema.safeParse(JSON.parse(extractMessageContent(result.body)));
+        if (!parsed.success) {
+          const summary = parsed.error.issues.slice(0, 5).map((issue) => `${issue.path.join(".")}:${issue.code}`).join(",");
+          console.error(`[generate-session] schema issues: ${summary}`);
+          throw new Error("schema-mismatch");
+        }
+        return NextResponse.json(parsed.data, { headers: noStore });
       } catch { lastCode = "INVALID_OUTPUT"; }
     }
     console.error(`[generate-session] failed code=${lastCode}`);
