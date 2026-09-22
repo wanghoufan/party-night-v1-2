@@ -105,10 +105,11 @@ textarea {
   mask-image: linear-gradient(to bottom, transparent, #000 35%, transparent 90%);
 }
 
+/* 外壳阅读宽 = 手机 390px：桌面上整列限宽居中，不再被拉成 496px（V1.5 宽屏热修，与 .bottom-tabs/.sheet 同值）。 */
 .screen {
   position: relative;
   z-index: 1;
-  width: min(100%, 31rem);
+  width: min(100%, 24.375rem);
   min-height: 100dvh;
   margin: 0 auto;
   padding: max(1rem, env(safe-area-inset-top)) 1rem calc(6rem + env(safe-area-inset-bottom));
@@ -125,6 +126,10 @@ textarea {
   cursor: pointer;
   transition: transform .16s ease, filter .16s ease, border-color .16s ease;
 }
+/* 兜底图标尺寸：Icon 的 svg 既无宽高属性也无内联尺寸，未被显式约束时会按按钮内容宽撑满
+   （1:1 viewBox → 高=宽），把按钮撑成几百 px 的巨型方块（V1.5 转瓶子「开始旋转/再转一次」、指人「跳过倒数」）。
+   各场景自己的 `.xxx svg { width }` 优先级更高，只会覆盖宽；aspect-ratio 保证高随宽等比，不拉扁图标。 */
+.button svg { width: 1.15rem; aspect-ratio: 1; flex: none; }
 .button:active { transform: scale(.98); }
 .button:disabled { cursor: not-allowed; opacity: .48; }
 .button--primary { background: linear-gradient(100deg, var(--color-hot-pink), var(--color-electric-purple)); box-shadow: var(--glow-pink); }
@@ -155,7 +160,7 @@ textarea {
 .modal { width: min(100%, 28rem); border: 1px solid rgba(152,92,255,.55); border-radius: var(--radius-lg); padding: 1.4rem; background: #15182e; box-shadow: 0 0 48px rgba(152,92,255,.24); }
 .modal h2 { margin: 0 0 .75rem; font-size: 1.25rem; }
 
-.bottom-tabs { position: fixed; z-index: 20; left: 50%; bottom: 0; translate: -50% 0; display: grid; grid-template-columns: repeat(4,1fr); width: min(100%,31rem); padding: .55rem .75rem max(.55rem, env(safe-area-inset-bottom)); border-top: 1px solid rgba(152,92,255,.24); background: rgba(7,9,24,.92); backdrop-filter: blur(18px); }
+.bottom-tabs { position: fixed; z-index: 20; left: 50%; bottom: 0; translate: -50% 0; display: grid; grid-template-columns: repeat(4,1fr); width: min(100%,24.375rem); padding: .55rem .75rem max(.55rem, env(safe-area-inset-bottom)); border-top: 1px solid rgba(152,92,255,.24); background: rgba(7,9,24,.92); backdrop-filter: blur(18px); }
 .bottom-tabs a { display: grid; justify-items: center; gap: .2rem; min-height: 3rem; color: var(--color-text-muted); font-size: .68rem; text-decoration: none; }
 .bottom-tabs svg { width: 1.35rem; }
 .bottom-tabs a[aria-current="page"] { color: white; text-shadow: var(--glow-purple); }
@@ -400,9 +405,13 @@ textarea {
 :root[data-theme="light"] .compat-picker__chip--on { border-color: rgba(111,54,201,.6); color: #fff; background: linear-gradient(100deg, rgba(111,54,201,.7), rgba(160,90,230,.6)); box-shadow: none; }
 .game-card--spin-bottle { min-height: min(46dvh, 26rem); padding: 1.7rem 1.1rem 1.9rem; }
 /* V1.5：座位环半径由 --seat-radius 控制（2–8 人对称同径，9 人以上自适应放宽），舞台高度跟着半径走。 */
-.spin-bottle__stage { position: relative; display: grid; place-items: center; width: 100%; min-height: calc(var(--seat-radius, 4.8rem) * 2 + 4.6rem); margin: .3rem 0 .1rem; }
+.spin-bottle__stage { position: relative; display: grid; place-items: center; width: 100%; min-height: calc(var(--seat-radius, 5.4rem) * 2 + 4.6rem); margin: .3rem 0 .1rem; }
 .spin-bottle__seats { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
-.spin-bottle__seat { position: absolute; top: 50%; left: 50%; padding: .18rem .55rem; border: 1px solid rgba(113,128,192,.42); border-radius: var(--radius-pill); color: #cdc6e6; white-space: nowrap; background: rgba(12,14,38,.88); font-size: .74rem; transform: rotate(var(--seat-angle)) translateY(calc(-1 * var(--seat-radius, 4.8rem))) rotate(calc(-1 * var(--seat-angle))); }
+/* 座位定位：必须先用 translate(-50%,-50%) 把座位盒中心钉在舞台中心，再 rotate/translateY；
+   缺这一步整环会整体偏移半个座位盒（约 +24px/+13px），左上/右上座位就会被中央瓶子圆吃掉（V1.5 宽屏 6 人「玩家6」被遮挡）。
+   max-width 兜底：斜向座位允许的最大宽度由环半径决定（5.4rem 环 ≈ 6rem），超长昵称截断成省略号，
+   宁可省略也不能让标签爬到中央瓶子下面。 */
+.spin-bottle__seat { position: absolute; top: 50%; left: 50%; max-width: 5.6rem; overflow: hidden; padding: .18rem .55rem; border: 1px solid rgba(113,128,192,.42); border-radius: var(--radius-pill); color: #cdc6e6; text-overflow: ellipsis; white-space: nowrap; background: rgba(12,14,38,.88); font-size: .74rem; transform: translate(-50%, -50%) rotate(var(--seat-angle)) translateY(calc(-1 * var(--seat-radius, 5.4rem))) rotate(calc(-1 * var(--seat-angle))); }
 .spin-bottle__stage--dense .spin-bottle__seat { padding: .12rem .45rem; font-size: .66rem; }
 /* 落点表达：目标座位加光环 + aria-current（已删掉旧的 ▲ 指针），中央瓶子本体旋转指向他。 */
 .spin-bottle__seat--on { border-color: var(--color-neon-pink); color: #fff; background: rgba(128,29,98,.5); box-shadow: var(--glow-pink); font-weight: 800; }
@@ -417,7 +426,8 @@ textarea {
 .spin-bottle__target { margin: 0; color: var(--color-neon-pink); font-size: clamp(1.6rem, 8vw, 2.2rem); font-weight: 900; text-shadow: var(--glow-pink); animation: count-pop .45s ease-out both; }
 .spin-bottle__choices { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
 .spin-bottle__choices .button { min-height: 3.4rem; }
-.spin-bottle__again { width: 100%; }
+/* 次级「再转一次」：高度保底3.25rem，防巨型靠全局.button svg尺寸兜底。 */
+.spin-bottle__again { width: 100%; min-height: 3.25rem; }
 @media (prefers-reduced-motion: reduce) { .spin-bottle__pointer { transition: none; } .spin-bottle__target { animation: none; } }
 :root[data-theme="light"] .spin-bottle__seat { border-color: rgba(91,61,154,.34); color: #241d3c; background: rgba(255,255,255,.96); }
 :root[data-theme="light"] .spin-bottle__seat--on { border-color: rgba(214,32,160,.5); color: #b3259a; background: rgba(255,64,216,.14); box-shadow: none; }
@@ -429,7 +439,7 @@ textarea {
 .pack-switch-entry:active { transform: scale(.99); }
 .pack-switch-entry svg { width: 1.15rem; color: var(--color-accent-soft); }
 .sheet-backdrop { position: fixed; z-index: 50; inset: 0; display: grid; align-items: end; background: rgba(2,3,12,.74); backdrop-filter: blur(12px); }
-.sheet { display: grid; gap: .85rem; width: min(100%, 31rem); max-height: 78dvh; margin: 0 auto; padding: 1.2rem 1rem calc(1.2rem + env(safe-area-inset-bottom)); border: 1px solid rgba(152,92,255,.55); border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: #15182e; box-shadow: 0 -12px 48px rgba(152,92,255,.24); animation: sheet-rise .24s ease-out both; }
+.sheet { display: grid; gap: .85rem; width: min(100%, 24.375rem); max-height: 78dvh; margin: 0 auto; padding: 1.2rem 1rem calc(1.2rem + env(safe-area-inset-bottom)); border: 1px solid rgba(152,92,255,.55); border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: #15182e; box-shadow: 0 -12px 48px rgba(152,92,255,.24); animation: sheet-rise .24s ease-out both; }
 .sheet__header h2 { margin: 0 0 .35rem; font-size: 1.15rem; }
 .sheet__header p { margin: 0; color: var(--color-text-muted); font-size: .74rem; line-height: 1.6; }
 .sheet__list { display: grid; gap: .55rem; min-height: 0; max-height: 55dvh; overflow-y: auto; }

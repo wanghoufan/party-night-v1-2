@@ -34,3 +34,8 @@
 
 - P2：`SpinBottleView` 初态 `restored` 取自首次 render 闭包（`recoverSpinChain`＋key 兜底，当前可用）。
 - P3：`replaceInSpinChain(session, _customPacks, …)` 参数仅为同形保留，已注释。
+
+## 宽屏热修复核（2026-09-22，Change A）
+- reviewer 本窗口复核 PASS（有条件放行，2 必须修均已闭：spec 进本提交；again 注释诚实化）。
+- 三问结论：button svg 兜底不误伤（场景规则特异性更高）；screen 24.375rem 不破坏桌面页（/、/packs 居中无溢出）；座位 translate 居中正确。
+- P2 备忘：aspect-ratio:1 未来非正方图标需场景覆盖；modal 28rem 比 screen 宽属 overlay 正常。

@@ -3,7 +3,8 @@
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
 - Captured at（YYYY-MM-DD HH:MM）：2026-09-22 上午
-- PROJECT_PHASE：（DEVELOP：V1.5 已放行，待发布验证）
+- PROJECT_PHASE：（DEVELOP：V1.5 已发布验证通过，剩用户真机验收）
+- Captured at（YYYY-MM-DD HH:MM）：2026-09-22 15:30
 - PLAN_VERSION：（PRODUCT_PLAN_V1.5）
 - PLAN_READINESS_SCORE：（98）
 - PLAN_GATE：（APPROVED）
@@ -13,7 +14,8 @@
 - Stage ID（本阶段叫什么）：V1.1-玩法扩展与主局整合开发
 - 剩 P0（没完的才列，多一条都不行）：
   - GAP-04 真机弱光验收（唯一 P0）：请在手机上打开生产站走一局新玩法（二选一→切转瓶子→规则库看小姐牌），确认弱光可读、好按、切换不丢局；回“放行”即 Release。
-- 当前 Task（正干到哪）（累计打回 n/2）：supervisor 再检 PASS（打回 1/2，不升级）；neat-freak 收尾 done；README 中英已同步 8 玩法。
+- 当前 Task（正干到哪）（累计打回 n/2）：V1.5宽屏热修（Change A）supervisor终检打回1/2→四项落盘补齐（spec入库＋CODE_REVIEW宽屏节＋两账本各一行＋本同步）→待重送终检→发布。
+- 宽屏热修证据：lint0/typecheck0/unit497；桌面1280x800 E2E 4项过（座位最小间隙21.2px/长昵称5.8px/无巨型元素/无溢出；/、/packs居中390）。
 - 执行链：本窗口 TM 直驱 + codebuddy builder + 本窗口 reviewer/qa/recorder待派 + opencode supervisor。
 - 未闭环评审意见：无。
 - docs 落盘清单：

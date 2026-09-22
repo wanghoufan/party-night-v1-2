@@ -45,11 +45,13 @@ function reducedMotionSnapshot() {
 /**
  * 座位环半径：2–8 人用同一个对称半径；9 人以上按人数放宽、字号收小，避免名字叠在一起（V1.5）。
  * 两种口径都以顶部为 0°，每人间隔 360/n，天然左右对称。
+ * 半径下限 5.4rem：扣掉中央瓶子半径（2.3rem）后，60°/120°/240°/300° 四个斜向座位仍留出净空，
+ * 配合 `.spin-bottle__seat` 的 max-width 兜底，任何昵称长度都不会被瓶子圆吃掉（V1.5 宽屏热修）。
  */
 export function seatRing(count: number): { radius: string; dense: boolean } {
   if (count > 12) return { radius: "7.8rem", dense: true };
   if (count > 8) return { radius: "6.4rem", dense: true };
-  return { radius: "4.8rem", dense: false };
+  return { radius: "5.4rem", dense: false };
 }
 
 /**
