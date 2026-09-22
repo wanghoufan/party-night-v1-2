@@ -80,6 +80,10 @@ Phase1（PLAN）：planner（Sol）→product-reviewer（Research Reviewer）→
 
 ## 本目原有规则（迁移自旧 AGENTS.md）
 
+### 用户偏好（2026-09-22 立规）
+- 每轮整改修改完成（commit+push+部署验证通过）后，主动把生产站地址同步发给用户：https://party-night-v1-2.vercel.app/
+- 版本号联动：改 `package.json` version 时必须同步改 `public/sw.js` 的 CACHE_VERSION 与 `public/version.json`，三处同值（test 会卡，不许编造版本号过测试）。
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know
