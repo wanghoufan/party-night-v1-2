@@ -4,7 +4,7 @@
 //   2) AI/Provider 接口与任何导出/备份数据永不进 cache（路径前缀 + Cache-Control 双重拦截）。
 //   3) 只缓存同源 GET 的 2xx 响应；离线导航回落到外壳，不白屏。
 // 改这里的缓存名单时同步改 public/sw.js 的 CACHE_VERSION 与 package.json 的 version。
-const CACHE_VERSION = "1.4.2";
+const CACHE_VERSION = "1.4.3";
 const CACHE_NAME = `party-night-shell-v${CACHE_VERSION}`;
 const SHELL = ["/", "/manifest.webmanifest", "/brand/party-night-logo.svg", "/brand/party-night-mark.svg", "/icons/icon-192.png", "/icons/icon-512.png"];
 /** 永不进 cache 的路径前缀：AI 生成、Provider 测试、导出/备份数据（含顶层导航下载）。 */
@@ -14,15 +14,15 @@ const CACHEABLE_STATIC_PREFIXES = ["/_next/static/"];
 
 const isNeverCached = (url) => NEVER_CACHE_PREFIXES.some((prefix) => url.pathname.startsWith(prefix));
 const isCacheableStatic = (url) => CACHEABLE_STATIC_PREFIXES.some((prefix) => url.pathname.startsWith(prefix));
-/** 声明不可缓存（no-store/private）的子资源一律不落盘；导航外壳例外，否则 PWA 无法离线打开。 */
+/** 声明不可缓存（no-store/private）的子资源一律不落盘；导航 HTML 永不缓存（只网络，离线才回退外壳），杜绝旧页面阴魂不散。 */
 const forbidsCache = (request, response) => {
-  if (request.mode === "navigate") return false;
+  if (request.mode === "navigate") return true;
   const header = response.headers.get("Cache-Control") || "";
   return /no-store|private/i.test(header);
 };
 const isCacheable = (request, url, response) =>
   request.method === "GET" && url.origin === self.location.origin && !isNeverCached(url) && !forbidsCache(request, response)
-  && response.ok && (request.mode === "navigate" || isCacheableStatic(url) || SHELL.includes(url.pathname));
+  && response.ok && (isCacheableStatic(url) || SHELL.includes(url.pathname));
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL)).then(() => self.skipWaiting()));

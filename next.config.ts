@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   output: "standalone",
+  env: { NEXT_PUBLIC_APP_VERSION: process.env.npm_package_version ?? "dev" },
   async headers() {
     return [{
       source: "/:path*",
