@@ -17,6 +17,11 @@
   - (6)测试同步：计数350/EXPECTED、陡坡前缀、refill/recycled、E2E fixture均已同步。
 - 技术拍板：L1“宁可重复、请求类优先洗回”与V1.5旧语义冲突处以V1.6不断游为准。
 
+## 补遗25改写复核（2026-09-22，Change A）
+- reviewer 本窗口复核 PASS：4.2方向3全合规（投票→自证/回应链完整）；红线三条零触碰；id/强度/说明/boundary/数量未动。
+- 另2处真心话旧句经查已是改写版（带在场落点尾巴），不在范围。
+- 门禁：lint0/typecheck0/511；spin+pointing E2E 13过；supervisor 终检PASS。
+
 ## P2 / P3 Backlog Findings
 
 - `docs/content/题库审查/`删除、`题库把关/`新增：仅文档搬家；收尾由neat-freak记映射。
