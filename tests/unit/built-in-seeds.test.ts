@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { boundaryTagSchema, gameCardSchema } from "@/lib/domain/schemas";
+import { isHardBlocked } from "@/lib/ai/safety-filter";
 import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
 import { RANDOM_LAUNCHER_PACK_ID } from "@/lib/game-packs/random-launcher";
 
@@ -34,7 +35,36 @@ describe("built-in offline seeds", () => {
     const ids = BUILTIN_SEED_CARDS.map((card) => card.id);
     expect(new Set(ids).size).toBe(ids.length);
     const truthDare = seedsOf("truth-dare");
-    expect(truthDare.map((card) => card.type).sort()).toEqual(["dare", "dare", "dare", "dare", "dare", "dare", "truth", "truth", "truth", "truth", "truth", "truth"]);
+    expect(truthDare.filter((card) => card.type === "truth")).toHaveLength(15);
+    expect(truthDare.filter((card) => card.type === "dare")).toHaveLength(15);
+  });
+
+  it("ships 30 offline seeds for every card-producing builtin pack", () => {
+    const SEEDED_PACK_COUNTS: Record<string, number> = {
+      "truth-dare": 30, "most-likely": 30, "never-have": 30,
+      "would-you-rather": 30, "pointing-game": 30, "compatibility-test": 30,
+    };
+    for (const [packId, expected] of Object.entries(SEEDED_PACK_COUNTS)) {
+      expect(seedsOf(packId), packId).toHaveLength(expected);
+    }
+  });
+
+  it("keeps every seeded pack low-heavy across the full 1–5 intensity range", () => {
+    for (const { packId } of SEEDED_PACKS) {
+      const intensities = seedsOf(packId).map((card) => card.intensity);
+      for (const value of [1, 2, 3, 4, 5] as const) expect(intensities, `${packId} missing ${value}`).toContain(value);
+      const low = intensities.filter((value) => value <= 3).length;
+      expect(low, `${packId} low-heavy`).toBeGreaterThan(intensities.length - low);
+    }
+  });
+
+  it("never repeats the same content inside one pack", () => {
+    const seen = new Set<string>();
+    for (const card of BUILTIN_SEED_CARDS) {
+      const fingerprint = `${card.packId}:${card.content}`;
+      expect(seen.has(fingerprint), `duplicate ${fingerprint}`).toBe(false);
+      seen.add(fingerprint);
+    }
   });
 
   it("covers the session intensity scale so every setting can start offline", () => {
@@ -43,6 +73,12 @@ describe("built-in offline seeds", () => {
       expect(intensities.size).toBeGreaterThanOrEqual(3);
       expect(intensities.has(1)).toBe(true);
       expect(intensities.has(3)).toBe(true);
+    }
+  });
+
+  it("never ships a seed that trips the hard safety rules（黄赌毒/危险/强迫/露骨）", () => {
+    for (const card of BUILTIN_SEED_CARDS) {
+      expect(isHardBlocked(`${card.content} ${card.instruction ?? ""}`), card.id).toBe(false);
     }
   });
 

@@ -58,8 +58,10 @@ describe("V1.1 generation fallback", () => {
 
   it("lets the host top up the target pack from seeds right after a fallback", async () => {
     vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("NETWORK_ERROR")));
-    const fallback = await requestDeckWithFallback({ ...request, targetCardCount: 12 });
-    const { deck, added } = ensurePackPlayable(fallback, config, "compatibility-test");
+    const fallback = await requestDeckWithFallback(request);
+    // round-robin 已保证 fallback 里每个玩法都有卡；这里模拟现场把该玩法的卡用光后再补位，全程不联网。
+    const starved = fallback.filter((card) => card.packId !== "compatibility-test");
+    const { deck, added } = ensurePackPlayable(starved, config, "compatibility-test");
     expect(added).toBeGreaterThan(0);
     expect(countPlayablePackCards(deck, config, "compatibility-test")).toBeGreaterThanOrEqual(1);
   });

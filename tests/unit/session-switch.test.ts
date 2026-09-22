@@ -88,7 +88,10 @@ describe("switchPack", () => {
 
   it("keeps mixed sessions mixed while tracking the current pack", () => {
     let session = createSession(config({ enabledPackIds: [...BUILTIN_PACK_IDS], mode: "mixed" }), BUILTIN_SEED_CARDS);
-    for (let index = 0; index < 20; index += 1) session = completeRound(startRound(session, () => 0));
+    // 确定性但会铺开的随机源：固定 () => 0 只会在牌堆第一个玩法里打转，测不出“混着出题”。
+    let state = 42;
+    const random = () => { state = (state * 1103515245 + 12345) % 2147483648; return state / 2147483648; };
+    for (let index = 0; index < 20; index += 1) session = completeRound(startRound(session, random));
 
     expect(new Set(session.rounds.map((round) => round.packId)).size).toBeGreaterThan(1);
     expect(session.currentPackId).toBe(session.rounds.at(-1)?.packId);

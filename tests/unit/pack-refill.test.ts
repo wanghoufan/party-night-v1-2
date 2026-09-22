@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { DEFAULT_BOUNDARIES } from "@/lib/domain/constants";
 import type { GameCard, SessionConfig } from "@/lib/domain/schemas";
 import {
-  PACK_PLAYABLE_THRESHOLD, countPlayablePackCards, ensurePackPlayable, localSeedDeck, refillPackFromSeeds, refillPackInBackground,
+  PACK_PLAYABLE_THRESHOLD, countPlayablePackCards, ensurePackPlayable, refillPackFromSeeds, refillPackInBackground,
 } from "@/lib/ai/generate-deck";
 import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
 
@@ -34,9 +34,9 @@ describe("pack-specific refill", () => {
   });
 
   it("tops a starved pack up from local seeds immediately, with no network", () => {
-    // 八玩法全开时全局 deck 会被截断，默契测试一张 seed 都进不去 —— 正是需要 pack-specific 补位的场景。
+    // 玩法全开时，只要目标玩法在牌堆里一张可玩卡都没有（例如对手玩法占满了牌堆），就需要 pack-specific 补位。
     const allPacks = config({ enabledPackIds: ["truth-dare", "most-likely", "never-have", "ai-improv", "would-you-rather", "pointing-game", "compatibility-test", "spin-bottle"] });
-    const deck = localSeedDeck(allPacks);
+    const deck = seedsOf("truth-dare");
     const before = countPlayablePackCards(deck, allPacks, "compatibility-test");
     const { deck: refilled, added } = ensurePackPlayable(deck, allPacks, "compatibility-test");
     expect(before).toBeLessThan(PACK_PLAYABLE_THRESHOLD);

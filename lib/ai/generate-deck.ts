@@ -31,7 +31,24 @@ export function buildPlayableDeck(raw: unknown, config: SessionConfig, targetCou
   const allowedAI = playable(aiCards.filter((card) => config.enabledPackIds.includes(card.packId)), config);
   const seeds = playable(BUILTIN_SEED_CARDS.filter((card) => config.enabledPackIds.includes(card.packId)), config);
   const allowedCustom = playable(customCards.filter((card) => config.enabledPackIds.includes(card.packId)), config);
-  return dedupeCards([...allowedAI, ...allowedCustom, ...seeds]).slice(0, targetCount);
+  const pool = dedupeCards([...allowedAI, ...allowedCustom, ...seeds]);
+  // 按启用玩法 round-robin 轮流取牌：每轮每个玩法各取一张，先保证 7 个玩法都有份，再轮到第二轮；
+  // 避免单玩法（或 AI 一整包）把 targetCount 填满、其余玩法一张都进不来。总量仍为 targetCount。
+  const byPack = new Map<string, GameCard[]>();
+  for (const card of pool) byPack.set(card.packId, [...(byPack.get(card.packId) ?? []), card]);
+  const packOrder = config.enabledPackIds.filter((packId) => byPack.has(packId));
+  const deck: GameCard[] = [];
+  for (let round = 0; deck.length < targetCount; round += 1) {
+    let took = false;
+    for (const packId of packOrder) {
+      const card = byPack.get(packId)?.[round];
+      if (!card) continue;
+      deck.push(card); took = true;
+      if (deck.length >= targetCount) break;
+    }
+    if (!took) break;
+  }
+  return deck;
 }
 
 export async function requestGeneratedDeck(input: GeneratedDeckRequest): Promise<GameCard[]> {
