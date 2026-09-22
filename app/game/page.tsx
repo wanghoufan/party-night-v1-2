@@ -16,7 +16,7 @@ import type { CustomGamePack, GameSession, Intensity, Player } from "@/lib/domai
 import { completeRound, finishSession, pauseSession, resumeSession, segmentRoundNo, skipRound, startRound, swapRound, updateIntensity, updatePackState, updatePlayers } from "@/lib/engine/session-engine";
 import { listSwitchablePacks, switchPackAndDeal } from "@/lib/engine/pack-switcher";
 import { selectEligiblePlayer } from "@/lib/engine/player-selector";
-import { enterSpinChain, replaceInSpinChain, resolveSpinChain, returnToBottle, SPIN_CHAIN_PACK_ID } from "@/lib/engine/spin-chain";
+import { availableSpinChainKindsAfterRefill, enterSpinChain, replaceInSpinChain, resolveSpinChain, returnToBottle, SPIN_CHAIN_PACK_ID } from "@/lib/engine/spin-chain";
 import { COMPATIBILITY_PACK_ID, createCompatibilityState, defaultCompatibilityPair, readCompatibilityState, recordCompatibilityAnswer } from "@/lib/game-packs/compatibility-test";
 import { SPIN_BOTTLE_PACK_ID, readSpinBottleState, readSpinChain, recordSpinResult } from "@/lib/game-packs/spin-bottle";
 import { pairNames } from "@/components/game/CompatibilityPairPicker";
@@ -86,7 +86,8 @@ function GamePageContent() {
   const compatibility = { players: session.config.players, pair: compatibilityState ? { playerAId: compatibilityState.playerAId, playerBId: compatibilityState.playerBId, names: pairNames(session.config.players, compatibilityState), state: compatibilityState } : undefined, onChangePair: (playerId: string) => void changePair(playerId), onAnswer: (answer: "same" | "different") => void answerPair(answer) };
   // 转瓶子上下文：落点与上一次结果都来自 pack-local state，视图只负责表现与给去向。
   // resumeReady＝链刚回瓶子（phase=returning）：直接进 ready，接着转下一个人；exhausted＝两类题卡都出完了。
-  const spin = { players: session.config.players, lastSelectedPlayerId: readSpinBottleState(session)?.lastSelectedPlayerId, resumeReady: chain?.phase === "returning", exhausted: chain?.exhausted === true, onSpin: spinPlayer, onChain: (kind: "truth" | "dare") => chainSpin(kind) };
+  // availableKinds：补位后还能出题的类型（空牌堆也按补位后算），结果页据此禁用耗尽那类并给可见提示。
+  const spin = { players: session.config.players, lastSelectedPlayerId: readSpinBottleState(session)?.lastSelectedPlayerId, resumeReady: chain?.phase === "returning", exhausted: chain?.exhausted === true, availableKinds: availableSpinChainKindsAfterRefill(session), onSpin: spinPlayer, onChain: (kind: "truth" | "dare") => chainSpin(kind) };
   return <NeonBackground className="game-bg"><main className="screen game-screen"><RoundHeader current={segmentRoundNo(session)} planned={Math.min(40, session.deckSnapshot.length)} paused={paused} onTogglePause={() => void togglePause()} onSettings={() => setSettingsOpen(true)} onFinish={() => void end()} />{paused && <div className="paused-banner" role="status">本局已暂停</div>}<PackViewHost key={card?.id ?? session.currentPackId} packId={session.currentPackId} card={card} participantNames={participantNames} actions={roundActions} compatibility={compatibility} spin={spin} paused={paused} />{session.currentRound && <RoundTimer roundId={session.currentRound.id} paused={paused} />}{!viewOwnsActions && <RoundActions {...roundActions} disabled={paused} />}<button className="pack-switch-entry" type="button" disabled={paused} onClick={() => setSwitcherOpen(true)}><Icon name="cube" />切换玩法 · {currentPackName}</button><p className="game-motto">Good Friends · Wilder Nights</p>{switcher}<InGameSettings open={settingsOpen} intensity={session.config.intensity} players={session.config.players} paused={paused} onIntensity={(value) => void changeIntensity(value)} onPlayers={(value) => void changePlayers(value)} onPause={() => void togglePause()} onFinish={() => void end()} onClose={() => setSettingsOpen(false)} /></main></NeonBackground>;
 }
 

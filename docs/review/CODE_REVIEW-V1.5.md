@@ -39,3 +39,9 @@
 - reviewer 本窗口复核 PASS（有条件放行，2 必须修均已闭：spec 进本提交；again 注释诚实化）。
 - 三问结论：button svg 兜底不误伤（场景规则特异性更高）；screen 24.375rem 不破坏桌面页（/、/packs 居中无溢出）；座位 translate 居中正确。
 - P2 备忘：aspect-ratio:1 未来非正方图标需场景覆盖；modal 28rem 比 screen 宽属 overlay 正常。
+
+## 链入无响应热修复核（2026-09-22，Change A）
+- reviewer 本窗口复核 PASS，无必须修项。
+- 根因：空牌堆进链先判空（resolveKind 看原始牌堆）→ exhausted 静默回瓶子；TM 已 playwright 实证（pack=spin-bottle/round=none/chain.returning+exhausted/无报错）。
+- 修法成立：ensureChainDeck 只补缺（dedupe 幂等，不碰 AI 卡）；returnToBottle(seeded) 不膨胀；availableKinds 与 enter 同源；hint 三态文案方向正确。
+- 门禁：lint0/typecheck0/unit500/spin+desktop E2E 11项过。

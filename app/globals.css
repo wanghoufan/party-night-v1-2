@@ -424,6 +424,8 @@ textarea {
 .spin-bottle__controls .button { min-height: 3rem; }
 .spin-bottle__result { display: grid; gap: .55rem; width: 100%; margin: .3rem 0 .1rem; }
 .spin-bottle__target { margin: 0; color: var(--color-neon-pink); font-size: clamp(1.6rem, 8vw, 2.2rem); font-weight: 900; text-shadow: var(--glow-pink); animation: count-pop .45s ease-out both; }
+/* 题卡耗尽提示（V1.5 热修）：耗尽那类按钮禁用时，明确告诉主持人还有哪条路可走，不静默。 */
+.spin-bottle__exhausted { margin: 0; padding: .45rem .6rem; border: 1px solid rgba(255,64,216,.4); border-radius: var(--radius-md, .7rem); color: #ffd9f4; background: rgba(128,29,98,.24); font-size: .8rem; text-align: center; }
 .spin-bottle__choices { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
 .spin-bottle__choices .button { min-height: 3.4rem; }
 /* 次级「再转一次」：高度保底3.25rem，防巨型靠全局.button svg尺寸兜底。 */
@@ -435,6 +437,7 @@ textarea {
 :root[data-theme="light"] .spin-bottle__bottle { border-color: rgba(13,111,150,.4); background: rgba(255,255,255,.94); box-shadow: none; }
 :root[data-theme="light"] .spin-bottle__bottle svg { color: #0d6f96; }
 :root[data-theme="light"] .spin-bottle__target { color: #b3259a; text-shadow: none; }
+:root[data-theme="light"] .spin-bottle__exhausted { border-color: rgba(214,32,160,.4); color: #8a1c74; background: rgba(255,64,216,.1); }
 .pack-switch-entry { display: flex; align-items: center; justify-content: center; gap: .45rem; width: 100%; min-height: 2.75rem; margin-top: .7rem; border: 1px solid rgba(142,145,166,.4); border-radius: var(--radius-sm); color: var(--color-text-soft); background: transparent; font-size: .8rem; }
 .pack-switch-entry:active { transform: scale(.99); }
 .pack-switch-entry svg { width: 1.15rem; color: var(--color-accent-soft); }

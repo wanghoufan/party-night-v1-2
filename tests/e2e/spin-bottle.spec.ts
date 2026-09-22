@@ -1,9 +1,10 @@
 import { expect, test, type Page } from "@playwright/test";
-import { currentSessionId, readSession, seedSession } from "./helpers";
+import { currentSessionId, readSession, seedSession, startPackGame } from "./helpers";
 import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
 import type { GameCard, GameSession, Intensity } from "@/lib/domain/schemas";
 
 const SESSION_ID = "e2e-spin-bottle-session";
+const TRUTH_DARE_CARDS = BUILTIN_SEED_CARDS.filter((card) => card.packId === "truth-dare");
 
 /** 转瓶子是纯本地玩法：题卡只有现有 truth-dare，转瓶子自己不占卡（US6 / T121）。 */
 function spinSession(inactiveEmma = false): GameSession {
@@ -18,11 +19,20 @@ function spinSession(inactiveEmma = false): GameSession {
       boundaries: { noPhysicalContact: false, noAlcoholPenalty: true, noExPartners: false, noSexualHistory: false, noMoneyIncome: false, noPhonePrivacy: true, noPublicPosting: true, noStrangerContact: true, noPhotoVideo: false, noSocialAccounts: false, customText: "" },
       enabledPackIds: ["spin-bottle", "truth-dare"], mode: "single",
     },
-    deckSnapshot: BUILTIN_SEED_CARDS.filter((card) => card.packId === "truth-dare"),
+    deckSnapshot: TRUTH_DARE_CARDS,
     usedCardIds: [], rounds: [],
     currentPackId: "spin-bottle", currentSegmentId: "e2e-segment", currentPackState: {}, recentRejectedFingerprints: [],
     startedAt: now, updatedAt: now,
   };
+}
+
+/**
+ * 转瓶子单开局的真实建局形态：纯本地玩法不填牌堆（deckSnapshot 为空、只启用 spin-bottle）。
+ * 链入要用的真话/大冒险卡由链自己补位，不能因为这个空牌堆就原地无响应。
+ */
+function cardlessSpinSession(): GameSession {
+  const base = spinSession();
+  return { ...base, config: { ...base.config, enabledPackIds: ["spin-bottle"] }, deckSnapshot: [] };
 }
 
 const view = (page: Page) => page.locator(".spin-bottle");
@@ -30,10 +40,14 @@ const result = (page: Page) => page.locator(".spin-bottle__result");
 const spinButton = (page: Page) => page.getByRole("button", { name: "开始旋转" });
 const target = (page: Page) => page.locator(".spin-bottle__target");
 
-async function openSpinSession(page: Page, inactiveEmma = false) {
-  await seedSession(page, spinSession(inactiveEmma));
+async function openSession(page: Page, session: GameSession) {
+  await seedSession(page, session);
   await page.goto(`/game?session=${SESSION_ID}`);
   await expect(view(page)).toBeVisible();
+}
+
+async function openSpinSession(page: Page, inactiveEmma = false) {
+  await openSession(page, spinSession(inactiveEmma));
 }
 
 /**
@@ -142,4 +156,79 @@ test("转瓶子：只从在场玩家中选人，大冒险同样链入 dare 卡",
   const dealt = chained.deckSnapshot.find((card) => card.id === chained.currentRound?.cardId) as GameCard;
   expect(dealt.type).toBe("dare");
   await expect(page.locator(".game-card h1")).toHaveText(dealt.content);
+});
+
+test("转瓶子：空牌堆单开局点真心话也能出题（链自己补位，不再原地无响应）", async ({ page }) => {
+  await openSession(page, cardlessSpinSession());
+  // 空牌堆不是「题卡耗尽」：两个去向按补位后的牌堆算可用态，都该可点
+  await spinWithFixedRandom(page, () => spinButton(page).click());
+  await expect(target(page)).toHaveText("🎯 Alex");
+  await expect(page.getByRole("button", { name: "真心话" })).toBeEnabled();
+  await expect(page.getByRole("button", { name: "大冒险" })).toBeEnabled();
+
+  await page.getByRole("button", { name: "真心话" }).click();
+  const chained = await readSession(page, SESSION_ID);
+  expect(chained.currentPackId).toBe("truth-dare");
+  expect(chained.currentRound?.packId).toBe("truth-dare");
+  expect(chained.currentRound?.participantIds).toEqual(["p1"]);
+  const dealt = chained.deckSnapshot.find((card) => card.id === chained.currentRound?.cardId) as GameCard;
+  expect(dealt.packId).toBe("truth-dare");
+  expect(dealt.type).toBe("truth");
+  await expect(page.locator(".game-card h1")).toHaveText(dealt.content);
+});
+
+test("转瓶子：首页单开局（本地题库、牌堆为空）点真心话照样出题，不再原地无响应", async ({ page }) => {
+  // 真实入口复现：首页点转瓶子 → setup → 本地题库建局，纯本地玩法落库时 deckSnapshot 就是空的
+  await startPackGame(page, /转瓶子/);
+  const id = currentSessionId(page);
+  expect((await readSession(page, id)).deckSnapshot).toHaveLength(0);
+
+  await spinWithFixedRandom(page, () => spinButton(page).click());
+  await expect(target(page)).toBeVisible();
+  // 等落点落库、主局 state 跟上再点去向：主持人手速快也不该点空
+  await expect.poll(async () => (await readSession(page, id)).currentPackState?.["spin-bottle"]).toBeTruthy();
+  await page.getByRole("button", { name: "真心话" }).click();
+
+  await expect.poll(async () => (await readSession(page, id)).currentPackId, { timeout: 5000 }).toBe("truth-dare");
+  const chained = await readSession(page, id);
+  expect(chained.currentRound?.packId).toBe("truth-dare");
+  expect(chained.currentRound?.participantIds).toHaveLength(1);
+  const dealt = chained.deckSnapshot.find((card) => card.id === chained.currentRound?.cardId) as GameCard;
+  expect(dealt.type).toBe("truth");
+  await expect(page.locator(".game-card h1")).toHaveText(dealt.content);
+});
+
+test("转瓶子：只出完真心话 → 只禁用真心话，大冒险仍可链入并有提示", async ({ page }) => {
+  const truthUsed = {
+    ...spinSession(),
+    usedCardIds: TRUTH_DARE_CARDS.filter((card) => card.type === "truth").map((card) => card.id),
+  } as GameSession;
+  await openSession(page, truthUsed);
+  await spinWithFixedRandom(page, () => spinButton(page).click());
+
+  const exhaustHint = page.locator(".spin-bottle__exhausted");
+  await expect(exhaustHint).toBeVisible();
+  await expect(exhaustHint).toHaveText(/真心话出完了/);
+  await expect(page.getByRole("button", { name: "真心话" })).toBeDisabled();
+  const dare = page.getByRole("button", { name: "大冒险" });
+  await expect(dare).toBeEnabled();
+
+  await dare.click();
+  const chained = await readSession(page, SESSION_ID);
+  expect(chained.currentPackId).toBe("truth-dare");
+  const dealt = chained.deckSnapshot.find((card) => card.id === chained.currentRound?.cardId) as GameCard;
+  expect(dealt.type).toBe("dare");
+});
+
+test("转瓶子：两类题卡都用完 → 两个去向都禁用，并提示回瓶子再转（不静默）", async ({ page }) => {
+  const exhausted = { ...spinSession(), usedCardIds: TRUTH_DARE_CARDS.map((card) => card.id) } as GameSession;
+  await openSession(page, exhausted);
+  await spinWithFixedRandom(page, () => spinButton(page).click());
+  await expect(target(page)).toHaveText("🎯 Alex");
+
+  const exhaustHint = page.locator(".spin-bottle__exhausted");
+  await expect(exhaustHint).toBeVisible();
+  await expect(exhaustHint).toHaveText(/都出完了/);
+  await expect(page.getByRole("button", { name: "真心话" })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "大冒险" })).toBeDisabled();
 });

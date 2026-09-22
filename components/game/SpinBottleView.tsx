@@ -20,6 +20,8 @@ export interface SpinBottleHandlers {
   resumeReady?: boolean;
   /** 真心话与大冒险都出完了：ready 态显示空态提示，不再链入（V1.5）。 */
   exhausted?: boolean;
+  /** 补位后还能出题的类型（空牌堆也按补位后算）：结果页禁用耗尽那一类并给可见提示（V1.5 热修）。 */
+  availableKinds?: Array<"truth" | "dare">;
   /** 先定结果再播动画：同步返回本次落点（主局负责落库），没有在场玩家时返回 undefined。 */
   onSpin: () => Player | undefined;
   /** 结果页去向：链入现有真心话大冒险 Pack，不复制它的出题逻辑。 */
@@ -63,6 +65,14 @@ export function seatRing(count: number): { radius: string; dense: boolean } {
 export function SpinBottleView({ spin, paused = false }: SpinBottleProps) {
   const active = spin.players.filter((player) => player.active);
   const reducedMotion = useSyncExternalStore(subscribeReducedMotion, reducedMotionSnapshot, () => false);
+  // 结果页两个去向：出完的那一类按钮禁用并给一句可见提示；两类全尽提示回瓶子再转（不静默）。
+  const availableKinds = spin.availableKinds ?? ["truth", "dare"];
+  const truthReady = availableKinds.includes("truth");
+  const dareReady = availableKinds.includes("dare");
+  const exhaustHint = truthReady && dareReady ? undefined
+    : truthReady ? "大冒险出完了，试试真心话或再转一次"
+      : dareReady ? "真心话出完了，试试大冒险或再转一次"
+        : "真心话和大冒险的题卡都出完了，回瓶子再转一次点人吧";
   // 链刚返回时强制 ready：主持人接着转下一个人，而不是又看见上一位的结果页。
   const restored = spin.resumeReady ? undefined : active.find((player) => player.id === spin.lastSelectedPlayerId);
   const [target, setTarget] = useState<Player | undefined>(restored);
@@ -134,9 +144,10 @@ export function SpinBottleView({ spin, paused = false }: SpinBottleProps) {
       {phase === "result" && target && (
         <div className="spin-bottle__result">
           <p className="spin-bottle__target" role="status">🎯 {target.displayName}</p>
+          {exhaustHint && <p className="spin-bottle__exhausted" role="status">{exhaustHint}</p>}
           <div className="spin-bottle__choices">
-            <Button type="button" disabled={spinning} onClick={() => spin.onChain("truth")}>真心话</Button>
-            <Button type="button" disabled={spinning} onClick={() => spin.onChain("dare")}>大冒险</Button>
+            <Button type="button" disabled={spinning || !truthReady} onClick={() => spin.onChain("truth")}>真心话</Button>
+            <Button type="button" disabled={spinning || !dareReady} onClick={() => spin.onChain("dare")}>大冒险</Button>
           </div>
           <Button className="spin-bottle__again" variant="secondary" type="button" disabled={spinning} onClick={start}><Icon name="refresh" />再转一次</Button>
         </div>

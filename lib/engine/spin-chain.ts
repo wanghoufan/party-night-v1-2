@@ -1,4 +1,5 @@
 import type { CustomGamePack, GameSession } from "@/lib/domain/schemas";
+import { ensurePackPlayable } from "@/lib/ai/generate-deck";
 import { isCardAllowed } from "./card-selector";
 import { switchPackAndDeal } from "./pack-switcher";
 import { completeRound, startRound, swapRound, switchPack, updatePackState } from "./session-engine";
@@ -61,6 +62,21 @@ function resolveKind(session: GameSession, requested: SpinChainKind): SpinChainK
   return available.includes(requested) ? requested : available[0];
 }
 
+/**
+ * 链要用真心话/大冒险的卡，但纯本地玩法（转瓶子）建局时牌堆是空的（US6：转瓶子自己不占卡）。
+ * 进链/换题前先把 truth-dare 的 seed 补进牌堆：只补缺的、按 id/题面去重，已有 AI/自定义卡原样保留。
+ * 补不动（真耗尽）时原样返回，交给 resolveKind 判空态。
+ */
+function ensureChainDeck(session: GameSession): GameSession {
+  const { deck, added } = ensurePackPlayable(session.deckSnapshot, session.config, SPIN_CHAIN_PACK_ID, session.usedCardIds);
+  return added ? { ...session, deckSnapshot: deck } : session;
+}
+
+/** 结果页两个去向按钮的可用态：必须按**补位后**的牌堆算，否则空牌堆会被误判成两类全耗尽、按钮全禁。 */
+export function availableSpinChainKindsAfterRefill(session: GameSession): SpinChainKind[] {
+  return availableSpinChainKinds(ensureChainDeck(session));
+}
+
 function writeChain(session: GameSession, chain: SpinChainState): GameSession {
   const current = readSpinBottleState(session) ?? {};
   return updatePackState(session, SPIN_BOTTLE_PACK_ID, { ...current, chain });
@@ -77,15 +93,17 @@ export function enterSpinChain(
   customPacks: CustomGamePack[] = [],
   random: RandomSource = Math.random,
 ): GameSession {
-  const kind = resolveKind(session, input.kind);
+  // 牌堆可能还是空的（转瓶子建局不填卡）：先补 truth-dare 种子，再判定能出哪一类。
+  const seeded = ensureChainDeck(session);
+  const kind = resolveKind(seeded, input.kind);
   const pending: SpinChainState = { phase: spinChainPhaseAfter("idle", "enter"), kind: kind ?? input.kind, targetPlayerId: input.targetPlayerId, targetName: input.targetName };
-  if (!kind) return returnToBottle(session, { exhausted: true, chain: pending });
-  const dealt = switchPackAndDeal(session, SPIN_CHAIN_PACK_ID, customPacks, random, {
+  if (!kind) return returnToBottle(seeded, { exhausted: true, chain: pending });
+  const dealt = switchPackAndDeal(seeded, SPIN_CHAIN_PACK_ID, customPacks, random, {
     preferPackIds: [SPIN_CHAIN_PACK_ID],
     preferCardTypes: [kind],
     participantIds: [input.targetPlayerId],
   }, "spin-chain-enter");
-  if (dealt === session || !dealt.currentRound) return returnToBottle(session, { exhausted: true, chain: pending });
+  if (dealt === seeded || !dealt.currentRound) return returnToBottle(seeded, { exhausted: true, chain: pending });
   return writeChain(dealt, { ...pending, phase: spinChainPhaseAfter(pending.phase, "question") });
 }
 
@@ -99,16 +117,18 @@ export function enterSpinChain(
 export function replaceInSpinChain(session: GameSession, _customPacks: CustomGamePack[], random: RandomSource = Math.random): GameSession {
   const chain = readSpinChain(session);
   if (!chain || !session.currentRound || chain.phase === "returning") return session;
+  // 换题同样可能碰上空/见底牌堆（首次进链已补位，这里只兜底）：先补种子再判类型。
+  const seeded = ensureChainDeck(session);
   spinChainPhaseAfter(chain.phase, "replace");
-  const kind = resolveKind(session, chain.kind);
-  if (!kind) return returnToBottle(session, { exhausted: true, chain });
-  const dealt = startRound(swapRound(session), random, {
+  const kind = resolveKind(seeded, chain.kind);
+  if (!kind) return returnToBottle(seeded, { exhausted: true, chain });
+  const dealt = startRound(swapRound(seeded), random, {
     preferPackIds: [SPIN_CHAIN_PACK_ID],
     preferCardTypes: [kind],
     participantIds: [chain.targetPlayerId],
     reuseLogicalRoundId: session.currentRound.logicalRoundId,
   });
-  if (!dealt.currentRound) return returnToBottle(session, { exhausted: true, chain });
+  if (!dealt.currentRound) return returnToBottle(seeded, { exhausted: true, chain });
   return writeChain(dealt, { ...chain, kind, phase: spinChainPhaseAfter(spinChainPhaseAfter(chain.phase, "replace"), "question") });
 }
 

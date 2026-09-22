@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { gameSessionSchema, type GameSession, type Player } from "@/lib/domain/schemas";
-import { createSession, startRound, updatePackState } from "@/lib/engine/session-engine";
+import { gameSessionSchema, type GameCard, type GameSession, type Player } from "@/lib/domain/schemas";
+import { activateSession, createSession, startRound, updatePackState } from "@/lib/engine/session-engine";
 import {
-  availableSpinChainKinds, enterSpinChain, replaceInSpinChain, resolveSpinChain, returnToBottle,
+  availableSpinChainKinds, availableSpinChainKindsAfterRefill, enterSpinChain, replaceInSpinChain, resolveSpinChain, returnToBottle,
   spinChainPhaseAfter, SPIN_CHAIN_PACK_ID,
 } from "@/lib/engine/spin-chain";
 import { COMPATIBILITY_PACK_ID } from "@/lib/game-packs/compatibility-test";
@@ -143,6 +143,68 @@ describe("转瓶子结果链入现有真心话大冒险 (T152 / FR-021)", () => 
     const reloaded = gameSessionSchema.parse(JSON.parse(JSON.stringify(back)));
     expect(readSpinChain(reloaded)?.phase).toBe("returning");
     expect(reloaded.currentPackId).toBe(SPIN_BOTTLE_PACK_ID);
+  });
+});
+
+describe("空牌堆单开局也能链入出题 (V1.5 热修)", () => {
+  /** 转瓶子单开局的真实形态：只启用 spin-bottle，纯本地玩法建局不填牌堆。 */
+  const cardlessSession = (): GameSession =>
+    activateSession(createSession(
+      {
+        players: roster(), relationship: "friends", vibes: ["funny"], intensity: 3, boundaries: DEFAULT_BOUNDARIES,
+        enabledPackIds: ["spin-bottle"], mode: "single",
+      },
+      [],
+    ), []);
+
+  it("链入前先补 truth-dare 种子再出题：可用态按补位后算，不再误判成空转", () => {
+    const session = cardlessSession();
+    expect(session.deckSnapshot).toHaveLength(0);
+    // 空牌堆直接判可用的话会两类都判死，结果页按钮全禁——这正是热修前的病根
+    expect(availableSpinChainKinds(session)).toEqual([]);
+    expect(availableSpinChainKindsAfterRefill(session)).toEqual(["truth", "dare"]);
+
+    const next = enterSpinChain(session, { targetPlayerId: "p1", targetName: "Alex", kind: "truth" }, [], () => 0);
+    expect(next.currentPackId).toBe(SPIN_CHAIN_PACK_ID);
+    expect(cardOf(next)?.packId).toBe(SPIN_CHAIN_PACK_ID);
+    expect(cardOf(next)?.type).toBe("truth");
+    expect(cardOf(next)?.source).toBe("builtin");
+    expect(next.currentRound?.participantIds).toEqual(["p1"]);
+    // 补位只加不重：牌堆里没有重复卡（出过的那张记在 usedCardIds，不算重复）
+    const deckIds = next.deckSnapshot.map((card) => card.id);
+    expect(new Set(deckIds).size).toBe(deckIds.length);
+    expect(next.usedCardIds).toHaveLength(1);
+  });
+
+  it("补位不碰已有牌：混合局里已有的 AI/自定义卡原样保留", () => {
+    const aiCard: GameCard = {
+      id: "ai-truth-1", packId: "truth-dare", type: "truth", content: "AI 出的真心话", instruction: "轮到的玩家回答",
+      intensity: 3, tags: [], boundaryTags: [], minPlayers: 2, participantMode: "single", source: "ai",
+    };
+    const session = activateSession(createSession(
+      {
+        players: roster(), relationship: "friends", vibes: ["funny"], intensity: 3, boundaries: DEFAULT_BOUNDARIES,
+        enabledPackIds: ["spin-bottle", "truth-dare"], mode: "single",
+      },
+      [aiCard],
+    ), [aiCard]);
+    expect(availableSpinChainKindsAfterRefill(session)).toContain("truth");
+    const entered = enterSpinChain(session, { targetPlayerId: "p1", targetName: "Alex", kind: "truth" }, [], () => 0);
+    // 已有的 AI 卡原样保留，seed 只是补在后面
+    expect(entered.deckSnapshot.map((card) => card.id)).toContain("ai-truth-1");
+    expect(entered.deckSnapshot.length).toBeGreaterThan(1);
+  });
+
+  it("换题（replacing）在空牌堆下同样能重出同类型题", () => {
+    const session = cardlessSession();
+    const entered = enterSpinChain(session, { targetPlayerId: "p1", targetName: "Alex", kind: "truth" }, [], () => 0);
+    // 模拟落库后牌堆又见底：换题前置补位同样要兜住
+    const replaced = replaceInSpinChain({ ...entered, deckSnapshot: [] } as GameSession, [], () => 0);
+    expect(replaced.currentPackId).toBe(SPIN_CHAIN_PACK_ID);
+    expect(cardOf(replaced)?.packId).toBe(SPIN_CHAIN_PACK_ID);
+    expect(cardOf(replaced)?.type).toBe("truth");
+    expect(replaced.currentRound?.participantIds).toEqual(["p1"]);
+    expect(readSpinChain(replaced)?.phase).toBe("question");
   });
 });
 
