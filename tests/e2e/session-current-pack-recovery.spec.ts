@@ -50,7 +50,7 @@ function emptyDeckSession(): GameSession {
       enabledPackIds: ["never-have"], mode: "single",
     },
     deckSnapshot: [], usedCardIds: [], rounds: [],
-    currentPackId: "never-have", currentPackState: {}, recentRejectedFingerprints: [],
+    currentPackId: "never-have", currentSegmentId: "e2e-segment", currentPackState: {}, recentRejectedFingerprints: [],
     startedAt: now, updatedAt: now,
   };
 }

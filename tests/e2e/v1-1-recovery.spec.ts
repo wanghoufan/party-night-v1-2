@@ -26,7 +26,7 @@ function spinSession(): GameSession {
       enabledPackIds: ["spin-bottle", "truth-dare"], mode: "single",
     },
     deckSnapshot: BUILTIN_SEED_CARDS.filter((card) => card.packId === "truth-dare"),
-    usedCardIds: [], rounds: [], currentPackId: "spin-bottle", currentPackState: {}, recentRejectedFingerprints: [],
+    usedCardIds: [], rounds: [], currentPackId: "spin-bottle", currentSegmentId: "e2e-segment", currentPackState: {}, recentRejectedFingerprints: [],
     startedAt: now, updatedAt: now,
   };
 }
@@ -96,6 +96,8 @@ test("主局切到二选一：完成与换一个分别落库，刷新后玩法�
   await page.getByRole("dialog", { name: "切换玩法" }).getByRole("button", { name: /二选一/ }).click();
   await expect(switchEntry(page)).toContainText("二选一");
   await expect(page.locator(".would-you-rather")).toBeVisible();
+  // V1.5：手动切玩法开新段，顶栏从第 1 轮重计（不再沿用整局累计轮次）
+  await expect(page.getByText(/第 1 \/ /)).toBeVisible();
 
   // 第一轮：下一题 → completed
   await page.getByRole("button", { name: "下一题" }).click();
@@ -111,12 +113,18 @@ test("主局切到二选一：完成与换一个分别落库，刷新后玩法�
 
   await expect(switchEntry(page)).toContainText("二选一");
   await expect(page.locator(".would-you-rather")).toBeVisible();
-  await expect(page.getByText(/第 4 \/ /)).toBeVisible();
+  // 计数在新段内连续：新段已完成 1 轮 → 第 2（旧轮的 skipped 不再计入顶栏）
+  await expect(page.getByText(/第 2 \/ /)).toBeVisible();
   const restored = await readSession(page, id);
   expect(restored.currentPackId).toBe("would-you-rather");
+  // 审计历史仍完整保留旧轮：skipped（切玩法前那一轮）→ completed → swapped 连续不断链
   expect(restored.rounds.map((round) => round.status)).toEqual(["skipped", "completed", "swapped"]);
   expect(restored.rounds.slice(1).map((round) => round.packId)).toEqual(["would-you-rather", "would-you-rather"]);
   expect(restored.recentRejectedFingerprints?.length).toBeGreaterThan(0);
+  // 旧轮属于切换前的旧段，新段的两轮自成一段：顶栏只数新段
+  const [oldRound, ...newRounds] = restored.rounds;
+  expect(newRounds.every((round) => round.segmentId === restored.currentSegmentId)).toBe(true);
+  expect(oldRound!.segmentId).not.toBe(restored.currentSegmentId);
 });
 
 test("默契测试：判分落库后重新打开这一局（冷启动）仍恢复配对与分数", async ({ page }) => {

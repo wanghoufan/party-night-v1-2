@@ -68,14 +68,14 @@ test("二选一：出 A/VS/B 题面，下一题记 completed、换一个记 swap
   expect(swapped.currentRound?.cardId).not.toBe(firstCard.id);
   expect(swapped.recentRejectedFingerprints?.length).toBe(1);
 
-  // 下一题 → completed（换一个已落 swapped 在前，此时是第 3 轮）
+  // 下一题 → completed（V1.5 顶栏只数已完成：换一个不推进，完成后才到第 2 轮）
   const second = swapped.deckSnapshot.find((card) => card.id === swapped.currentRound?.cardId)!;
   await primary(page).click();
   try {
-    await expect(page.getByText(/第 3 \/ /)).toBeVisible({ timeout: 15000 });
+    await expect(page.getByText(/第 2 \/ /)).toBeVisible({ timeout: 15000 });
   } catch {
     const dbg = await readSession(page, id);
-    throw new Error(`第3轮header未出现 rounds=${JSON.stringify(dbg.rounds.map((r) => r.status))} cur=${dbg.currentRound?.cardId} used=${dbg.usedCardIds.length} deck=${dbg.deckSnapshot.length}`);
+    throw new Error(`第2轮header未出现 rounds=${JSON.stringify(dbg.rounds.map((r) => r.status))} cur=${dbg.currentRound?.cardId} used=${dbg.usedCardIds.length} deck=${dbg.deckSnapshot.length}`);
   }
   const done = await readSession(page, id);
   expect(done.rounds.map((round) => round.status)).toEqual(["swapped", "completed"]);
@@ -133,10 +133,10 @@ test("二选一：AI 断网时回退本地 seed，出题与换题都不卡", asy
   await expect(view(page)).toBeVisible();
   await primary(page).click();
   try {
-    await expect(page.getByText(/第 3 \/ /)).toBeVisible({ timeout: 15000 });
+    await expect(page.getByText(/第 2 \/ /)).toBeVisible({ timeout: 15000 });
   } catch {
     const dbg = await readSession(page, id);
-    throw new Error(`113第3轮header未出现 rounds=${JSON.stringify(dbg.rounds.map((r) => r.status))} cur=${dbg.currentRound?.cardId} used=${dbg.usedCardIds.length} deck=${dbg.deckSnapshot.length} url=${page.url()}`);
+    throw new Error(`113第2轮header未出现 rounds=${JSON.stringify(dbg.rounds.map((r) => r.status))} cur=${dbg.currentRound?.cardId} used=${dbg.usedCardIds.length} deck=${dbg.deckSnapshot.length} url=${page.url()}`);
   }
   const done = await readSession(page, id);
   expect(done.rounds.map((round) => round.status)).toEqual(["swapped", "completed"]);

@@ -1,0 +1,13 @@
+{"date":"2026-09-22","task":"ChangeC重开-双页原型+链逻辑+重计规则","role":"planner","model":"codex/gpt-5.6-sol","used":"主","runtime":"codex","result":"PASS","note":"session 01a0c7bb 原型+状态机+轮次语义+顶栏+题库schema已出"}
+{"date":"2026-09-22","task":"ChangeC重开-ResearchReview走查","role":"product-reviewer","model":"codex/gpt-5.6-terra","used":"主","runtime":"codex","result":"PASS","note":"60/100 回Planner修订 7项blocking"}
+{"date":"2026-09-22","task":"ChangeC重开-Planner修订","role":"planner","model":"codex/gpt-5.6-sol","used":"主","runtime":"codex","result":"PASS","note":"7项blocking闭合 session续01a0c7bb"}
+{"date":"2026-09-22","task":"ChangeC重开-ResearchReview复查","role":"product-reviewer","model":"codex/gpt-5.6-terra","used":"主","runtime":"codex","result":"PASS","note":"98/100 PASS可进Human Review"}
+{"date":"2026-09-22","task":"V1.5实现：双页视觉+chain+重计+顶栏","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"首派超时但落盘全；1单测待修"}
+{"date":"2026-09-22","task":"V1.5返工：题库脚本+告警+单尺度断言","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"lint0/typecheck0/497全过；180卡7文件已生成"}
+{"date":"2026-09-22","task":"V1.5 P1收尾：调用点核查+导出幂等+point映射","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"lint0/typecheck0/497全过；180卡幂等"}
+{"date":"2026-09-22","task":"V1.5 QA：门禁+E2E","role":"qa","model":"codex/gpt-5.6-luna","used":"主","runtime":"codex","result":"FAIL","note":"lint/typecheck/unit/build过；E2E在codex沙箱EPERM未跑"}
+{"date":"2026-09-22","task":"V1.5 E2E返工：旧轮次语义断言改齐","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"只改测试；unit497；e2e71pass+4skip"}
+{"date":"2026-09-22","task":"V1.5 code review复核","role":"code-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"本窗口","result":"PASS","note":"有条件过；2P1已闭；落docs/review/CODE_REVIEW-V1.5.md"}
+{"date":"2026-09-22","task":"V1.5 QA闭环：门禁+E2E全量复测","role":"qa","model":"codex/gpt-5.6-luna","used":"主","runtime":"本窗口","result":"PASS","note":"TM接管(codex沙箱EPERM)：lint0/typecheck0/497/E2E71pass+4skip/build过；落docs/qa/BUGS-V1.5.md"}
+{"date":"2026-09-22","task":"V1.5 supervisor打回返工-switchTo显式补cause","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"1行语义不变；typecheck+test绿"}
+{"date":"2026-09-22","task":"V1.5停线后删账本重复行自验","role":"task-manager","model":"本窗口直驱","used":"主","runtime":"本窗口","result":"PASS","note":"删switchTo重复1行；27行/dups空/JSON合法；按supervisor停线结论放行"}

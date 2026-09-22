@@ -10,8 +10,10 @@ export interface RoundActionsProps {
   completeLabel?: string;
   /** 只有主按钮＋弱按钮时用的两列布局。 */
   compact?: boolean;
+  /** 局中暂停时整套推进动作禁用（V1.5 暂停禁用矩阵：暂停冻结现场，不能偷偷推进一轮）。 */
+  disabled?: boolean;
 }
 
-export function RoundActions({ onComplete, onSwap, onSkip, completeLabel = "完成", compact = false }: RoundActionsProps) {
-  return <div className={`round-actions ${compact && !onSkip ? "round-actions--compact" : ""}`}><Button className="round-action--complete" type="button" onClick={onComplete}><Icon name="check" />{completeLabel}</Button><Button variant="secondary" type="button" onClick={onSwap}><Icon name="refresh" />换一个</Button>{onSkip && <Button className="round-action--skip" variant="secondary" type="button" onClick={onSkip}><Icon name="skip" />跳过</Button>}</div>;
+export function RoundActions({ onComplete, onSwap, onSkip, completeLabel = "完成", compact = false, disabled = false }: RoundActionsProps) {
+  return <div className={`round-actions ${compact && !onSkip ? "round-actions--compact" : ""}`}><Button className="round-action--complete" type="button" disabled={disabled} onClick={onComplete}><Icon name="check" />{completeLabel}</Button><Button variant="secondary" type="button" disabled={disabled} onClick={onSwap}><Icon name="refresh" />换一个</Button>{onSkip && <Button className="round-action--skip" variant="secondary" type="button" disabled={disabled} onClick={onSkip}><Icon name="skip" />跳过</Button>}</div>;
 }

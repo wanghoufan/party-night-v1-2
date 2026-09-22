@@ -17,7 +17,7 @@ function toolsSession(): GameSession {
       enabledPackIds: ["never-have"], mode: "single",
     },
     deckSnapshot: BUILTIN_SEED_CARDS.filter((card) => card.packId === "never-have"),
-    usedCardIds: [], rounds: [], currentPackId: "never-have", currentPackState: {}, recentRejectedFingerprints: [],
+    usedCardIds: [], rounds: [], currentPackId: "never-have", currentSegmentId: "e2e-segment", currentPackState: {}, recentRejectedFingerprints: [],
     startedAt: now, updatedAt: now,
   };
 }

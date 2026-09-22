@@ -5,8 +5,9 @@ test("本地整局可完成、换题、跳过并结束总结", async ({ page }) 
   await startLocalGame(page);
   await page.getByRole("button", { name: "完成" }).click();
   await page.getByRole("button", { name: "换一个" }).click();
+  // V1.5：顶栏只数已完成轮次——完成推进到第 2，换一个/跳过都不再前进
   await page.getByRole("button", { name: "跳过" }).click();
-  await expect(page.getByText(/第 4 \/ /)).toBeVisible();
+  await expect(page.getByText(/第 2 \/ /)).toBeVisible();
   await page.getByLabel("打开局中设置").click();
   await page.getByRole("button", { name: "结束本局" }).click();
   await expect(page).toHaveURL(/\/summary/);

@@ -35,7 +35,7 @@ function pointingSession(): GameSession {
       enabledPackIds: ["pointing-game"], mode: "single",
     },
     deckSnapshot, usedCardIds: [], rounds: [],
-    currentPackId: "pointing-game", currentPackState: {}, recentRejectedFingerprints: [],
+    currentPackId: "pointing-game", currentSegmentId: "e2e-segment", currentPackState: {}, recentRejectedFingerprints: [],
     startedAt: now, updatedAt: now,
   };
 }

@@ -32,6 +32,8 @@ export interface PackViewProps {
   compatibility?: CompatibilityHandlers;
   /** 只有转瓶子这类纯本地玩法会拿到。 */
   spin?: SpinBottleHandlers;
+  /** 局中暂停：有节奏/动画的玩法据此冻结倒数与旋转（V1.5 顶栏暂停）。 */
+  paused?: boolean;
 }
 
 /**
@@ -55,10 +57,10 @@ export function packViewOwnsActions(packId: string): boolean {
 /** 主局没给转瓶子上下文时的兜底：只显示空桌，不猜人、不自己随机。 */
 const NO_SPIN: SpinBottleHandlers = { players: [], onSpin: () => undefined, onChain: () => {} };
 
-export function PackViewHost({ packId, card, participantNames, actions, compatibility, spin }: { packId: string; card?: GameCard; participantNames: string[] } & Pick<PackViewProps, "actions" | "compatibility" | "spin">) {
+export function PackViewHost({ packId, card, participantNames, actions, compatibility, spin, paused }: { packId: string; card?: GameCard; participantNames: string[] } & Pick<PackViewProps, "actions" | "compatibility" | "spin" | "paused">) {
   // 转瓶子是纯本地玩法：没有题卡，由 SpinBottleView 自己承载玩家与结果（Plan 8.4）。
-  if (resolvePackRendererById(packId) === "spin") return <SpinBottleView spin={spin ?? NO_SPIN} />;
+  if (resolvePackRendererById(packId) === "spin") return <SpinBottleView spin={spin ?? NO_SPIN} paused={paused} />;
   if (!card) return null;
   const View = RENDERER_VIEWS[resolvePackRendererById(packId)] ?? GameCardView;
-  return <View card={card} participantNames={participantNames} actions={actions} compatibility={compatibility} spin={spin} />;
+  return <View card={card} participantNames={participantNames} actions={actions} compatibility={compatibility} spin={spin} paused={paused} />;
 }

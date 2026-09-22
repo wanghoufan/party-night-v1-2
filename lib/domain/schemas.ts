@@ -91,6 +91,20 @@ export const sessionConfigSchema = z.object({
 });
 export type SessionConfig = z.infer<typeof sessionConfigSchema>;
 
+/**
+ * 轮次审计字段（V1.5）：段（segment）内可读轮次账 + 换题归组。
+ * 旧落库形态没有这些字段，所以是可选的；由 session-engine 新建时写全、读取路径（session-migration）补全，
+ * 两边都保证「能读到就一定有」，schema 保留可选只为兼容旧数据与测试里手写的最小轮次字面量。
+ * - segmentId：本轮属于哪一段；只有主持人手动切包才开新段（顶栏轮次随之从 1 重计）。
+ * - logicalRoundId：同一题被「换一个」后，替换题沿用同一个逻辑轮次 id，便于审计归组。
+ * - displayRoundNo：段内第几轮；只有 completed 递增，swapped 复用，skipped 不递增。
+ */
+const roundAuditFields = {
+  segmentId: z.string().optional(),
+  logicalRoundId: z.string().optional(),
+  displayRoundNo: z.number().int().min(0).optional(),
+};
+
 export const roundHistorySchema = z.object({
   id: z.string(),
   cardId: z.string(),
@@ -100,6 +114,7 @@ export const roundHistorySchema = z.object({
   result: z.record(z.string(), z.unknown()).optional(),
   startedAt: z.string(),
   endedAt: z.string(),
+  ...roundAuditFields,
 });
 export type RoundHistory = z.infer<typeof roundHistorySchema>;
 
@@ -109,6 +124,7 @@ export const activeRoundSchema = z.object({
   packId: z.string(),
   participantIds: z.array(z.string()),
   startedAt: z.string(),
+  ...roundAuditFields,
 });
 export type ActiveRound = z.infer<typeof activeRoundSchema>;
 
@@ -124,6 +140,11 @@ export const gameSessionSchema = z.object({
   currentRound: activeRoundSchema.optional(),
   /** 当前玩法（局内切换只改这里，不重建 Session）。 */
   currentPackId: z.string().min(1),
+  /**
+   * 当前段 id（V1.5）：主持人手动切包才开新段，段内轮次从 1 重计；
+   * 转瓶子链入/返回属于同一段（`PackTransitionCause`）。旧记录缺失时由读取路径补一个稳定值。
+   */
+  currentSegmentId: z.string().default(""),
   /**
    * 各玩法的局部状态，按 packId 分键（Plan §5.1 `packStates: Record<packId, state>` 的等价结构：
    * 字段名沿用 Spec §7 的 currentPackState）。切玩法只重置目标玩法那一格，其他玩法原样保留（GAP-02 / FR-035）。

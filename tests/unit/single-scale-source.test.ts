@@ -8,7 +8,7 @@ import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
 import { compatibilityStateSchema, COMPATIBILITY_STATE_KEY } from "@/lib/game-packs/compatibility-test";
 import { pointingCardSchema } from "@/lib/game-packs/pointing-game";
 import { BUILTIN_GAME_PACKS } from "@/lib/game-packs/registry";
-import { spinBottleStateSchema, SPIN_BOTTLE_STATE_KEY } from "@/lib/game-packs/spin-bottle";
+import { spinBottleStateSchema, spinChainSchema, SPIN_BOTTLE_STATE_KEY } from "@/lib/game-packs/spin-bottle";
 import { wouldYouRatherCardSchema } from "@/lib/game-packs/would-you-rather";
 
 /**
@@ -83,7 +83,13 @@ describe("single scale source audit（T186）", () => {
 
   it("新玩法的 packing 局部状态不含尺度字段", () => {
     expect(Object.keys(compatibilityStateSchema.shape).sort()).toEqual(["playerAId", "playerBId", "rounds", "score"]);
-    expect(Object.keys(spinBottleStateSchema.shape)).toEqual(["lastSelectedPlayerId"]);
+    // 转瓶子局部状态允许 `lastSelectedPlayerId`（落点）与 `chain`（V1.5 已批准的链相位账）。
+    // `chain` 是链状态而非尺度字段，所以这里只锁「不含尺度语义键」，不再钉死 keys 精确集合。
+    const isScaleWord = (key: string) => SCALE_WORDS.has(key.toLowerCase().replace(/[^a-z]/g, ""));
+    const spinStateKeys = Object.keys(spinBottleStateSchema.shape);
+    expect(spinStateKeys).toContain("lastSelectedPlayerId");
+    expect(spinStateKeys).toContain("chain");
+    expect([...spinStateKeys, ...Object.keys(spinChainSchema.shape)].filter(isScaleWord)).toEqual([]);
     expect(COMPATIBILITY_STATE_KEY).toBe("compatibility");
     expect(SPIN_BOTTLE_STATE_KEY).toBe("spin-bottle");
   });

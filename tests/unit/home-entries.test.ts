@@ -31,7 +31,7 @@ function session(status: GameSession["status"], currentPackId = "never-have"): G
   return {
     schemaVersion: 2, id: `session-${status}`, status, mode: "single", config: CONFIG,
     deckSnapshot: BUILTIN_SEED_CARDS.filter((card) => card.packId === "never-have"),
-    usedCardIds: [], rounds: [], currentPackId, currentPackState: {}, recentRejectedFingerprints: [],
+    usedCardIds: [], rounds: [], currentPackId, currentSegmentId: "unit-segment", currentPackState: {}, recentRejectedFingerprints: [],
     startedAt: "x", updatedAt: "x",
   };
 }

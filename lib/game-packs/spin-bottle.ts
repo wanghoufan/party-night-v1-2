@@ -2,11 +2,29 @@ import { z } from "zod";
 import type { GamePackDefinition, GameSession } from "@/lib/domain/schemas";
 
 /**
- * 转瓶子的 pack-local state：只记最近一次选中的玩家，用于避免连续指向同一人。
+ * 转瓶子的 pack-local state：最近一次落点（避免连续指同一人）+ 链入真心话/大冒险的相位账（V1.5）。
  * 结果 100% 由本地 player-selector 决定（动画只负责表现），不需要 AI 出卡。
+ *
+ * 链相位五态（Plan V1.5）：enter → question → replacing → resolving → returning。
+ * 只有 question（题面在桌上）与 returning（回瓶子 ready）是稳定态，其余是每次动作内部的一步。
  */
+export const spinChainPhaseSchema = z.enum(["enter", "question", "replacing", "resolving", "returning"]);
+export const spinChainSchema = z.object({
+  phase: spinChainPhaseSchema,
+  kind: z.enum(["truth", "dare"]),
+  /** 被指到的人：本轮参与者固定是他，不随出题重抽。 */
+  targetPlayerId: z.string().min(1),
+  /** 姓名快照：被指到的人中途离场也照旧显示这个名字，不换人。 */
+  targetName: z.string().min(1),
+  /** 真心话与大冒险都出完了：回瓶子并提示，不再空转出题。 */
+  exhausted: z.boolean().optional(),
+});
+export type SpinChainPhase = z.infer<typeof spinChainPhaseSchema>;
+export type SpinChainState = z.infer<typeof spinChainSchema>;
+
 export const spinBottleStateSchema = z.object({
   lastSelectedPlayerId: z.string().min(1).optional(),
+  chain: spinChainSchema.optional(),
 });
 export type SpinBottleState = z.infer<typeof spinBottleStateSchema>;
 
@@ -18,6 +36,7 @@ export const SPIN_BOTTLE_STATE_KEY = SPIN_BOTTLE_PACK_ID;
 
 /** 记下落点：动画播放之前就写库，刷新只会恢复最终结果，不会恢复半截旋转（Spec Edge Cases）。 */
 export function recordSpinResult(playerId: string): SpinBottleState {
+  // 重新开转＝上一轮链已结束，这里刻意不带 chain，顺带把旧链相位清干净。
   return { lastSelectedPlayerId: playerId };
 }
 
@@ -28,6 +47,11 @@ export function recordSpinResult(playerId: string): SpinBottleState {
 export function readSpinBottleState(session: Pick<GameSession, "currentPackState">): SpinBottleState | undefined {
   const parsed = spinBottleStateSchema.safeParse(session.currentPackState?.[SPIN_BOTTLE_PACK_ID]);
   return parsed.success ? parsed.data : undefined;
+}
+
+/** 链的相位（enter/question/replacing/resolving/returning）；没进过链时 undefined。 */
+export function readSpinChain(session: Pick<GameSession, "currentPackState">): SpinChainState | undefined {
+  return readSpinBottleState(session)?.chain;
 }
 
 export const spinBottlePack: GamePackDefinition = {

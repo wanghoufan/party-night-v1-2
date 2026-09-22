@@ -4,11 +4,19 @@ import { getGamePack, packIsCardless } from "@/lib/game-packs/registry";
 import { recordRejection, selectCard } from "./card-selector";
 import { selectParticipants } from "./player-selector";
 import { getSessionStage, getStagePackPreference } from "./stage-controller";
-import type { GameCard, RandomSource } from "./types";
+import type { GameCard, PackTransitionCause, RandomSource } from "./types";
 import { createId } from "@/lib/utils/create-id";
 
 const now = () => new Date().toISOString();
 const uid = () => createId();
+
+/**
+ * 段内显示轮次（顶栏「第 n / 40」的 n）：只数**已完成**的轮次。
+ * 换一个（swapped）复用同一个编号、跳过（skipped）不递增，所以两者都不会让计数前进。
+ */
+export function segmentRoundNo(session: GameSession): number {
+  return session.rounds.filter((round) => round.status === "completed" && round.segmentId === session.currentSegmentId).length + 1;
+}
 
 export function createSession(config: SessionConfig, deckSnapshot: GameCard[] = []): GameSession {
   const timestamp = now();
@@ -22,6 +30,7 @@ export function createSession(config: SessionConfig, deckSnapshot: GameCard[] = 
     usedCardIds: [],
     rounds: [],
     currentPackId: config.enabledPackIds[0],
+    currentSegmentId: uid(),
     currentPackState: {},
     recentRejectedFingerprints: [],
     startedAt: deckSnapshot.length ? timestamp : undefined,
@@ -35,12 +44,14 @@ export function activateSession(session: GameSession, cards: GameCard[]): GameSe
 }
 
 export interface StartRoundOptions {
-  /** 明确切换玩法后的下一题偏好：只影响这一次出题，不改 config、不锁死后续轮次。 */
+  /** 明确切换玩法后的下一题偏好：只影响这一次出题、不改 config、不锁死后续轮次。 */
   preferPackIds?: string[];
   /** 只在指定题卡类型里出题（转瓶子→真心话/大冒险）。 */
   preferCardTypes?: string[];
   /** 明确指定本轮参与者（转瓶子链入真心话时，被指到的人作答）。 */
   participantIds?: string[];
+  /** 「换一个」后的替换轮沿用原轮次的逻辑 id，便于审计把两题归到同一个逻辑轮次（V1.5）。 */
+  reuseLogicalRoundId?: string;
 }
 
 export function startRound(session: GameSession, random: RandomSource = Math.random, options: StartRoundOptions = {}): GameSession {
@@ -78,6 +89,9 @@ export function startRound(session: GameSession, random: RandomSource = Math.ran
       packId: card.packId,
       participantIds: options.participantIds ?? selectParticipants(card.participantMode, session.config.players, session.rounds, random),
       startedAt: now(),
+      segmentId: session.currentSegmentId,
+      logicalRoundId: options.reuseLogicalRoundId ?? uid(),
+      displayRoundNo: segmentRoundNo(session),
     },
     updatedAt: now(),
   };
@@ -105,6 +119,8 @@ export interface SwitchPackOptions {
   enabledPackIds?: string[];
   /** 目标玩法定义；不传时从内置 registry 解析，解析不到则跳过 minPlayers 校验。 */
   definition?: GamePackDefinition;
+  /** 切换原因；只有主持人手动切包（manual-switch）才开新段，顶栏轮次从 1 重计（V1.5）。 */
+  cause?: PackTransitionCause;
 }
 
 /**
@@ -118,15 +134,20 @@ export function switchPack(session: GameSession, packId: string, options: Switch
   if (definition && resolvePackCapability(definition).minPlayers > session.config.players.filter((player) => player.active).length) return session;
   if (session.currentPackId === packId) return session;
 
+  const cause: PackTransitionCause = options.cause ?? "manual-switch";
   // 未完成的 round 记 skipped（无惩罚跳过），避免它凭空消失；已完成的轮次与 usedCardIds 一动不动。
   const abandoned = session.currentRound ? { ...session.currentRound, status: "skipped" as const, endedAt: now() } : undefined;
   // GAP-02：pack-local state 按 packId 分键。切玩法只重置目标玩法那一格（重新进入＝从干净的 state 起），
   // 其他玩法的局部状态原样保留，不再整表清空。
+  // V1.5：转瓶子链返回（spin-chain-return）要保留自己那一格——链的相位与落点就存在里面，重置会把回跳弄丢。
   const packStates = session.currentPackState ?? {};
+  const resetTargetState = cause !== "spin-chain-return";
   return {
     ...session,
     currentPackId: packId,
-    currentPackState: { ...packStates, [packId]: {} },
+    // 只有主持人手动切包才开新段；链入/链返回/首页进包都留在原段，轮次账不被打断。
+    currentSegmentId: cause === "manual-switch" ? uid() : session.currentSegmentId,
+    currentPackState: resetTargetState ? { ...packStates, [packId]: {} } : packStates,
     currentRound: undefined,
     rounds: abandoned ? [...session.rounds, abandoned] : session.rounds,
     updatedAt: now(),

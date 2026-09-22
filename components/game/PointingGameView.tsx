@@ -28,20 +28,22 @@ function reducedMotionSnapshot() {
  * 指人游戏视图（Plan 8.2 / US4）：一句直接指令 → 准备 → 3 · 2 · 1 → 👉 指。
  * 结果留在桌上：不统计票数、不采集任何逐人输入，指完用「下一题 / 换一个」继续（FR-019）。
  * 倒计时只是节奏引导，不是门槛：系统开了“减少动态效果”时不逐秒等待，直接进入「指」。
+ * V1.5：倒计时收成 44–48px 小徽章（舞台固定高度，切换阶段不跳版）；局中暂停时倒数冻结。
  */
-export function PointingGameView({ card, participantNames, actions }: PackViewProps) {
+export function PointingGameView({ card, participantNames, actions, paused = false }: PackViewProps) {
   const reducedMotion = useSyncExternalStore(subscribeReducedMotion, reducedMotionSnapshot, () => false);
   const [phase, setPhase] = useState<"ready" | "counting" | "point">("ready");
   const [count, setCount] = useState(COUNTDOWN_FROM);
 
   useEffect(() => {
-    if (phase !== "counting") return;
+    // 暂停＝倒数冻结：不排下一个 tick，恢复后从当前秒继续，不重头数。
+    if (phase !== "counting" || paused) return;
     const timer = window.setTimeout(() => {
       if (count <= 1) setPhase("point");
       else setCount(count - 1);
     }, TICK_MS);
     return () => window.clearTimeout(timer);
-  }, [phase, count]);
+  }, [phase, count, paused]);
 
   function start() {
     if (reducedMotion) {
@@ -55,7 +57,7 @@ export function PointingGameView({ card, participantNames, actions }: PackViewPr
   return (
     <article className={`game-card game-card--${card.packId} pointing-game`} data-phase={phase}>
       <span className="game-card__crown" aria-hidden="true">♔</span>
-      <div className="game-card__pack"><Icon name="users" />指人游戏</div>
+      <div className="game-card__pack"><Icon name="point" />指人游戏</div>
       {participantNames.length > 0 && <p className="game-card__players">{participantNames.length} 人同时指</p>}
       <h1>{card.content}</h1>
       {card.instruction && <p className="game-card__instruction">{card.instruction}</p>}
@@ -64,9 +66,9 @@ export function PointingGameView({ card, participantNames, actions }: PackViewPr
         {phase === "counting" && <p className="pointing-game__count" role="status" aria-label={`倒数 ${count} 秒`}>{count}</p>}
         {phase === "point" && <p className="pointing-game__go" role="status" aria-label="一起指">👉 指！</p>}
       </div>
-      {phase !== "point" && <div className="pointing-game__controls">{phase === "ready" ? <Button type="button" onClick={start}>准备好了</Button> : <Button variant="secondary" type="button" onClick={() => setPhase("point")}><Icon name="skip" />跳过倒数</Button>}</div>}
+      {phase !== "point" && <div className="pointing-game__controls">{phase === "ready" ? <Button type="button" disabled={paused} onClick={start}>准备好了</Button> : <Button variant="secondary" type="button" disabled={paused} onClick={() => setPhase("point")}><Icon name="skip" />跳过倒数</Button>}</div>}
       {phase === "point" && <p className="pointing-game__hint">不用统计票数，指完就可以继续</p>}
-      {phase === "point" && actions && <RoundActions compact completeLabel="下一题" onComplete={actions.onComplete} onSwap={actions.onSwap} />}
+      {phase === "point" && actions && <RoundActions compact disabled={paused} completeLabel="下一题" onComplete={actions.onComplete} onSwap={actions.onSwap} />}
       <span className="game-card__source">{sourceLabel(card.source)}</span>
     </article>
   );

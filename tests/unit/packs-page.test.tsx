@@ -29,7 +29,7 @@ function playersSession(count: number): GameSession {
   return {
     schemaVersion: 2, id: "session-tools", status: "active", mode: "single",
     config: { players, relationship: "friends", vibes: ["funny"], intensity: 3, boundaries: { noPhysicalContact: false, noAlcoholPenalty: true, noExPartners: false, noSexualHistory: false, noMoneyIncome: false, noPhonePrivacy: true, noPublicPosting: true, noStrangerContact: true, noPhotoVideo: false, noSocialAccounts: false, customText: "" }, enabledPackIds: ["never-have"], mode: "single" },
-    deckSnapshot: [], usedCardIds: [], rounds: [], currentPackId: "never-have", currentPackState: {}, recentRejectedFingerprints: [],
+    deckSnapshot: [], usedCardIds: [], rounds: [], currentPackId: "never-have", currentSegmentId: "unit-segment", currentPackState: {}, recentRejectedFingerprints: [],
     startedAt: now, updatedAt: now,
   };
 }

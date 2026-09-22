@@ -20,7 +20,7 @@ function spinSession(inactiveEmma = false): GameSession {
     },
     deckSnapshot: BUILTIN_SEED_CARDS.filter((card) => card.packId === "truth-dare"),
     usedCardIds: [], rounds: [],
-    currentPackId: "spin-bottle", currentPackState: {}, recentRejectedFingerprints: [],
+    currentPackId: "spin-bottle", currentSegmentId: "e2e-segment", currentPackState: {}, recentRejectedFingerprints: [],
     startedAt: now, updatedAt: now,
   };
 }
@@ -83,20 +83,25 @@ test("转瓶子：固定 RNG 命中 Alex → 真心话链入现有 truth-dare（
   expect(chained.id).toBe(SESSION_ID);
   expect(chained.config).toEqual(before.config);
 
-  // 完成 → 同一局出下一题，历史里留下被指到的人
+  // 完成 → V1.5 链自动回跳：同一段内切回转瓶子 ready（题面消失），历史里留下被指到的人
   await page.getByRole("button", { name: "完成" }).click();
+  await expect(view(page)).toBeVisible();
+  await expect(view(page)).toHaveAttribute("data-phase", "ready");
+  await expect(page.locator(".game-card h1")).toHaveCount(0);
   await expect(page.getByText(/第 2 \/ /)).toBeVisible();
   const done = await readSession(page, SESSION_ID);
+  expect(done.currentPackId).toBe("spin-bottle");
+  expect((done.currentPackState?.["spin-bottle"] as { chain?: { phase?: string } } | undefined)?.chain?.phase).toBe("returning");
   expect(done.rounds.map((round) => round.packId)).toEqual(["truth-dare"]);
   expect(done.rounds[0]!.participantIds).toEqual(["p1"]);
   expect(done.rounds[0]!.status).toBe("completed");
+  // 回跳不重置落点：Alex 仍记为上一次落点，下一转据此避开他
+  expect(done.currentPackState?.["spin-bottle"]).toMatchObject({ lastSelectedPlayerId: "p1" });
 
-  // 返回转瓶子：还是同一个 Session，重新起转仍然是可复现的落点
-  await page.getByRole("button", { name: /切换玩法/ }).click();
-  await page.getByRole("dialog", { name: "切换玩法" }).getByRole("button", { name: /转瓶子/ }).click();
-  await expect(view(page)).toBeVisible();
+  // 同一局继续：不点切换面板（当前玩法已是转瓶子），直接再转一次，落点仍可复现
+  await expect(page.getByRole("button", { name: /切换玩法/ })).toContainText("转瓶子");
   await spinWithFixedRandom(page, () => spinButton(page).click());
-  await expect(target(page)).toHaveText("🎯 Alex");
+  await expect(target(page)).toHaveText("🎯 Emma");
   expect((await readSession(page, SESSION_ID)).id).toBe(SESSION_ID);
 });
 

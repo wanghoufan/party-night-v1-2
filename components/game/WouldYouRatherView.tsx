@@ -21,7 +21,7 @@ const sourceLabel = (source: GameCard["source"]) => (source === "ai" ? "AI 生�
  * 二选一视图（Plan 8.1）：只负责 A / VS / B 题面、可选短倒计时提示、一主一辅两个动作。
  * 不采集任何逐人输入（Constitution 2 / FR-019），动作语义交给共享引擎：下一题=completed，换一个=swapped。
  */
-export function WouldYouRatherView({ card, actions }: PackViewProps) {
+export function WouldYouRatherView({ card, actions, paused = false }: PackViewProps) {
   const [optionA, optionB] = splitWouldYouRather(card.content);
 
   return (
@@ -39,7 +39,7 @@ export function WouldYouRatherView({ card, actions }: PackViewProps) {
         {COUNT_STEPS.map((step) => <span className="would-you-rather__count" aria-hidden="true" key={step}>{step}</span>)}
       </p>
       {card.instruction && <p className="game-card__instruction">{card.instruction}</p>}
-      {actions && <RoundActions compact completeLabel="下一题" onComplete={actions.onComplete} onSwap={actions.onSwap} />}
+      {actions && <RoundActions compact disabled={paused} completeLabel="下一题" onComplete={actions.onComplete} onSwap={actions.onSwap} />}
       <span className="game-card__source">{sourceLabel(card.source)}</span>
     </article>
   );

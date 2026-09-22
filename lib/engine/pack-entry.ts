@@ -20,7 +20,8 @@ export async function resolvePackRoute(packId: string, random: RandomSource = Ma
     : packId;
   if (!target || !isRegisteredPack(target, customPacks)) return "/packs";
   if (session?.status === "active") {
-    const next = switchPackAndDeal(session, target, customPacks, random);
+    // 首页进包＝同段内的 initial-entry：不重开段、不重计轮次（只有局内手动切包才重计，V1.5）。
+    const next = switchPackAndDeal(session, target, customPacks, random, {}, "initial-entry");
     if (next !== session) {
       await sessionRepository.save(next);
       return `/game?session=${next.id}`;

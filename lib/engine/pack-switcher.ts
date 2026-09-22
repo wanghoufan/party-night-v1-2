@@ -2,7 +2,7 @@ import { resolvePackCapability } from "@/lib/domain/pack-capability";
 import type { CustomGamePack, GamePackDefinition, GameSession } from "@/lib/domain/schemas";
 import { ensurePackPlayable } from "@/lib/ai/generate-deck";
 import { startRound, switchPack, type StartRoundOptions } from "./session-engine";
-import type { RandomSource } from "./types";
+import type { PackTransitionCause, RandomSource } from "./types";
 import { createGamePackRegistry, getGamePack } from "@/lib/game-packs/registry";
 import { isRandomLauncherPackId } from "@/lib/game-packs/random-launcher";
 
@@ -68,14 +68,15 @@ export function listSwitchablePacks(session: GameSession, customPacks: CustomGam
  * → 出下一题。不联网、不阻塞；不满足人数条件时原样返回（调用方按引用判断未切换）。
  * `packId` 是「随机玩一个」启动器时先解析成随机挑中的真实玩法，再按普通切换处理（R-052：同一 Session）。
  * options 透传给出题（如转瓶子→真心话只出 truth 卡、并由被指到的人作答）；纯本地玩法（转瓶子）不出卡。
+ * cause 决定是否开新段（V1.5）：只有主持人手动切包才把顶栏轮次重计为 1。
  */
-export function switchPackAndDeal(session: GameSession, packId: string, customPacks: CustomGamePack[] = [], random: RandomSource = Math.random, options: StartRoundOptions = {}): GameSession {
+export function switchPackAndDeal(session: GameSession, packId: string, customPacks: CustomGamePack[] = [], random: RandomSource = Math.random, options: StartRoundOptions = {}, cause: PackTransitionCause = "manual-switch"): GameSession {
   const target = isRandomLauncherPackId(packId)
     ? pickLauncherTarget(customPacks, random, activePlayerCount(session), session.currentPackId)
     : packId;
   // 没有可玩的真实玩法：不切换、不静默开局，调用方停原页提示（R-051）。
   if (!target) return session;
-  const switched = switchPack(session, target);
+  const switched = switchPack(session, target, { cause });
   if (switched === session) return session;
   const { deck } = ensurePackPlayable(switched.deckSnapshot, switched.config, target, switched.usedCardIds);
   return startRound({ ...switched, deckSnapshot: deck }, random, { preferPackIds: [target], ...options });

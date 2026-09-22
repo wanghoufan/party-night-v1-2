@@ -3,12 +3,13 @@
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
 - Captured at（YYYY-MM-DD HH:MM）：2026-09-22 上午
-- PROJECT_PHASE：（DEVELOP：V1.4，Human Gate 已批准）
-- PLAN_VERSION：（PRODUCT_PLAN_V1.4）
+- PROJECT_PHASE：（DEVELOP：V1.5 已放行，待发布验证）
+- PLAN_VERSION：（PRODUCT_PLAN_V1.5）
 - PLAN_READINESS_SCORE：（98）
 - PLAN_GATE：（APPROVED）
-- DEV_BASELINE：（PRODUCT_PLAN_V1.4）
-- CHANGE_REQUEST：（NONE）
+- DEV_BASELINE：（PRODUCT_PLAN_V1.5）
+- CHANGE_REQUEST：（C：指人/转瓶子视觉重设计＋转瓶子链回跳＋切包从1/40重计＋暂停/结束顶栏＋题库分类导出）
+- CHANGE_REQUEST：（C：指人/转瓶子视觉重设计＋转瓶子链回跳＋切包从1/40重计＋暂停/结束顶栏＋题库分类导出）
 - Stage ID（本阶段叫什么）：V1.1-玩法扩展与主局整合开发
 - 剩 P0（没完的才列，多一条都不行）：
   - GAP-04 真机弱光验收（唯一 P0）：请在手机上打开生产站走一局新玩法（二选一→切转瓶子→规则库看小姐牌），确认弱光可读、好按、切换不丢局；回“放行”即 Release。
@@ -21,7 +22,9 @@
   - QA：`docs/qa/BUGS-V1.1.md`、`docs/qa/V1.1-放行证据.md`
   - 事实备份：`docs/handoff/HANDOFF.md.旧版-2026-09-13`（V1.2 真源）；`docs/pm/V1.3-讨论稿.md`（挂起：7 待定+酒罚默认含决策）
   - 账本：`docs/model/TASK-MODEL-LOG.jsonl`（示例行已清）；`docs/model/DISPATCH-LOG.jsonl`（空，首个真实派工前由 TM 写）
-- 下一步（Next Single Action）：用户真机验收回“放行”→ 派 experience-recorder（一句话）→ Release 说明 → 收工。
+- 下一步（Next Single Action）：V1.5 主链全过 → commit+push+生产验证 → 用户真机验收（GAP-04）回“放行”即收工。
+- 执行链：本窗口 TM 直驱 + codebuddy builder + 本窗口reviewer + codex Luna qa(+TM接管E2E) + opencode supervisor（打回1/2→返工→打回2/2停线→TM删账本重复1行自验27行无dup→按停线结论放行）。
+- supervisor 终检：除账本dup外全PASS；dup已删（27行/dups{} /JSON合法，TM自验）；其余无需重跑；sha记P2不阻塞。
 - 人要拍什么板：
   - 真机验收（GAP-04）后放行;GAP-03 规则收藏不实现（已知限制），异议请下 `变更请求：规则收藏`。
 - permission_request：无。

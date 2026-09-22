@@ -14,7 +14,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "export:questions": "vite-node -c vitest.config.ts scripts/export-builtin-question-bank.ts"
   },
   "dependencies": {
     "idb": "^8.0.3",

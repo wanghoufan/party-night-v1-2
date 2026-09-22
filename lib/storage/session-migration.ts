@@ -44,6 +44,36 @@ function withBackfilledPackState(session: GameSession): GameSession {
   return { ...session, currentPackState: backfillPackState(session.currentPackState) };
 }
 
+/**
+ * V1.5：旧记录没有段/逻辑轮次/显示轮次字段，这里在内存里补上确定值（幂等，不重写落库）。
+ * - 缺 currentSegmentId → `legacy-<sessionId>`：同一局每次读到同一个段，手动切包才真正开新段。
+ * - 轮次缺 segmentId/logicalRoundId → 归到当前段、用轮次自身 id。
+ * - 缺 displayRoundNo（0）→ 历史按顺序 index+1，未完成轮按已完成数+1；已有值一律保留。
+ */
+function withSessionAuditFields(session: GameSession): GameSession {
+  const segmentId = session.currentSegmentId || `legacy-${session.id}`;
+  const completedCount = session.rounds.filter((round) => round.status === "completed").length;
+  const rounds = session.rounds.map((round, index) => ({
+    ...round,
+    segmentId: round.segmentId || segmentId,
+    logicalRoundId: round.logicalRoundId || round.id,
+    displayRoundNo: round.displayRoundNo && round.displayRoundNo > 0 ? round.displayRoundNo : index + 1,
+  }));
+  const currentRound = session.currentRound
+    ? {
+        ...session.currentRound,
+        segmentId: session.currentRound.segmentId || segmentId,
+        logicalRoundId: session.currentRound.logicalRoundId || session.currentRound.id,
+        displayRoundNo: session.currentRound.displayRoundNo && session.currentRound.displayRoundNo > 0 ? session.currentRound.displayRoundNo : completedCount + 1,
+      }
+    : undefined;
+  return { ...session, currentSegmentId: segmentId, rounds, currentRound };
+}
+
+function normalizeSession(session: GameSession): GameSession | undefined {
+  return stripRetiredLauncher(withSessionAuditFields(withBackfilledPackState(session)));
+}
+
 function nonEmptyString(value: unknown): string | undefined {
   return typeof value === "string" && value.length > 0 ? value : undefined;
 }
@@ -134,11 +164,11 @@ export function migrateSessionRecord(raw: unknown): GameSession | undefined {
   if (!isRecord(raw)) return undefined;
 
   const current = gameSessionSchema.safeParse(raw);
-  if (current.success) return stripRetiredLauncher(withBackfilledPackState(current.data));
+  if (current.success) return normalizeSession(current.data);
 
   const version = raw.schemaVersion;
   if (version !== undefined && !MIGRATABLE_SESSION_SCHEMA_VERSIONS.includes(version as number)) return undefined;
 
   const migrated = gameSessionSchema.safeParse(upgradeToCurrent(raw));
-  return migrated.success ? stripRetiredLauncher(withBackfilledPackState(migrated.data)) : undefined;
+  return migrated.success ? normalizeSession(migrated.data) : undefined;
 }

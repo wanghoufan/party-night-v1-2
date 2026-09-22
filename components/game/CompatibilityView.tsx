@@ -15,7 +15,7 @@ const sourceLabel = (source: GameCard["source"]) => (source === "ai" ? "AI 生�
  * 单机同桌：两人同时口头回答，主持人点“一样/不一样”，不做任何秘密输入（Constitution 2 / FR-019）。
  * 分数只在“一样”时 +1（reducer 见 compatibility-test.ts），这里只负责把判定发出去。
  */
-export function CompatibilityView({ card, actions, compatibility }: PackViewProps) {
+export function CompatibilityView({ card, actions, compatibility, paused = false }: PackViewProps) {
   const ctx = compatibility;
   const state = ctx?.pair?.state;
   return (
@@ -43,12 +43,12 @@ export function CompatibilityView({ card, actions, compatibility }: PackViewProp
       <CompatibilityPairPicker players={ctx?.players ?? []} value={state} onChange={(playerId) => ctx?.onChangePair(playerId)} />
 
       <div className="compat-game__judge">
-        <button className="compat-game__same" type="button" disabled={!state} onClick={() => ctx?.onAnswer("same")}>一样 ❤️</button>
-        <button className="compat-game__different" type="button" disabled={!state} onClick={() => ctx?.onAnswer("different")}>不一样 😂</button>
+        <button className="compat-game__same" type="button" disabled={!state || paused} onClick={() => ctx?.onAnswer("same")}>一样 ❤️</button>
+        <button className="compat-game__different" type="button" disabled={!state || paused} onClick={() => ctx?.onAnswer("different")}>不一样 😂</button>
       </div>
       <p className="compat-game__note">分数只是当晚的娱乐，不代表任何严肃评价</p>
 
-      {actions && <RoundActions compact completeLabel="下一题" onComplete={actions.onComplete} onSwap={actions.onSwap} />}
+      {actions && <RoundActions compact disabled={paused} completeLabel="下一题" onComplete={actions.onComplete} onSwap={actions.onSwap} />}
       <span className="game-card__source">{sourceLabel(card.source)}</span>
     </article>
   );

@@ -30,7 +30,7 @@ function compatibilitySession(): GameSession {
       enabledPackIds: ["compatibility-test"], mode: "single",
     },
     deckSnapshot, usedCardIds: [], rounds: [],
-    currentPackId: "compatibility-test", currentPackState: {}, recentRejectedFingerprints: [],
+    currentPackId: "compatibility-test", currentSegmentId: "e2e-segment", currentPackState: {}, recentRejectedFingerprints: [],
     startedAt: now, updatedAt: now,
   };
 }

@@ -25,12 +25,12 @@ test("断网且目标玩法无缓存时，切换玩法立刻用本地 seed 进�
   await expect(page).toHaveURL(/\/game\?session=/);
 
   // 断网下继续玩：换一个 + 下一题都不卡
-  // 注：切玩法时旧未完成轮记 skipped，所以起点已是第 2 轮；换一个后第 3 轮，下一题后第 4 轮
+  // 注：V1.5 手动切玩法开新段，顶栏从第 1 轮重计；换一个不推进（仍第 1），下一题完成后才到第 2
   await page.getByRole("button", { name: "换一个" }).click();
   await expect(page.locator(".would-you-rather")).toBeVisible();
-  await expect(page.getByText(/第 3 \/ /)).toBeVisible();
+  await expect(page.getByText(/第 1 \/ /)).toBeVisible();
   await page.getByRole("button", { name: "下一题" }).click();
-  await expect(page.getByText(/第 4 \/ /)).toBeVisible();
+  await expect(page.getByText(/第 2 \/ /)).toBeVisible();
 
   const after = await readSession(page, id);
   expect(after.id).toBe(before.id);
