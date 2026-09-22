@@ -18,7 +18,7 @@ export default function HomePage() {
           <div className="hero-promise"><span>轻松破冰</span><span>睡前抽题</span><span>聚会必备</span></div>
         </header>
         <section className="home-stage" aria-label="今晚的派对"><div className="disco-orb" aria-hidden="true"><span>PN</span></div><p>好朋友，从今晚开始！</p></section>
-        <Link className="home-primary" href="/setup">今晚开局 <Icon name="chevron" /></Link>
+        <Link className="home-primary" href="/setup">今晚开局（AI 组局） <Icon name="chevron" /></Link>
         <PackShortcutGrid />
         <div className="home-tools"><PartyToolsSection /></div>
       </main>
