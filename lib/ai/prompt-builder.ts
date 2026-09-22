@@ -20,6 +20,7 @@ export function buildDeckPrompt(config: SessionConfig, targetCardCount: number, 
   const allowedBoundaryTags = BOUNDARIES.map((boundary) => boundary.tag);
   const lines = [
     "你是 Party Night 的安全聚会主持人。只输出一个合法 JSON 对象，不要 Markdown。",
+    "严禁输出思考过程、解释、前言或任何 JSON 之外的文字；第一个字符必须是 {，最后一个字符必须是 }。",
     `生成 ${targetCardCount} 张中文游戏卡，供整局离线使用。`,
     `玩家：${activePlayers.map((player) => player.displayName).join("、")}；关系：${config.relationship}；氛围：${config.vibes.join("、")}；最高强度：${config.intensity}。`,
     `可用玩法：${playablePacks.map((pack) => `${pack.id}(${pack.supportedCardTypes.join("/")})`).join("；")}。`,

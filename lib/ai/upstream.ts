@@ -47,5 +47,8 @@ export function extractMessageContent(body: unknown): string {
   } catch { /* 诊断失败不影响主流程 */ }
   // 剥 markdown 围栏：```json ... ``` 或 ``` ... ```
   const fenced = content.trim().match(/^```(?:json)?\s*([\s\S]*?)\s*```$/);
-  return (fenced?.[1] ?? content).trim();
+  const json = (fenced?.[1] ?? content).trim();
+  // 思考体拦截：不以 { 开头的直接拒收，不浪费 zod 解析
+  if (!json.startsWith("{")) throw new Error("provider-thinking-leak");
+  return json;
 }
