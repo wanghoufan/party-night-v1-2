@@ -28,7 +28,7 @@ export async function POST(request: Request) {
       const result = await callProvider(input.profile, apiKey, {
         model: input.profile.modelId,
         messages: [{ role: "system", content: "输出严格 JSON。" }, { role: "user", content: prompt }],
-        max_tokens: Math.max(4096, input.targetCardCount * 190), temperature: .85,
+        max_tokens: Math.max(8192, input.targetCardCount * 320), temperature: .85,
         ...(input.profile.type === "deepseek-official" ? { response_format: { type: "json_object" }, thinking: { type: "disabled" } } : {}),
       }, input.sessionId, request.signal);
       if (result.status < 200 || result.status >= 300) {
