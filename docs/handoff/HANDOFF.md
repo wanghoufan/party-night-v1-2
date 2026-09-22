@@ -14,7 +14,8 @@
 - Stage ID（本阶段叫什么）：V1.1-玩法扩展与主局整合开发
 - 剩 P0（没完的才列，多一条都不行）：
   - GAP-04 真机弱光验收（唯一 P0）：请在手机上打开生产站走一局新玩法（二选一→切转瓶子→规则库看小姐牌），确认弱光可读、好按、切换不丢局；回“放行”即 Release。
-- 当前 Task（正干到哪）（累计打回 n/2）：V1.5宽屏热修（Change A）supervisor终检打回1/2→四项落盘补齐（spec入库＋CODE_REVIEW宽屏节＋两账本各一行＋本同步）→待重送终检→发布。
+- 当前 Task（正干到哪）（累计打回 n/2）：V1.5链入无响应热修（Change A）supervisor终检条件放行（HANDOFF/BUGS两行落盘即放行）→本同步＋BUGS落盘→发布。
+- 链入热修证据（TM实证）：空牌堆点真心话复现pack=spin-bottle/round=none/chain.returning+exhausted/无报错；修后lint0/typecheck0/unit500；spin+desktop E2E 11项过；reviewer 4项成立无必须修。
 - 宽屏热修证据：lint0/typecheck0/unit497；桌面1280x800 E2E 4项过（座位最小间隙21.2px/长昵称5.8px/无巨型元素/无溢出；/、/packs居中390）。
 - 执行链：本窗口 TM 直驱 + codebuddy builder + 本窗口 reviewer/qa/recorder待派 + opencode supervisor。
 - 未闭环评审意见：无。
