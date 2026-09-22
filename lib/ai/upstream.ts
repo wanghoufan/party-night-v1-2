@@ -29,7 +29,18 @@ export function extractMessageContent(body: unknown): string {
   if (!body || typeof body !== "object") throw new Error("provider-invalid-response");
   const choices = (body as { choices?: unknown }).choices;
   if (!Array.isArray(choices) || !choices.length) throw new Error("provider-empty-response");
-  const content = (choices[0] as { message?: { content?: unknown } })?.message?.content;
+  const first = choices[0] as { message?: { content?: unknown; reasoning_content?: unknown } };
+  let content = first?.message?.content;
+  // 部分中转渠道把正文放 reasoning_content，或返回 content 数组段
+  if (typeof content !== "string" || !content.trim()) {
+    if (typeof first?.message?.reasoning_content === "string" && first.message.reasoning_content.trim()) {
+      content = first.message.reasoning_content;
+    } else if (Array.isArray(content)) {
+      content = content.map((part) => typeof part === "string" ? part : typeof (part as { text?: unknown })?.text === "string" ? (part as { text: string }).text : "").join("");
+    }
+  }
   if (typeof content !== "string" || !content.trim()) throw new Error("provider-empty-response");
-  return content;
+  // 剥 markdown 围栏：```json ... ``` 或 ``` ... ```
+  const fenced = content.trim().match(/^```(?:json)?\s*([\s\S]*?)\s*```$/);
+  return (fenced?.[1] ?? content).trim();
 }
