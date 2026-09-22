@@ -36,7 +36,7 @@ const CARDLESS_PACKS: { id: string; name: string }[] = [
 ];
 
 /** 内置种子题卡总数（7 包合计），导出数量对不上直接报错，防止静默漏卡。 */
-const EXPECTED_CARD_TOTAL = 180;
+const EXPECTED_CARD_TOTAL = 350;
 
 const OUTPUT_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "docs", "content", "题库审查");
 

@@ -15,3 +15,11 @@
 {"date":"2026-09-22","task":"V1.5宽屏热修复核","role":"code-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"本窗口","result":"PASS","note":"三问全过；2必须修已闭；见CODE_REVIEW-V1.5.md宽屏节"}
 {"date":"2026-09-22","task":"V1.5链入无响应热修：空牌堆补种+耗尽提示","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"TM实证复现后派修；ensureChainDeck幂等补种；lint0/typecheck0/500/11E2E"}
 {"date":"2026-09-22","task":"V1.5链入无响应热修复核","role":"code-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"本窗口","result":"PASS","note":"4项全成立；无必须修；见CODE_REVIEW-V1.5.md链入节"}
+{"date":"2026-09-22","task":"V1.6题库把关文档包","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"9文件519行；180题逐行核对真源；只新增把关目录未碰代码"}
+{"date":"2026-09-22","task":"V1.6把关文档改版","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"9份md配额重算+语义+陡坡；未碰代码"}
+{"date":"2026-09-22","task":"V1.6把关文档二次改版","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"70/30/0看戏清零；仅改把关9份md"}
+{"date":"2026-09-22","task":"V1.6全量：终稿350+陡坡+L1","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"超时但落盘：种子350/权重/L1/单测；残留dup由收尾修"}
+{"date":"2026-09-22","task":"V1.6收尾：dup修复+L2+开关+1.5.0","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"超时但落盘全；lint0/typecheck0/511"}
+{"date":"2026-09-22","task":"V1.6全量复核","role":"code-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"本窗口","result":"PASS","note":"6项全过无必须修"}
+{"date":"2026-09-22","task":"V1.6 QA静态门禁","role":"qa","model":"codex/gpt-5.6-luna","used":"主","runtime":"codex","result":"PASS","note":"lint/typecheck/511/build/1.5.0过；E2E沙箱EPERM未跑"}
+{"date":"2026-09-22","task":"V1.6 E2E全量复测","role":"qa","model":"codex/gpt-5.6-luna","used":"主","runtime":"本窗口","result":"PASS","note":"TM接管直跑：80pass+4skip production门控"}

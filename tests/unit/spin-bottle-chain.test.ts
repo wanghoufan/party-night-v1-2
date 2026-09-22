@@ -1,14 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { gameSessionSchema, type GameCard, type GameSession, type Player } from "@/lib/domain/schemas";
+import { gameSessionSchema, type GameCard, type GameSession, type Intensity, type Player } from "@/lib/domain/schemas";
 import { activateSession, createSession, startRound, updatePackState } from "@/lib/engine/session-engine";
 import {
-  availableSpinChainKinds, availableSpinChainKindsAfterRefill, enterSpinChain, replaceInSpinChain, resolveSpinChain, returnToBottle,
-  spinChainPhaseAfter, SPIN_CHAIN_PACK_ID,
+  availableSpinChainKinds, availableSpinChainKindsAfterRefill, enterSpinChain, remainingSpinChainCards, replaceInSpinChain, resolveSpinChain, returnToBottle,
+  spinChainAvailability, spinChainPhaseAfter, SPIN_CHAIN_PACK_ID,
 } from "@/lib/engine/spin-chain";
 import { COMPATIBILITY_PACK_ID } from "@/lib/game-packs/compatibility-test";
 import { readSpinBottleState, readSpinChain, recordSpinResult, SPIN_BOTTLE_PACK_ID, spinBottleStateSchema } from "@/lib/game-packs/spin-bottle";
 import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
 import { DEFAULT_BOUNDARIES } from "@/lib/domain/constants";
+import { PACK_PLAYABLE_THRESHOLD } from "@/lib/ai/generate-deck";
 
 const players = (spec: Array<[string, string, boolean]>): Player[] =>
   spec.map(([id, displayName, active]) => ({ id, displayName, active, createdAt: "x", lastUsedAt: "x" }));
@@ -208,22 +209,74 @@ describe("空牌堆单开局也能链入出题 (V1.5 热修)", () => {
   });
 });
 
-describe("题卡耗尽空态 (V1.5)", () => {
-  it("truth 用完了就改出 dare，不停机", () => {
+describe("题卡耗尽：L1 洗牌不断游 + 真缺口才回瓶子 (V1.6)", () => {
+  it("truth 出完了 → L1 洗回来照样出 truth（重复，不断游），不偷偷换类型", () => {
     const session = { ...spinSession(), usedCardIds: usedAllOfType("truth") } as GameSession;
+    // 新鲜卡只剩 dare，但 truth 整类还在（洗完就能出）
     expect(availableSpinChainKinds(session)).toEqual(["dare"]);
+    expect(spinChainAvailability(session)).toEqual({ available: ["truth", "dare"], recycled: ["truth"] });
+
     const next = enterSpinChain(session, { targetPlayerId: "p1", targetName: "Alex", kind: "truth" }, [], () => 0);
-    expect(cardOf(next)?.type).toBe("dare");
-    expect(readSpinChain(next)?.kind).toBe("dare");
+    expect(cardOf(next)?.type).toBe("truth"); // 点真心话就给真心话（题目会重复）
+    expect(readSpinChain(next)).toMatchObject({ phase: "question", kind: "truth" });
+    expect(readSpinChain(next)?.recycled).toContain("truth");
   });
 
-  it("两类都用完就回瓶子 ready 并标记 exhausted，不空转出题", () => {
+  it("两类都出过 → L1 把请求那类洗回来继续出题（题目会重复，不断游）", () => {
     const session = { ...spinSession(), usedCardIds: TRUTH_DARE_CARDS.map((card) => card.id) } as GameSession;
+    // 新鲜卡为 0：直接判可用确实两类都判死
     expect(availableSpinChainKinds(session)).toEqual([]);
+    expect(spinChainAvailability(session).recycled).toEqual(["truth", "dare"]);
+
     const next = enterSpinChain(session, { targetPlayerId: "p1", targetName: "Alex", kind: "truth" }, [], () => 0);
+    // 不断游：洗完照样进 truth-dare 出题，不空转回瓶子
+    expect(next.currentPackId).toBe(SPIN_CHAIN_PACK_ID);
+    expect(next.currentRound?.packId).toBe(SPIN_CHAIN_PACK_ID);
+    expect(cardOf(next)?.type).toBe("truth");
+    expect(readSpinChain(next)).toMatchObject({ phase: "question", kind: "truth" });
+    // 链账记下洗过哪类，刷新后提示还在
+    expect(readSpinChain(next)?.recycled).toContain("truth");
+    // 结果页两个去向仍可点（按补位+洗牌后的可用态算），不出现「全禁」死局
+    expect(availableSpinChainKindsAfterRefill(next)).toEqual(["truth", "dare"]);
+  });
+
+  it("题池真缺口（全被人数挡掉）才回瓶子 ready 并标记 exhausted", () => {
+    const solo = { ...spinSession(), config: { ...spinSession().config, players: players([["p1", "Alex", true]]) } } as GameSession;
+    expect(availableSpinChainKindsAfterRefill(solo)).toEqual([]);
+    const next = enterSpinChain(solo, { targetPlayerId: "p1", targetName: "Alex", kind: "truth" }, [], () => 0);
     expect(next.currentPackId).toBe(SPIN_BOTTLE_PACK_ID);
     expect(next.currentRound).toBeUndefined();
     expect(readSpinChain(next)).toMatchObject({ phase: "returning", exhausted: true, targetPlayerId: "p1", targetName: "Alex" });
+  });
+});
+
+describe("L2 后台补题的触发口径：链内某类剩余 < 3 (V1.6)", () => {
+  const truths = TRUTH_DARE_CARDS.filter((card) => card.type === "truth");
+  const ALLOW_BOUNDARIES = {
+    noPhysicalContact: false, noAlcoholPenalty: false, noExPartners: false, noSexualHistory: false, noMoneyIncome: false,
+    noPhonePrivacy: false, noPublicPosting: false, noStrangerContact: false, noPhotoVideo: false, noSocialAccounts: false, customText: "",
+  };
+
+  it("剩余＝该类「没用过且过尺度/雷区」的卡数，只有低于阈值的那类才该补", () => {
+    const fresh = remainingSpinChainCards(spinSession());
+    expect(fresh.truth).toBe(fresh.dare); // 两档种子配额对称
+    expect(fresh.truth).toBeGreaterThan(PACK_PLAYABLE_THRESHOLD); // 开局远高于阈值，不该触发补题
+
+    // 放开尺度/雷区后剩余＝未用卡数：留最后 2 张没用 → 2 < 3，正是后台 refill 的触发条件
+    const almostDone: GameSession = {
+      ...spinSession(),
+      config: { ...spinSession().config, intensity: 5 as Intensity, boundaries: ALLOW_BOUNDARIES },
+      usedCardIds: truths.slice(0, truths.length - 2).map((card) => card.id),
+    };
+    const remaining = remainingSpinChainCards(almostDone);
+    expect(remaining.truth).toBe(2);
+    expect(remaining.truth).toBeLessThan(PACK_PLAYABLE_THRESHOLD);
+    expect(remaining.dare).toBeGreaterThan(PACK_PLAYABLE_THRESHOLD); // 另一类没动，仍远高于阈值
+  });
+
+  it("整类被雷区/人数挡掉时剩余为 0（真缺口，L2 也补不回来，回瓶子）", () => {
+    const solo = { ...spinSession(), config: { ...spinSession().config, players: players([["p1", "Alex", true]]) } } as GameSession;
+    expect(remainingSpinChainCards(solo)).toEqual({ truth: 0, dare: 0 });
   });
 });
 

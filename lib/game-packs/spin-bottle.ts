@@ -18,6 +18,11 @@ export const spinChainSchema = z.object({
   targetName: z.string().min(1),
   /** 真心话与大冒险都出完了：回瓶子并提示，不再空转出题。 */
   exhausted: z.boolean().optional(),
+  /**
+   * L1 洗牌循环（V1.6）：哪几类题已经从头再来过——该类用完就把已用记录清空，题目会重复，但永不卡住现场。
+   * 存在链账里是为了刷新后提示还在，主持人知道自己看到的是重复题而不是新题。
+   */
+  recycled: z.array(z.enum(["truth", "dare"])).optional(),
 });
 export type SpinChainPhase = z.infer<typeof spinChainPhaseSchema>;
 export type SpinChainState = z.infer<typeof spinChainSchema>;

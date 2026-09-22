@@ -146,12 +146,13 @@ textarea {
 
 .tag { display: inline-flex; align-items: center; min-height: 1.75rem; border: 1px solid rgba(152,92,255,.55); border-radius: var(--radius-pill); padding: .2rem .65rem; color: #d8ceff; background: rgba(86,55,158,.2); font-size: .78rem; }
 
+/* 开关（V1.6 重设计）：ON＝高饱和品牌粉实底＋滑块内 ✓；OFF＝灰底＋描边（不再靠亮度差区分状态）。 */
 .toggle { display: inline-flex; position: relative; width: 3rem; height: 1.75rem; cursor: pointer; }
 .toggle input { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
-.toggle span { width: 100%; border-radius: var(--radius-pill); background: #343950; transition: background .2s; }
-.toggle span::after { content: ""; position: absolute; width: 1.25rem; height: 1.25rem; top: .25rem; left: .25rem; border-radius: 50%; background: white; box-shadow: 0 2px 8px #0008; transition: transform .2s; }
-.toggle input:checked + span { background: linear-gradient(90deg, var(--color-electric-purple), var(--color-neon-pink)); box-shadow: var(--glow-purple); }
-.toggle input:checked + span::after { transform: translateX(1.25rem); }
+.toggle span { width: 100%; border: 1px solid rgba(255,255,255,.24); border-radius: var(--radius-pill); background: #2c3044; transition: background .2s, border-color .2s; }
+.toggle span::after { content: ""; position: absolute; display: grid; place-items: center; width: 1.25rem; height: 1.25rem; top: .25rem; left: .25rem; border-radius: 50%; color: transparent; font-size: .72rem; font-weight: 800; line-height: 1; background: #fff; box-shadow: 0 2px 8px #0008; transition: transform .2s, color .2s; }
+.toggle input:checked + span { border-color: transparent; background: var(--color-neon-pink); box-shadow: var(--glow-pink); }
+.toggle input:checked + span::after { content: "✓"; color: #a3006b; transform: translateX(1.25rem); }
 .toggle input:focus-visible + span { outline: 2px solid var(--color-neon-blue); outline-offset: 3px; }
 
 .slider { width: 100%; accent-color: var(--color-electric-purple); min-height: 2.75rem; }
@@ -279,10 +280,13 @@ textarea {
 
 .boundary-intro p { margin: -.35rem 0 1.2rem; color: var(--color-text-muted); font-size: .78rem; }
 .boundary-list { display: grid; overflow: hidden; border: 1px solid rgba(113,128,192,.22); border-radius: var(--radius-md); background: rgba(15,19,43,.86); }
-.boundary-list > label { display: grid; grid-template-columns: 2.25rem 1fr 3rem; align-items: center; gap: .65rem; min-height: 4.25rem; padding: .7rem .85rem; border-bottom: 1px solid rgba(113,128,192,.14); }
-.boundary-list > label:last-child { border-bottom: 0; }
+.boundary-list > .boundary-row { display: grid; grid-template-columns: 2.25rem 1fr 3rem; align-items: center; gap: .65rem; min-height: 4.25rem; padding: .7rem .85rem; border-bottom: 1px solid rgba(113,128,192,.14); }
+.boundary-list > .boundary-row:last-child { border-bottom: 0; }
 .boundary-icon { font-size: 1.25rem; }
-.boundary-list label > span:nth-child(2) { display: grid; gap: .2rem; }
+.boundary-list .boundary-row > span:nth-child(2) { display: grid; gap: .2rem; }
+/* 开启行＝已避开态：给整行一点底色 + 一枚态标（V1.6 开关重设计）。 */
+.boundary-row--avoided { background: rgba(30,230,163,.06); }
+.boundary-avoided { justify-self: start; border: 1px solid rgba(30,230,163,.45); border-radius: var(--radius-pill); padding: .05rem .45rem; color: var(--color-success); background: rgba(30,230,163,.12); font-size: .62rem; font-style: normal; font-weight: 700; }
 .boundary-list strong { font-size: .85rem; }
 .boundary-list small { color: var(--color-text-muted); font-size: .68rem; }
 .custom-boundary { display: grid; gap: .6rem; margin-top: 1rem; }
@@ -326,6 +330,8 @@ textarea {
 .round-header__confirm-actions { display: grid; gap: .55rem; }
 .round-header__confirm-actions .button { min-height: 3rem; }
 .paused-banner { margin-bottom: .7rem; padding: .55rem; border: 1px solid rgba(255,174,53,.5); border-radius: .7rem; color: #ffd18a; text-align: center; background: rgba(255,174,53,.12); }
+/* L2 后台补题回执：一次性轻提示，不抢焦点、不挡操作（V1.6）。 */
+.game-toast { margin: 0 0 .7rem; padding: .5rem .7rem; border: 1px solid rgba(30,230,163,.42); border-radius: .7rem; color: var(--color-success); text-align: center; background: rgba(30,230,163,.1); font-size: .78rem; }
 /* 暂停禁用矩阵：暂停时推进动作与切玩法入口变灰，避免「暂停了还能偷偷走一轮」。 */
 .button:disabled { opacity: .45; }
 .pack-switch-entry:disabled { opacity: .45; }
@@ -637,7 +643,9 @@ textarea {
 :root[data-theme="light"] .neon-card,
 :root[data-theme="light"] .summary-stats article { border-color: rgba(91,61,154,.18); background: linear-gradient(145deg, rgba(255,255,255,.95), rgba(242,238,255,.94)); box-shadow: 0 14px 34px rgba(53,40,91,.09); }
 :root[data-theme="light"] .tag { color: #6234a7; background: rgba(111,54,201,.08); }
-:root[data-theme="light"] .toggle span { background: #cbc6d8; }
+:root[data-theme="light"] .toggle span { border-color: rgba(46,36,74,.3); background: #ded9e8; }
+:root[data-theme="light"] .toggle input:checked + span { border-color: transparent; background: #c40087; box-shadow: none; }
+:root[data-theme="light"] .toggle input:checked + span::after { color: #a3006b; }
 :root[data-theme="light"] .modal { color: var(--color-text-primary); background: #fff; }
 :root[data-theme="light"] .modal-backdrop { background: rgba(34,25,57,.46); }
 :root[data-theme="light"] .sheet { color: var(--color-text-primary); background: #fff; }
@@ -697,7 +705,9 @@ textarea {
 :root[data-theme="light"] .choice-grid button.is-selected { color: #4f2383; background: rgba(152,92,255,.1); }
 :root[data-theme="light"] .intensity-label strong { color: #4f3c78; }
 :root[data-theme="light"] .boundary-list { border-color: rgba(91,61,154,.18); background: rgba(255,255,255,.78); }
-:root[data-theme="light"] .boundary-list > label { border-color: rgba(91,61,154,.11); }
+:root[data-theme="light"] .boundary-list > .boundary-row { border-color: rgba(91,61,154,.11); }
+:root[data-theme="light"] .boundary-row--avoided { background: rgba(11,107,74,.06); }
+:root[data-theme="light"] .boundary-avoided { color: #0b6b4a; border-color: rgba(11,107,74,.35); background: rgba(11,107,74,.08); }
 :root[data-theme="light"] .custom-boundary textarea { color: #211b35; border-color: rgba(91,61,154,.24); background: rgba(255,255,255,.9); }
 :root[data-theme="light"] .boundary-assurance { color: #526675; background: rgba(0,140,184,.06); }
 :root[data-theme="light"] .generating-screen ol { border-color: rgba(91,61,154,.18); background: rgba(255,255,255,.82); }
@@ -708,6 +718,7 @@ textarea {
 :root[data-theme="light"] .generation-recovery { background: rgba(255,174,53,.08); }
 :root[data-theme="light"] .generation-recovery p { color: #745d43; }
 :root[data-theme="light"] .paused-banner { color: #81520b; }
+:root[data-theme="light"] .game-toast { color: #0b6b4a; border-color: rgba(11,107,74,.35); background: rgba(11,107,74,.08); }
 :root[data-theme="light"] .game-motto { color: #ad1a78; text-shadow: none; }
 :root[data-theme="light"] .empty-deck a { color: #6335a8; }
 :root[data-theme="light"] .player-manager input { color: #211b35; background: #fff; }

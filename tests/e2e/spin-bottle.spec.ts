@@ -198,7 +198,7 @@ test("转瓶子：首页单开局（本地题库、牌堆为空）点真心话�
   await expect(page.locator(".game-card h1")).toHaveText(dealt.content);
 });
 
-test("转瓶子：只出完真心话 → 只禁用真心话，大冒险仍可链入并有提示", async ({ page }) => {
+test("转瓶子：真心话出完 → L1 洗牌接着出（不断游），结果页提示会重复、两个去向都还能进", async ({ page }) => {
   const truthUsed = {
     ...spinSession(),
     usedCardIds: TRUTH_DARE_CARDS.filter((card) => card.type === "truth").map((card) => card.id),
@@ -206,29 +206,31 @@ test("转瓶子：只出完真心话 → 只禁用真心话，大冒险仍可链
   await openSession(page, truthUsed);
   await spinWithFixedRandom(page, () => spinButton(page).click());
 
-  const exhaustHint = page.locator(".spin-bottle__exhausted");
-  await expect(exhaustHint).toBeVisible();
-  await expect(exhaustHint).toHaveText(/真心话出完了/);
-  await expect(page.getByRole("button", { name: "真心话" })).toBeDisabled();
-  const dare = page.getByRole("button", { name: "大冒险" });
-  await expect(dare).toBeEnabled();
+  // 不断游：出完的那类由 L1 洗回来，不再禁用（禁用＝主持人点不进去的死局）
+  const repeatHint = page.locator(".spin-bottle__exhausted");
+  await expect(repeatHint).toBeVisible();
+  await expect(repeatHint).toHaveText(/真心话.*重复/);
+  await expect(page.getByRole("button", { name: "真心话" })).toBeEnabled();
+  await expect(page.getByRole("button", { name: "大冒险" })).toBeEnabled();
 
-  await dare.click();
+  await page.getByRole("button", { name: "真心话" }).click();
   const chained = await readSession(page, SESSION_ID);
   expect(chained.currentPackId).toBe("truth-dare");
   const dealt = chained.deckSnapshot.find((card) => card.id === chained.currentRound?.cardId) as GameCard;
-  expect(dealt.type).toBe("dare");
+  expect(dealt.type).toBe("truth");
+  // 链账记下洗过哪类：刷新后提示还在，主持人知道这是重复题而不是新题
+  expect((chained.currentPackState?.["spin-bottle"] as { chain?: { recycled?: string[] } } | undefined)?.chain?.recycled).toContain("truth");
 });
 
-test("转瓶子：两类题卡都用完 → 两个去向都禁用，并提示回瓶子再转（不静默）", async ({ page }) => {
+test("转瓶子：两类都出完 → L1 洗牌重来，两个去向都还能进（题目会重复，不静默）", async ({ page }) => {
   const exhausted = { ...spinSession(), usedCardIds: TRUTH_DARE_CARDS.map((card) => card.id) } as GameSession;
   await openSession(page, exhausted);
   await spinWithFixedRandom(page, () => spinButton(page).click());
   await expect(target(page)).toHaveText("🎯 Alex");
 
-  const exhaustHint = page.locator(".spin-bottle__exhausted");
-  await expect(exhaustHint).toBeVisible();
-  await expect(exhaustHint).toHaveText(/都出完了/);
-  await expect(page.getByRole("button", { name: "真心话" })).toBeDisabled();
-  await expect(page.getByRole("button", { name: "大冒险" })).toBeDisabled();
+  const repeatHint = page.locator(".spin-bottle__exhausted");
+  await expect(repeatHint).toBeVisible();
+  await expect(repeatHint).toHaveText(/真心话和大冒险.*重复/);
+  await expect(page.getByRole("button", { name: "真心话" })).toBeEnabled();
+  await expect(page.getByRole("button", { name: "大冒险" })).toBeEnabled();
 });

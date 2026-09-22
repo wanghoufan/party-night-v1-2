@@ -14,6 +14,19 @@ test("无账号完成组局并进入生成状态", async ({ page }) => {
   await expect(page.getByRole("button", { name: /使用本地题库开始/ })).toBeVisible();
 });
 
+test("雷区开关开启那行显示「已避开」态，关掉即消失（V1.6 开关重设计）", async ({ page }) => {
+  await page.goto("/setup");
+  await page.getByRole("button", { name: /下一步：雷区设置/ }).click();
+  await expect(page).toHaveURL(/\/boundaries/);
+
+  const row = page.locator(".boundary-row").filter({ hasText: "身体接触" });
+  await expect(row.locator(".boundary-avoided")).toHaveCount(0);
+  await page.getByLabel("禁用身体接触").check();
+  await expect(row.locator(".boundary-avoided")).toHaveText("已避开");
+  await page.getByLabel("禁用身体接触").uncheck();
+  await expect(row.locator(".boundary-avoided")).toHaveCount(0);
+});
+
 test("组局与雷区页面保留主导航且不遮挡下一步", async ({ page }) => {
   await page.goto("/setup");
   const navigation = page.getByRole("navigation", { name: "主导航" });

@@ -3,18 +3,18 @@
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
 - Captured at（YYYY-MM-DD HH:MM）：2026-09-22 上午
-- PROJECT_PHASE：（DEVELOP：V1.5 已发布验证通过，剩用户真机验收）
+- PROJECT_PHASE：（DEVELOP：V1.6题库把关文档阶段，用户2026-09-22批第二阶段先文档后内容）
 - Captured at（YYYY-MM-DD HH:MM）：2026-09-22 15:30
 - PLAN_VERSION：（PRODUCT_PLAN_V1.5）
 - PLAN_READINESS_SCORE：（98）
 - PLAN_GATE：（APPROVED）
 - DEV_BASELINE：（PRODUCT_PLAN_V1.5）
-- CHANGE_REQUEST：（C：指人/转瓶子视觉重设计＋转瓶子链回跳＋切包从1/40重计＋暂停/结束顶栏＋题库分类导出）
-- CHANGE_REQUEST：（C：指人/转瓶子视觉重设计＋转瓶子链回跳＋切包从1/40重计＋暂停/结束顶栏＋题库分类导出）
+- CHANGE_REQUEST：（B：题库互动纲重写先行文档包＋耗尽不断游L1L2＋开关重设计＋尺度放开；本次只做文档包，不碰业务代码）
 - Stage ID（本阶段叫什么）：V1.1-玩法扩展与主局整合开发
 - 剩 P0（没完的才列，多一条都不行）：
   - GAP-04 真机弱光验收（唯一 P0）：请在手机上打开生产站走一局新玩法（二选一→切转瓶子→规则库看小姐牌），确认弱光可读、好按、切换不丢局；回“放行”即 Release。
-- 当前 Task（正干到哪）（累计打回 n/2）：V1.5链入无响应热修（Change A）supervisor终检条件放行（HANDOFF/BUGS两行落盘即放行）→本同步＋BUGS落盘→发布。
+- 当前 Task（正干到哪）（累计打回 n/2）：V1.6全量开工（用户令全干完不打扰：终稿350＋入库＋陡坡＋不断游L1L2＋开关＋回归发版；Change B主链）。
+- 下一步（Next Single Action）：文档包落盘 → TM验数 → 发用户审查（绝对路径），用户点头才进内容重写。
 - 链入热修证据（TM实证）：空牌堆点真心话复现pack=spin-bottle/round=none/chain.returning+exhausted/无报错；修后lint0/typecheck0/unit500；spin+desktop E2E 11项过；reviewer 4项成立无必须修。
 - 宽屏热修证据：lint0/typecheck0/unit497；桌面1280x800 E2E 4项过（座位最小间隙21.2px/长昵称5.8px/无巨型元素/无溢出；/、/packs居中390）。
 - 执行链：本窗口 TM 直驱 + codebuddy builder + 本窗口 reviewer/qa/recorder待派 + opencode supervisor。

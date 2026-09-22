@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { NeonBackground } from "@/components/brand/NeonBackground";
 import { Button } from "@/components/ui/Button";
@@ -13,14 +13,17 @@ import { RoundActions } from "@/components/game/RoundActions";
 import { RoundHeader } from "@/components/game/RoundHeader";
 import { RoundTimer } from "@/components/game/RoundTimer";
 import type { CustomGamePack, GameSession, Intensity, Player } from "@/lib/domain/schemas";
+import { PACK_PLAYABLE_THRESHOLD, refillPackInBackground } from "@/lib/ai/generate-deck";
+import { dedupeCards } from "@/lib/ai/normalize";
 import { completeRound, finishSession, pauseSession, resumeSession, segmentRoundNo, skipRound, startRound, swapRound, updateIntensity, updatePackState, updatePlayers } from "@/lib/engine/session-engine";
 import { listSwitchablePacks, switchPackAndDeal } from "@/lib/engine/pack-switcher";
 import { selectEligiblePlayer } from "@/lib/engine/player-selector";
-import { availableSpinChainKindsAfterRefill, enterSpinChain, replaceInSpinChain, resolveSpinChain, returnToBottle, SPIN_CHAIN_PACK_ID } from "@/lib/engine/spin-chain";
+import { enterSpinChain, remainingSpinChainCards, replaceInSpinChain, resolveSpinChain, returnToBottle, spinChainAvailability, SPIN_CHAIN_PACK_ID } from "@/lib/engine/spin-chain";
 import { COMPATIBILITY_PACK_ID, createCompatibilityState, defaultCompatibilityPair, readCompatibilityState, recordCompatibilityAnswer } from "@/lib/game-packs/compatibility-test";
 import { SPIN_BOTTLE_PACK_ID, readSpinBottleState, readSpinChain, recordSpinResult } from "@/lib/game-packs/spin-bottle";
 import { pairNames } from "@/components/game/CompatibilityPairPicker";
 import { getGamePack, packIsCardless } from "@/lib/game-packs/registry";
+import { aiProviderRepository } from "@/lib/storage/ai-provider-repository";
 import { gamePackRepository } from "@/lib/storage/game-pack-repository";
 import { sessionRepository, createSessionAutosave } from "@/lib/storage/session-repository";
 
@@ -43,6 +46,7 @@ function GamePageContent() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [switcherOpen, setSwitcherOpen] = useState(false);
   const [customPacks, setCustomPacks] = useState<CustomGamePack[]>([]);
+  const [toast, setToast] = useState("");
   useEffect(() => { if (!id) return router.replace("/"); void sessionRepository.get(id).then(async (stored) => { if (!stored) return router.replace("/"); const recovered = recoverSpinChain(stored); const next = recovered.currentRound ? recovered : startRound(recovered); await sessionRepository.save(next); setSession(next); }); }, [id, router]);
   useEffect(() => { void gamePackRepository.list().then(setCustomPacks); }, []);
   // 重要动作（切玩法 / 完成 / 换一个 / 跳过 / 默契分数 / 转瓶子落点）共用一条串行 autosave，
@@ -51,6 +55,39 @@ function GamePageContent() {
   // 主持人主动切换只受注册表 + 当前人数限制：游戏包开关只圈 AI 组局，不挡这里的主动切换（R-057）。
   const switchablePacks = useMemo(() => session ? listSwitchablePacks(session, customPacks) : [], [session, customPacks]);
   async function commit(next: GameSession) { await autosave.save(next); setSession(next); }
+  // L2 后台补题（V1.6）：链内某类剩余 < 3 时，用默认 Provider 悄悄补一批新题（不阻塞 UI，不打断当前题）。
+  // 每类只尝试一次、任一时刻只跑一个请求（单例）；没配 Provider／没 Key／断网一律静默，交给 L1 本地洗牌兜底。
+  const refill = useRef({ inFlight: false, attempted: new Set<string>() });
+  const latestSession = useRef<GameSession | undefined>(undefined);
+  useEffect(() => { latestSession.current = session; }, [session]);
+  useEffect(() => {
+    if (!session || refill.current.inFlight || readSpinChain(session)?.phase !== "question") return;
+    const remaining = remainingSpinChainCards(session);
+    const low = (["truth", "dare"] as const).filter((kind) => remaining[kind] < PACK_PLAYABLE_THRESHOLD && !refill.current.attempted.has(kind));
+    if (!low.length) return;
+    const snapshot = session;
+    refill.current.inFlight = true;
+    low.forEach((kind) => refill.current.attempted.add(kind));
+    void (async () => {
+      try {
+        const profiles = await aiProviderRepository.listProfiles();
+        const profile = profiles.find((item) => item.isDefault) ?? profiles[0];
+        const apiKey = profile ? await aiProviderRepository.getSecret(profile.id) : undefined;
+        if (!profile || !apiKey) return; // 没配好 Provider/Key：静默，交给 L1
+        const deck = await refillPackInBackground({ deck: snapshot.deckSnapshot, profile, apiKey, sessionConfig: snapshot.config, sessionId: snapshot.id, packId: SPIN_CHAIN_PACK_ID });
+        // 只把相对快照新增的卡并回「最新」session，避免覆盖期间用户已经做出的动作；再统一去重。
+        const added = deck.filter((card) => !snapshot.deckSnapshot.some((item) => item.id === card.id));
+        const latest = latestSession.current;
+        if (!added.length || !latest || latest.id !== snapshot.id) return; // 没补到新题或已换局：静默
+        const next = { ...latest, deckSnapshot: dedupeCards([...latest.deckSnapshot, ...added]) };
+        await autosave.save(next);
+        setSession(next);
+        setToast("已补充新题");
+      } catch { /* 断网/上游异常：静默失败，绝不影响现场（L1 兜底） */ }
+      finally { refill.current.inFlight = false; }
+    })();
+  }, [session, autosave]);
+  useEffect(() => { if (!toast) return; const timer = window.setTimeout(() => setToast(""), 4000); return () => window.clearTimeout(timer); }, [toast]);
   // 推进本轮：链内（truth-dare 题面上，链相位 question）走链自己的相位机——完成＝resolving→returning 自动回瓶子；
   // 换一个＝replacing 重出同类型题、参与者仍是链里固定的被指人。普通玩法沿用共享引擎语义。
   async function resolve(action: "complete" | "swap" | "skip") { if (!session) return; const chain = readSpinChain(session); if (chain?.phase === "question" && session.currentRound?.packId === SPIN_CHAIN_PACK_ID) { await commit(action === "swap" ? replaceInSpinChain(session, customPacks) : resolveSpinChain(session)); return; } const resolved = action === "complete" ? completeRound(session) : action === "swap" ? swapRound(session) : skipRound(session); const next = startRound(resolved, Math.random, action === "swap" && session.currentRound ? { reuseLogicalRoundId: session.currentRound.logicalRoundId } : {}); if (!next.currentRound) { const finished = finishSession(resolved); await commit(finished); router.push(`/summary?session=${finished.id}`); } else await commit(next); }
@@ -86,9 +123,11 @@ function GamePageContent() {
   const compatibility = { players: session.config.players, pair: compatibilityState ? { playerAId: compatibilityState.playerAId, playerBId: compatibilityState.playerBId, names: pairNames(session.config.players, compatibilityState), state: compatibilityState } : undefined, onChangePair: (playerId: string) => void changePair(playerId), onAnswer: (answer: "same" | "different") => void answerPair(answer) };
   // 转瓶子上下文：落点与上一次结果都来自 pack-local state，视图只负责表现与给去向。
   // resumeReady＝链刚回瓶子（phase=returning）：直接进 ready，接着转下一个人；exhausted＝两类题卡都出完了。
-  // availableKinds：补位后还能出题的类型（空牌堆也按补位后算），结果页据此禁用耗尽那类并给可见提示。
-  const spin = { players: session.config.players, lastSelectedPlayerId: readSpinBottleState(session)?.lastSelectedPlayerId, resumeReady: chain?.phase === "returning", exhausted: chain?.exhausted === true, availableKinds: availableSpinChainKindsAfterRefill(session), onSpin: spinPlayer, onChain: (kind: "truth" | "dare") => chainSpin(kind) };
-  return <NeonBackground className="game-bg"><main className="screen game-screen"><RoundHeader current={segmentRoundNo(session)} planned={Math.min(40, session.deckSnapshot.length)} paused={paused} onTogglePause={() => void togglePause()} onSettings={() => setSettingsOpen(true)} onFinish={() => void end()} />{paused && <div className="paused-banner" role="status">本局已暂停</div>}<PackViewHost key={card?.id ?? session.currentPackId} packId={session.currentPackId} card={card} participantNames={participantNames} actions={roundActions} compatibility={compatibility} spin={spin} paused={paused} />{session.currentRound && <RoundTimer roundId={session.currentRound.id} paused={paused} />}{!viewOwnsActions && <RoundActions {...roundActions} disabled={paused} />}<button className="pack-switch-entry" type="button" disabled={paused} onClick={() => setSwitcherOpen(true)}><Icon name="cube" />切换玩法 · {currentPackName}</button><p className="game-motto">Good Friends · Wilder Nights</p>{switcher}<InGameSettings open={settingsOpen} intensity={session.config.intensity} players={session.config.players} paused={paused} onIntensity={(value) => void changeIntensity(value)} onPlayers={(value) => void changePlayers(value)} onPause={() => void togglePause()} onFinish={() => void end()} onClose={() => setSettingsOpen(false)} /></main></NeonBackground>;
+  // availableKinds：补位后还能出题的类型（空牌堆也按补位后算），只有整类被雷区/尺度挡掉才禁；
+  // recycledKinds：新卡已出完、这次进去走 L1 洗牌重出（题目会重复）的类型，给一句可见提示（V1.6）。
+  const chainAvailability = spinChainAvailability(session);
+  const spin = { players: session.config.players, lastSelectedPlayerId: readSpinBottleState(session)?.lastSelectedPlayerId, resumeReady: chain?.phase === "returning", exhausted: chain?.exhausted === true, availableKinds: chainAvailability.available, recycledKinds: chainAvailability.recycled, onSpin: spinPlayer, onChain: (kind: "truth" | "dare") => chainSpin(kind) };
+  return <NeonBackground className="game-bg"><main className="screen game-screen"><RoundHeader current={segmentRoundNo(session)} planned={Math.min(40, session.deckSnapshot.length)} paused={paused} onTogglePause={() => void togglePause()} onSettings={() => setSettingsOpen(true)} onFinish={() => void end()} />{paused && <div className="paused-banner" role="status">本局已暂停</div>}{toast && <p className="game-toast" role="status">{toast}</p>}<PackViewHost key={card?.id ?? session.currentPackId} packId={session.currentPackId} card={card} participantNames={participantNames} actions={roundActions} compatibility={compatibility} spin={spin} paused={paused} />{session.currentRound && <RoundTimer roundId={session.currentRound.id} paused={paused} />}{!viewOwnsActions && <RoundActions {...roundActions} disabled={paused} />}<button className="pack-switch-entry" type="button" disabled={paused} onClick={() => setSwitcherOpen(true)}><Icon name="cube" />切换玩法 · {currentPackName}</button><p className="game-motto">Good Friends · Wilder Nights</p>{switcher}<InGameSettings open={settingsOpen} intensity={session.config.intensity} players={session.config.players} paused={paused} onIntensity={(value) => void changeIntensity(value)} onPlayers={(value) => void changePlayers(value)} onPause={() => void togglePause()} onFinish={() => void end()} onClose={() => setSettingsOpen(false)} /></main></NeonBackground>;
 }
 
 export default function GamePage() {
