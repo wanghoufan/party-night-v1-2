@@ -13,7 +13,7 @@
 - Stage ID（本阶段叫什么）：V1.1-玩法扩展与主局整合开发
 - 剩 P0（没完的才列，多一条都不行）：
   - GAP-04 真机弱光验收（唯一 P0）：请在手机上打开生产站走一局新玩法（二选一→切转瓶子→规则库看小姐牌），确认弱光可读、好按、切换不丢局；回“放行”即 Release。
-- 当前 Task（正干到哪）（累计打回 n/2）：迁移整理完成待收尾；音效V1.7计划待用户拍范围（未开工）。
+- 当前 Task（正干到哪）（累计打回 n/2）：音效V1.7分支feat/sound-v17终检通过（reviewer＋supervisor PASS；Luna静态＋TM接管E2E；未合main等用户点头；评审CODE_REVIEW-V1.7＋QA BUGS-V1.7已落盘）。
 - 下一步（Next Single Action）：文档包落盘 → TM验数 → 发用户审查（绝对路径），用户点头才进内容重写。
 - 链入热修证据（TM实证）：空牌堆点真心话复现pack=spin-bottle/round=none/chain.returning+exhausted/无报错；修后lint0/typecheck0/unit500；spin+desktop E2E 11项过；reviewer 4项成立无必须修。
 - 宽屏热修证据：lint0/typecheck0/unit497；桌面1280x800 E2E 4项过（座位最小间隙21.2px/长昵称5.8px/无巨型元素/无溢出；/、/packs居中390）。

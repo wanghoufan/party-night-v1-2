@@ -184,6 +184,10 @@ textarea {
 .appearance-panel h2, .appearance-panel p { margin: 0; }
 .appearance-panel h2 { font-size: .92rem; }
 .appearance-panel p { margin-top: .2rem; color: var(--color-text-muted); font-size: .7rem; }
+/* 音效开关（V1.7）：右侧「已开启 / 已静音」＋Toggle，状态用文字直说，不靠颜色猜。 */
+.sound-toggle__control { display: grid; justify-items: end; gap: .4rem; }
+.sound-toggle__state { font-size: .74rem; font-weight: 800; letter-spacing: .02em; color: var(--color-text-muted); }
+.sound-toggle__state--on { color: #ff5ce1; }
 .theme-selector { display: grid; grid-template-columns: 1fr 1fr; gap: .3rem; padding: .25rem; border: 1px solid rgba(113,128,192,.24); border-radius: .7rem; background: rgba(7,9,24,.5); }
 .theme-selector button { display: flex; align-items: center; justify-content: center; gap: .35rem; min-width: 4.4rem; min-height: 2.75rem; border: 1px solid transparent; border-radius: .5rem; color: var(--color-text-muted); background: transparent; cursor: pointer; }
 .theme-selector button[aria-pressed="true"] { border-color: rgba(152,92,255,.5); color: var(--color-text-primary); background: rgba(152,92,255,.18); box-shadow: inset 0 0 14px rgba(152,92,255,.1); }
@@ -676,6 +680,7 @@ textarea {
 :root[data-theme="light"] .secret-field__input button { color: #69568d; }
 :root[data-theme="light"] .settings-notice { color: #087457; }
 :root[data-theme="light"] .provider-note { color: #176a82; background: rgba(0,140,184,.07); }
+:root[data-theme="light"] .sound-toggle__state--on { color: #b3259a; }
 :root[data-theme="light"] .provider-note p { color: #5d6877; }
 :root[data-theme="light"] .custom-provider-link { color: #6737b0; }
 :root[data-theme="light"] .danger-zone p { color: #795c66; }

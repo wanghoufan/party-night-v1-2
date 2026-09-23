@@ -9,6 +9,8 @@ export interface AppPreferences {
   activeProviderId?: string;
   /** 用户在“游戏包”里禁用的内置玩法：内置默认启用，这里只记禁用名单（FR-044）。 */
   disabledPackIds?: string[];
+  /** 音效总静音（V1.7）：默认开，未写或 false＝播放提示音，true＝全局静音。 */
+  soundMuted?: boolean;
   updatedAt: string;
 }
 

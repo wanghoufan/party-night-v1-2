@@ -11,6 +11,7 @@ import { calculateSessionSummary } from "@/lib/engine/session-summary";
 import { createSession } from "@/lib/engine/session-engine";
 import { sessionRepository } from "@/lib/storage/session-repository";
 import { summaryRepository } from "@/lib/storage/summary-repository";
+import { play } from "@/lib/audio";
 
 const labels: Record<string, [string, string]> = { "truth-dare": ["♥", "真心话大冒险"], "most-likely": ["♟", "谁最可能"], "never-have": ["♜", "我从来没有"], "ai-improv": ["✦", "AI 即兴"] };
 
@@ -21,6 +22,8 @@ function SummaryPageContent() {
   useEffect(() => { if (!id) return router.replace("/"); void sessionRepository.get(id).then((value) => value ? setSession(value) : router.replace("/")); }, [id, router]);
   const summary = useMemo(() => session ? calculateSessionSummary(session) : undefined, [session]);
   useEffect(() => { if (summary) void summaryRepository.save(summary); }, [summary]);
+  // 总结页 fanfare：本局数据就绪时响一次（静音或未解锁时 no-op）。
+  useEffect(() => { if (summary) play("fanfare"); }, [summary]);
   async function replay() { if (!session) return; const next = createSession(session.config); await sessionRepository.save(next); router.push(`/generating?session=${next.id}`); }
   if (!session || !summary) return <NeonBackground><main className="screen"><p>正在整理本局数据…</p></main></NeonBackground>;
   const minutes = Math.max(1, Math.round(summary.durationSeconds / 60));

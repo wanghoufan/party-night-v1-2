@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import type { Player } from "@/lib/domain/schemas";
+import { play } from "@/lib/audio";
 import { playerLabels } from "@/lib/tools/random-player";
 import { randomGroups } from "@/lib/tools/random-groups";
 
@@ -26,6 +27,7 @@ export function RandomGroupTool({ players }: { players: Player[] }) {
   const enoughPlayers = labels.size >= 2;
 
   function split() {
+    play("tool-groups");
     setGroups(mode === "two" ? randomGroups(players, { groupSize: 2 }) : randomGroups(players, { groups: Number(mode) }));
   }
 

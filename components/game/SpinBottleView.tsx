@@ -3,12 +3,18 @@
 import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from "react";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { play, startSoundLoop } from "@/lib/audio";
 import type { Player } from "@/lib/domain/schemas";
 
 /** 旋转动画时长：与 CSS 过渡一致，只是表演，不参与选人（Plan 8.4）。 */
 export const SPIN_MS = 1100;
 /** 每次旋转都多转两圈再停在 target 座位上，方向永远由“已定下的结果”决定。 */
 const FULL_TURNS = 2;
+/**
+ * 减速 tick 的落点（占旋转总时长的比例）。取样自 CSS 的 `cubic-bezier(.16,.86,.24,1)` ease-out：
+ * 间隔依次变长（0.06 → 0.13 → 0.2 → 0.3 → 0.41 → 0.57），听感就是越转越慢。
+ */
+const TICK_POSITIONS = [0.06, 0.13, 0.2, 0.3, 0.41, 0.57];
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
 /** 主局传给转瓶子的上下文：玩家名单 + 上一次落点 + 链相位 + 两个回调（抽人 / 链入真心话大冒险）。 */
@@ -102,6 +108,21 @@ export function SpinBottleView({ spin, paused = false }: SpinBottleProps) {
     setTurn((value) => value + 1);
     setPhase(reducedMotion ? "result" : "spinning");
   }
+
+  // 音效（V1.7）：转起来铺一层“呼呼”循环；减速 tick 用逐渐拉长的间隔表现越转越慢；
+  // 未解锁/已静音时 startSoundLoop 返回 undefined、play 直接 no-op，不影响动画。暂停时整条音效停掉，恢复后接着来。
+  useEffect(() => {
+    if (phase !== "spinning" || paused) return;
+    const loop = startSoundLoop("spin-whoosh");
+    const remaining = remainingRef.current;
+    const timers = TICK_POSITIONS.map((position) => window.setTimeout(() => play("spin-tick"), remaining * position));
+    return () => { loop?.stop(); for (const timer of timers) window.clearTimeout(timer); };
+  }, [phase, paused]);
+
+  // 落定叮：只在真的转过之后响（刷新恢复的结果页不复播）。
+  useEffect(() => {
+    if (phase === "result" && turn > 0) play("spin-land");
+  }, [phase, turn]);
 
   const ring = seatRing(active.length);
   const seatAngle = (index: number) => (active.length ? Math.round((360 / active.length) * index) : 0);

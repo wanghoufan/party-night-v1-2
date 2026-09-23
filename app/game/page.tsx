@@ -26,6 +26,7 @@ import { getGamePack, packIsCardless } from "@/lib/game-packs/registry";
 import { aiProviderRepository } from "@/lib/storage/ai-provider-repository";
 import { gamePackRepository } from "@/lib/storage/game-pack-repository";
 import { sessionRepository, createSessionAutosave } from "@/lib/storage/session-repository";
+import { play } from "@/lib/audio";
 
 /** 还没有 pack-local state 时，从在场玩家取默认两人；不足 2 人返回 undefined（玩法不可用）。 */
 function pairFromDefaults(session: GameSession) {
@@ -88,22 +89,25 @@ function GamePageContent() {
     })();
   }, [session, autosave]);
   useEffect(() => { if (!toast) return; const timer = window.setTimeout(() => setToast(""), 4000); return () => window.clearTimeout(timer); }, [toast]);
+  // 每轮出题翻牌：轮次 id 变化即来一声（同一轮重渲染不重复；首轮也一样）。
+  const roundId = session?.currentRound?.id;
+  useEffect(() => { if (roundId) play("deal"); }, [roundId]);
   // 推进本轮：链内（truth-dare 题面上，链相位 question）走链自己的相位机——完成＝resolving→returning 自动回瓶子；
   // 换一个＝replacing 重出同类型题、参与者仍是链里固定的被指人。普通玩法沿用共享引擎语义。
-  async function resolve(action: "complete" | "swap" | "skip") { if (!session) return; const chain = readSpinChain(session); if (chain?.phase === "question" && session.currentRound?.packId === SPIN_CHAIN_PACK_ID) { await commit(action === "swap" ? replaceInSpinChain(session, customPacks) : resolveSpinChain(session)); return; } const resolved = action === "complete" ? completeRound(session) : action === "swap" ? swapRound(session) : skipRound(session); const next = startRound(resolved, Math.random, action === "swap" && session.currentRound ? { reuseLogicalRoundId: session.currentRound.logicalRoundId } : {}); if (!next.currentRound) { const finished = finishSession(resolved); await commit(finished); router.push(`/summary?session=${finished.id}`); } else await commit(next); }
+  async function resolve(action: "complete" | "swap" | "skip") { if (!session) return; play(action === "complete" ? "complete" : action === "swap" ? "swap" : "skip"); const chain = readSpinChain(session); if (chain?.phase === "question" && session.currentRound?.packId === SPIN_CHAIN_PACK_ID) { await commit(action === "swap" ? replaceInSpinChain(session, customPacks) : resolveSpinChain(session)); return; } const resolved = action === "complete" ? completeRound(session) : action === "swap" ? swapRound(session) : skipRound(session); const next = startRound(resolved, Math.random, action === "swap" && session.currentRound ? { reuseLogicalRoundId: session.currentRound.logicalRoundId } : {}); if (!next.currentRound) { const finished = finishSession(resolved); await commit(finished); router.push(`/summary?session=${finished.id}`); } else await commit(next); }
   // 切玩法：同一 Session 内换 currentPackId → 目标玩法 seed 立即补位 → 出下一题并 autosave（不重建 Session、不改 config）。
   // 手动切包（manual-switch）会开新段，顶栏轮次从 1 重计（V1.5）。
-  async function switchTo(packId: string) { setSwitcherOpen(false); if (!session) return; const next = switchPackAndDeal(session, packId, customPacks, Math.random, {}, "manual-switch"); if (next !== session) await commit(next); }
+  async function switchTo(packId: string) { setSwitcherOpen(false); if (!session) return; const next = switchPackAndDeal(session, packId, customPacks, Math.random, {}, "manual-switch"); if (next !== session) { play("pack-switch"); await commit(next); } }
   async function changeIntensity(value: Intensity) { if (session) await commit(updateIntensity(session, value)); }
   async function changePlayers(value: Player[]) { if (session && value.filter((player) => player.active).length >= 2) await commit(updatePlayers(session, value)); }
   // 默契测试 pack-local state：读不到就从在场玩家取默认两人并落库；刷新后原样恢复（score/pair 不丢）。
   async function changePair(playerId: string) { if (!session) return; const current = readCompatibilityState(session) ?? pairFromDefaults(session); if (!current || current.playerBId === playerId) return; const next = { playerAId: current.playerBId, playerBId: playerId }; await commit(updatePackState(session, COMPATIBILITY_PACK_ID, createCompatibilityState(next.playerAId, next.playerBId))); }
-  async function answerPair(answer: "same" | "different") { if (!session) return; const current = readCompatibilityState(session) ?? pairFromDefaults(session); if (!current) return; await commit(updatePackState(session, COMPATIBILITY_PACK_ID, recordCompatibilityAnswer(current, answer))); }
+  async function answerPair(answer: "same" | "different") { if (!session) return; play(answer === "same" ? "compat-same" : "compat-different"); const current = readCompatibilityState(session) ?? pairFromDefaults(session); if (!current) return; await commit(updatePackState(session, COMPATIBILITY_PACK_ID, recordCompatibilityAnswer(current, answer))); }
   // 转瓶子：结果先由本地 selector 定下并立即落库（动画只表现），再交给视图播动画；被指到的人参与下一题。
   function spinPlayer(): Player | undefined { if (!session) return undefined; const target = selectEligiblePlayer(session.config.players, { avoidPlayerId: readSpinBottleState(session)?.lastSelectedPlayerId }); if (!target) return undefined; void commit(updatePackState(session, SPIN_BOTTLE_PACK_ID, recordSpinResult(target.id))); return target; }
-  function chainSpin(kind: "truth" | "dare") { if (!session) return; const targetId = readSpinBottleState(session)?.lastSelectedPlayerId; if (!targetId) return; const targetName = session.config.players.find((player) => player.id === targetId)?.displayName ?? readSpinChain(session)?.targetName; if (!targetName) return; const next = enterSpinChain(session, { targetPlayerId: targetId, targetName, kind }, customPacks); if (next !== session) void commit(next); }
-  async function togglePause() { if (!session) return; await commit(session.status === "paused" ? resumeSession(session) : pauseSession(session)); }
-  async function end() { if (!session) return; const finished = finishSession(session); await commit(finished); router.push(`/summary?session=${finished.id}`); }
+  function chainSpin(kind: "truth" | "dare") { if (!session) return; const targetId = readSpinBottleState(session)?.lastSelectedPlayerId; if (!targetId) return; const targetName = session.config.players.find((player) => player.id === targetId)?.displayName ?? readSpinChain(session)?.targetName; if (!targetName) return; const next = enterSpinChain(session, { targetPlayerId: targetId, targetName, kind }, customPacks); if (next !== session) { play("chain-enter"); void commit(next); } }
+  async function togglePause() { if (!session) return; play(session.status === "paused" ? "resume" : "pause"); await commit(session.status === "paused" ? resumeSession(session) : pauseSession(session)); }
+  async function end() { if (!session) return; play("finish-chord"); const finished = finishSession(session); await commit(finished); router.push(`/summary?session=${finished.id}`); }
   if (!session) return <NeonBackground><main className="screen game-screen"><p>正在恢复本局…</p></main></NeonBackground>;
   const switcher = <PackSwitcherSheet open={switcherOpen} packs={switchablePacks} currentPackId={session.currentPackId} onSelect={(packId) => void switchTo(packId)} onClose={() => setSwitcherOpen(false)} />;
   const card = session.currentRound ? session.deckSnapshot.find((item) => item.id === session.currentRound?.cardId) : undefined;

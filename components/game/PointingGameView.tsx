@@ -5,6 +5,7 @@ import { RoundActions } from "@/components/game/RoundActions";
 import type { PackViewProps } from "@/components/game/PackViewHost";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { play } from "@/lib/audio";
 import type { GameCard } from "@/lib/domain/schemas";
 
 const COUNTDOWN_FROM = 3;
@@ -53,6 +54,13 @@ export function PointingGameView({ card, participantNames, actions, paused = fal
     setCount(COUNTDOWN_FROM);
     setPhase("counting");
   }
+
+  // 倒数音效（V1.7）：每掉一秒一声“滴”，进「指！」时定音（跳倒数也照样定音）。
+  // 只发声，不参与阶段推进；暂停时不排，恢复后从当前秒接着走。
+  useEffect(() => {
+    if (paused || phase === "ready") return;
+    play(phase === "counting" ? "countdown-tick" : "countdown-go");
+  }, [phase, count, paused]);
 
   return (
     <article className={`game-card game-card--${card.packId} pointing-game`} data-phase={phase}>

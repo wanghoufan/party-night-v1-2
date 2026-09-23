@@ -1,6 +1,10 @@
+"use client";
+
+import { useEffect } from "react";
 import { RoundActions } from "@/components/game/RoundActions";
 import type { PackViewProps } from "@/components/game/PackViewHost";
 import { Icon } from "@/components/ui/Icon";
+import { play } from "@/lib/audio";
 import type { GameCard } from "@/lib/domain/schemas";
 
 /** AI 生成与本地 seed 都把两个选项合成为 “A VS B” 题面（见 lib/ai/normalize.ts），renderer 只认 content。 */
@@ -23,6 +27,15 @@ const sourceLabel = (source: GameCard["source"]) => (source === "ai" ? "AI 生�
  */
 export function WouldYouRatherView({ card, actions, paused = false }: PackViewProps) {
   const [optionA, optionB] = splitWouldYouRather(card.content);
+
+  // 倒数音效（V1.7）：跟着卡面上的 3 · 2 · 1 来三声“滴”，第四拍定音。
+  // 只发声、不改视觉与状态（倒计时仍是纯 CSS），暂停时不排；未解锁/静音时 play 内部 no-op。
+  useEffect(() => {
+    if (paused) return;
+    const timers = [0, 1000, 2000].map((delay) => window.setTimeout(() => play("countdown-tick"), delay));
+    timers.push(window.setTimeout(() => play("countdown-go"), 3000));
+    return () => { for (const timer of timers) window.clearTimeout(timer); };
+  }, [card.id, paused]);
 
   return (
     <article className="game-card game-card--would-you-rather would-you-rather" data-card-id={card.id}>

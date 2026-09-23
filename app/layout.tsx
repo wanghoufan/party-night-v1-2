@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import { ServiceWorkerRegistration } from "@/components/brand/ServiceWorkerRegistration";
 import { StorageGuard } from "@/components/brand/StorageGuard";
+import { SoundProvider } from "@/components/audio/SoundProvider";
 import { VersionGuard } from "@/components/system/VersionGuard";
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <head><Script id="party-night-theme-init" strategy="beforeInteractive">{themeInitScript}</Script></head>
-      <body>{children}<StorageGuard /><ServiceWorkerRegistration /><VersionGuard /></body>
+      <body>{children}<StorageGuard /><ServiceWorkerRegistration /><VersionGuard /><SoundProvider /></body>
     </html>
   );
 }

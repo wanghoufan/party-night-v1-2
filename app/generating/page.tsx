@@ -14,6 +14,7 @@ import { sessionRepository } from "@/lib/storage/session-repository";
 import { gamePackRepository } from "@/lib/storage/game-pack-repository";
 import type { GameSession } from "@/lib/domain/schemas";
 import { providerErrorMessage } from "@/lib/ai/provider-errors";
+import { play } from "@/lib/audio";
 
 const steps = ["分析你的组局信息", "匹配最适合的游戏内容", "执行边界与安全过滤", "生成完整离线游戏"];
 
@@ -33,6 +34,7 @@ function GeneratingPageContent() {
   useEffect(() => { if (!session || started.current) return; started.current = true; void generate(session); }, [session]);
 
   async function finishWithDeck(current: GameSession, cards: ReturnType<typeof localSeedDeck>) {
+    play("generate-done");
     const active = activateSession(current, cards);
     await sessionRepository.save(active);
     router.replace(`/game?session=${active.id}`);
@@ -47,7 +49,7 @@ function GeneratingPageContent() {
     if (!profile) return setState("unconfigured");
     const key = await aiProviderRepository.getSecret(profile.id);
     if (!key) return setState("unconfigured");
-    const ticker = window.setInterval(() => setStep((value) => Math.min(3, value + 1)), 700);
+    const ticker = window.setInterval(() => { play("generate-tick"); setStep((value) => Math.min(3, value + 1)); }, 700);
     try {
       const deck = await requestGeneratedDeck({ profile, apiKey: key, sessionConfig: current.config, sessionId: current.id, customCards });
       window.clearInterval(ticker); setStep(3); await finishWithDeck(current, deck);

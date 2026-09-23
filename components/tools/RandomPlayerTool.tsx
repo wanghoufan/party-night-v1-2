@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import type { Player } from "@/lib/domain/schemas";
+import { play } from "@/lib/audio";
 import { pickRandomPlayer, playerLabels } from "@/lib/tools/random-player";
 
 /**
@@ -16,6 +17,7 @@ export function RandomPlayerTool({ players }: { players: Player[] }) {
   const pickedLabel = picked ? labels.get(picked.id) ?? picked.displayName : undefined;
 
   function draw() {
+    play("tool-pick");
     setPicked(pickRandomPlayer(players, { avoidPlayerId: picked?.id }));
   }
 

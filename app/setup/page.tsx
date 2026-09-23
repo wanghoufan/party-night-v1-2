@@ -21,6 +21,7 @@ import { preferencesRepository } from "@/lib/storage/preferences-repository";
 import { loadDisabledPackIds } from "@/lib/storage/pack-enablement";
 import { sessionRepository } from "@/lib/storage/session-repository";
 import { createId } from "@/lib/utils/create-id";
+import { play } from "@/lib/audio";
 
 function defaultPlayers(count = 6): Player[] {
   const time = new Date().toISOString();
@@ -61,11 +62,14 @@ function SetupPageContent() {
   }
 
   function next() {
+    play("tap");
     sessionStorage.setItem("party-night-session-draft", JSON.stringify(draftConfig()));
     router.push("/boundaries");
   }
 
   async function quickStart() {
+    // 真正“开局”的那一刻：一声哨，之后由生成页与主局接管。
+    play("start-whistle");
     const config = deriveQuickStartConfig(previous, targetPack ?? "") ?? draftConfig();
     const session = createSession(config);
     await Promise.all([sessionRepository.save(session), preferencesRepository.save({ recentPlayers: config.players, lastSessionConfig: config })]);
