@@ -30,3 +30,4 @@
 {"date":"2026-09-23","task":"音效V1.7复核","role":"code-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"本窗口","result":"PASS","note":"无P0P1；P2两项不挡发版"}
 {"date":"2026-09-23","task":"音效V1.7 QA静态门禁","role":"qa","model":"codex/gpt-5.6-luna","used":"主","runtime":"codex","result":"PASS","note":"lint/typecheck/531/build过；E2E沙箱EPERM"}
 {"date":"2026-09-23","task":"音效V1.7 E2E复测","role":"qa","model":"codex/gpt-5.6-luna","used":"主","runtime":"本窗口","result":"PASS","note":"TM接管：sound4过；全量84pass+4skip"}
+{"date":"2026-09-23","task":"08新题纲档位标注+4.4改3-5档","role":"builder","model":"deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"仅改终稿08一文件；TM验 scope+规则行"}
