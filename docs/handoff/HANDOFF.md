@@ -3,7 +3,7 @@
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
 - Captured at（YYYY-MM-DD HH:MM）：2026-09-22 上午
-- PROJECT_PHASE：（DEVELOP：V1.6题库把关文档阶段，用户2026-09-22批第二阶段先文档后内容）
+- PROJECT_PHASE：（DEVELOP：V1.6已上线，大交接暂停，用户终稿审题中）
 - Captured at（YYYY-MM-DD HH:MM）：2026-09-22 15:30
 - PLAN_VERSION：（PRODUCT_PLAN_V1.5）
 - PLAN_READINESS_SCORE：（98）
@@ -25,7 +25,7 @@
   - QA：`docs/qa/BUGS-V1.1.md`、`docs/qa/V1.1-放行证据.md`
   - 事实备份：`docs/handoff/HANDOFF.md.旧版-2026-09-13`（V1.2 真源）；`docs/pm/V1.3-讨论稿.md`（挂起：7 待定+酒罚默认含决策）
   - 账本：`docs/model/TASK-MODEL-LOG.jsonl`（示例行已清）；`docs/model/DISPATCH-LOG.jsonl`（空，首个真实派工前由 TM 写）
-  - V1.6：评审`docs/review/CODE_REVIEW-V1.6.md`（PASS，commit 4ba3d13）、QA`docs/qa/BUGS-V1.6.md`（lint0/typecheck0/511/E2E80+4skip/三处1.5.0）、把关`docs/content/题库把关/`9件（00总览+01–07+08新题纲，存量180审计+终态350配额）；旧`docs/content/题库审查/`已删（文档搬家映射）；账本35行至V1.6补遗（dup删后27行自验口径作废，以现35行为准）
+   - V1.6：评审`docs/review/CODE_REVIEW-V1.6.md`（PASS，commit 4ba3d13）、QA`docs/qa/BUGS-V1.6.md`（lint0/typecheck0/511/E2E80+4skip/三处1.5.0）、把关`docs/content/题库把关/`9件（00总览旧180审计+01–07+08新题纲）、终稿`docs/content/题库终稿/`9件（00总览§一终稿350分布3/5/7/14/21+01–07各50+08新题纲）；旧`docs/content/题库审查/`已删（文档搬家映射）；账本35行至V1.6补遗（dup删后27行自验口径作废，以现35行为准）
 - 下一步（Next Single Action）：V1.5 主链全过 → commit+push+生产验证 → 用户真机验收（GAP-04）回“放行”即收工。
 - 执行链：本窗口 TM 直驱 + codebuddy builder + 本窗口reviewer + codex Luna qa(+TM接管E2E) + opencode supervisor（打回1/2→返工→打回2/2停线→TM删账本重复1行自验27行无dup→按停线结论放行）。
 - supervisor 终检：除账本dup外全PASS；dup已删（27行/dups{} /JSON合法，TM自验）；其余无需重跑；sha记P2不阻塞。
@@ -33,19 +33,21 @@
   - 真机验收（GAP-04）后放行;GAP-03 规则收藏不实现（已知限制），异议请下 `变更请求：规则收藏`。
 - permission_request：无。
 - 收尾记一笔（neat-freak 2026-09-22）：docs 与代码已对齐（8 包/规则 8 条/工具 2 个/Session v2；V1.3 讨论稿 2 处已校准）；test-results 空、:3000 无残留进程；README 中英 8 玩法为 TM 后续补齐（校验 DOCUMENTATION_READY）。
-- 收尾记一笔（neat-freak 2026-09-22 V1.6）：docs/content下仅题库把关/9件，题库审查/已删（映射见CODE_REVIEW-V1.6 P2）；V1.6评审/QA/把关/账本35行与代码现状一致（350/陡坡/L1L2/开关/1.5.0）；未碰业务代码。
+ - 收尾记一笔（neat-freak 2026-09-22 V1.6）：docs/content下仅题库把关/9件，题库审查/已删（映射见CODE_REVIEW-V1.6 P2）；V1.6评审/QA/把关/账本35行与代码现状一致（350/陡坡/L1L2/开关/1.5.0）；未碰业务代码。
+ - 收尾记一笔（neat-freak 2026-09-23）：docs/content下把关/9件＋终稿/9件双包并存（终稿00§一为终稿350分布3/5/7/14/21、旧180只剩注脚，01–07各50）；与代码现状一致（种子350/陡坡16:8:4:2:1/L1L2/开关/三处1.5.0）；终稿00标题/数据源头已校准350；只改docs与经验，未碰业务代码。
 
 ## 一、当前工作进展（2026-09-22 晚，大交接冻结口）
 
 - 生产站 https://party-night-v1-2.vercel.app（GitHub wanghoufan/party-night-v1-2，Vercel自动部署已断，改手动直推；见注意事项）。
 - V1.5：转瓶子链回跳＋切包1/40重计＋顶栏暂停结束＋双页视觉＋题库180导出；宽屏热修（座位遮挡＋巨型按钮）；链入无响应热修（空牌堆补种＋耗尽提示）。已上线。
 - V1.6（1.5.0）：终稿350入库（7类各50＝互动35/了解15/看戏0，4-5档35；红线三条卡面零命中；25张旧题面补遗改写全清零）；指数陡坡抽法（16:8:4:2:1）；耗尽不断游L1洗牌循环＋L2后台AI补题；Toggle重设计（品牌粉+✓/已避开）；三处1.5.0同值。门禁lint0/typecheck0/511/E2E80pass+4skip，reviewer＋supervisor PASS。已上线（手动部署）。
-- 题库文档：docs/content/下仅题库把关/9件（旧180审计＋处置＋新题纲；终稿配额70/30/0）；题库审查/7件已删（可pnpm export:questions重生）；评审CODE_REVIEW-V1.5/V1.6、QA BUGS-V1.5/V1.6；账本35行。
-- 把关包vs软件：不一致是设计好的——把关包是旧180审计＋改写方向（给人审的），软件里是终稿350（已入库生效）。
+ - 题库文档：docs/content/下把关/9件（旧180审计＋处置＋新题纲）＋终稿/9件（终稿350题面：00总览§一3/5/7/14/21＋01–07各50＋08新题纲）；题库审查/7件已删（可pnpm export:questions重生）；评审CODE_REVIEW-V1.5/V1.6、QA BUGS-V1.5/V1.6；账本35行。
+- 把关包vs软件：不一致是设计好的——把关包是旧180审计＋改写方向（给人审的），软件里是终稿350（已入库生效）。终稿/00总览§一已按种子实算重写（3/5/7/14/21，旧数注脚存档）。
+- 终稿文字版终稿/9件已交付用户审题（按编号报问题）；25张旧题面补遗改写＋复核PASS已上线；neat-freak两轮对齐完成。
 
 ## 二、下一步任务
 
-1. 用户真机验收（GAP-04，连同V1.6新内容：转瓶子链入、开关辨识、题库新题感），回“放行”即收工。
+1. 用户终稿审题反馈（按“玩法＋编号”报问题，如06指人第18条太素）→ 按编号改种子 → 门禁＋发版 → 真机验收回“放行”即收工。
 2. 待办（用户明确暂缓）：全回归12局清单用户亲跑；Vercel Git自动部署重连（用户侧看集成）。
 3. 若验收出bug：Change A/B主链builder→reviewer→qa→supervisor修；产品级变更走Change C重开。
 4. V1.3方向（7待定+AI即兴去留）另起Phase1，不与本轮混。
