@@ -1,0 +1,9 @@
+date_start: 2026-09-22T22:39:55
+cmd: node scripts/decision/test-slow.mjs
+code_hash(orca-decide.mjs): cade6a1cb1a4
+test_slow_hash: e2ec824a1443
+stdout:
+SLOW_TEST pass (abort@1s + roundtrip@5s, independent server)
+negative: exit=1 err=JEV_NETWORK | positive: exit=1 err=JEV_SCHEMA_CHANGED | server_stderr: (empty)
+stderr: (see server_stderr line above)
+exit: 0

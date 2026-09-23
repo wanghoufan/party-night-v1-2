@@ -1,0 +1,31 @@
+{
+  "policy_version": "hardfilter-v3",
+  "default_data_class": "NEEDS_USER_POLICY",
+  "data_rules": {
+    "SECRET": "REFUSE",
+    "PERSONAL_SENSITIVE": "NEEDS_USER_POLICY",
+    "PRIVATE_CODE": "NEEDS_USER_POLICY",
+    "PUBLIC": "ALLOW"
+  },
+  "user_policy": {
+    "volc_personal_private_code": true,
+    "allow_unknown_quota": false,
+    "authorized_targets": []
+  },
+  "provider_data_auth": {
+    "typesafe": ["PUBLIC"],
+    "codebuddy": ["PUBLIC"],
+    "volc-coding": ["PUBLIC"],
+    "opencode-go": ["PUBLIC"]
+  },
+  "route_targets": {
+    "codebuddy__deepseek-v4.1-flash__high": { "provider": "codebuddy", "harness": "codebuddy", "harness_model_id": "codebuddy/deepseek-v4.1-flash", "availability": "AVAILABLE", "quota_status": "UNKNOWN", "data_policy": "NEEDS_USER_POLICY", "capabilities": ["code", "text"], "runner_bin": "codebuddy" },
+    "volc-coding__glm-5.3-flash__high": { "provider": "volc-coding", "harness": "opencode", "harness_model_id": "volcengine-plan/glm-5.3-flash", "availability": "AVAILABLE", "quota_status": "UNKNOWN", "data_policy": "NEEDS_USER_POLICY", "capabilities": ["code", "text", "vision"], "runner_bin": "opencode" }
+  },
+  "class_targets": {
+    "BULK_FAST": [],
+    "GENERAL_AGENT": ["volc-coding__glm-5.3-flash__high"],
+    "HARD_CODE": ["codebuddy__deepseek-v4.1-flash__high"],
+    "NO_RECOMMENDATION": []
+  }
+}

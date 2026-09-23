@@ -10,7 +10,7 @@
 0. 取包：去本机治理仓库把模板包取来铺到本项目。这一步每次都做，不要因为本项目"看起来已经有 AGENTS.md / docs 了"就跳过——老项目本来就有自己的治理文件，跳过就等于永远用不上新模板包。本项目已有同名文件属正常，照下面冲突处理办；重复执行安全（一样的会跳过）。
    源路径（整条原样照抄，含中文、全角括号、竖线和空格，命令里必须用引号把整条路径包住）：
    /Users/zzymima0000/Developer/coding/4.Templates（PC）/2026-09-09 丨 MAC 丨 ORCA V2.1 治理模板 丨 分发版-2026-09-11/老项目迁移模板包
-   把源包内容铺到本项目根目录（不要 .DS_Store，不要多套一层文件夹）：AGENTS.md、GOVERNANCE_VERSION、docs/（roles、pm、handoff、model、qa、review、sop 全要，其中 sop 含 docker.md、supabase.md、sqlite.md、android.md、webqa.md、decision-router.md）、scripts/（orchestration、decision 全要）、迁移整理提示词.md、编排者提示词.md、外部开发者提示词.md、归位表.template.md；另把 Orca 通用编排者持续推进协议.md、Orca 编排治理监督者提示词.md 放到本项目 docs/prompts/，把归位表.template.md 放到本项目 docs/templates/。USER_MODEL_OVERRIDE.md 不拷贝：已有实文件先按铁律备份再删，然后建软链指母版真源（目标＝第 0 步源路径去尾段包名＋/USER_MODEL_OVERRIDE.md），改母版即全项目同步；跨机器断链时拷实文件并记 HANDOFF 一笔。
+   把源包内容铺到本项目根目录（不要 .DS_Store，不要多套一层文件夹）：AGENTS.md、GOVERNANCE_VERSION、docs/（roles、pm、handoff、model、qa、review、sop 全要，其中 sop 含 docker.md、supabase.md、sqlite.md）、scripts/、迁移整理提示词.md、编排者提示词.md、外部开发者提示词.md、归位表.template.md；另把 Orca 通用编排者持续推进协议.md、Orca 编排治理监督者提示词.md 放到本项目 docs/prompts/，把归位表.template.md 放到本项目 docs/templates/。USER_MODEL_OVERRIDE.md 不拷贝：已有实文件先按铁律备份再删，然后建软链指母版真源（目标＝第 0 步源路径去尾段包名＋/USER_MODEL_OVERRIDE.md），改母版即全项目同步；跨机器断链时拷实文件并记 HANDOFF 一笔。
    冲突处理（铁律：不删、不覆盖，撞了改名留旁边）：本项目没有的→直接放；已有且与模板一模一样→跳过；已有但不一样→把原文件改名成「原名.旧版-2026-09-13」留在同级（不删），再放模板版，并记一笔。只有 AGENTS.md 特殊：原版改名备份后，把它里面本项目专属的规矩原样附到新版 AGENTS.md 末尾，加一节「本项目原有规则（迁移自旧 AGENTS.md）」，不丢规矩。不属于上面清单的原有文件（本项目自己的文档、src、配置、README）→一律不碰。
 
 1. 按模板目录结构把当前项目文件分类归位：该进docs的进docs；业务原地不动。

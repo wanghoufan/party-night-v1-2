@@ -1,0 +1,9 @@
+# GLM exact-ID smoke (desensitized, no key)
+date: 2026-09-22
+cmd: opencode run -m volcengine-plan/glm-5.3-flash "只回复：glm exact ok"
+exit: 0
+stdout_tail:
+> build · glm-5.3-flash
+glm exact ok
+config: baseURL https://ark.cn-beijing.volces.com/api/coding/v3 (Coding Plan quota path)
+note: ark-code-latest alias results are NOT recorded as glm evidence

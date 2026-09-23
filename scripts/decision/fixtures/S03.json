@@ -1,0 +1,1 @@
+{"task": "小型文档站错别字批量改", "expected_class": "BULK_FAST", "expected": "BULK_FAST", "expected_excluded_ids": ["codebuddy__deepseek-v4.1-flash__high"]}

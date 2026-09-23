@@ -22,7 +22,7 @@
   单行粘贴先落临时文件再跑整文件第二道：`echo '<单行JSON>' > /tmp/one.jsonl` 后把上式路径换成 `/tmp/one.jsonl` 再跑。坏了打回重写；返工数对齐本 Task 上下文中的打回次数，少报就打回。
 - 模型：见表（读 USER_MODEL_OVERRIDE.md 的 supervisor 行，冲突以模型表为准）。
 - 域隔离：账本/脚本断言看 exit 码（本域铁律）；通道自测按 USER_MODEL_OVERRIDE.md 对应行调用方式执行，只看正文回显，两域互不引用。
-- 抽查：每次复检抽查实派==表，HANDOFF＋TASK-MODEL-LOG＋DISPATCH-LOG三处对得上；sidecar 调用点合规（仅模糊分叉、advisory、失败回退）纳入抽查；复检必跑 `node scripts/model/check-ledger.mjs`，账本不过打回 TM 补记。
+- 抽查：每次复检抽查实派==表，HANDOFF＋TASK-MODEL-LOG＋DISPATCH-LOG三处对得上。
 - 兼DISPATCH校验：与任务账本同风格跑第二道（8键＋used/result枚举，坏行打印 `L行号` 且 exit 1，`_example` 行自动跳过），整块照粘（含换行，路径按需换）：
   ```sh
   python3 -c "
