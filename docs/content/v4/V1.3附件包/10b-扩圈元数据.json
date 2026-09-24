@@ -1,0 +1,654 @@
+{
+  "schemaVersion": "2.3",
+  "notes": [
+    "Expansion mode is optional and separate from the 350-card mainline.",
+    "minIntensity is only an unlock threshold; it is not Relation Stage and never implies MATCH.",
+    "All expansion cards are excluded from Pair Score and MATCH calculations.",
+    "If an external participant declines or the context is unsuitable, immediately run the table-only fallback and do not ask again.",
+    "No contact-info requests, drinking requirement, or physical contact with external participants.",
+    "Package baseline is V1.3; expansion mode remains excluded from Pair Score and MATCH."
+  ],
+  "cards": [
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-001",
+      "number": 1,
+      "text": "向一位愿意参与的邻桌玩家说明“我们在玩聚会游戏，可以帮我们在 A / B 两个游戏里选一个吗？”对方选择后道谢离开；无人参与则由本桌随机。",
+      "minIntensity": 3,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-002",
+      "number": 2,
+      "text": "请一位愿意参与的人从 1～5 里说一个数字，用来决定本桌下一轮的出场顺序；拒绝则本桌自己抽。",
+      "minIntensity": 3,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-003",
+      "number": 3,
+      "text": "请一位愿意参与的人给本桌起一个“一句话以内”的临时队名；不合适可以不用。",
+      "minIntensity": 3,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-004",
+      "number": 4,
+      "text": "请一位愿意参与的人在本桌两名自愿玩家中随机指定谁先开始下一轮；对方只做选择，不参与后续。",
+      "minIntensity": 3,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-005",
+      "number": 5,
+      "text": "请一位愿意参与的人给出一个“今晚祝酒词关键词”；本桌用水或饮料一起说一句。",
+      "minIntensity": 3,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-006",
+      "number": 6,
+      "text": "请一位愿意参与的人在“继续当前游戏 / 换一个游戏”中替本桌选一次。",
+      "minIntensity": 3,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-007",
+      "number": 7,
+      "text": "请一位愿意参与的人随口说一个城市名，本桌每个人用一个词说自己想到的感觉。",
+      "minIntensity": 3,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-008",
+      "number": 8,
+      "text": "请一位愿意参与的人从系统提供的三个低门槛问题里选一个给本桌；问题只由本桌回答。",
+      "minIntensity": 3,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-009",
+      "number": 9,
+      "text": "请一位愿意参与的人选一个表情符号，本桌所有人一起模仿3秒。",
+      "minIntensity": 3,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-010",
+      "number": 10,
+      "text": "请一位愿意参与的人从两个系统预设的安全小挑战里选一个给本桌完成。",
+      "minIntensity": 3,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-011",
+      "number": 11,
+      "text": "请一位愿意参与的人在“安静型 / 热闹型”两个词中任选一个，本桌各自指出谁最像这个词。",
+      "minIntensity": 3,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-012",
+      "number": 12,
+      "text": "请一位愿意参与的人选一个颜色，本桌用这个颜色给今晚当前 Heat 起一个代号。",
+      "minIntensity": 3,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-013",
+      "number": 13,
+      "text": "邀请一位愿意参与的人加入一题低档二选一，答完即可离开；不询问姓名或联系方式。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-014",
+      "number": 14,
+      "text": "请一位愿意参与的人给本桌指定一个30秒聊天主题，例如旅行、电影、食物或城市。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-015",
+      "number": 15,
+      "text": "请一位愿意参与的人从本桌已经自愿举手的两名玩家中选一位回答一个1档真心话。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-016",
+      "number": 16,
+      "text": "请一位愿意参与的人说一个关键词，本桌现场把它改造成一道安全的真心话问题。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-017",
+      "number": 17,
+      "text": "请一位愿意参与的人从两个系统预设双人姿势中选一个，本桌自愿的一对完成，不要求身体接触。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false,
+      "sourceCardId": "PN-DARE-037"
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-018",
+      "number": 18,
+      "text": "请一位愿意参与的人替本桌两个候选队名投票，选完道谢结束。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-019",
+      "number": 19,
+      "text": "请一位愿意参与的人从系统提供的三个安全大冒险里选一个给本桌；不接受临场自定义高风险动作。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-020",
+      "number": 20,
+      "text": "请一位愿意参与的人从七种主游戏里选择下一种，但仍受本桌当前开放度与 Heat 限制。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-021",
+      "number": 21,
+      "text": "向一桌愿意回应的人隔空交换一句简单祝酒词，不要求碰杯、不要求喝酒。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-022",
+      "number": 22,
+      "text": "请一位愿意参与的人从 1～10 中选一个数字，本桌抽对应编号的低风险候选卡。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-023",
+      "number": 23,
+      "text": "请一位愿意参与的人说一种食物 / 电影 / 音乐类型，本桌用它做一次快速联想接龙。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-024",
+      "number": 24,
+      "text": "请一位愿意参与的人在“真心话 / 二选一 / 默契测试”三类里指定下一轮玩法。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-025",
+      "number": 25,
+      "text": "请一位愿意参与的人在“继续同一玩法 / 换玩法”中替本桌选一次。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-026",
+      "number": 26,
+      "text": "邀请一位愿意参与的人和本桌一起回答一题1～2档二选一，公布选择后立即结束互动。",
+      "minIntensity": 4,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-027",
+      "number": 27,
+      "text": "邀请一位愿意参与的人加入一次60秒“嘉宾回合”：只回答一题1～2档安全题，答完道谢结束。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-028",
+      "number": 28,
+      "text": "请一位愿意参与的人为本桌起一个不涉及外貌、性别或身份评价的趣味称号。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-029",
+      "number": 29,
+      "text": "和一位愿意参与的人各交换一个“最近值得推荐”的电影、歌曲、餐厅或城市，不交换联系方式。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-030",
+      "number": 30,
+      "text": "邀请一桌愿意回应的人与本桌隔空同时做一个3秒手势，例如点赞、剪刀手或举杯动作。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-031",
+      "number": 31,
+      "text": "请一位愿意参与的人从系统提供的三道“第一印象但不评价外貌”的题里选一道给本桌。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-032",
+      "number": 32,
+      "text": "请一位愿意参与的人从系统提供的三道“谁最可能”安全题中选一道，本桌自己投票。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-033",
+      "number": 33,
+      "text": "邀请一桌愿意参与的人和本桌比一次“3、2、1同时出同一个手势”，结束后互相挥手即可。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-034",
+      "number": 34,
+      "text": "请一位愿意参与的人担任一次10秒嘉宾裁判，判断本桌两名玩家谁模仿得更像；不做羞辱性评价。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-035",
+      "number": 35,
+      "text": "请一位愿意参与的人给本桌指定一个安全话题，本桌每个人只能用一句话回答。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-036",
+      "number": 36,
+      "text": "请一位愿意参与的人画一个简单图形或用手比一个形状，本桌一名自愿玩家来猜。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-037",
+      "number": 37,
+      "text": "邀请一位愿意参与的人和本桌一起做一次“咖啡 / 酒吧、早起 / 熬夜、计划 / 随性”三连二选一。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-038",
+      "number": 38,
+      "text": "请一位愿意参与的人给出一个普通词，本桌每个人依次说一个联想词，不能重复。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-039",
+      "number": 39,
+      "text": "邀请一位愿意参与的人从系统展示的三张低风险卡里挑一张给本桌，选完即可离开。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    },
+    {
+      "schemaVersion": "2.3",
+      "cardId": "PN-EXPAND-040",
+      "number": 40,
+      "text": "扩圈终局：邀请一桌明确愿意参与的人进行一次不超过90秒的联合小游戏；只用系统预设低风险题，不交换联系方式，不延伸到身体接触。",
+      "minIntensity": 5,
+      "responseMode": "public",
+      "consentMode": "skip-anytime",
+      "signalEffects": [],
+      "fallbackPolicy": "switch-to-table-version",
+      "boundaryTags": [
+        "external-participant"
+      ],
+      "pairScoreEligible": false,
+      "matchEligible": false
+    }
+  ]
+}
