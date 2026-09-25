@@ -1,0 +1,67 @@
+# RESEARCH_REVIEW（Phase1 专用；内部 role ID `product-reviewer` 不变）
+
+- Plan Version（评的是哪版 PRODUCT_PLAN）：`PRODUCT_PLAN_V2.0-DRAFT`
+- Review Round（第几轮）：D1（首轮独立审查）
+- Result：FAIL｜P0=4 未闭合、blocking P1=4 未闭合，Readiness 67/100，不满足 Human Gate，打回 Planner 修订。
+- P0 / P1 / P2：
+  - P0：
+    - P0-01｜生产350↔V1.3逐卡差异矩阵：FAIL阻塞。Plan Problem §1/Scope A已自认“并非逐卡一致、不能假设替换”，矩阵字段与验收标准已写（A.2/A.3），但矩阵本身未产出、无双向350覆盖证据、无conflict处置结论。判定：不得批准内容替换，维持DoD Phase1-2门禁。
+    - P0-02｜扩圈fallback单一口径：FAIL阻塞。冲突确认成立：V1.3 40/40 `fallbackPolicy=switch-to-table-version` vs v6 T037“拒绝走table fallback”（Plan Problem §5）。Plan Scope G方向正确（统一switch-to-table-version、撤销T037表述），但每张table-only替代内容/生成规则未补齐（G.4），T037修正未落盘验证。判定：方向认可，内容映射补齐前仍阻塞。
+    - P0-03｜Heat计数定义：FAIL阻塞。缺口确认成立：v6 SDD对有效卡/分母/skip/swap/neutral/expansion/legacy计数无单一定义（Plan Problem §4）。Plan Scope C.2要求冻结`effectiveCardCount`事件表、C.3给出默认口径（仅relationship-aware completed普通卡计入）、C.5要求写入runtimeRules/schema，但事件表、fixed/open-ended二选一、短局结算均待Human D3拍板。判定：默认口径合理，冻结前仍阻塞。
+    - P0-04｜Pair范围与数据来源：FAIL阻塞。缺口确认成立：生产Player仅id/displayName/active/createdAt/lastUsedAt，无性别/取向/本局可配对范围（Plan Problem §3），V1.3“合法异性pair”无法推导。Plan Scope D正确禁止姓名/顺序/模型猜测，要求Human D4三选一（Host显式设置/新增性别+偏好/仅Host手动pool），Planner建议第三者收缩V2.0范围。判定：禁猜测成立，D4拍板+数据契约补齐前仍阻塞。
+  - P1：
+    - blocking P1-01｜5档保障状态机：FAIL阻塞。合格机会定义（Scope F.2）、暂停/恢复/过期/多MATCH竞争（F.4）仅有文字建议，缺状态机+测试；展示后skip视为已提供与否待D7。不得进入DEV_BASELINE。
+    - blocking P1-02｜耗尽策略：FAIL阻塞。分层与默认（Scope H.3：bucket回退/玩法玩完提示/全局结束或洗牌、只清usedCardIds、禁AI隐式补题）方向正确，但最近去重窗口N、是否允许自动洗牌待D8，缺Exhaustion Controller契约+离线测试。
+    - blocking P1-03｜私密数据生命周期：FAIL阻塞。禁持久化清单已列（单向选择/partial consent等），但allowlist/denylist、refresh/crash/log/export/cache/analytics覆盖测试未形成契约，属隐私红线必须先闭合。
+    - blocking P1-04｜单Router与迁移原子性：FAIL阻塞。旧`INTENSITY_WEIGHT 1:1/2:2/3:4/4:8/5:16`与V2动态路由互斥要求正确（Problem §2/Scope I.4），但单一入口+legacy不可达测试、事务化迁移/失败保留原记录未验证。
+    - 非 blocking P1-05｜多MATCH公平：OPEN非阻塞。小池降权/cooldown/coverage已列，需fixture验证，不阻Human Gate。
+    - 非 blocking P1-06｜neutral/expansion切换提示：OPEN非阻塞。默认暂停推进（Scope B.2/B.3）保守可接受，需UI提示+真人验证。
+    - 非 blocking P1-07｜调参可观测性：OPEN非阻塞。仅本地匿名计数口径正确，不含player→target，待实现。
+  - P2：同意Plan P2范围（调参/文案/可视化diff/后续包容模型/opt-in总结），不阻Gate。
+- Key Assumptions（逐条列＋是否成立）：
+  - A1 生产旧350+旧selector仍可达：成立（Plan已核验，与HANDOFF V1.6种子350/陡坡16:8:4:2:1一致）。
+  - A2 V1.3 Frozen schema/350+40/hash已核验但构建接入未验证：成立，维持“候选SSOT、禁直接覆盖”。
+  - A3 单设备传手机可接受：部分成立，需真人节奏测试，未验证。
+  - A4 Host可配置eligible pair：不成立待定，需D4拍板+UI成本评估。
+  - A5 expansion/neutral默认不推进Heat：保守成立，缺用户研究验证。
+  - A6 5档保障不压制公平：未验证，需4人/5人/多MATCH fixture+真人局。
+  - A7 洗牌复用保留关系状态更符合预期：未验证，需D8拍板。
+- Verified Facts（已验证事实＋证据）：
+  - V1：Plan内四层差异自认成立（Problem §1-§7），与HANDOFF生产现状（V1.6终稿350分布3/5/7/14/21、指数陡坡、L1L2耗尽）可衔接，属brownfield诚实披露。
+  - V2：扩圈冲突双方出处明确（V1.3 fallbackPolicy vs T037），Plan未掩盖冲突。
+  - V3：Player schema缺pair推导字段，Plan Scope D禁猜测正确。
+  - V4：Heat无单一定义，Plan Scope C要求事件表+schema正确。
+  - V5：DEV_BASELINE=NOT_SET、PLAN_GATE=IN_PROGRESS、Readiness 71自评未达90，Gate判断诚实。
+- External Sources（Web Search / Web Fetch / 官方文档 / 官方 GitHub / 第三方 / 社区反馈，附链接）：本轮按任务指令禁止联网、禁止读Plan外文件，故无新增外部验证；Plan Competitor §4已自认“无本轮独立竞品桌面研究、无真实酒吧局数据、无传手机耗时、无5档命中率观察”，计入扣分。
+- Competitor Findings（竞品现状＋对本 Plan 的启示）：未验证。沿用Plan内部结论：互惠披露/共同点/轻量预测/公开选择/秘密双向确认应分阶段，Crowd/Personal禁冒充Mutual；外部竞品缺口仍在。
+- Counter-evidence（反对证据＋成功的相反做法）：
+  - 若D4选“新增性别+偏好”而非“Host手动pool”，录入成本与包容性更高，但酒吧现场节奏与隐私成本上升，需权衡。
+  - 若耗尽选“自动洗牌”而非“Host明确选择”，不断游更顺但可能违背结束预期，需D8拍板。
+  - 若expansion被允许推进Heat/mutual interval，则节奏更快但污染主线信号，Plan保守默认更安全。
+- Unverified Items（未验证项＋验证方法）：
+  - U1 双向350矩阵+ID migration map：方法=Diff Pipeline产出JSON/CSV+hash门禁+人工conflict审查（DoD Phase1-2）。
+  - U2 40张table-only替代内容：方法=逐卡可执行文案/规则清单+扩圈拒绝E2E。
+  - U3 effectiveCardCount事件表+幂等：方法=runtimeRules schema+unit/property/integration全事件覆盖。
+  - U4 pair policy三选一：方法=D4拍板+数据契约+无pair/单pair/不均/暂离/退出E2E。
+  - U5 5档2次合格机会+skip语义：方法=D7拍板+多MATCH/降档/cooldown fixture。
+  - U6 全局耗尽结束/洗牌：方法=D8拍板+离线E2E+最近N去重验证。
+  - U7 私密零持久化：方法=denylist+refresh/crash/log/export/cache/analytics测试。
+  - U8 真人局：方法=弱光4人局+5人局各一轮（传手机隐私/节奏/5档时机/耗尽提示）。
+- Required Fixes（Planner 必须改项，打回依据）：
+  - R1 产出生产350↔V1.3双向矩阵初版（350/350覆盖、孤儿零解释、conflict清单），否则P0-01不关。
+  - R2 补齐40张table-only映射并删除/修正T037冲突表述，全文档口径一致，否则P0-02不关。
+  - R3 冻结effectiveCardCount事件表（含completed/skipped/swapped/neutral/expansion/legacy/system/恢复幂等）并写入runtime契约草案，fixed/open-ended二选一，否则P0-03不关。
+  - R4 明确D4选项影响与Planner建议依据（UI成本/包容性/节奏），补pair异常状态定义，否则P0-04不关。
+  - R5 补blocking P1-01~04状态机/契约草案（保障/耗尽/denylist/单入口+迁移原子性），否则blocking P1不清零。
+  - R6 8项D1-D8保持“待决定”，禁Builder代选表述已合规，维持。
+- Plan Readiness Score（分项打分＋合计，口径以 PRODUCT_PLAN.template.md 为准；Planner自评71）：
+  - 产品目标与用户需求（20）：17/20（目标/用户/安全边界清；pair包容待定，扣3；Planner给18，核减1）。
+  - 核心方案完整性（20）：12/20（主链完整但Heat/pair/保障/耗尽四阻断未冻；Planner给14，核减2）。
+  - 外部事实与竞品验证（20）：8/20（内部审查充分但本轮零外部验证+零真人局；Planner给10，禁联网限制下核减2）。
+  - 技术可行性（15）：10/15（旧350/selector/Player已核验，但矩阵/路径mapping/迁移原型零产出；Planner给11，核减1）。
+  - 风险与异常场景（10）：8/10（隐私/迁移/耗尽/小局已列，缺独立验证；与Planner一致）。
+  - 开发范围与DoD（10）：9/10（分层DoD清，需决策后转TASKS；与Planner一致）。
+  - 未决问题（5）：3/5（P0/P1/D8全部显性列出、诚实未藏，但数量仍4+4+8；Planner给1，本轮给3因显性化加分，仍远未达标）。
+  - 合计：67/100（Planner自评71核减至67；Gate要求≥90 AND P0=0 AND blocking P1=0均未满足）。
+- Human-only Decisions（只需人类拍板项）：D1-D8维持Plan原文8项待决定，不代拍；其中D3/D4/D7/D8为P0/P1关门项，D1/D2/D5/D6为基线方向项。
+- Next Action：回 Planner 修订（先闭R1-R5，再重报Readiness；禁进 WAITING_HUMAN_APPROVAL，禁建DEV_BASELINE，禁Builder/代码/Release）。

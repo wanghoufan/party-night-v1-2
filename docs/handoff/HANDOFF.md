@@ -3,7 +3,7 @@
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
 - Captured at（YYYY-MM-DD HH:MM）：2026-09-22 上午
-- PROJECT_PHASE：（DEVELOP：V1.6已上线，大交接暂停，用户终稿审题中）
+- PROJECT_PHASE：（PLAN：V2 Phase1 接管推进中，DRAFT.2唯一基线，R1/R2不重跑）
 - Captured at（YYYY-MM-DD HH:MM）：2026-09-22 15:30
 - PLAN_VERSION：（PRODUCT_PLAN_V1.5）
 - PLAN_READINESS_SCORE：（98）
@@ -13,7 +13,7 @@
 - Stage ID（本阶段叫什么）：V1.1-玩法扩展与主局整合开发
 - 剩 P0（没完的才列，多一条都不行）：
   - GAP-04 真机弱光验收（唯一 P0）：请在手机上打开生产站走一局新玩法（二选一→切转瓶子→规则库看小姐牌），确认弱光可读、好按、切换不丢局；回“放行”即 Release。
-- 当前 Task（正干到哪）（累计打回 n/2）：音效V1.7分支feat/sound-v17终检通过（reviewer＋supervisor PASS；Luna静态＋TM接管E2E；未合main等用户点头；评审CODE_REVIEW-V1.7＋QA BUGS-V1.7已落盘）。
+- 当前 Task（正干到哪）（累计打回 n/2）：Phase1连续推进R3→R4→R5（Planner↔Reviewer自动循环；Human已决D7=A展示即给过、D8=A+软去重5+放宽窗口+主持人洗牌+禁回退V1.6、D4=A、D3=A；P0-01走外部机器审计；禁Builder/代码/commit/自动过Gate）。
 - 下一步（Next Single Action）：文档包落盘 → TM验数 → 发用户审查（绝对路径），用户点头才进内容重写。
 - 链入热修证据（TM实证）：空牌堆点真心话复现pack=spin-bottle/round=none/chain.returning+exhausted/无报错；修后lint0/typecheck0/unit500；spin+desktop E2E 11项过；reviewer 4项成立无必须修。
 - 宽屏热修证据：lint0/typecheck0/unit497；桌面1280x800 E2E 4项过（座位最小间隙21.2px/长昵称5.8px/无巨型元素/无溢出；/、/packs居中390）。

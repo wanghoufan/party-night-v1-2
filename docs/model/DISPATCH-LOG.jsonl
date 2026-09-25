@@ -32,3 +32,8 @@
 {"date":"2026-09-23","task":"音效V1.7 E2E复测","role":"qa","model":"codex/gpt-5.6-luna","used":"主","runtime":"本窗口","result":"PASS","note":"TM接管：sound4过；全量84pass+4skip"}
 {"date":"2026-09-23","task":"08新题纲档位标注+4.4改3-5档","role":"builder","model":"deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"仅改终稿08一文件；TM验 scope+规则行"}
 {"date":"2026-09-23","task":"音效V1.7合main推生产","role":"task-manager","model":"本窗口直驱","used":"主","runtime":"本窗口","result":"PASS","note":"用户点头后ff合main+手动prod部署；线上200/1.5.0"}
+{"date":"2026-09-24","task":"V2.0-DRAFT ResearchReview走查","role":"product-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"opencode","result":"PASS","note":"用户指定换人（MiMo三次超时）；FAIL打回Planner，67/100"}
+{"date":"2026-09-25","task":"V2.0-DRAFT.2 ResearchReview复审","role":"product-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"opencode","result":"PASS","note":"用户指定通道；FAIL打回，75/100；P0-02/03/04计划层关，P0-01+P1四项开"}
+{"date":"2026-09-25","task":"V2 R3审查(Pair/Signal)","role":"product-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"opencode","result":"PASS","note":"用户指定通道；FAIL打回，3PASS/4FAIL；P1-05数值fixture待补"}
+{"date":"2026-09-25","task":"V2 R3复审","role":"product-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"opencode","result":"PASS","note":"R3 PASS 7/7"}
+{"date":"2026-09-25","task":"V2 R4复审","role":"product-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"opencode","result":"PASS","note":"R4 PASS 7/7"}

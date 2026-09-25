@@ -1,0 +1,73 @@
+# RESEARCH_REVIEW-V2.0-R5（Phase1 专用；内部 role ID `product-reviewer` 不变）
+
+- Plan Version（评的是哪版 PRODUCT_PLAN）：`PRODUCT_PLAN_V2.0-DRAFT.2`
+- Review Round（第几轮）：`R5｜MATCH / 5档 / Consent / V1.6迁移`
+- Result：（FAIL＋R5结论一句：MATCH与Consent方向正确但5档保障状态机、多MATCH并存、单Router可达性与私密生命周期仍为blocking P1且D5/D7/D8待拍板，不满足Human Gate。）
+- R5逐条（PASS/FAIL＋阻塞判定）：
+  - [PASS｜非阻塞] R5-01｜MATCH只来自双向秘密互选：Plan E.1–E.3＋Flow 5–6明确Shared/Compatibility/Crowd/Personal/Mutual分离、Crowd/Personal不建MATCH、SYSTEM_MUTUAL_CHECK独立、单向计算后清除、只公布A↔B共同结果。
+  - [PASS｜非阻塞] R5-02｜MATCH≠身体接触consent：Plan E.4明确MATCH仅为“本局愿意继续了解”，E.5＋F.1明确每张具体动作仍走current consent、无交集即no-action。
+  - [FAIL｜blocking P1-01＋D7] R5-03｜pair-specific 5档两次机会保障：Plan F.2–F.4有pair独立tracker与QUALIFYING定义、多MATCH排序，但Plan Problem 6自认状态机口径缺失，且F.5/D7“展示即offered还是completed才offered”待人拍板，Limit=2未冻结为runtime常量。
+  - [FAIL｜D5待拍板＋blocking P1-01/P1-05] R5-04｜多MATCH并存：Plan Flow 6与D5明确“同一玩家是否允许多个MATCH由Human Gate决定”，F.4仅给多MATCH排序建议，未冻结允许多MATCH的最终语义与小池公平fixture。
+  - [PASS｜阻塞仍在P1-03] R5-05｜current consent intersection：Plan E.5明确private-mutual-only只显示交集、无交集no-action且不得降档施压，C补充与Technical Approach 7明确CONSENT_*不计、partial仅内存、刷新作废；持久化denylist与refresh/crash/log/export/cache验证仍属blocking P1-03未闭环。
+  - [PASS｜非阻塞] R5-06｜拒绝/skip无惩罚不暴露拒绝方：Plan Core Value 4＋C事件表（SKIPPED/SWAPPED不计、不推Heat/interval/限额）＋E.3单向不持久化＋G.2扩圈拒绝不暴露拒绝者＋R4 NO_ELIGIBLE_PAIR中性提示不公开字段值＋F.5 skip视为已提供不补做。
+  - [PASS（计划契约）｜阻塞仍在P1-04] R5-07｜迁移删旧16:8:4:2:1/INTENSITY_WEIGHT/旧可达逻辑：Plan I.4明确旧future deck/16:8:4:2:1/固定陡坡/全桌H5/DOUBLE MATCH生产不可达，H.2与Flow 10禁回退旧selector；单Router可达测试与事务回滚测试仍属blocking P1-04，DEVELOP期验证。
+  - [PASS（计划契约）｜阻塞仍在P1-04] R5-08｜V2与旧selector不双跑：Plan Problem 2＋Technical Approach 6＋Risks明确旧selector与V2主线互斥、单一入口；实现层互斥门禁仍待P1-04测试关闭。
+  - [PASS｜非阻塞] R5-09｜旧Session迁移不推测Signal/MATCH：Plan I.2＋R4 2.3/5.6明确V2 signal/MATCH从空开始、不从旧轮次/历史/暂离期/普通回合补算倒推，失效边删除废弃不复用，迁移可重入且无合法Pair时可恢复。
+  - [PASS｜非阻塞] R5-10｜R5 SSOT引用一致性：DRAFT Data/API R5节与V2-R5-ssot-gate.md的ZIP容器、三member path、双SHA256、schemaVersion 2.3、350/40数量一致；新R2–R4结构化物化须新冻结快照重签后才成运行真源，原ZIP不可变。
+- P0 / P1 / P2：
+  - P0：P0-01～P0-04按DRAFT记为已关闭，本R5不重审R1–R4证据。
+  - P1：blocking P1-01（5档状态机＋D7）未闭环；blocking P1-02（耗尽D8）未闭环；blocking P1-03（私密生命周期）未闭环；blocking P1-04（单Router＋迁移原子性）未闭环；非blocking P1-05/P1-06/P1-07不阻塞R5。
+  - P2：不阻塞R5，按DRAFT调参与文案打磨处理。
+- Key Assumptions（逐条列＋是否成立）：
+  - 单设备传手机私密流程可接受——未成立，需真人节奏测试（DRAFT Key Assumptions 3）。
+  - Host可完成当局pairGender录入且降级可理解——未成立，需真人验证（DRAFT Key Assumptions 4）。
+  - expansion/neutral默认不推进为保守方案——成立为计划默认，未完成用户研究验证（DRAFT Key Assumptions 5）。
+  - 5档保障提升可达性且不压制公平——未成立，需4/5人＋多MATCH fixture＋真人局验证（DRAFT Key Assumptions 6）。
+  - 洗牌保留关系态符合预期——未成立，待D8拍板（DRAFT Key Assumptions 7）。
+- Verified Facts（已验证事实＋证据）：
+  - DRAFT为DRAFT.2、PROJECT_PHASE=PLAN、DEV_BASELINE=NOT_SET、Human Gate前禁Builder/业务改动/Release——证据：DRAFT首部状态行。
+  - R5 SSOT输入哈希与路径已在计划契约固定——证据：DRAFT Data/API R5节与V2-R5-ssot-gate.md §1/§3.1值一致。
+  - MATCH/Consent/拒绝安全/迁移不推测的计划语句存在——证据：DRAFT E/F/I/R4/Technical Approach对应条款（见R5-01/02/05/06/09）。
+  - 5档保障与多MATCH未冻结、D5/D7/D8为TBD——证据：DRAFT F.5、Flow 6、Human Decisions D5/D7/D8、Problem 6。
+- External Sources（Web Search / Web Fetch / 官方文档 / 官方 GitHub / 第三方 / 社区反馈，附链接）：无（本轮禁止联网，未做外部验证）。
+- Competitor Findings（竞品现状＋对本Plan的启示）：无（本轮禁止联网；DRAFT自述尚缺本轮独立竞品桌面研究）。
+- Counter-evidence（反对证据＋成功的相反做法）：无（本轮禁止联网，未引入外部反证）。
+- Unverified Items（未验证项＋验证方法）：
+  - D5多MATCH允许多否＋小局公平——验证方法：Human Gate拍板＋small-pool/cooldown/coverage fixture。
+  - D7 offered口径（展示即offered vs completed才offered）——验证方法：Human Gate拍板＋skip/换题/重发施压测试。
+  - D8耗尽N/洗牌/迁移口径——验证方法：Human Gate拍板＋bucket/pack/global耗尽E2E＋离线/恢复幂等。
+  - P1-03私密denylist全覆盖——验证方法：refresh/crash/log/export/cache/analytics测试。
+  - P1-04单Router不可达＋迁移原子性——验证方法：legacy reachability test＋事务回滚测试。
+- Required Fixes（Planner 必须改项，打回依据）：
+  - 冻结5档保障Limit=2的runtime常量与终态语义，明确D7两选项的唯一执行口径，补无合法卡/Intensity下调/cooldown挡住/SESSION_END的消耗与终态（对应blocking P1-01）。
+  - 冻结多MATCH最终语义（允许/禁止＋上限/公平），与5档竞争排序、cooldown、Coverage欠账联动（对应D5＋P1-05）。
+  - DRAFT内不得把D5/D7/D8默认建议写成已决语义；保持TBD直至Human Gate拍板。
+  - R2–R4结构化物化未进新受控JSON冻结快照前，重申Builder不得以Plan prose作运行真源（R5-10延续）。
+- Plan Readiness Score（分项打分＋合计，口径以 PRODUCT_PLAN.template.md 为准）：沿用DRAFT自评71/100（18/14/10/11/8/9/1）；R5不改变总分，Gate仍为Readiness>=90 AND P0=0 AND blocking P1=0 AND关键事实已验证AND核心假设已合理验证，当前不满足。
+- Human-only Decisions（只需人类拍板项）：D5（多MATCH是否允许）、D7（offered口径）、D8（耗尽与迁移，含N=5默认是否采纳）为R5直接相关；D1/D2/D3/D4/D6维持DRAFT TBD/已决状态不变，Builder不得代选。
+- Next Action：（回 Planner 修订 / 进 WAITING_HUMAN_APPROVAL 找人）：回 Planner 修订（补blocking P1-01/P1-04及D5/D7/D8口径后重审；不进WAITING_HUMAN_APPROVAL）。
+
+---
+
+## R5复审（2026-09-25｜D7/D8已决冻结＋多MATCH除D5外冻结＋单Router/迁移契约）
+
+- 复审基线（仅本任务允许的三份输入，不联网、不扩读）：
+  - `docs/review/RESEARCH_REVIEW-V2.0-R5.md` R5初审（FAIL，D5/D7/D8待拍板）。
+  - `docs/pm/V2-R5-ssot-gate.md`（R5决策口径：Human已决D7=A、D8=A+；D1/D2/D5/D6仍TBD，不代拍D5）。
+  - `docs/handoff/HANDOFF.md`（Human已决D7=A、D8=A+、D4=A、D3=A；禁Builder/代码/commit/自动过Gate）。
+- R5逐条开闭（D5保持TBD，不代拍、不推荐1/2）：
+  - [维持PASS｜非阻塞] R5-01｜MATCH只来自双向秘密互选：gate未改动该语义，无回退证据，沿用初审。
+  - [维持PASS｜非阻塞] R5-02｜MATCH≠身体接触consent：gate未改动该语义，沿用初审。
+  - [由FAIL→PASS（计划契约）｜剩余DEVELOP验证] R5-03｜5档保障＋D7：gate §5.1冻结`FIVE_TIER_GUARANTEE_QUALIFYING_LIMIT=2`＋`OFFER_EVENT=CARD_PRESENTED`、单tracker终态机、重放不二次计数；§5.2冻结消耗/终态表（展示即offered终态、无合法卡/Intensity下调/cooldown/暂离不消耗、退出/失效/SESSION_END进expired）；§5.3给必过状态机测试。初审Required Fix第1项在计划契约层关闭，残留为DEVELOP必过测试。
+  - [由FAIL→PASS条件（除D5布尔外冻结）｜D5仍TBD留Human] R5-04｜多MATCH并存：gate §5.1冻结`MATCHES_PER_PLAYER_HARD_CEILING=2`不可配更高＋§7.1只剩“有效上限1还是2”一个布尔、双分支入场/上限/清理语义已冻结＋§7.2冻结过滤优先、硬cooldown=1、稳定全序竞争、Coverage记账＋§7必过fixture覆盖4/5人×D5=1/2。D5本身不代拍，初审Required Fix第2项除D5二选一外关闭。
+  - [维持PASS（计划契约）｜P1-03仍留DEVELOP/Human] R5-05｜current consent：gate本次未新增denylist/refresh/crash/log/export/cache证据，不改变初审“计划语句成立、P1-03未闭环”判定。
+  - [维持PASS｜非阻塞] R5-06｜拒绝/skip无惩罚不暴露：gate未改动该语义，沿用初审。
+  - [维持PASS（计划契约强化）｜剩余DEVELOP门禁] R5-07｜删旧迁移＋禁回退：gate §6.3＋§8.1明确旧future deck/16:8:4:2:1/INTENSITY_WEIGHT/固定陡坡/全桌H5/DOUBLE MATCH生产不可达，静态import断言＋旧selector spy=0＋产物扫描三重门禁；§8.2事务CAS＋无半写＋可重入＋空Signal/MATCH/5档tracker。初审阻塞转DEVELOP验证。
+  - [维持PASS（计划契约强化）｜剩余DEVELOP门禁] R5-08｜不双跑单Router：gate §8.1收敛全部入口到同一V2 Router、唯一legacy例外仅收尾一次且不写计数、empty/error只进耗尽/显式失败。实现层互斥仍待P1-04测试关闭。
+  - [维持PASS｜非阻塞] R5-09｜旧Session不推测：gate §8.2.4＋§9重申V2 Signal/MATCH/5档从空开始、无合法pair按NO_ELIGIBLE_PAIR可恢复，沿用初审。
+  - [维持PASS｜非阻塞] R5-10｜SSOT一致性：gate §1/§3.1的ZIP容器、三member path、双SHA256、schemaVersion 2.3、350/40与初审一致；§2/§3/§9重申原ZIP不可变、新物化须重签、Builder禁以Plan prose/旧seed-*为运行真源。初审Required Fix第4项关闭。
+- 初审Required Fixes开闭：①5档＋D7冻结→关闭（契约层）；②多MATCH冻结→除D5外关闭；③已决/未决写法→关闭（D7/D8按HANDOFF已决写已决，D5在gate §7保持TBD）；④禁以prose为真源→关闭（gate §1/§2/§9已重申）。
+- Plan Readiness Score：沿用DRAFT自评71/100，本复审不改总分；是否进WAITING_HUMAN_APPROVAL由TM按模板Gate（Readiness>=90 AND P0=0 AND blocking P1=0 AND关键事实/核心假设验证）判定，本复审不代判。
+- Human-only Decisions（重申）：D5仍为TBD（1还是2留Human Gate）；D7=A、D8=A+按HANDOFF记为Human已决，本文只复核冻结不重拍；D1/D2/D6维持TBD，Builder不得代选。
+- R5复审结论：PASS——D7/D8已决冻结、多MATCH除D5布尔外冻结、单Router与迁移原子性已给可测契约，D5保持TBD留Human Gate且P1-03/DEVELOP验证残留不由本轮代闭。
+- Next Action：停（本复审写完即止；是否进WAITING_HUMAN_APPROVAL由TM按Gate判定）。

@@ -1,0 +1,563 @@
+{
+  "scope": "R2 Relationship Engine state-machine / Heat / Coverage / SYSTEM_MUTUAL_CHECK runtime audit",
+  "assumedProductDecisions": {
+    "D3": "A — default 20 completed rounds; at boundary choose end or +5; Heat base remains the original 20-round threshold and never decreases",
+    "D4": "A — opposite-sex Relationship Pair only; zero eligible opposite-sex pairs => Relationship Engine inactive, neutral packs remain available"
+  },
+  "automatedChecks": [
+    {
+      "id": "R2-01",
+      "name": "Heat 0–3张关系卡为H1",
+      "status": "PASS",
+      "observed": {
+        "0": "H1",
+        "1": "H1",
+        "2": "H1",
+        "3": "H1",
+        "4": "H2",
+        "5": "H2",
+        "6": "H2",
+        "7": "H2",
+        "8": "H3",
+        "9": "H3",
+        "10": "H3",
+        "11": "H3",
+        "12": "H3",
+        "13": "H4",
+        "14": "H4",
+        "15": "H4",
+        "16": "H4",
+        "17": "H4",
+        "18": "H4",
+        "19": "H4",
+        "20": "H4"
+      }
+    },
+    {
+      "id": "R2-02",
+      "name": "Heat 4–7张关系卡为H2",
+      "status": "PASS",
+      "observed": {
+        "0": "H1",
+        "1": "H1",
+        "2": "H1",
+        "3": "H1",
+        "4": "H2",
+        "5": "H2",
+        "6": "H2",
+        "7": "H2",
+        "8": "H3",
+        "9": "H3",
+        "10": "H3",
+        "11": "H3",
+        "12": "H3",
+        "13": "H4",
+        "14": "H4",
+        "15": "H4",
+        "16": "H4",
+        "17": "H4",
+        "18": "H4",
+        "19": "H4",
+        "20": "H4"
+      }
+    },
+    {
+      "id": "R2-03",
+      "name": "Heat 8–12张关系卡为H3",
+      "status": "PASS",
+      "observed": {
+        "0": "H1",
+        "1": "H1",
+        "2": "H1",
+        "3": "H1",
+        "4": "H2",
+        "5": "H2",
+        "6": "H2",
+        "7": "H2",
+        "8": "H3",
+        "9": "H3",
+        "10": "H3",
+        "11": "H3",
+        "12": "H3",
+        "13": "H4",
+        "14": "H4",
+        "15": "H4",
+        "16": "H4",
+        "17": "H4",
+        "18": "H4",
+        "19": "H4",
+        "20": "H4"
+      }
+    },
+    {
+      "id": "R2-04",
+      "name": "Heat 13+张关系卡为H4",
+      "status": "PASS",
+      "observed": {
+        "0": "H1",
+        "1": "H1",
+        "2": "H1",
+        "3": "H1",
+        "4": "H2",
+        "5": "H2",
+        "6": "H2",
+        "7": "H2",
+        "8": "H3",
+        "9": "H3",
+        "10": "H3",
+        "11": "H3",
+        "12": "H3",
+        "13": "H4",
+        "14": "H4",
+        "15": "H4",
+        "16": "H4",
+        "17": "H4",
+        "18": "H4",
+        "19": "H4",
+        "20": "H4"
+      }
+    },
+    {
+      "id": "R2-05",
+      "name": "20轮纯关系局不会在19轮再开普通互选",
+      "status": "PASS",
+      "observed": [
+        [
+          "regular_mutual_check",
+          9,
+          9,
+          "H3"
+        ],
+        [
+          "regular_mutual_check",
+          14,
+          14,
+          "H4"
+        ],
+        [
+          "final_mutual_check",
+          20,
+          20,
+          "H4"
+        ],
+        [
+          "session_end",
+          20,
+          20,
+          "H4"
+        ]
+      ]
+    },
+    {
+      "id": "R2-06",
+      "name": "20轮纯关系局互选节奏为9/14/final20",
+      "status": "PASS",
+      "observed": [
+        [
+          "regular_mutual_check",
+          9,
+          9,
+          "H3"
+        ],
+        [
+          "regular_mutual_check",
+          14,
+          14,
+          "H4"
+        ],
+        [
+          "final_mutual_check",
+          20,
+          20,
+          "H4"
+        ],
+        [
+          "session_end",
+          20,
+          20,
+          "H4"
+        ]
+      ]
+    },
+    {
+      "id": "R2-07",
+      "name": "20轮选择+5后Heat不回退",
+      "status": "PASS",
+      "observed": [
+        [
+          "regular_mutual_check",
+          9,
+          9,
+          "H3"
+        ],
+        [
+          "regular_mutual_check",
+          14,
+          14,
+          "H4"
+        ],
+        [
+          "extend_5_rounds",
+          20,
+          20,
+          "H4"
+        ],
+        [
+          "regular_mutual_check",
+          20,
+          20,
+          "H4"
+        ],
+        [
+          "final_mutual_check",
+          25,
+          25,
+          "H4"
+        ],
+        [
+          "session_end",
+          25,
+          25,
+          "H4"
+        ]
+      ]
+    },
+    {
+      "id": "R2-08",
+      "name": "延长后可在20轮重新触发第三次普通互选并留足兑现窗口",
+      "status": "PASS",
+      "observed": [
+        [
+          "regular_mutual_check",
+          9,
+          9,
+          "H3"
+        ],
+        [
+          "regular_mutual_check",
+          14,
+          14,
+          "H4"
+        ],
+        [
+          "extend_5_rounds",
+          20,
+          20,
+          "H4"
+        ],
+        [
+          "regular_mutual_check",
+          20,
+          20,
+          "H4"
+        ],
+        [
+          "final_mutual_check",
+          25,
+          25,
+          "H4"
+        ],
+        [
+          "session_end",
+          25,
+          25,
+          "H4"
+        ]
+      ]
+    },
+    {
+      "id": "R2-09",
+      "name": "25轮结束仍有final check且regular总数不超过3",
+      "status": "PASS",
+      "observed": [
+        [
+          "regular_mutual_check",
+          9,
+          9,
+          "H3"
+        ],
+        [
+          "regular_mutual_check",
+          14,
+          14,
+          "H4"
+        ],
+        [
+          "extend_5_rounds",
+          20,
+          20,
+          "H4"
+        ],
+        [
+          "regular_mutual_check",
+          20,
+          20,
+          "H4"
+        ],
+        [
+          "final_mutual_check",
+          25,
+          25,
+          "H4"
+        ],
+        [
+          "session_end",
+          25,
+          25,
+          "H4"
+        ]
+      ]
+    },
+    {
+      "id": "R2-10",
+      "name": "Neutral轮计入整局长度但不推进Relationship Heat",
+      "status": "PASS",
+      "observed": {
+        "session": 20,
+        "relationship": 10,
+        "heat": "H3"
+      }
+    },
+    {
+      "id": "R2-11",
+      "name": "Neutral混合局不会按总轮数误升H4",
+      "status": "PASS",
+      "observed": [
+        [
+          "regular_mutual_check",
+          17,
+          9,
+          "H3"
+        ],
+        [
+          "session_end",
+          20,
+          10,
+          "H3"
+        ]
+      ]
+    },
+    {
+      "id": "R2-12",
+      "name": "仅8张关系卡时不触发普通互选",
+      "status": "PASS",
+      "observed": [
+        [
+          "final_mutual_check",
+          20,
+          8,
+          "H3"
+        ],
+        [
+          "session_end",
+          20,
+          8,
+          "H3"
+        ]
+      ]
+    },
+    {
+      "id": "R2-13",
+      "name": "达到H3且从未互选时，结束可执行final互选",
+      "status": "PASS",
+      "observed": [
+        [
+          "final_mutual_check",
+          20,
+          8,
+          "H3"
+        ],
+        [
+          "session_end",
+          20,
+          8,
+          "H3"
+        ]
+      ]
+    },
+    {
+      "id": "R2-14",
+      "name": "Heat仍H2时Session结束不强行final互选",
+      "status": "PASS",
+      "observed": [
+        [
+          "session_end",
+          20,
+          7,
+          "H2"
+        ]
+      ]
+    },
+    {
+      "id": "R2-15",
+      "name": "Coverage未通过不会进入普通或final互选",
+      "status": "PASS",
+      "observed": [
+        [
+          "session_end",
+          20,
+          20,
+          "H4"
+        ]
+      ]
+    },
+    {
+      "id": "R2-16",
+      "name": "无合法异性pair不会进入互选死循环",
+      "status": "PASS",
+      "observed": [
+        [
+          "session_end",
+          20,
+          20,
+          "H4"
+        ]
+      ]
+    },
+    {
+      "id": "R2-17",
+      "name": "最高开放度<5时不受5档兑现窗口约束",
+      "status": "PASS",
+      "observed": [
+        [
+          "regular_mutual_check",
+          9,
+          9,
+          "H3"
+        ],
+        [
+          "regular_mutual_check",
+          14,
+          14,
+          "H4"
+        ],
+        [
+          "regular_mutual_check",
+          19,
+          19,
+          "H4"
+        ],
+        [
+          "session_end",
+          20,
+          20,
+          "H4"
+        ]
+      ]
+    },
+    {
+      "id": "R2-18",
+      "name": "刚在19轮互选后final不会一轮后重复询问",
+      "status": "PASS",
+      "observed": [
+        [
+          "regular_mutual_check",
+          9,
+          9,
+          "H3"
+        ],
+        [
+          "regular_mutual_check",
+          14,
+          14,
+          "H4"
+        ],
+        [
+          "regular_mutual_check",
+          19,
+          19,
+          "H4"
+        ],
+        [
+          "session_end",
+          20,
+          20,
+          "H4"
+        ]
+      ]
+    },
+    {
+      "id": "R2-19",
+      "name": "Session延长不允许Heat从H4回退",
+      "status": "PASS",
+      "observed": "H4"
+    },
+    {
+      "id": "R2-20",
+      "name": "specialFlow必须互斥而不能嵌套",
+      "status": "PASS",
+      "observed": "mutually exclusive"
+    },
+    {
+      "id": "R2-21",
+      "name": "CARD_PRESENTED先记录offered opportunity",
+      "status": "PASS",
+      "observed": "presentation event"
+    },
+    {
+      "id": "R2-22",
+      "name": "CARD_SKIPPED不增加completed round/effective card",
+      "status": "PASS",
+      "observed": "skip semantics"
+    },
+    {
+      "id": "R2-23",
+      "name": "CARD_SWAPPED不增加completed round/effective card",
+      "status": "PASS",
+      "observed": "swap semantics"
+    },
+    {
+      "id": "R2-24",
+      "name": "Neutral/Expansion不增加relationshipEffectiveCardCount",
+      "status": "PASS",
+      "observed": "capability semantics"
+    },
+    {
+      "id": "R2-25",
+      "name": "Final mutual产生的新MATCH不创建本局5档保障",
+      "status": "PASS",
+      "observed": "closing-only result"
+    },
+    {
+      "id": "R2-26",
+      "name": "Pending 5档保障只在pair真实获得合格双人slot时消耗机会",
+      "status": "PASS",
+      "observed": "qualifying opportunity"
+    },
+    {
+      "id": "R2-27",
+      "name": "多个Pending Guarantee按matchedAt→least-recent-pair排序且仍受cooldown",
+      "status": "PASS",
+      "observed": "deterministic arbitration"
+    },
+    {
+      "id": "R2-28",
+      "name": "PLAYER_TEMP_AWAY会让相关pair临时不eligible且不消耗保障窗口",
+      "status": "PASS",
+      "observed": "away semantics"
+    },
+    {
+      "id": "R2-29",
+      "name": "Session end/refresh/pause会先清除partial private state",
+      "status": "PASS",
+      "observed": "privacy cleanup"
+    },
+    {
+      "id": "R2-30",
+      "name": "Router先做卡片硬合法性，再从可实现卡集合中选择pair",
+      "status": "PASS",
+      "observed": "routing order"
+    },
+    {
+      "id": "R2-31",
+      "name": "无合法V2候选时不得回退旧16:8:4:2:1 selector",
+      "status": "PASS",
+      "observed": "safe failure"
+    }
+  ],
+  "summary": {
+    "checks": 31,
+    "pass": 31,
+    "fail": 0
+  }
+}
