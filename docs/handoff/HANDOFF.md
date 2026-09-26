@@ -2,7 +2,7 @@
 
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
-- Captured at（YYYY-MM-DD HH:MM）：2026-09-26（RC清障P2-01+P2-02闭环：lint0/typecheck0/unit737/E2E86+4skip，reviewer+supervisor PASS；READY_FOR_RC_COMMIT，停等commit指令）
+- Captured at（YYYY-MM-DD HH:MM）：2026-09-26（RC已冻结commit 6dc861b已push main：236文件，P2-01+P2-02闭环，lint0/typecheck0/737/E2E86+4skip；洁癖：temp/已gitignore不入仓，无残留进程；待RG-01~RG-07）
 - PROJECT_PHASE：（DEVELOP：READY_FOR_RC_FREEZE；RG-01~RG-07 NOT_STARTED）
 - Captured at（YYYY-MM-DD HH:MM）：2026-09-22 15:30
 - PLAN_VERSION：（PRODUCT_PLAN_V2.0）
