@@ -18,6 +18,9 @@ import { play } from "@/lib/audio";
 
 const steps = ["分析你的组局信息", "匹配最适合的游戏内容", "执行边界与安全过滤", "生成完整离线游戏"];
 
+/** 自包含安装包（B-1）：没有 /api 代理，AI 在线生成不可能成功，直接走明确的本地题库降级。 */
+const selfContained = process.env.NEXT_PUBLIC_SELF_CONTAINED === "1";
+
 function GeneratingPageContent() {
   const router = useRouter();
   const params = useSearchParams();
@@ -25,7 +28,7 @@ function GeneratingPageContent() {
   const started = useRef(false);
   const [session, setSession] = useState<GameSession>();
   const [step, setStep] = useState(0);
-  const [state, setState] = useState<"loading" | "unconfigured" | "error">("loading");
+  const [state, setState] = useState<"loading" | "unconfigured" | "error" | "offline">("loading");
   const [message, setMessage] = useState("");
 
   useEffect(() => { if (!id) return router.replace("/setup"); void sessionRepository.get(id).then((value) => value ? setSession(value) : router.replace("/setup")); }, [id, router]);
@@ -42,6 +45,9 @@ function GeneratingPageContent() {
 
   async function generate(current: GameSession) {
     setState("loading"); setStep(0); setMessage("");
+    // 自包含版没有服务器代理（/api/generate-session 不存在）：不发注定失败的请求，也不让用户干等，
+    // 直接把「用本地题库开局」摆到台面上——主局照常推进，AI 只是缺席。
+    if (selfContained) return setState("offline");
     const [profiles, customPacks] = await Promise.all([aiProviderRepository.ensurePresets(), gamePackRepository.list()]);
     const customCards = customPacks.filter((pack) => pack.enabled).flatMap((pack) => pack.cards);
     const preference = await preferencesRepository.get();
@@ -59,7 +65,7 @@ function GeneratingPageContent() {
   }
 
   if (!session) return <NeonBackground><main className="screen generating-screen"><p>正在读取本局…</p></main></NeonBackground>;
-  return <NeonBackground><main className="screen generating-screen"><div className="generating-orb" aria-hidden="true"><span>AI</span></div>{state === "loading" ? <><h1>AI 正在为你准备<br />今晚的专属游戏</h1><p>好游戏，值得多一点等待</p><ol>{steps.map((label, index) => <li className={index < step ? "done" : index === step ? "active" : ""} key={label}><span>{index < step ? "✓" : index === step ? "◌" : "○"}</span>{label}</li>)}</ol><div className="generating-progress"><i style={{ width: `${(step + 1) * 25}%` }} /></div></> : <section className="generation-recovery"><div className="recovery-icon"><Icon name="settings" /></div><h1>{state === "unconfigured" ? "请先配置 AI 接口" : "这次生成没有完成"}</h1><p>{message || "配置 AI 后可生成个性化整局内容；也可以直接使用本地题库开始。"}</p><Link className="button button--primary" href="/settings/ai">去配置 AI 接口</Link>{state === "error" && <Button variant="secondary" type="button" onClick={() => void generate(session)}>重试一次</Button>}<Button variant="ghost" type="button" onClick={() => void gamePackRepository.list().then((packs) => finishWithDeck(session, localSeedDeck(session.config, packs.filter((pack) => pack.enabled).flatMap((pack) => pack.cards))))}>使用本地题库开始</Button></section>}</main></NeonBackground>;
+  return <NeonBackground><main className="screen generating-screen"><div className="generating-orb" aria-hidden="true"><span>AI</span></div>{state === "loading" ? <><h1>AI 正在为你准备<br />今晚的专属游戏</h1><p>好游戏，值得多一点等待</p><ol>{steps.map((label, index) => <li className={index < step ? "done" : index === step ? "active" : ""} key={label}><span>{index < step ? "✓" : index === step ? "◌" : "○"}</span>{label}</li>)}</ol><div className="generating-progress"><i style={{ width: `${(step + 1) * 25}%` }} /></div></> : <section className="generation-recovery"><div className="recovery-icon"><Icon name="settings" /></div><h1>{state === "offline" ? "本机版：用本地题库开局" : state === "unconfigured" ? "请先配置 AI 接口" : "这次生成没有完成"}</h1><p>{state === "offline" ? "这个安装包是自包含版（无服务器、完全离线），不带 AI 组局；完整本地题库照样开局，玩法与流程完全一致。" : message || "配置 AI 后可生成个性化整局内容；也可以直接使用本地题库开始。"}</p>{state !== "offline" && <Link className="button button--primary" href="/settings/ai">去配置 AI 接口</Link>}{state === "error" && <Button variant="secondary" type="button" onClick={() => void generate(session)}>重试一次</Button>}<Button variant="ghost" type="button" onClick={() => void gamePackRepository.list().then((packs) => finishWithDeck(session, localSeedDeck(session.config, packs.filter((pack) => pack.enabled).flatMap((pack) => pack.cards))))}>使用本地题库开始</Button></section>}</main></NeonBackground>;
 }
 
 export default function GeneratingPage() {

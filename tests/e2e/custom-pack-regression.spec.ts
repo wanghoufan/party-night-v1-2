@@ -31,7 +31,7 @@ test("游戏包页新增分区后，自定义玩法的增改禁删仍然可用�
 
   // 编辑：改名 + 加卡后保存，列表跟着更新
   await page.getByRole("link", { name: new RegExp(PACK) }).click();
-  await expect(page).toHaveURL(/\/packs\/custom-/);
+  await expect(page).toHaveURL(/\/packs\/editor\?id=custom-/);
   await page.getByLabel("名称").fill(`${PACK} v2`);
   await page.getByRole("button", { name: /添加题卡/ }).click();
   await page.getByPlaceholder("输入题目内容").last().fill("用一个词形容今晚");

@@ -2,18 +2,19 @@
 
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
-- Captured at（YYYY-MM-DD HH:MM）：2026-09-26（RELEASE_GATE_VALIDATION：RC 6dc861b冻结，HANDOFF已收敛；RG-01准备中，真机2台在线；RG-01~RG-07 NOT_STARTED→IN_PROGRESS）
+- Captured at（YYYY-MM-DD HH:MM）：2026-09-26（Change B闭环待冻新RC：reviewer PASS+附录/qa PASS(lint0/typecheck0/750/E2E86+4)/supervisor三检PASS；自包含APK飞行模式smoke过；离线smoke见RG-01-NEWRC-SMOKE.md）
+- PROJECT_PHASE：（DEVELOP：RELEASE_GATE_VALIDATION；RELEASE_GATE NOT_STARTED）
 - PROJECT_PHASE：（DEVELOP：RELEASE_GATE_VALIDATION；RELEASE_GATE NOT_STARTED，7/7通过才Release）
 - PLAN_VERSION：（PRODUCT_PLAN_V2.0）
 - PLAN_READINESS_SCORE：（83＋Human例外有条件批准）
 - PLAN_GATE：（APPROVED，V2.0 Human Gate终版）
 - DEV_BASELINE：（PRODUCT_PLAN_V2.0）
-- CHANGE_REQUEST：（NONE）
+- CHANGE_REQUEST：（B：自包含离线RC+Key持久化+Matrix分离；旧RC 6dc861b作废待重冻）
 - Stage ID（本阶段叫什么）：V2.0-Relationship Engine（Human已决D1换真源/D2切Router/D3=A20+5/D4=A异性/D5上限2/D6中性不推进/D7=A展示即给过/D8=A+；Release前强制Gate RG-01~RG-07须7/7）
 - 剩 P0（没完的才列，多一条都不行）：
   - RG-01~RG-07 真机/真人验证（RELEASE_GATE NOT_STARTED）：7/7 PASS才Release，任一FAIL即BLOCKED禁发版。
-- RC冻结（2026-09-26，commit 6dc861b）：P2-01/P2-02 CLOSED；reviewer+supervisor PASS；lint0/typecheck0/737/E2E86+4skip；三处1.5.0同值。RC后禁功能开发，Bug走Change A/B+重冻+RG重验。
-- 当前 Task：RG-01准备（真机2台在线，RC APK待装机验证；之后4人局RG-02/04/05/06/07合并、5人局RG-03）。
+- RC冻结（2026-09-26，commit 6dc861b，已作废）：见Change B行；重冻后刷新本节。
+- 当前 Task：Change B收尾（新RC重冻+自包含APK离线smoke+RG-01从头验证准备）。
 - 历史执行口径（存档，勿作当前指令）：V1.5文档包落盘→验数→发用户审查；V1.5主链→commit+push+生产验证→GAP-04放行；链入/宽屏热修证据见git log；执行链TM直驱+codebuddy builder+codex qa(TM接管E2E)+opencode supervisor；旧supervisor停线账本dup结论已处理。
 - 未闭环评审意见：无。
 - docs 落盘清单：
@@ -24,7 +25,7 @@
   - 账本：`docs/model/TASK-MODEL-LOG.jsonl`（示例行已清）；`docs/model/DISPATCH-LOG.jsonl`（空，首个真实派工前由 TM 写）
    - V1.6：评审`docs/review/CODE_REVIEW-V1.6.md`（PASS，commit 4ba3d13）、QA`docs/qa/BUGS-V1.6.md`（lint0/typecheck0/511/E2E80+4skip/三处1.5.0）、把关`docs/content/题库把关/`9件（00总览旧180审计+01–07+08新题纲）、终稿`docs/content/题库终稿/`9件（00总览§一终稿350分布3/5/7/14/21+01–07各50+08新题纲）；旧`docs/content/题库审查/`已删（文档搬家映射）；账本35行至V1.6补遗（dup删后27行自验口径作废，以现35行为准）
  - V2-B3：评审`docs/review/CODE_REVIEW-V2-B3.md`（FAIL→返工→复验PASS）、QA`docs/qa/BUGS-V2-B3.md`（lint0/typecheck0/610）；账本随行。
-- 下一步（Next Single Action）：RG-01真机验证（RC 6dc861b装机→离线/恢复10项→PASS/FAIL落盘）；机器准备完成后找用户上手操作。
+- 下一步（Next Single Action）：Change B supervisor复检通过→自包含release APK构建装机→Mac断网离线smoke 10项→新RC冻结→RG-01从头验证。
 - 人要拍什么板：
   - RG-01需本人上手真机操作；RG-02~07需组织4人/5人真人局+主观体验判断；局内“移出本局”入口是否加（Change B/C另报，不拦RC）。
 - permission_request：无。

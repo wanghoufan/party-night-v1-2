@@ -23,10 +23,17 @@ export const viewport: Viewport = {
 
 const themeInitScript = `try{var t=localStorage.getItem("party-night-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}`;
 
+/**
+ * B-1：静态导出（Capacitor 自包含版）没有 HTTP 响应头可注入，用 <meta http-equiv> 兜同一套 CSP。
+ * 服务器模式仍然只走 next.config.ts 的 headers，两边不重复下发。（meta 不支持 frame-ancestors，故去掉。）
+ */
+const selfContainedCsp = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob:";
+const isSelfContained = process.env.PARTY_NIGHT_OUTPUT === "export";
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <head><Script id="party-night-theme-init" strategy="beforeInteractive">{themeInitScript}</Script></head>
+      <head>{isSelfContained && <meta httpEquiv="Content-Security-Policy" content={selfContainedCsp} />}<Script id="party-night-theme-init" strategy="beforeInteractive">{themeInitScript}</Script></head>
       <body>{children}<StorageGuard /><ServiceWorkerRegistration /><VersionGuard /><SoundProvider /></body>
     </html>
   );

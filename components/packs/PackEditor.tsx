@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { NeonBackground } from "@/components/brand/NeonBackground";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
@@ -27,9 +27,14 @@ function sanitizeCustomPack(pack: CustomGamePack): CustomGamePack {
   };
 }
 
-export default function PackEditorPage() {
+/**
+ * 自定义游戏包编辑器（/packs/new 新建、/packs/editor?id=<packId> 编辑）。
+ * B-1 自包含 Release：自定义包 id 是运行期生成的，静态导出无法为它预渲染动态路由，
+ * 因此改用查询参数承载 id —— 两个入口都是可预渲染的静态路由，WebView 内客户端跳转照常。
+ */
+export function PackEditor() {
   const router = useRouter();
-  const id = String(useParams().packId);
+  const id = useSearchParams().get("id") ?? "new";
   const [pack, setPack] = useState<CustomGamePack>();
   useEffect(() => { if (id === "new") void Promise.resolve(blankPack()).then(setPack); else void gamePackRepository.get(id).then((value) => value ? setPack(value) : router.replace("/packs")); }, [id, router]);
   async function save() { if (!pack || !pack.definition.name.trim() || pack.cards.some((card) => !card.content.trim())) return; const next = sanitizeCustomPack({ ...pack, updatedAt: new Date().toISOString() }); await gamePackRepository.save(next); router.replace("/packs"); }

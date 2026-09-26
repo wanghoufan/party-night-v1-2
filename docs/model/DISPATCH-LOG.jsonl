@@ -97,3 +97,10 @@
 {"date": "2026-09-26", "task": "RC清障QA回归", "role": "qa", "model": "codex/gpt-6-luna", "used": "主", "runtime": "codex", "result": "FAIL", "note": "lint0/typecheck0/737过;E2E沙箱EPERM 0执行;TM本窗口补跑86+4"}
 {"date": "2026-09-26", "task": "RC清障E2E补跑", "role": "qa", "model": "本窗口直驱", "used": "主", "runtime": "本窗口", "result": "PASS", "note": "TM接管(codex沙箱EPERM):86pass+4skip含v2-mutual-flow"}
 {"date": "2026-09-26", "task": "RC清障终检", "role": "supervisor", "model": "opencode-go/muse-spark-1.3-contributor", "used": "主", "runtime": "opencode", "result": "PASS", "note": "PASS可放行;QA文档E2E追记一笔"}
+{"date": "2026-09-26", "task": "ChangeB根因调查", "role": "task-manager", "model": "本窗口直驱", "used": "主", "runtime": "本窗口", "result": "PASS", "note": "无自动清Key路径;export+去url路径"}
+{"date": "2026-09-26", "task": "ChangeB B-1+B-2实现", "role": "builder", "model": "codebuddy/deepseek-v4.1-flash", "used": "主", "runtime": "codebuddy", "result": "PASS", "note": "首派超时但落盘;返工补Key测试+MATRIX-PLAN+1行T166"}
+{"date": "2026-09-26", "task": "ChangeB复核+增补packs", "role": "code-reviewer", "model": "codebuddy/glm-5.3-flash", "used": "主", "runtime": "codebuddy", "result": "PASS", "note": "主审+附录均PASS P0=0"}
+{"date": "2026-09-26", "task": "ChangeB QA回归", "role": "qa", "model": "codex/gpt-6-luna", "used": "主", "runtime": "codex", "result": "FAIL", "note": "lint0/750过;E2E沙箱EPERM;虚报更新QA文档1次"}
+{"date": "2026-09-26", "task": "ChangeB E2E补跑+T166返工验证", "role": "qa", "model": "本窗口直驱", "used": "主", "runtime": "本窗口", "result": "PASS", "note": "TM接管:86pass+4skip;T166单跑过"}
+{"date": "2026-09-26", "task": "ChangeB终检x3", "role": "supervisor", "model": "opencode-go/muse-spark-1.3-contributor", "used": "主", "runtime": "opencode", "result": "PASS", "note": "2次打回(第2次因子虚报)后PASS放行"}
+{"date": "2026-09-26", "task": "新RC离线smoke", "role": "task-manager", "model": "本窗口直驱", "used": "主", "runtime": "本窗口", "result": "PASS", "note": "飞行模式启动/setup/重启恢复实拍;10项中3项留上手"}

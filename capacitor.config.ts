@@ -1,16 +1,17 @@
 import type { CapacitorConfig } from '@capacitor/cli';
+import { devConfig } from './capacitor.config.dev';
+import { releaseConfig } from './capacitor.config.release';
 
-const config: CapacitorConfig = {
-  appId: 'night.party.app',
-  appName: 'PartyNight',
-  webDir: 'public',
-  server: {
-    // 局域网版：手机 DNS 污染 vercel.app，改直连 Mac 本地服务（同一 WiFi）。
-    // 生产站 PWA 本体未动；恢复外网后可切回 https://party-night-v1-2.vercel.app/
-    url: 'http://192.168.31.60:3000/',
-    androidScheme: 'http',
-    cleartext: true,
-  },
-};
+/**
+ * Capacitor 配置入口（Capacitor CLI 只认这一个文件名，且不支持 --config）。
+ * 两份真配置分开放在：
+ *   - capacitor.config.dev.ts     局域网直连 Mac（server.url，开发用）
+ *   - capacitor.config.release.ts 自包含离线（webDir = out，无 server.url）
+ *
+ * 切换方式：环境变量 CAPACITOR_TARGET
+ *   - 不设 / 其他值 → dev（与历史行为一致，直接 `pnpm android:sync` 就是局域网版）
+ *   - CAPACITOR_TARGET=release → release（推荐用 `pnpm android:release`，它会先做静态导出再 sync）
+ */
+const config: CapacitorConfig = process.env.CAPACITOR_TARGET === 'release' ? releaseConfig : devConfig;
 
 export default config;

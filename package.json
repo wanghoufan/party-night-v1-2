@@ -9,7 +9,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
+    "build:export": "node scripts/build-static-export.mjs",
     "start": "next start",
+    "android:sync": "cap sync android",
+    "android:release": "node scripts/build-android-release.mjs",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

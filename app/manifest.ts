@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
 
+/** 静态导出（B-1 自包含 Release）要求 Metadata 路由显式静态化。 */
+export const dynamic = "force-static";
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",

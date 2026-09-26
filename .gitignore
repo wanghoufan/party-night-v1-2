@@ -1,6 +1,8 @@
 node_modules/
 .pnpm-store/
 .next/
+.next-export/
+out/
 coverage/
 playwright-report/
 test-results/
@@ -10,6 +12,8 @@ test-results/
 *.tsbuildinfo
 .DS_Store
 .vercel
+# 自包含 Release 构建期间 app/api 的临时暂存位（build:export 用完即放回）
+.static-export-stash/
 # 治理软链（指母版，跨机器悬空）：本地保留，不入仓
 USER_MODEL_OVERRIDE.md
 
