@@ -2,9 +2,8 @@
 
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
-- Captured at（YYYY-MM-DD HH:MM）：2026-09-26（RC已冻结commit 6dc861b已push main：236文件，P2-01+P2-02闭环，lint0/typecheck0/737/E2E86+4skip；洁癖：temp/已gitignore不入仓，无残留进程；待RG-01~RG-07）
-- PROJECT_PHASE：（DEVELOP：READY_FOR_RC_FREEZE；RG-01~RG-07 NOT_STARTED）
-- Captured at（YYYY-MM-DD HH:MM）：2026-09-22 15:30
+- Captured at（YYYY-MM-DD HH:MM）：2026-09-26（RELEASE_GATE_VALIDATION：RC 6dc861b冻结，HANDOFF已收敛；RG-01准备中，真机2台在线；RG-01~RG-07 NOT_STARTED→IN_PROGRESS）
+- PROJECT_PHASE：（DEVELOP：RELEASE_GATE_VALIDATION；RELEASE_GATE NOT_STARTED，7/7通过才Release）
 - PLAN_VERSION：（PRODUCT_PLAN_V2.0）
 - PLAN_READINESS_SCORE：（83＋Human例外有条件批准）
 - PLAN_GATE：（APPROVED，V2.0 Human Gate终版）
@@ -12,13 +11,10 @@
 - CHANGE_REQUEST：（NONE）
 - Stage ID（本阶段叫什么）：V2.0-Relationship Engine（Human已决D1换真源/D2切Router/D3=A20+5/D4=A异性/D5上限2/D6中性不推进/D7=A展示即给过/D8=A+；Release前强制Gate RG-01~RG-07须7/7）
 - 剩 P0（没完的才列，多一条都不行）：
-  - GAP-04 真机弱光验收（唯一 P0，RG-01~RG-07 NOT_STARTED）：RC commit后走7/7 Gate才Release。
-- RC清障（2026-09-26 CLOSED）：P2-01 EXIT/AWAY接线已核对（participants三分+deal唯一入口+reducer语义，补D5释放断言1处；局内无“移出本局”入口属产品阻塞另报，不拦RC）；P2-02已MATCH过滤先于D5 cap（补cooldown/guarantee不重建断言）；评审CODE_REVIEW-V2-RC-FIX.md PASS P0=0；QA BUGS-V2-RC-FIX.md lint0/typecheck0/737，codex沙箱EPERM后TM本窗口补跑E2E 86pass+4skip；supervisor PASS；三处1.5.0同值；AI Phone Matrix external/flaky不判P0。
-- 当前 Task（正干到哪）（累计打回 n/2）：V2-B7~B10全闭环（supervisor有条件PASS：reviewer三链全过+QA728+账本格式已修+E2E 85pass+4skip）；局域网APK在3台真机首页验证通过。builder通道codebuddy deepseek为用户指定（override偏离已授权）。
-- 下一步（Next Single Action）：文档包落盘 → TM验数 → 发用户审查（绝对路径），用户点头才进内容重写。
-- 链入热修证据（TM实证）：空牌堆点真心话复现pack=spin-bottle/round=none/chain.returning+exhausted/无报错；修后lint0/typecheck0/unit500；spin+desktop E2E 11项过；reviewer 4项成立无必须修。
-- 宽屏热修证据：lint0/typecheck0/unit497；桌面1280x800 E2E 4项过（座位最小间隙21.2px/长昵称5.8px/无巨型元素/无溢出；/、/packs居中390）。
-- 执行链：本窗口 TM 直驱 + codebuddy builder + 本窗口 reviewer/qa/recorder待派 + opencode supervisor。
+  - RG-01~RG-07 真机/真人验证（RELEASE_GATE NOT_STARTED）：7/7 PASS才Release，任一FAIL即BLOCKED禁发版。
+- RC冻结（2026-09-26，commit 6dc861b）：P2-01/P2-02 CLOSED；reviewer+supervisor PASS；lint0/typecheck0/737/E2E86+4skip；三处1.5.0同值。RC后禁功能开发，Bug走Change A/B+重冻+RG重验。
+- 当前 Task：RG-01准备（真机2台在线，RC APK待装机验证；之后4人局RG-02/04/05/06/07合并、5人局RG-03）。
+- 历史执行口径（存档，勿作当前指令）：V1.5文档包落盘→验数→发用户审查；V1.5主链→commit+push+生产验证→GAP-04放行；链入/宽屏热修证据见git log；执行链TM直驱+codebuddy builder+codex qa(TM接管E2E)+opencode supervisor；旧supervisor停线账本dup结论已处理。
 - 未闭环评审意见：无。
 - docs 落盘清单：
   - 基线：`docs/2026-09-21 - MAC - ChatGPT - Party Night玩法扩展与主局整合-计划 - V1.1/`（4 份，用户提供）
@@ -28,11 +24,9 @@
   - 账本：`docs/model/TASK-MODEL-LOG.jsonl`（示例行已清）；`docs/model/DISPATCH-LOG.jsonl`（空，首个真实派工前由 TM 写）
    - V1.6：评审`docs/review/CODE_REVIEW-V1.6.md`（PASS，commit 4ba3d13）、QA`docs/qa/BUGS-V1.6.md`（lint0/typecheck0/511/E2E80+4skip/三处1.5.0）、把关`docs/content/题库把关/`9件（00总览旧180审计+01–07+08新题纲）、终稿`docs/content/题库终稿/`9件（00总览§一终稿350分布3/5/7/14/21+01–07各50+08新题纲）；旧`docs/content/题库审查/`已删（文档搬家映射）；账本35行至V1.6补遗（dup删后27行自验口径作废，以现35行为准）
  - V2-B3：评审`docs/review/CODE_REVIEW-V2-B3.md`（FAIL→返工→复验PASS）、QA`docs/qa/BUGS-V2-B3.md`（lint0/typecheck0/610）；账本随行。
-- 下一步（Next Single Action）：V1.5 主链全过 → commit+push+生产验证 → 用户真机验收（GAP-04）回“放行”即收工。
-- 执行链：本窗口 TM 直驱 + codebuddy builder + 本窗口reviewer + codex Luna qa(+TM接管E2E) + opencode supervisor（打回1/2→返工→打回2/2停线→TM删账本重复1行自验27行无dup→按停线结论放行）。
-- supervisor 终检：除账本dup外全PASS；dup已删（27行/dups{} /JSON合法，TM自验）；其余无需重跑；sha记P2不阻塞。
+- 下一步（Next Single Action）：RG-01真机验证（RC 6dc861b装机→离线/恢复10项→PASS/FAIL落盘）；机器准备完成后找用户上手操作。
 - 人要拍什么板：
-  - 真机验收（GAP-04）后放行;GAP-03 规则收藏不实现（已知限制），异议请下 `变更请求：规则收藏`。
+  - RG-01需本人上手真机操作；RG-02~07需组织4人/5人真人局+主观体验判断；局内“移出本局”入口是否加（Change B/C另报，不拦RC）。
 - permission_request：无。
 - 收尾记一笔（neat-freak 2026-09-22）：docs 与代码已对齐（8 包/规则 8 条/工具 2 个/Session v2；V1.3 讨论稿 2 处已校准）；test-results 空、:3000 无残留进程；README 中英 8 玩法为 TM 后续补齐（校验 DOCUMENTATION_READY）。
  - 收尾记一笔（neat-freak 2026-09-22 V1.6）：docs/content下仅题库把关/9件，题库审查/已删（映射见CODE_REVIEW-V1.6 P2）；V1.6评审/QA/把关/账本35行与代码现状一致（350/陡坡/L1L2/开关/1.5.0）；未碰业务代码。
@@ -47,12 +41,13 @@
 - 把关包vs软件：不一致是设计好的——把关包是旧180审计＋改写方向（给人审的），软件里是终稿350（已入库生效）。终稿/00总览§一已按种子实算重写（3/5/7/14/21，旧数注脚存档）。
 - 终稿文字版终稿/9件已交付用户审题（按编号报问题）；25张旧题面补遗改写＋复核PASS已上线；neat-freak两轮对齐完成。
 
-## 二、下一步任务
+## 二、当前任务（Release Gate，唯一有效；旧V1.5/V1.6审题/发版口径已作废）
 
-1. 用户终稿审题反馈（按“玩法＋编号”报问题，如06指人第18条太素）→ 按编号改种子 → 门禁＋发版 → 真机验收回“放行”即收工。
-2. 待办（用户明确暂缓）：全回归12局清单用户亲跑；Vercel Git自动部署重连（用户侧看集成）。
-3. 若验收出bug：Change A/B主链builder→reviewer→qa→supervisor修；产品级变更走Change C重开。
-4. V1.3方向（7待定+AI即兴去留）另起Phase1，不与本轮混。
+1. RG-01真机发布候选+离线恢复（首优先级，真机上手，PASS/FAIL二态）。
+2. 4人完整局一次过RG-02/04/05/06/07（Intensity5，弱光，单手机传，≥20轮）。
+3. 5人局RG-03（20轮→再玩5轮→25轮）。
+4. 任一Bug：Change A/B→builder→reviewer→qa→回归→RC重冻→相关RG重验。Change C另起重开。
+5. 7/7 PASS前禁版本号升级/正式部署。
 
 ## 三、注意事项及相关规矩
 
