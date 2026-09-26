@@ -2,14 +2,14 @@
 
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
-- Captured at（YYYY-MM-DD HH:MM）：2026-09-26（Change B闭环待冻新RC：reviewer PASS+附录/qa PASS(lint0/typecheck0/750/E2E86+4)/supervisor三检PASS；自包含APK飞行模式smoke过；离线smoke见RG-01-NEWRC-SMOKE.md）
+- Captured at（YYYY-MM-DD HH:MM）：2026-09-26（NEW_RC=cce4306已push：Change B闭环；lint0/typecheck0/750/E2E86+4；自包含APK飞行模式smoke过；RG-01待用户从头上手验证）
 - PROJECT_PHASE：（DEVELOP：RELEASE_GATE_VALIDATION；RELEASE_GATE NOT_STARTED）
 - PROJECT_PHASE：（DEVELOP：RELEASE_GATE_VALIDATION；RELEASE_GATE NOT_STARTED，7/7通过才Release）
 - PLAN_VERSION：（PRODUCT_PLAN_V2.0）
 - PLAN_READINESS_SCORE：（83＋Human例外有条件批准）
 - PLAN_GATE：（APPROVED，V2.0 Human Gate终版）
 - DEV_BASELINE：（PRODUCT_PLAN_V2.0）
-- CHANGE_REQUEST：（B：自包含离线RC+Key持久化+Matrix分离；旧RC 6dc861b作废待重冻）
+- CHANGE_REQUEST：（NONE：Change B已并入cce4306）
 - Stage ID（本阶段叫什么）：V2.0-Relationship Engine（Human已决D1换真源/D2切Router/D3=A20+5/D4=A异性/D5上限2/D6中性不推进/D7=A展示即给过/D8=A+；Release前强制Gate RG-01~RG-07须7/7）
 - 剩 P0（没完的才列，多一条都不行）：
   - RG-01~RG-07 真机/真人验证（RELEASE_GATE NOT_STARTED）：7/7 PASS才Release，任一FAIL即BLOCKED禁发版。
