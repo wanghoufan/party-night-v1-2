@@ -1,0 +1,337 @@
+{
+  "cell": {
+    "id": "L1-1-041-never-have-i5-p2-icebreaker-first-meet-all-on",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 41,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "minPlayers": 2,
+    "intensity": 5,
+    "players": 2,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": true,
+      "noAlcoholPenalty": true,
+      "noExPartners": true,
+      "noSexualHistory": true,
+      "noMoneyIncome": true,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": true,
+      "noSocialAccounts": true
+    },
+    "boundaryLabel": "全开",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-041-never-have-i5-p2-icebreaker-first-meet-all-on",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：第一次见 / 拼桌；氛围：破冰；最高强度：5。\n可用玩法：never-have。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3592,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "nh-001",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在第一次见面时主动问过对方的家乡",
+        "instruction": "如果你做过，请分享一个关于家乡的有趣小故事；如果没做过，可以跳过或让下一位继续。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-002",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在拼桌时和陌生人聊过超过十分钟",
+        "instruction": "如果你做过，请说说当时聊了什么话题；如果没做过，可以跳过或让下一位继续。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-003",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未因为一个笑话笑到停不下来",
+        "instruction": "如果你做过，请模仿那个笑话或说出笑点；如果没做过，可以跳过或让下一位继续。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "欢乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-004",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聚会上主动介绍自己给新朋友",
+        "instruction": "如果你做过，请用三个词形容当时的自己；如果没做过，可以跳过或让下一位继续。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "自我介绍"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-005",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在旅行中迷路后向陌生人问路",
+        "instruction": "如果你做过，请说说当时是怎么解决的；如果没做过，可以跳过或让下一位继续。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "旅行"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-006",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在餐厅点过自己从没吃过的菜",
+        "instruction": "如果你做过，请描述那道菜的味道；如果没做过，可以跳过或让下一位继续。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "美食"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-007",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在KTV里唱过自己完全不熟悉的歌",
+        "instruction": "如果你做过，请说出那首歌名或哼一句；如果没做过，可以跳过或让下一位继续。",
+        "intensity": 3,
+        "tags": [
+          "破冰",
+          "娱乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-008",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聚会上模仿过别人的口头禅",
+        "instruction": "如果你做过，请模仿一句让大家猜是谁；如果没做过，可以跳过或让下一位继续。",
+        "intensity": 3,
+        "tags": [
+          "破冰",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-009",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在第一次见面时猜过对方的职业",
+        "instruction": "如果你做过，请说出你当时的猜测和真实答案；如果没做过，可以跳过或让下一位继续。",
+        "intensity": 4,
+        "tags": [
+          "破冰",
+          "猜测"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-010",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在拼桌时和陌生人交换过联系方式",
+        "instruction": "如果你做过，请说说后来有没有再联系；如果没做过，可以跳过或让下一位继续。",
+        "intensity": 5,
+        "tags": [
+          "破冰",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3592ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=never-have"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [physical-contact,alcohol,ex-partner,sexual-history,money,phone-privacy,public-posting,stranger-contact,photo-video,social-account] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤2"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（never-have）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3592ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 2,
+  "observes": [
+    "I5 格出现 6/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断",
+    "卡 nh-008：2 人局出现「大家/全场」类多人语境"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

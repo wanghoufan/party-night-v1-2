@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L2-2_4-064-truth-dare-i5-p4-flirty-first-meet-only-noPhysicalContact",
+    "layer": "L2",
+    "group": "2.4",
+    "title": "雷区单命中「身体接触」",
+    "seq": 64,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "minPlayers": 2,
+    "intensity": 5,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": true,
+      "noAlcoholPenalty": false,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": false,
+      "noPublicPosting": false,
+      "noStrangerContact": false,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "仅开「身体接触」",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_4-064-truth-dare-i5-p4-flirty-first-meet-only-noPhysicalContact",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：暧昧；最高强度：5。\n可用玩法：truth-dare。\n已开启的结构化雷区：physical-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4158,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-001",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果今晚只能记住在场一个人的一个细节，你会选谁，为什么？",
+        "instruction": "轮流回答，其他人不打断；不想回答可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-002",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "对左手边的人说一句真诚的赞美，内容必须和外表无关。",
+        "instruction": "说完后对方只需说谢谢，不需要追问。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-003",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "第一次见面时，你通常靠什么判断自己会不会想和对方多聊几句？",
+        "instruction": "每人回答一句即可，不评价他人答案。",
+        "intensity": 2,
+        "tags": [
+          "了解",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-004",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和对面的人对视十秒，谁先笑或移开视线就轻轻说一句“我输了”。",
+        "instruction": "保持舒适距离，任何一方可随时喊停。",
+        "intensity": 2,
+        "tags": [
+          "互动",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "在场的人里，谁的声音最让你觉得放松？描述那种感觉。",
+        "instruction": "只描述感受，不要求对方回应。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "感受"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个词形容今晚的氛围，然后指定一个人也说出三个词。",
+        "instruction": "被指定的人可以换词，也可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "互动",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果可以和在场一个人交换一天的爱好，你会选谁，想体验什么？",
+        "instruction": "回答后，对方可以选择是否回应一句。",
+        "intensity": 3,
+        "tags": [
+          "了解",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "给右手边的人起一个只属于今晚的昵称，并解释理由。",
+        "instruction": "昵称需友善、不涉及外貌评价；对方可拒绝接受。",
+        "intensity": 3,
+        "tags": [
+          "互动",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你觉得什么样的瞬间最容易让人产生好感？可以结合今晚的场景说。",
+        "instruction": "只谈自己的看法，不指向具体在场者。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "话题"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "闭眼三秒，然后睁眼对所有人说一句今晚最想说的客气话或真心话。",
+        "instruction": "内容由自己决定，说完即结束，其他人不追问。",
+        "intensity": 3,
+        "tags": [
+          "收尾",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4158ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=truth-dare"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [physical-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（truth-dare）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4158ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 6/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

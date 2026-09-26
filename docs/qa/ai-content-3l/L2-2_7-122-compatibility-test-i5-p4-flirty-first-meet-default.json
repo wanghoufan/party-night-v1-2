@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L2-2_7-122-compatibility-test-i5-p4-flirty-first-meet-default",
+    "layer": "L2",
+    "group": "2.7",
+    "title": "身体接触对照组（雷区关）",
+    "seq": 122,
+    "packId": "compatibility-test",
+    "packName": "默契测试",
+    "minPlayers": 2,
+    "intensity": 5,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_7-122-compatibility-test-i5-p4-flirty-first-meet-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "compatibility-test"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：暧昧；最高强度：5。\n可用玩法：compatibility-test。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4316,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "compat-001",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果现在要和对方拼桌点一道共享的菜，你们会同时说出哪一道？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-002",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "第一次见面的两个人，最合适的开场话题是什么？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-003",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果只能选一种方式度过今晚，你们会同时选哪种？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "氛围"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-004",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "你觉得对方现在心里在想什么？同时说出来，看是否接近。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-005",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "两个人第一次单独相处，最让人心跳加速的瞬间是？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "心跳"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-006",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果今晚只能留下一段回忆，你们希望是什么类型的？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "回忆"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-007",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "你觉得对方最容易被哪种小动作打动？同时说出一个词。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "心动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-008",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果现在要互相对视十秒，你们觉得谁会先移开视线？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 4,
+        "tags": [
+          "暧昧",
+          "对视"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-009",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "第一次见面的人，做什么会让你觉得对方很有吸引力？同时给一个答案。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 4,
+        "tags": [
+          "暧昧",
+          "吸引"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-010",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "今晚结束时，你们希望对方对你说哪句话？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 5,
+        "tags": [
+          "暧昧",
+          "收尾"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4316ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=compatibility-test"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（compatibility-test）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4316ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 4/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

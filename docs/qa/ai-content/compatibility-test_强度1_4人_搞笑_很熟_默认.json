@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "很熟",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3167,
+    "latencyMs": 22299,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,12 +80,13 @@
         "id": "compat-01",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果嘉宾1和嘉宾2一起开一家店，这家店最可能卖什么？",
+        "content": "两人同时回答：如果现在必须选一种夜宵，你选泡面还是烧烤？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
+          "默契",
           "搞笑",
-          "默契"
+          "夜宵"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -94,12 +97,13 @@
         "id": "compat-02",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "嘉宾3和嘉宾4同时选：出门旅行谁更可能忘带充电器？",
+        "content": "两人同时回答：聚会时你最像哪个角色？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
+          "默契",
           "搞笑",
-          "默契"
+          "聚会"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -110,12 +114,13 @@
         "id": "compat-03",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "嘉宾1和嘉宾3同时回答：半夜点外卖最可能点的是什么？",
+        "content": "两人同时回答：用三个字形容对方今天的精神状态，可以搞笑但不可以贬损。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
+          "默契",
           "搞笑",
-          "生活"
+          "形容"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -126,12 +131,13 @@
         "id": "compat-04",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "全体同时选：聚会冷场时谁最可能先开口救场？",
+        "content": "两人同时回答：夏天开空调，你选26度还是18度？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
+          "默契",
           "搞笑",
-          "观察"
+          "日常"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -142,12 +148,13 @@
         "id": "compat-05",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "嘉宾2和嘉宾4同时回答：对方最可能因为什么小事笑出声？",
+        "content": "两人同时回答：如果可以拥有一种超能力，你选哪个？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
+          "默契",
           "搞笑",
-          "默契"
+          "脑洞"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -158,16 +165,15 @@
         "id": "compat-06",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "全体同时选：四个人里谁的手机壁纸最可能是风景照？",
+        "content": "两人同时回答：对方最可能忘带的一样东西是什么？比如钥匙、雨伞、纸巾。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
+          "默契",
           "搞笑",
-          "猜测"
+          "日常"
         ],
-        "boundaryTags": [
-          "phone-privacy"
-        ],
+        "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "pair",
         "source": "ai"
@@ -176,12 +182,13 @@
         "id": "compat-07",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "嘉宾1和嘉宾4同时回答：如果一起被困在电梯里，最先聊的话题是什么？",
+        "content": "两人同时回答：吃火锅蘸料，你是麻酱派还是油碟派？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
+          "默契",
           "搞笑",
-          "聊天"
+          "火锅"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -192,12 +199,13 @@
         "id": "compat-08",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "嘉宾2和嘉宾3同时选：谁更可能在点菜时说“随便”？",
+        "content": "两人同时回答：如果组队参加“无聊大赛”，你们选哪个项目？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
+          "默契",
           "搞笑",
-          "日常"
+          "比赛"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -208,12 +216,13 @@
         "id": "compat-09",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "全体同时回答：如果给这个小团体起一个搞笑组合名，会叫什么？",
+        "content": "两人同时回答：给对方起一个不带贬义的搞笑称号，越离谱越好。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
+          "默契",
           "搞笑",
-          "创意"
+          "称号"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -224,12 +233,13 @@
         "id": "compat-10",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "嘉宾1和嘉宾2同时选：谁更可能在KTV里抢麦克风？",
+        "content": "两人同时回答：看电影前，你必须提前看剧透，还是绝不看剧透？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
+          "默契",
           "搞笑",
-          "娱乐"
+          "电影"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

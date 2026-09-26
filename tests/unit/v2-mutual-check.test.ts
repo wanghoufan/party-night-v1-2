@@ -10,10 +10,12 @@ import {
   mutualCandidateIds,
   mutualCheckFinalEvents,
   mutualCheckTrigger,
+  mutualPartnerIds,
   submitMutualChoice,
 } from "@/lib/v2-relationship/v2-mutual-check";
 import { mutualResult } from "@/lib/v2-relationship/v2-private";
 import { reduceRelationshipEvent } from "@/lib/v2-relationship/v2-reducer";
+import { singleAnchorPlayerId } from "@/lib/v2-relationship/v2-routing";
 import { createV2SessionState, reduceV2SessionEvents } from "@/lib/v2-relationship/v2-session";
 import {
   createInitialRelationshipState,
@@ -449,6 +451,140 @@ describe("B9 隐私边界：单向秘密没有落盘入口", () => {
     expect(setItem).not.toHaveBeenCalled();
     expect(openSpy).not.toHaveBeenCalled();
     expect(window.localStorage.length).toBe(0);
+    setItem.mockRestore();
+    openSpy.mockRestore();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* 7. R-CB9：候选视图按「当前合法异性候选数」分支（与 Guard 阈值解耦）          */
+/* ------------------------------------------------------------------ */
+
+/** 1男3女（Single-Anchor 桌）：anchor=a(男)，多数方 b/c/d(女)；合法边 a::b / a::c / a::d。 */
+const ANCHOR_TABLE: SessionParticipant[] = [
+  participant("a", "male"),
+  participant("b", "female"),
+  participant("c", "female"),
+  participant("d", "female"),
+];
+
+/** 1男2女（3 人桌，Single-Anchor Guard 不触发）：合法边 e::f / e::g。 */
+const SMALL_TABLE: SessionParticipant[] = [
+  participant("e", "male"),
+  participant("f", "female"),
+  participant("g", "female"),
+];
+
+describe("R-CB9 Mutual 候选视图：只从真实 eligible 边派生（与 Single-Anchor Guard 阈值解耦）", () => {
+  it("1男3女：多数方每人恰 1 个合法候选；anchor 本人有 3 个 → 不强制 Yes/No", () => {
+    expect(mutualPartnerIds("b", ANCHOR_TABLE)).toEqual(["a"]);
+    expect(mutualPartnerIds("c", ANCHOR_TABLE)).toEqual(["a"]);
+    expect(mutualPartnerIds("d", ANCHOR_TABLE)).toEqual(["a"]);
+    expect(mutualPartnerIds("a", ANCHOR_TABLE)).toEqual(["b", "c", "d"]);
+  });
+
+  it("1男2女：Guard=false 但多数方仍只有 1 个合法候选（UI 分支与 Guard 无关）", () => {
+    expect(singleAnchorPlayerId(SMALL_TABLE)).toBeNull();
+    expect(mutualPartnerIds("f", SMALL_TABLE)).toEqual(["e"]);
+    expect(mutualPartnerIds("g", SMALL_TABLE)).toEqual(["e"]);
+    // 少数方/多候选一侧不适用 Yes/No
+    expect(mutualPartnerIds("e", SMALL_TABLE)).toEqual(["f", "g"]);
+  });
+
+  it("候选 = 真实合法边：暂离 / 性别未录入 / 同性的一律不在候选里", () => {
+    const mixed: SessionParticipant[] = [
+      participant("a", "male"),
+      participant("b", "female"),
+      participant("c", "female", false), // 暂离
+      participant("d", null), // 未录入 → 不猜
+      participant("e", "male"),
+    ];
+    // a(男) 的合法候选只有在场的 b；c 暂离、d 未录入、e 同性都不算
+    expect(mutualPartnerIds("a", mixed)).toEqual(["b"]);
+    // 所有人都是候选人的并集（mutualCandidateIds）也同步收窄
+    expect(mutualCandidateIds(mixed)).toEqual(["a", "b", "e"]);
+    // b 的候选含 a 与 e（两位在场男性）
+    expect(mutualPartnerIds("b", mixed)).toEqual(["a", "e"]);
+    // 暂离的人自己不再是任何人的候选
+    expect(mutualCandidateIds(mixed)).not.toContain("c");
+  });
+});
+
+describe("R-CB9 Yes/No 映射：愿意 → 唯一候选；暂时没有 → null（复用既有 mutual choice）", () => {
+  it("愿意 → 该唯一候选：双方愿意才成 MATCH", () => {
+    const run = beginMutualCheckRun(ANCHOR_TABLE);
+    // b 在 Yes/No 界面点「愿意」→ 唯一候选 a
+    expect(mutualPartnerIds("b", ANCHOR_TABLE)).toEqual(["a"]);
+    submitMutualChoice(run, "b", mutualPartnerIds("b", ANCHOR_TABLE)[0]!);
+    // a 在多人候选界面选 b
+    submitMutualChoice(run, "a", "b");
+    expect(finalizeMutualCheckRun(run, rel()).matches.map((item) => item.pairKey)).toEqual(["a::b"]);
+  });
+
+  it("暂时没有 → null：单向选择不成 MATCH、不公开、结果里没有任何线索", () => {
+    const run = beginMutualCheckRun(ANCHOR_TABLE);
+    submitMutualChoice(run, "b", null); // 暂时没有
+    submitMutualChoice(run, "a", "b"); // a 单向选中 b
+    const result = finalizeMutualCheckRun(run, rel());
+    expect(result).toEqual({ matches: [] });
+    expect(JSON.stringify(result)).toBe('{"matches":[]}');
+  });
+
+  it("提交的是失效目标（暂离后仍在快照里）：run 内边合法性照旧兜底，不产生非法 MATCH", () => {
+    const stale: SessionParticipant[] = [participant("a", "male"), participant("b", "female", false)];
+    const run = beginMutualCheckRun(stale);
+    expect(run.playerIds).toEqual([]);
+    submitMutualChoice(run, "a", "b"); // 已失效目标：既不在 playerIds 也不在任何 pairRun
+    for (const pairRun of Object.values(run.pairRuns)) {
+      expect(Object.values(pairRun.selections).every((value) => value === null)).toBe(true);
+    }
+    expect(finalizeMutualCheckRun(run, rel()).matches).toEqual([]);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* 8. D5 四条冻结语义回归钉（B3 一行未改，测试钉住）                          */
+/* ------------------------------------------------------------------ */
+
+describe("D5 四条冻结语义回归钉（B3 未改）", () => {
+  it("① 双向才 MATCH：单向选择再准也不成", () => {
+    const run = beginMutualCheckRun(QUAD);
+    submitMutualChoice(run, "a", "b");
+    expect(finalizeMutualCheckRun(run, rel()).matches).toEqual([]);
+  });
+
+  it("② 单向选择不公开：结果空、final 事件里只有 DUE 且不含任何单向明细", () => {
+    const run = beginMutualCheckRun(QUAD);
+    submitMutualChoice(run, "a", "b");
+    submitMutualChoice(run, "c", "d");
+    const result = finalizeMutualCheckRun(run, rel());
+    expect(result.matches).toEqual([]);
+    const events = mutualCheckFinalEvents(run.runId, 9, result, "2026-01-01T00:00:00.000Z");
+    expect(events.map((event) => event.type)).toEqual(["SYSTEM_MUTUAL_CHECK_DUE"]);
+    expect(JSON.stringify(events)).not.toMatch(/selection|choice|跳过|skip/i);
+  });
+
+  it("③ active MATCH ≤ 2：一方已满 2 个 active 时不新建，且不泄露原因", () => {
+    const full = rel({ matches: { "a::b": matchOf("a", "b"), "a::c": matchOf("a", "c") } });
+    const run = beginMutualCheckRun(QUAD);
+    submitMutualChoice(run, "a", "d");
+    submitMutualChoice(run, "d", "a");
+    const result = finalizeMutualCheckRun(run, full);
+    expect(result.matches).toEqual([]);
+    expect(JSON.stringify(result)).not.toMatch(/cap|上限|已满/i);
+  });
+
+  it("④ raw unilateral choice 不落盘：Storage / IndexedDB 全程无写入，finalize 后内存也清零", () => {
+    const setItem = vi.spyOn(Storage.prototype, "setItem");
+    const openSpy = vi.spyOn(IDBFactory.prototype, "open");
+    const run = beginMutualCheckRun(ANCHOR_TABLE);
+    submitMutualChoice(run, "b", "a"); // 愿意（单向秘密）
+    finalizeMutualCheckRun(run, rel());
+    expect(setItem).not.toHaveBeenCalled();
+    expect(openSpy).not.toHaveBeenCalled();
+    for (const pairRun of Object.values(run.pairRuns)) {
+      expect(Object.values(pairRun.selections).every((value) => value === null)).toBe(true);
+    }
     setItem.mockRestore();
     openSpy.mockRestore();
   });

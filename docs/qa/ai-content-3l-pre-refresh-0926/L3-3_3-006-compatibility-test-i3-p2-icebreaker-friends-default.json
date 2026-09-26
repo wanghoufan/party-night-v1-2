@@ -1,0 +1,334 @@
+{
+  "cell": {
+    "id": "L3-3_3-006-compatibility-test-i3-p2-icebreaker-friends-default",
+    "layer": "L3",
+    "group": "3.3",
+    "title": "最低人数边界 compatibility-test@2人",
+    "seq": 6,
+    "packId": "compatibility-test",
+    "packName": "默契测试",
+    "minPlayers": 2,
+    "intensity": 3,
+    "players": 2,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "friends",
+    "relationshipLabel": "普通朋友",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "boundary-probe",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L3-3_3-006-compatibility-test-i3-p2-icebreaker-friends-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "compatibility-test"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：普通朋友；氛围：破冰；最高强度：3。\n可用玩法：compatibility-test。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3694,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "compat-01",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果周末只能选一种放松方式，你俩会同时选哪个？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-02",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "第一次见面时，你俩觉得对方最可能先注意到什么？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "印象"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-03",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果能立刻学会一项新技能，你俩会同时选同一项吗？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 2,
+        "tags": [
+          "兴趣",
+          "默契"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-04",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "下面哪种约会安排更接近你俩的共同偏好？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "偏好"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-05",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "你俩在聊天时更常扮演同一个角色吗？比如都是倾听者或都是发起话题的人。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 2,
+        "tags": [
+          "沟通",
+          "默契"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-06",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果一起旅行，你俩会同时把哪件事排在行程第一位？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 2,
+        "tags": [
+          "旅行",
+          "默契"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-07",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "用三个词形容你俩此刻的相处氛围，看看会不会有两个词重合。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 2,
+        "tags": [
+          "氛围",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-08",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "你俩更可能同时觉得哪种社交场合更轻松？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "社交",
+          "偏好"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-09",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果现在要合作完成一件小事，你俩会同时想到同一类任务吗？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 2,
+        "tags": [
+          "合作",
+          "默契"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-10",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "你俩对“理想周末”的定义是否一致？请同时说出一个关键词。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3694ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=compatibility-test"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 3"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数(边界探测)",
+      "status": "PASS",
+      "severity": null,
+      "detail": "无 minPlayers>2 的卡，人数边界安全"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（compatibility-test）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3694ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 9,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "origin": "base",
+    "intensity": 1,
+    "players": 2,
+    "vibe": {
+      "key": "random",
+      "label": "随机"
+    },
+    "relationship": {
+      "key": "familiar",
+      "label": "熟人局"
+    },
+    "boundary": {
+      "mode": "all-off",
+      "label": "全关",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "熟人局",
+      "vibes": [
+        "随机"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：熟人局；氛围：随机；最高强度：1。\n可用玩法：most-likely。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4516,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "ml-001",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在聚会上突然开始讲一个没人听懂的长篇故事？",
+        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人简单回应一句，可选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-002",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在看电影时提前猜出结局并剧透？",
+        "instruction": "倒数三秒后一起指向答案，得票最多者分享一个最近看的电影，可选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-003",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在群聊里发完消息又立刻撤回？",
+        "instruction": "所有人同时指向一人，被指最多的人模仿一次自己撤回消息时的表情，可选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-004",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能为了追剧而熬夜到天亮？",
+        "instruction": "一起指向答案，得票最多者用一句话形容自己熬夜后的状态，可选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-005",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在旅行时把行程安排到每分钟？",
+        "instruction": "所有人同时指向一人，被指最多的人分享一个旅行小习惯，可选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-006",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能忘记朋友的生日但事后诚恳道歉？",
+        "instruction": "倒数后一起指向答案，得票最多者说一句最常用的道歉语，可选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-007",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在KTV里一直霸占麦克风？",
+        "instruction": "所有人同时指向一人，被指最多者清唱一句歌或选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-008",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能点外卖时纠结半小时最后选了常吃的那家？",
+        "instruction": "一起指向答案，得票最多者说出自己最常点的外卖，可选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-009",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在拍照时要求重拍很多次？",
+        "instruction": "所有人同时指向一人，被指最多者摆一个自己最满意的拍照姿势，可选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-010",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在周末一整天不出门？",
+        "instruction": "倒数三秒后一起指向答案，得票最多者分享一个宅家最爱做的事，可选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

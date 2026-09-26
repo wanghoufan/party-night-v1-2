@@ -1,0 +1,338 @@
+{
+  "cell": {
+    "id": "L2-2_1-002-truth-dare-i5-p4-funny-first-meet-default",
+    "layer": "L2",
+    "group": "2.1",
+    "title": "Intensity 5 全量",
+    "seq": 2,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "minPlayers": 2,
+    "intensity": 5,
+    "players": 4,
+    "vibeKey": "funny",
+    "vibeLabel": "搞笑",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_1-002-truth-dare-i5-p4-funny-first-meet-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：搞笑；最高强度：5。\n可用玩法：truth-dare。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 5174,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "td-001",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你曾经因为名字、口音或穿衣风格，被陌生人误会成什么离谱职业？请用新闻播报语气讲出来。",
+        "instruction": "回答不超过60秒；不想答就跳过，大家不许追问。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "自我介绍"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-002",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三种不同情绪（比如惊讶、悲伤、得意）说出同一句点菜用语：“老板，来碗米饭。”",
+        "instruction": "表演完由左手边的人打分，满分10分；可以随时喊停。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-003",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果今晚必须给自己起一个中二外号，并且以后大家只准这么叫你，你会选什么？理由要一本正经。",
+        "instruction": "说完后大家齐声喊一次外号；不想被喊可跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-004",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "模仿一种动物参加面试，回答“你最大的缺点是什么”。其他人猜是什么动物。",
+        "instruction": "限时30秒，猜不中也没惩罚；觉得尴尬可以换人代替你演。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "模仿"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "说一件你点外卖或网购时，因为看错文字而发生的搞笑翻车经历。",
+        "instruction": "每人听完可给一个“哈哈哈哈”或“就这”的评价；不想答可跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和右手边的人合作，用“新闻联播”风格播报今天这桌聚会的三条“重大新闻”。",
+        "instruction": "两人各说一条，剩下一条一起说；内容只准搞笑，不准评价真实外貌。",
+        "intensity": 3,
+        "tags": [
+          "搞笑",
+          "合作"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你手机里最舍不得删的一张非人物照片是什么类型的？只描述类别，不用展示。",
+        "instruction": "只回答类别，不涉及手机隐私内容；不想答直接跳过。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "分享"
+        ],
+        "boundaryTags": [
+          "phone-privacy"
+        ],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个表情包动作（不能出声）演一部你最近看过的影视剧，让其他人猜。",
+        "instruction": "限时45秒；猜不出就跳过，不用展示手机或账号。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果你要开一家只卖一种奇怪商品的店，会卖什么？请现场给商品编一句广告词。",
+        "instruction": "广告词不超过两句话；内容保持轻松，不要针对在场的人。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "创意"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "所有人一起用最严肃的表情，合唱一句生日快乐歌，但把“生日快乐”改成“今晚吃啥”。",
+        "instruction": "全员参与，唱一句即可；不想唱可以只张嘴不出声。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "全员"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 5174ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=truth-dare"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "FAIL",
+      "severity": "P0",
+      "detail": "1 张卡 boundaryTags 命中已开雷区：td-007:phone-privacy"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（truth-dare）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "5174ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "FAIL",
+  "p0": 1,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 9/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "情侣 / 暧昧",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4129,
+    "latencyMs": 41689,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -77,13 +79,13 @@
       {
         "id": "spin-01",
         "packId": "spin-bottle",
-        "type": "真心话",
-        "content": "分享你最近一次因为小事而开心一整天的经历。",
-        "instruction": "由转瓶指向者回答，其他人可以追问细节，但不得追问隐私。",
+        "type": "破冰",
+        "content": "转瓶子，瓶口指向谁，谁用三个词形容今晚这桌的氛围。",
+        "instruction": "转动瓶子，瓶口指向者作答；不愿参与可说“跳过”，换下一位。",
         "intensity": 1,
         "tags": [
-          "轻松",
-          "分享"
+          "破冰",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -93,13 +95,29 @@
       {
         "id": "spin-02",
         "packId": "spin-bottle",
-        "type": "大冒险",
-        "content": "用三个词形容你左手边的人，并解释为什么。",
-        "instruction": "被形容的人可以回应或跳过，禁止使用贬低或羞辱性词汇。",
+        "type": "真心话",
+        "content": "转瓶子，瓶口指向者分享最近一次心动瞬间，可以模糊细节。",
+        "instruction": "转动瓶子，瓶口指向者执行；可说“跳过”并换下一位。",
+        "intensity": 2,
+        "tags": [
+          "真心话",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-03",
+        "packId": "spin-bottle",
+        "type": "默契挑战",
+        "content": "瓶口指向者选一位玩家，两人同时回答：理想约会最看重什么？答案一致则各获得一次跳过机会。",
+        "instruction": "转动瓶子，瓶口指向者选一人共同作答；任一方可跳过。",
         "intensity": 1,
         "tags": [
-          "互动",
-          "赞美"
+          "默契",
+          "约会"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,47 +125,31 @@
         "source": "ai"
       },
       {
-        "id": "spin-03",
-        "packId": "spin-bottle",
-        "type": "真心话",
-        "content": "说出一件你一直想学但还没开始学的新技能。",
-        "instruction": "由转瓶指向者回答，其他人可以分享自己的类似愿望。",
-        "intensity": 1,
-        "tags": [
-          "梦想",
-          "分享"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
         "id": "spin-04",
         "packId": "spin-bottle",
-        "type": "大冒险",
-        "content": "模仿一种动物的叫声，让其他人猜是什么动物。",
-        "instruction": "猜错的人可以指定下一轮转瓶方向，但不得强迫饮酒。",
-        "intensity": 1,
+        "type": "轻互动",
+        "content": "瓶口指向者与左手边玩家进行8秒眼神对视，期间不能说话，可随时移开视线。",
+        "instruction": "转动瓶子，瓶口指向者与左手边玩家执行；任一方不愿可立即跳过。",
+        "intensity": 2,
         "tags": [
-          "搞笑",
-          "模仿"
+          "暧昧",
+          "对视"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "single",
+        "participantMode": "pair",
         "source": "ai"
       },
       {
         "id": "spin-05",
         "packId": "spin-bottle",
-        "type": "真心话",
-        "content": "描述你心中最完美的一次约会，不涉及具体人物。",
-        "instruction": "由转瓶指向者回答，其他人不得追问私人关系细节。",
-        "intensity": 2,
+        "type": "赞美",
+        "content": "瓶口指向者向一位玩家说一句具体、真诚的赞美，可以夸性格、声音或笑容。",
+        "instruction": "转动瓶子，瓶口指向者选一人赞美；若不适可说“跳过”。",
+        "intensity": 1,
         "tags": [
-          "浪漫",
-          "想象"
+          "赞美",
+          "暖心"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -157,29 +159,29 @@
       {
         "id": "spin-06",
         "packId": "spin-bottle",
-        "type": "大冒险",
-        "content": "和右手边的人击掌三次，并说一句鼓励的话。",
-        "instruction": "双方自愿参与，任何一方可随时跳过。",
-        "intensity": 1,
+        "type": "关系选择题",
+        "content": "瓶口指向者选择：更心动的是“被记住小习惯”，还是“被认真听完一段话”？并简单解释。",
+        "instruction": "转动瓶子，瓶口指向者作答；可跳过并换下一位。",
+        "intensity": 2,
         "tags": [
-          "互动",
-          "鼓励"
+          "选择题",
+          "心动"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "pair",
+        "participantMode": "single",
         "source": "ai"
       },
       {
         "id": "spin-07",
         "packId": "spin-bottle",
-        "type": "真心话",
-        "content": "分享一个你最近学到的小知识或冷知识。",
-        "instruction": "由转瓶指向者回答，其他人可以补充，但不得涉及隐私话题。",
-        "intensity": 1,
+        "type": "情境问答",
+        "content": "瓶口指向者用语言描述一个理想约会夜晚，从见面到告别，只描述场景，不指定在场的人执行。",
+        "instruction": "转动瓶子，瓶口指向者描述；不愿描述可说“跳过”。",
+        "intensity": 2,
         "tags": [
-          "知识",
-          "分享"
+          "情境",
+          "约会"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -189,13 +191,13 @@
       {
         "id": "spin-08",
         "packId": "spin-bottle",
-        "type": "大冒险",
-        "content": "用一句话夸赞在场的每一个人，不能重复。",
-        "instruction": "依次进行，被夸的人可以微笑或说谢谢，不得要求更多。",
-        "intensity": 2,
+        "type": "全员互动",
+        "content": "瓶口指向者指定一种情绪：开心、紧张或期待。所有人轮流说一个会触发这种情绪的时刻，可虚构。",
+        "instruction": "转动瓶子，瓶口指向者指定情绪后全员轮流参与；每人可跳过。",
+        "intensity": 1,
         "tags": [
-          "赞美",
-          "全员"
+          "全员",
+          "情绪"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -205,13 +207,13 @@
       {
         "id": "spin-09",
         "packId": "spin-bottle",
-        "type": "真心话",
-        "content": "如果明天可以变成一种交通工具，你希望是什么？为什么？",
-        "instruction": "由转瓶指向者回答，其他人可以给出有趣的反驳。",
-        "intensity": 1,
+        "type": "暧昧表达",
+        "content": "瓶口指向者用一句不超过15字的台词表达暧昧或好感，可以对在场某人说，也可以对着空气说。",
+        "instruction": "转动瓶子，瓶口指向者执行；不想说可说“跳过”，不得追问或起哄。",
+        "intensity": 3,
         "tags": [
-          "想象",
-          "趣味"
+          "暧昧",
+          "台词"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -221,13 +223,13 @@
       {
         "id": "spin-10",
         "packId": "spin-bottle",
-        "type": "大冒险",
-        "content": "闭眼十秒，然后说出你听到的最细微的声音。",
-        "instruction": "保持安静配合，任何人不愿参与可跳过。",
-        "intensity": 1,
+        "type": "深度真心话",
+        "content": "瓶口指向者说出在场某人的一个优点，并解释为什么这个优点让人想继续了解。",
+        "instruction": "转动瓶子，瓶口指向者执行；被提到的人可回应“跳过”，其他人不得追问不愿分享的细节。",
+        "intensity": 3,
         "tags": [
-          "感官",
-          "安静"
+          "真心话",
+          "欣赏"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -238,14 +240,6 @@
   },
   "screen": {
     "pass": true,
-    "issues": [
-      {
-        "key": "redline:forced-alcohol",
-        "label": "疑似红线（否定/免责语境） · 强迫灌酒",
-        "severity": "suspect",
-        "cardId": "spin-04",
-        "excerpt": "模仿一种动物的叫声,让其他人猜是什么动物。 猜错的人可以指定下一轮转瓶方向,但不得强迫饮酒。"
-      }
-    ]
+    "issues": []
   }
 }

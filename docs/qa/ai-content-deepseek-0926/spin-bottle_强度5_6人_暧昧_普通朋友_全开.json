@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 62,
+    "packId": "spin-bottle",
+    "packName": "转瓶子",
+    "origin": "base",
+    "intensity": 5,
+    "players": 6,
+    "vibe": {
+      "key": "flirty",
+      "label": "暧昧"
+    },
+    "relationship": {
+      "key": "friends",
+      "label": "普通朋友"
+    },
+    "boundary": {
+      "mode": "all-on",
+      "label": "全开",
+      "flags": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "spin-bottle"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：普通朋友；氛围：暧昧；最高强度：5。\n可用玩法：spin-bottle。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4502,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "spin-bottle-001",
+        "packId": "spin-bottle",
+        "type": "truth",
+        "content": "说出一件你最近一次因为某位在场朋友的小动作而心跳加速的瞬间，但不用说是谁。",
+        "instruction": "瓶口指向的人回答；不想回答可以跳过并改为说一件今天最开心的小事。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-002",
+        "packId": "spin-bottle",
+        "type": "challenge",
+        "content": "和瓶口指向的人对视十秒，期间谁先笑或移开视线，就要夸对方一个优点。",
+        "instruction": "两人自愿参与；可以随时喊停。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-003",
+        "packId": "spin-bottle",
+        "type": "truth",
+        "content": "如果今天必须选一位在场朋友陪你夜游一小时，你会选谁？说一个不涉及隐私的理由。",
+        "instruction": "瓶口指向的人回答；理由可以很随意，不必深入。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "选择"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-004",
+        "packId": "spin-bottle",
+        "type": "challenge",
+        "content": "用一句歌词或电影台词，对瓶口指向的人表达“今晚和你聊天很开心”。",
+        "instruction": "被指向的人听完后只需微笑或说谢谢，不用回应更多。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "表达"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-005",
+        "packId": "spin-bottle",
+        "type": "truth",
+        "content": "描述你心中最舒服的约会氛围，比如天气、音乐或聊天节奏，但不能提到具体地点和人物。",
+        "instruction": "瓶口指向的人回答；其他人可以点头表示共鸣。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "想象"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-006",
+        "packId": "spin-bottle",
+        "type": "challenge",
+        "content": "和瓶口指向的人互相说一个对方给你的第一印象，只说好话或中性观察。",
+        "instruction": "两人轮流说；不能评价外貌身材，也不能涉及隐私。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "初印象"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-007",
+        "packId": "spin-bottle",
+        "type": "truth",
+        "content": "在场的人里，谁的声音最让你觉得安心？说一个不涉及隐私的理由。",
+        "instruction": "瓶口指向的人回答；被提到的人可以简单说声谢谢。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "好感"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-008",
+        "packId": "spin-bottle",
+        "type": "challenge",
+        "content": "闭眼三秒，然后睁眼对瓶口指向的人说一句“今晚有你真好”，说完立刻转移话题。",
+        "instruction": "被指向的人可以自由回应或跳过；不强制任何后续互动。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "轻告白"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-009",
+        "packId": "spin-bottle",
+        "type": "truth",
+        "content": "如果要用一种颜色形容今晚的氛围，你会选什么颜色？为什么？",
+        "instruction": "瓶口指向的人回答；答案可以天马行空。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "氛围"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-010",
+        "packId": "spin-bottle",
+        "type": "challenge",
+        "content": "瓶口指向的人可以向你提一个不越界的小请求，比如一起击掌、碰拳或合唱一句歌；你可以接受、拒绝或换一个。",
+        "instruction": "双方自愿；任何身体接触都需先口头同意，且不得涉及敏感部位。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "协商"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

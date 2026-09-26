@@ -6,7 +6,7 @@ import { describe, expect, it } from "vitest";
 import { DEFAULT_BOUNDARIES } from "@/lib/domain/constants";
 import { gameSessionSchema, type GameCard, type GameSession, type Player, type SessionConfig } from "@/lib/domain/schemas";
 import { completeRound, createSession, startRound } from "@/lib/engine/session-engine";
-import { applyHostDecisionToSession, awaitingHostDecision, createDeckRouter, drawDeckCard, orchestrationOf } from "@/lib/engine/v2-deal";
+import { applyHostDecisionToSession, awaitingHostDecision, createDeckRouter, drawDeckCard, orchestrationOf, reshuffleWouldRevealCard } from "@/lib/engine/v2-deal";
 import { mainlineSsotCards, mainlineSsotCardsByPack } from "@/lib/v2-content/v2-card-bridge";
 import { getV2ContentAdapter } from "@/lib/v2-content/v2-content-adapter";
 import { NO_ELIGIBLE_PAIR_HINT, pairModeFor } from "@/lib/v2-relationship/v2-participants";
@@ -154,6 +154,43 @@ describe("B8 /game 主链出卡（V2 编排器）", () => {
     expect(third.relationshipState?.exhaustionCycle).toBe(1);
     expect(second.usedCardIds).toEqual([]);
     expect(second.v2Orchestration?.hostDecisions[`${exhausted.id}::1`]).toBeDefined();
+  });
+
+  /* ---------------------------------------------------------------- */
+  /* 2b. P1：洗牌是否救得回题卡（耗尽兜底不得只剩空转的「洗牌再玩」）            */
+  /* ---------------------------------------------------------------- */
+
+  it("牌堆里还有没用过的卡：洗牌能救回题卡", () => {
+    const exhausted = exhaust(createSession(config(), [...localCards], genders()));
+
+    expect(exhausted.v2Orchestration?.awaitingHostDecision).toBe(true);
+    expect(reshuffleWouldRevealCard(exhausted)).toBe(true);
+  });
+
+  it("牌堆为空：洗牌救不回任何卡，Host 面板必须给别的出口", () => {
+    const active = { ...createSession(config(), []), status: "active" as const };
+    const exhausted = startRound(active, () => 0);
+
+    expect(exhausted.v2Orchestration?.awaitingHostDecision).toBe(true);
+    expect(reshuffleWouldRevealCard(exhausted)).toBe(false);
+  });
+
+  it("2 人局直选 pointing-game（minPlayers=3）耗尽：洗牌同样救不回（真实死局复现）", () => {
+    const deck: GameCard[] = [1, 2, 3].map((n) => ({
+      ...localCards[0]!, id: `pg-${n}`, packId: "pointing-game", type: "pointing", content: `指一个 ${n}`, minPlayers: 3,
+    }));
+    const session = createSession(config({ players: players(2), enabledPackIds: ["pointing-game"], mode: "single" }), deck);
+    const exhausted = startRound(session, () => 0);
+
+    expect(exhausted.currentRound).toBeUndefined();
+    expect(exhausted.v2Orchestration?.awaitingHostDecision).toBe(true);
+    expect(reshuffleWouldRevealCard(exhausted)).toBe(false);
+  });
+
+  it("没有处于耗尽等待态时，reshuffleWouldRevealCard 恒为 false（只服务于 AWAITING）", () => {
+    const session = createSession(config(), [...localCards], genders());
+    expect(orchestrationOf(session).awaitingHostDecision).toBe(false);
+    expect(reshuffleWouldRevealCard(session)).toBe(false);
   });
 
   /* ---------------------------------------------------------------- */

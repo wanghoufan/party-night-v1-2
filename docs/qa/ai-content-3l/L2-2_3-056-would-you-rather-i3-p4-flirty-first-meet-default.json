@@ -1,0 +1,333 @@
+{
+  "cell": {
+    "id": "L2-2_3-056-would-you-rather-i3-p4-flirty-first-meet-default",
+    "layer": "L2",
+    "group": "2.3",
+    "title": "拼桌全量",
+    "seq": 56,
+    "packId": "would-you-rather",
+    "packName": "二选一",
+    "minPlayers": 2,
+    "intensity": 3,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_3-056-would-you-rather-i3-p4-flirty-first-meet-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "would-you-rather"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：暧昧；最高强度：3。\n可用玩法：would-you-rather。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3893,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-wwr-001",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "在安静的咖啡馆里，和刚认识的人聊一整晚 VS 在热闹的夜市里，和刚认识的人边走边聊一整晚",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wwr-002",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "收到一条只有你懂的暧昧暗号消息 VS 收到一句当面说出的暧昧暗号",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wwr-003",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "和同桌的人交换一个只有彼此知道的小秘密 VS 和同桌的人交换一个只有彼此知道的小绰号",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "信任"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wwr-004",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "被刚认识的人记住你最爱喝的饮料 VS 被刚认识的人记住你最常听的一首歌",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "细节"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wwr-005",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "和同桌的人玩一局眼神对视不先笑 VS 和同桌的人玩一局同时说出同一句话",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wwr-006",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "在拼桌局里主动开启一个只有两个人懂的话题 VS 在拼桌局里安静听完别人讲完再回应",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wwr-007",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "让刚认识的人用一个词形容你 VS 让刚认识的人用一个动作形容你",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "评价"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wwr-008",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "和同桌的人约定一个下次见面的暗号 VS 和同桌的人约定一个下次见面的地点",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "约定"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wwr-009",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "在聚会中收到一句真诚的夸赞 VS 在聚会中收到一句真诚的感谢",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "正向"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wwr-010",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "和刚认识的人分享一件今天最开心的小事 VS 和刚认识的人分享一件今天最期待的小事",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3893ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=would-you-rather"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 3"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（would-you-rather）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3893ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "cell": {
+    "id": "L3-3_3-005-pointing-game-i3-p2-icebreaker-friends-default",
+    "layer": "L3",
+    "group": "3.3",
+    "title": "负向边界探测 pointing-game@2人",
+    "seq": 5,
+    "packId": "pointing-game",
+    "packName": "指人游戏",
+    "minPlayers": 3,
+    "intensity": 3,
+    "players": 2,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "friends",
+    "relationshipLabel": "普通朋友",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "boundary-probe",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L3-3_3-005-pointing-game-i3-p2-icebreaker-friends-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "pointing-game"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：普通朋友；氛围：破冰；最高强度：3。\n可用玩法：pointing-game。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 9603,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "local-fallback",
+    "cardCount": 0,
+    "cards": [],
+    "meta": {
+      "generatedCount": 0,
+      "provider": "configured-provider",
+      "filteredCount": 25,
+      "retryCount": 1
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 9603ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "0 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 0 张 packId=pointing-game"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 3"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数(负向探测)",
+      "status": "PASS",
+      "severity": null,
+      "detail": "负向探测：服务端滤空回落，防线成立——服务端按 minPlayers>playerCount 全量滤除（lib/ai/safety-filter.ts filterCards），0 卡是用户 V1.2 §九「过滤为空」的成立形态，客户端 buildPlayableDeck 会本地补齐（非 App PASS，不进 App 通过率分母）；服务端 meta 佐证：filteredCount=25、retryCount=1"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "0 卡（边界探测预期内）：回落层级＝服务端 filterCards 按 minPlayers>playerCount 全量滤除（lib/ai/safety-filter.ts:55）→ 客户端 buildPlayableDeck 本地补齐；证据来源＝响应 generationSource=local-fallback；服务端 meta 佐证：filteredCount=25、retryCount=1"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（pointing-game）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "9603ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "负向探测：服务端滤空回落，防线成立；generationSource=local-fallback（非 ai，按 PLAN §3.3 / 用户 V1.2 §九口径放行，不计 AI PASS）"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "3.3 负向边界探测格（pointing-game@2人）防线成立：服务端 filterCards 全量滤除越下限卡（lib/ai/safety-filter.ts:55）致 0 卡 + generationSource=local-fallback，客户端 buildPlayableDeck 本地补齐；此为「服务端滤空回落」防线，非静默回退、不计 App PASS"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "cell": {
+    "index": 27,
+    "packId": "would-you-rather",
+    "packName": "二选一",
+    "origin": "base",
+    "intensity": 1,
+    "players": 2,
+    "vibe": {
+      "key": "flirty",
+      "label": "暧昧"
+    },
+    "relationship": {
+      "key": "familiar",
+      "label": "熟人局"
+    },
+    "boundary": {
+      "mode": "all-off",
+      "label": "全关",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "熟人局",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "would-you-rather"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：熟人局；氛围：暧昧；最高强度：1。\n可用玩法：would-you-rather。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3386,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "wyr-1",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "深夜一起走一段安静的路，谁都不说话 VS 在热闹的聚会上，隔着人群对视三秒",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "氛围"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-2",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "收到一条只写了你名字的深夜消息 VS 收到一张没有文字、只有风景的照片",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "猜测"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-3",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "对方记得你随口提过的小习惯 VS 对方突然问你一个从没问过的问题",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "了解"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-4",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "并肩坐着各看各的，偶尔肩膀碰到 VS 面对面坐着聊天，谁先移开视线谁输",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "距离"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-5",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "被夸今天有点不一样 VS 被问今天是不是有心事",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "关心"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-6",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "一起听一首很慢的歌，谁都不切歌 VS 一起看一部老电影，谁都不快进",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "陪伴"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-7",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "对方把外套借给你，说不用急着还 VS 对方把伞往你那边偏，自己淋湿一半",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "照顾"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-8",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "在群里被@，只有他接住了你的梗 VS 私下收到一句只有你们懂的暗号",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "默契"
+        ],
+        "boundaryTags": [
+          "social-account"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-9",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "对方突然靠近，帮你拿掉头发上的东西 VS 对方突然退后一步，认真看你一眼",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "瞬间"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-10",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "把今天最想说却没说的那句话咽回去 VS 把那句话换成一句无关紧要的玩笑",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "试探"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

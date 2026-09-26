@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L1-1-031-compatibility-test-i2-p4-random-new-default",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 31,
+    "packId": "compatibility-test",
+    "packName": "默契测试",
+    "minPlayers": 2,
+    "intensity": 2,
+    "players": 4,
+    "vibeKey": "random",
+    "vibeLabel": "随机",
+    "relationshipKey": "new",
+    "relationshipLabel": "刚认识",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-031-compatibility-test-i2-p4-random-new-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "刚认识",
+      "vibes": [
+        "随机"
+      ],
+      "intensity": 2,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "compatibility-test"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：刚认识；氛围：随机；最高强度：2。\n可用玩法：compatibility-test。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3526,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "compat-01",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果今晚只能点一种饮料，你们各自会选什么？同时说出答案。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "破冰"
+        ],
+        "boundaryTags": [
+          "alcohol"
+        ],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-02",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "第一次见面时，你更倾向于主动开口还是等对方先说话？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "性格",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-03",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "周末更想出门探索还是宅着休息？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "生活",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-04",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果给今晚的聚会选一首主题歌，你会选哪种风格？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "音乐",
+          "趣味"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-05",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "你觉得第一次见面时，最加分的举动是什么？同时说出一个。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "社交",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-06",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "旅行时更喜欢提前规划还是随心而行？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "旅行",
+          "性格"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-07",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果只能带一样东西去荒岛，你会带什么？同时说出答案。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "想象",
+          "趣味"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-08",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "聚会时你更常待在人群中心还是安静角落？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "社交",
+          "性格"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-09",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "选一个今晚最想玩的活动类型。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "活动",
+          "趣味"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-10",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果现在要给对方一个第一印象标签，你会选哪个词？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 2,
+        "tags": [
+          "印象",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3526ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=compatibility-test"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 2"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "FAIL",
+      "severity": "P0",
+      "detail": "1 张卡 boundaryTags 命中已开雷区：compat-01:alcohol"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（compatibility-test）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3526ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "FAIL",
+  "p0": 1,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

@@ -1,0 +1,327 @@
+{
+  "cell": {
+    "id": "L1-1-017-spin-bottle-i1-p4-random-close-all-off",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 17,
+    "packId": "spin-bottle",
+    "packName": "转瓶子",
+    "minPlayers": 2,
+    "intensity": 1,
+    "players": 4,
+    "vibeKey": "random",
+    "vibeLabel": "随机",
+    "relationshipKey": "close",
+    "relationshipLabel": "很熟",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": false,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": false,
+      "noPublicPosting": false,
+      "noStrangerContact": false,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "全关",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-017-spin-bottle-i1-p4-random-close-all-off",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "很熟",
+      "vibes": [
+        "随机"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "spin-bottle"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：很熟；氛围：随机；最高强度：1。\n可用玩法：spin-bottle。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3878,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "spin-01",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "说出你手机里最近一张照片的拍摄场景，不用展示照片。",
+        "instruction": "被转瓶选中者回答；不想回答可跳过。",
+        "intensity": 1,
+        "tags": [
+          "分享"
+        ],
+        "boundaryTags": [
+          "phone-privacy",
+          "photo-video"
+        ],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-02",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "用夸张的语气赞美你左手边的人三十秒。",
+        "instruction": "被选中者完成，不许重复词语；可随时跳过。",
+        "intensity": 1,
+        "tags": [
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-03",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "讲一件你最近做过的最小但最开心的好事。",
+        "instruction": "被选中者回答；其他人在其回答后鼓掌。",
+        "intensity": 1,
+        "tags": [
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-04",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "模仿一位在场嘉宾的说话风格说一句日常问候，让大家猜是谁。",
+        "instruction": "模仿要友善，不得嘲讽外貌或隐私；可跳过。",
+        "intensity": 1,
+        "tags": [
+          "模仿"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-05",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "如果现在能立刻学会一项无用但有趣的技能，你选什么？",
+        "instruction": "被选中者回答；其他人可追问一个为什么。",
+        "intensity": 1,
+        "tags": [
+          "假设"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-06",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "和右手边的人一起用三个词编一个迷你故事。",
+        "instruction": "两人各说一个词，最后一人说第三个词并总结；可跳过。",
+        "intensity": 1,
+        "tags": [
+          "合作"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-07",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "说出你最近一次笑到停不下来的原因，不必提具体人名。",
+        "instruction": "被选中者回答；注意不要泄露他人隐私。",
+        "intensity": 1,
+        "tags": [
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-08",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "用三个表情动作表演一种动物，让全场猜。",
+        "instruction": "被选中者表演，其他人轮流猜一次；可跳过。",
+        "intensity": 1,
+        "tags": [
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-09",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "你更喜欢提前规划还是随性出发？举一个最近的小例子。",
+        "instruction": "被选中者回答；不用涉及金钱或私人行程细节。",
+        "intensity": 1,
+        "tags": [
+          "观点"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-10",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "带领全场一起做一个十秒的无声拍手节奏。",
+        "instruction": "被选中者领拍，其他人跟随；可随时退出。",
+        "intensity": 1,
+        "tags": [
+          "集体"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3878ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=spin-bottle"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 1"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [无] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（spin-bottle）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3878ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

@@ -1,0 +1,308 @@
+{
+  "cell": {
+    "id": "L2-2_6-106-most-likely-i5-p4-flirty-first-meet-default-nophysicalcontact",
+    "layer": "L2",
+    "group": "2.6",
+    "title": "身体接触雷区开",
+    "seq": 106,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "minPlayers": 3,
+    "intensity": 5,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": true,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认 + 身体接触雷区开",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_6-106-most-likely-i5-p4-flirty-first-meet-default-nophysicalcontact",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：暧昧；最高强度：5。\n可用玩法：most-likely。\n已开启的结构化雷区：physical-contact、alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4286,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "ml-01",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "猜猜今晚谁最容易突然安静下来，让人忍不住想多看两眼？",
+        "instruction": "所有人同时指向一个人，被指到的人说明自己当时在想什么，可以不回答。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-02",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "猜猜谁最容易在聊天时记住别人随口提过的小细节？",
+        "instruction": "投票后，得票最多的人分享一个自己记得的细节，其他人可以补充。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-03",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "猜猜谁最容易因为一个眼神就脸红，但会努力装作没事？",
+        "instruction": "投票选出，被选中的人可以模仿自己假装淡定的样子。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-04",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "猜猜谁最容易在聚会结束后，反复回想某句暧昧的话？",
+        "instruction": "同时投票，得票最高的人说一句今晚听过最让自己在意的话。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-05",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "猜猜谁最容易在下次见面时，主动坐到某个人的旁边？",
+        "instruction": "所有人投票，被选中的人可以只回答“会”或“不会”，不解释。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-06",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "猜猜谁最容易在今晚的对话里，悄悄给对方留一个专属昵称？",
+        "instruction": "投票后，得票最多的人给左手边的人起一个昵称，对方可以选择接受或跳过。",
+        "intensity": 3,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-07",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "猜猜谁最容易因为一句夸奖，整晚都在偷偷开心？",
+        "instruction": "同时指人，被指到的人用三个词形容自己现在的心情。",
+        "intensity": 3,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-08",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "猜猜谁最容易在散场后，想找借口再多聊十分钟？",
+        "instruction": "投票选出，得票最高的人说一个不涉及隐私的“再多聊一会儿”的理由。",
+        "intensity": 3,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-09",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "猜猜谁最容易在今晚对某个人产生一点好奇，但不会主动说出口？",
+        "instruction": "所有人闭眼指人，被指到的人可以选择说一个好奇点或跳过。",
+        "intensity": 4,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-10",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "猜猜谁最容易在今晚结束时，心里已经悄悄期待下一次见面？",
+        "instruction": "投票后，得票最高的人只用“是”或“不是”回答，其他人不得追问。",
+        "intensity": 5,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider",
+      "filteredCount": 0,
+      "retryCount": 0
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4286ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=most-likely"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [physical-contact,alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（most-likely）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4286ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 5/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

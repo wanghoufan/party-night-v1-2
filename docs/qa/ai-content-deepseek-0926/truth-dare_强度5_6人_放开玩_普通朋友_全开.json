@@ -1,0 +1,233 @@
+{
+  "cell": {
+    "index": 8,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "origin": "base",
+    "intensity": 5,
+    "players": 6,
+    "vibe": {
+      "key": "wild",
+      "label": "放开玩"
+    },
+    "relationship": {
+      "key": "friends",
+      "label": "普通朋友"
+    },
+    "boundary": {
+      "mode": "all-on",
+      "label": "全开",
+      "flags": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "放开玩"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：普通朋友；氛围：放开玩；最高强度：5。\n可用玩法：truth-dare。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4238,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "td-001",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "说出一件最近让你觉得“幸好我做了”的小事。",
+        "instruction": "被点到的人回答；不想说可以跳过，其他人不追问。",
+        "intensity": 1,
+        "tags": [
+          "轻松分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-002",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用夸张的语气夸在场任意一位朋友30秒，不能重复形容词。",
+        "instruction": "被点到的人完成；可以随时停止并跳过。",
+        "intensity": 2,
+        "tags": [
+          "活跃气氛"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-003",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近一次因为一部电影、剧或书而改变想法是什么？简单说说。",
+        "instruction": "被点到的人回答；其他人可以点头或鼓掌，不打断。",
+        "intensity": 1,
+        "tags": [
+          "兴趣分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-004",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "模仿一位在场朋友最常做的无害小动作，让大家猜是谁。",
+        "instruction": "模仿要友善，不嘲笑外貌或口音；被模仿者可以喊停。",
+        "intensity": 2,
+        "tags": [
+          "观察力"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果明天可以多出一小时完全属于自己，你最想用来做什么？",
+        "instruction": "被点到的人回答；不想说可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个词形容今晚的气氛，并说明为什么选这三个词。",
+        "instruction": "被点到的人完成；其他人可以补充自己的三个词。",
+        "intensity": 2,
+        "tags": [
+          "现场互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你学会的一项小技能是什么？当时为什么想学？",
+        "instruction": "被点到的人回答；其他人可以简单回应，不追问细节。",
+        "intensity": 1,
+        "tags": [
+          "兴趣分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "给在场每个人一个不涉及外貌的真诚印象标签，并说一句理由。",
+        "instruction": "被点到的人完成；标签要友善，任何人可以要求换一个词。",
+        "intensity": 3,
+        "tags": [
+          "互相了解"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "最近哪一件小事让你笑出声？描述当时的场景。",
+        "instruction": "被点到的人回答；不想说可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用不发出声音的夸张表演，演一个“突然收到好消息”的瞬间，让大家猜。",
+        "instruction": "被点到的人完成；表演不涉及身体接触，可以随时跳过。",
+        "intensity": 3,
+        "tags": [
+          "活跃气氛"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

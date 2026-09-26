@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L2-2_1-015-pointing-game-i5-p6-random-first-meet-default",
+    "layer": "L2",
+    "group": "2.1",
+    "title": "Intensity 5 全量",
+    "seq": 15,
+    "packId": "pointing-game",
+    "packName": "指人游戏",
+    "minPlayers": 3,
+    "intensity": 5,
+    "players": 6,
+    "vibeKey": "random",
+    "vibeLabel": "随机",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_1-015-pointing-game-i5-p6-random-first-meet-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "随机"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "pointing-game"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：第一次见 / 拼桌；氛围：随机；最高强度：5。\n可用玩法：pointing-game。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3953,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "card-1",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向今晚第一个主动向大家打招呼的人。",
+        "instruction": "指向时目光自然，不必解释。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "card-2",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你认为最有可能在聚会中提出有趣话题的人。",
+        "instruction": "指向后可以简短说出理由，但不必强求。",
+        "intensity": 2,
+        "tags": [
+          "互动",
+          "话题"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "card-3",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你觉得今晚笑声最有感染力的人。",
+        "instruction": "只指向一个人，保持轻松。",
+        "intensity": 2,
+        "tags": [
+          "氛围",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "card-4",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你认为最擅长倾听的人。",
+        "instruction": "如果被指到，可以微笑回应。",
+        "intensity": 2,
+        "tags": [
+          "互动",
+          "性格"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "card-5",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你认为最可能带大家玩起来的人。",
+        "instruction": "指向时保持友好，不评价外貌。",
+        "intensity": 3,
+        "tags": [
+          "破冰",
+          "氛围"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "card-6",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你觉得今晚最会讲冷笑话的人。",
+        "instruction": "被指到的人可以讲一个冷笑话，也可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "幽默",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "card-7",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你认为最有可能在聚会中提出新游戏的人。",
+        "instruction": "指向后可以邀请对方提一个点子，但对方有权拒绝。",
+        "intensity": 3,
+        "tags": [
+          "互动",
+          "创意"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "card-8",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你觉得今晚最可能提前离场的人。",
+        "instruction": "轻松指向，不追问原因。",
+        "intensity": 4,
+        "tags": [
+          "观察",
+          "氛围"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "card-9",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你认为最有可能在聚会中带来惊喜的人。",
+        "instruction": "指向时保持积极，不涉及隐私。",
+        "intensity": 4,
+        "tags": [
+          "互动",
+          "惊喜"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "card-10",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你觉得今晚最有可能和大家成为朋友的人。",
+        "instruction": "指向后可以给对方一个微笑或点头。",
+        "intensity": 5,
+        "tags": [
+          "破冰",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3953ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=pointing-game"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤6"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（pointing-game）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3953ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 4/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

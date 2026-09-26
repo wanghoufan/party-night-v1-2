@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "情侣 / 暧昧",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3487,
+    "latencyMs": 19357,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,12 +80,13 @@
         "id": "compat-001",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果今晚只能选一种氛围，你们希望是：安静聊天、一起看夜景、还是玩到很晚？",
+        "content": "同时回答：如果今晚只能选一种约会节奏，你们更想要哪一种？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "默契"
+          "默契",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -94,12 +97,13 @@
         "id": "compat-002",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "第一次注意到对方时，你们各自记得的画面是同一个场景吗？请同时说出关键词。",
+        "content": "同时回答：你们更喜欢的初次约会氛围是？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "回忆"
+          "初见",
+          "氛围"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -110,12 +114,12 @@
         "id": "compat-003",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果给对方起一个今晚专用的昵称，你们会同时想到同一个词吗？请同时说出口。",
+        "content": "同时回答：在一段关系里，默契比浪漫更重要吗？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "暧昧",
-          "互动"
+          "默契",
+          "关系观"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -126,12 +130,13 @@
         "id": "compat-004",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "你们觉得今晚谁更主动？同时指向自己或对方。",
+        "content": "同时回答：用三个词形容你希望今晚留下的氛围。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "默契"
+          "氛围",
+          "表达"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -142,12 +147,13 @@
         "id": "compat-005",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "以下哪件事最让你们觉得心动：被记住小习惯、被默默照顾、还是收到一句突然的夸奖？",
+        "content": "同时回答：如果现在一起计划周末，你们优先选？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "暧昧",
-          "心动"
+          "约会",
+          "默契",
+          "计划"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -158,12 +164,13 @@
         "id": "compat-006",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果现在要一起完成一件小事，你们会同时选择：整理歌单、拼一个词、还是互相出题？",
+        "content": "同时回答：对方最近哪一个小习惯让你觉得加分？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "暧昧",
-          "合作"
+          "观察",
+          "好感",
+          "暧昧"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -174,12 +181,13 @@
         "id": "compat-007",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "你们觉得对方今晚最可能先笑的原因是什么？请同时说出一个词。",
+        "content": "同时回答：你们更喜欢哪种聊天方式？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "暧昧",
-          "观察"
+          "沟通",
+          "默契",
+          "暧昧"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -190,12 +198,12 @@
         "id": "compat-008",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果只能用一种颜色形容你们现在的关系，你们会同时选同一种颜色吗？请同时说出口。",
+        "content": "同时回答：如果意见不合，你们更愿意怎么做？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "暧昧",
-          "联想"
+          "沟通",
+          "关系观"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -206,12 +214,13 @@
         "id": "compat-009",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "你们更希望今晚留下：一句印象深刻的话、一个默契瞬间、还是一张合照？",
+        "content": "同时回答：如果给今晚的相处取一个片名，会是什么？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "暧昧",
-          "期待"
+          "创意",
+          "氛围",
+          "暧昧"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -222,12 +231,13 @@
         "id": "compat-010",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果现在给对方一个只属于今晚的暗号，你们会同时想到同一个动作或词吗？请同时展示。",
+        "content": "同时回答：你们认为维持暧昧感最重要的是？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "默契"
+          "默契",
+          "关系观"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

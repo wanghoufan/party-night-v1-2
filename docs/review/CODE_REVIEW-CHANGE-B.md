@@ -64,3 +64,25 @@
 - **P2｜`app/packs/[packId]/` 空目录残留**：路由文件已 git RM，但磁盘上留了空目录（untracked）。对 Next 无路由影响，但易误导后续排查，建议 `rmdir 'app/packs/[packId]'` 清掉。
 - **P3｜`/packs/editor` 裸访问语义微差**：不带 `?id=` 时静默当「新建」编辑器（`?? "new"`），而旧动态路由必须有 id 才能进入。属搬家固有差异，用户正常路径（/packs 列表点入必带 id）不受影响，仅记录不要求改。
 - **P3｜`blankPack()` 仍走 `enabledByDefault: true`**：与搬家前一致，未变化；仅提示该字段语义由 R-054/R-055 开关链统一管理，后续若改默认值需同步 packs 页开关逻辑。
+
+---
+
+## 附录｜增量补审：Change A（AI 直连分支，2026-09-26）
+
+- Task: Change A 复核（自包含版前端直连 Provider：direct-provider 新增＋generate-deck 直连分支＋settings/ai 测试连接直连探测＋generating 自包含分支＋layout CSP connect-src 放行 https）
+- 范围: `lib/ai/direct-provider.ts`（新增）、`lib/ai/generate-deck.ts`、`app/settings/ai/page.tsx`、`app/generating/page.tsx`、`app/layout.tsx`、`next.config.ts`（对照）
+- Reviewer: code-reviewer（增量）
+- Result: **过（PASS）**。P0 = 0，P1 = 0。证据：`tests/unit/direct-provider.test.ts` 实跑 **15/15 通过**。
+
+### 四项确认
+
+1. **无 Key 泄漏 ✓**：Key 唯一去向是 `directChatCompletion` 的 `Authorization: Bearer` 头（direct-provider.ts:130）；URL 内凭据被 `resolveDirectEndpoint` 显式拒绝（:70）；错误路径全部抛固定字面量（`provider-timeout`/`provider-network-error`/ProviderErrorCode），不携带响应体、URL 或 Key；`redirect: "error"`（:127）防止 Key 随 3xx 转发到第三方主机。
+2. **无私网放行 ✓**：强制 https＋禁 URL 凭据＋主机名黑名单（localhost/.local/.internal/metadata）；IP 字面量依赖 WHATWG URL 解析器规范化（`https://2130706433`、八进制/十六进制写法均先归一成点分十进制再进 `isBlockedIpv4`），畸形段一律拒绝（fail-closed）；IPv6 覆盖 ULA/link-local/multicast/::1/db8/`::ffff:` 映射。主机名→私网 IP 的 DNS 型绕过在浏览器侧本不可判（无 DNS 权），注释已如实声明该边界，且 baseUrl 属用户自填配置、威胁模型自洽。
+3. **服务器模式不变 ✓**：settings 测试连接非 selfContained 仍走 `/api/test-provider`（page.tsx:64）；generating 非 selfContained 仍走 `requestGeneratedDeck`→`/api/generate-session`；`requestDeckWithFallback` 仅在 `request === requestGeneratedDeck && isSelfContained()` 才切直连（generate-deck.ts:93），测试注入路径不受影响；`next.config.ts` 生产头仍 `connect-src 'self'`，meta CSP 只在 `PARTY_NIGHT_OUTPUT=export` 时注入（layout.tsx:33），两边不重复下发。
+4. **失败回退本地 ✓**：直连生成失败（鉴权/超时/网络/schema）由 `requestDeckWithFallback` 兜底 `localSeedDeck`，永不断游；settings 直连探测成功/失败均回结构化结果并展示；generating 未配 Key 引导去配置、不空转。
+
+### P2 / P3 Backlog Findings（均不阻断）
+
+- **P2｜IPv4-mapped IPv6 十六进制写法漏拦**：`::ffff:7f00:1`（=127.0.0.1 的 hex 形态）能通过 `isBlockedIpv6` 的 dotted 映射正则（direct-provider.ts:50 只匹配点分十进制）。前提是受害者被诱导配置该形态 baseUrl，风险极低；建议正则扩成同时匹配 hex 段或对含 `:ffff:` 的地址一律拒绝。
+- **P2｜`refillPackInBackground` 自包含版未走直连**（game/page.tsx→generate-deck.ts:134）：局内后台补位仍调 `requestGeneratedDeck`→`/api`，自包含版注定失败、静默原样返回（上轮 Change B 已知口径，游程不断），只是直连能力未覆盖到补位场景；如后续要补，走同一条 `requestDeckWithFallback` 即可。
+- **P3｜CSP `connect-src https:` 偏宽**：meta CSP 对任意 https 主机放行（仅自包含构建生效），主机级收敛靠 direct-provider 应用层校验；静态导出 meta 无法做按域白名单（自定义 baseUrl 任意），属可接受的最小可行方案，记录备查。

@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L1-1-004-spin-bottle-i5-p6-funny-new-all-off",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 4,
+    "packId": "spin-bottle",
+    "packName": "转瓶子",
+    "minPlayers": 2,
+    "intensity": 5,
+    "players": 6,
+    "vibeKey": "funny",
+    "vibeLabel": "搞笑",
+    "relationshipKey": "new",
+    "relationshipLabel": "刚认识",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": false,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": false,
+      "noPublicPosting": false,
+      "noStrangerContact": false,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "全关",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-004-spin-bottle-i5-p6-funny-new-all-off",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "刚认识",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "spin-bottle"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：刚认识；氛围：搞笑；最高强度：5。\n可用玩法：spin-bottle。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 5630,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "spin-001",
+        "packId": "spin-bottle",
+        "type": "icebreaker",
+        "content": "模仿一位在场嘉宾的说话语气说一句夸奖的话，大家猜猜你模仿的是谁。",
+        "instruction": "抽到卡的人先指向一位嘉宾，用夸张语气模仿对方口头禅并送上一句夸奖；被模仿的人可以喊“跳过”或反模仿回去。",
+        "intensity": 1,
+        "tags": [
+          "模仿",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-002",
+        "packId": "spin-bottle",
+        "type": "challenge",
+        "content": "用播音腔播报今晚聚会现场的一条“假新闻”，必须包含至少三位嘉宾的名字。",
+        "instruction": "限时20秒，内容要搞笑但不能贬低或羞辱任何人；被点名的嘉宾可以要求换一条。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "口才"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-003",
+        "packId": "spin-bottle",
+        "type": "interaction",
+        "content": "和转盘指向的嘉宾一起用三个词形容今晚的聚会，必须同时说出同一个词才算成功。",
+        "instruction": "两人各自想三个词，同时说出，若没有重合词则一起做五个深蹲；不想做可喊跳过。",
+        "intensity": 2,
+        "tags": [
+          "合作",
+          "默契"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-004",
+        "packId": "spin-bottle",
+        "type": "performance",
+        "content": "即兴表演一段“刚认识却要一起完成密室逃脱”的30秒短剧。",
+        "instruction": "抽卡者指定一位嘉宾搭档，两人即兴演30秒；可以随时喊停或跳过，不涉及身体接触。",
+        "intensity": 3,
+        "tags": [
+          "表演",
+          "即兴"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-005",
+        "packId": "spin-bottle",
+        "type": "question",
+        "content": "说出你最近一次笑到停不下来的事情，让大家猜是真是假。",
+        "instruction": "讲完后其他嘉宾投票真假，猜错的人接受一个无害小惩罚，比如学一声动物叫。",
+        "intensity": 1,
+        "tags": [
+          "分享",
+          "真假"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-006",
+        "packId": "spin-bottle",
+        "type": "challenge",
+        "content": "用身体语言（不发出声音）表演一个日常动作，让全场猜。",
+        "instruction": "表演者不能说话，观众有三次机会猜；若没人猜中，表演者可以指定一人接着表演。",
+        "intensity": 2,
+        "tags": [
+          "肢体",
+          "猜谜"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-007",
+        "packId": "spin-bottle",
+        "type": "interaction",
+        "content": "和转盘指向的嘉宾互相说出对方一个“第一印象”，必须友善且有趣。",
+        "instruction": "双方轮流说，每人一句；不能评价外貌或隐私，不想说可喊跳过。",
+        "intensity": 2,
+        "tags": [
+          "第一印象",
+          "交流"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-008",
+        "packId": "spin-bottle",
+        "type": "performance",
+        "content": "全场一起用最夸张的表情合唱一句生日歌，送给今晚最安静的人。",
+        "instruction": "所有人参与，唱一句即可；被“赠送”的人可以笑着拒绝或加入。",
+        "intensity": 1,
+        "tags": [
+          "合唱",
+          "全员"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-009",
+        "packId": "spin-bottle",
+        "type": "challenge",
+        "content": "抽卡者闭眼指一位嘉宾，被指到的人要立刻说出三个以“今晚”开头的句子。",
+        "instruction": "三个句子要连贯搞笑，不能重复；说不出来可以喊跳过，换下一位。",
+        "intensity": 3,
+        "tags": [
+          "反应",
+          "造句"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-010",
+        "packId": "spin-bottle",
+        "type": "icebreaker",
+        "content": "用一句广告词推销桌上任意一件物品，必须让至少两位嘉宾说“想买”。",
+        "instruction": "推销时间15秒，观众举手表决；若没人想买，推销者再换一件物品重试一次。",
+        "intensity": 2,
+        "tags": [
+          "推销",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 5630ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=spin-bottle"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [无] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤6"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（spin-bottle）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "5630ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 8/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

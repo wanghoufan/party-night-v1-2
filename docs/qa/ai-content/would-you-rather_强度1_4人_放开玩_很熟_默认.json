@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "很熟",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3369,
+    "latencyMs": 24453,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,160 +77,130 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "wyr-001",
+        "id": "wyr-01",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "每次聚会都当那个负责点菜、安排行程的人 VS 每次聚会都当那个只负责到场、什么都不用管的人",
+        "content": "每天早起看日出 VS 每天熬夜看星空",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
-        "tags": [
-          "日常",
-          "性格"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "wyr-002",
+        "id": "wyr-02",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "拥有一种随时能让自己开心的超能力 VS 拥有一种随时能让身边人开心的超能力",
+        "content": "瞬间学会任何乐器 VS 瞬间学会任何语言",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
-        "tags": [
-          "想象",
-          "性格"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "wyr-003",
+        "id": "wyr-03",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "以后所有假期都去没去过的陌生城市 VS 以后所有假期都回到最喜欢的那座老地方",
+        "content": "旅行只带一个背包 VS 带大行李箱但不用自己搬",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
-        "tags": [
-          "旅行",
-          "选择"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "wyr-004",
+        "id": "wyr-04",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "能听懂所有动物的语言但自己不能说话 VS 能说所有人类的语言但听不懂动物",
+        "content": "吃火锅永远只能选清汤 VS 吃烧烤永远不能加辣",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
-        "tags": [
-          "想象",
-          "脑洞"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "wyr-005",
+        "id": "wyr-05",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "每天都能多睡两小时且不影响任何事 VS 每天都能多出两小时完全属于自己的时间",
+        "content": "住在大城市的小公寓 VS 住在小城市的大房子",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
-        "tags": [
-          "日常",
-          "愿望"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "wyr-006",
+        "id": "wyr-06",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "和朋友一起完成一件有点丢脸但很好笑的事 VS 和朋友一起完成一件很酷但需要练习很久的事",
+        "content": "在聚会上负责选游戏 VS 在聚会上负责计时和提醒",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
-        "tags": [
-          "朋友",
-          "选择"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "wyr-007",
+        "id": "wyr-07",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "永远只能吃自己最爱的三道菜 VS 永远不能吃重复的菜但每道都可能踩雷",
+        "content": "拥有一只会说话的宠物 VS 拥有一辆会自动找车位的车",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
-        "tags": [
-          "美食",
-          "脑洞"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "wyr-008",
+        "id": "wyr-08",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "能瞬间学会任何一项运动但只能保持一天 VS 能慢慢学任何一项运动但永远不会忘",
+        "content": "每次点外卖都准时但只能吃同一家 VS 偶尔迟到但每天都能换新店",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
-        "tags": [
-          "运动",
-          "想象"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "wyr-009",
+        "id": "wyr-09",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "聚会时全程当主持人掌控节奏 VS 聚会时全程当观众享受气氛",
+        "content": "在团队游戏里当指挥官 VS 在团队游戏里当关键救场者",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
-        "tags": [
-          "聚会",
-          "性格"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "wyr-010",
+        "id": "wyr-10",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "收到一份很贵但完全用不上的礼物 VS 收到一份很便宜但特别懂你的礼物",
+        "content": "拥有过目不忘的记忆 VS 随时能删除不想要的记忆",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
-        "tags": [
-          "礼物",
-          "选择"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",

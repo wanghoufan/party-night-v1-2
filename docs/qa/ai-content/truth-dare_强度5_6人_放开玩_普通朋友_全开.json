@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "普通朋友",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4238,
+    "latencyMs": 33791,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,11 +80,12 @@
         "id": "td-001",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "说出一件最近让你觉得“幸好我做了”的小事。",
-        "instruction": "被点到的人回答；不想说可以跳过，其他人不追问。",
+        "content": "你最想拥有但一直没学会的一项小技能是什么？",
+        "instruction": "由主持人指定一位嘉宾回答，回答限时30秒；不想回答可直接说“跳过”。",
         "intensity": 1,
         "tags": [
-          "轻松分享"
+          "truth",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -93,11 +96,12 @@
         "id": "td-002",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "用夸张的语气夸在场任意一位朋友30秒，不能重复形容词。",
-        "instruction": "被点到的人完成；可以随时停止并跳过。",
+        "content": "用新闻主播的语气，播报一句你现场编的“今日天气”。",
+        "instruction": "嘉宾坐着或站着完成，内容不得涉及真实隐私；说完后大家可鼓掌。可跳过。",
         "intensity": 2,
         "tags": [
-          "活跃气氛"
+          "dare",
+          "表演"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -108,11 +112,28 @@
         "id": "td-003",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你最近一次因为一部电影、剧或书而改变想法是什么？简单说说。",
-        "instruction": "被点到的人回答；其他人可以点头或鼓掌，不打断。",
-        "intensity": 1,
+        "content": "每人说出一个自己最奇怪但无害的饮食搭配。",
+        "instruction": "从一位嘉宾开始，按顺时针轮流回答，每人限时20秒；不想回答可跳过。",
+        "intensity": 2,
         "tags": [
-          "兴趣分享"
+          "truth",
+          "全员"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-004",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三种不同情绪（开心、愤怒、悲伤）说同一句话：“今晚的节目真精彩。”",
+        "instruction": "嘉宾依次表演三种情绪，每种不超过10秒；可跳过。",
+        "intensity": 3,
+        "tags": [
+          "dare",
+          "情绪表演"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -120,29 +141,15 @@
         "source": "ai"
       },
       {
-        "id": "td-004",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "模仿一位在场朋友最常做的无害小动作，让大家猜是谁。",
-        "instruction": "模仿要友善，不嘲笑外貌或口音；被模仿者可以喊停。",
-        "intensity": 2,
-        "tags": [
-          "观察力"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
         "id": "td-005",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "如果明天可以多出一小时完全属于自己，你最想用来做什么？",
-        "instruction": "被点到的人回答；不想说可以跳过。",
-        "intensity": 1,
+        "content": "分享一件你曾经非常认真相信、后来发现是误会的搞笑小事。",
+        "instruction": "回答限时45秒，其他人不得追问隐私细节；可跳过。",
+        "intensity": 3,
         "tags": [
-          "轻松分享"
+          "truth",
+          "糗事"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -153,26 +160,28 @@
         "id": "td-006",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "用三个词形容今晚的气氛，并说明为什么选这三个词。",
-        "instruction": "被点到的人完成；其他人可以补充自己的三个词。",
-        "intensity": 2,
+        "content": "和另一位嘉宾进行“无声对话”30秒，只能用表情和动作，不能说话。",
+        "instruction": "两人面对面或并排，由主持人计时30秒；不能说话，只能靠表情和动作表达；可随时停止或跳过。",
+        "intensity": 3,
         "tags": [
-          "现场互动"
+          "dare",
+          "双人"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "single",
+        "participantMode": "pair",
         "source": "ai"
       },
       {
         "id": "td-007",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你学会的一项小技能是什么？当时为什么想学？",
-        "instruction": "被点到的人回答；其他人可以简单回应，不追问细节。",
-        "intensity": 1,
+        "content": "如果明天醒来你会变成一种动物，你会选什么？请给出一个夸张的理由。",
+        "instruction": "回答要有表演感，限时30秒；可跳过。",
+        "intensity": 4,
         "tags": [
-          "兴趣分享"
+          "truth",
+          "想象"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -183,26 +192,28 @@
         "id": "td-008",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "给在场每个人一个不涉及外貌的真诚印象标签，并说一句理由。",
-        "instruction": "被点到的人完成；标签要友善，任何人可以要求换一个词。",
-        "intensity": 3,
+        "content": "全员一起用最夸张的方式，合唱一段经典儿歌副歌，持续15秒。",
+        "instruction": "主持人起头，全体参与；如果有人不想唱可只做口型或跳过。",
+        "intensity": 4,
         "tags": [
-          "互相了解"
+          "dare",
+          "全员"
         ],
         "boundaryTags": [],
-        "minPlayers": 3,
+        "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
         "id": "td-009",
         "packId": "truth-dare",
-        "type": "truth",
-        "content": "最近哪一件小事让你笑出声？描述当时的场景。",
-        "instruction": "被点到的人回答；不想说可以跳过。",
-        "intensity": 1,
+        "type": "dare",
+        "content": "即兴表演一段10秒的“获奖感言”，感谢一位现场嘉宾，但不能说出真实姓名或隐私。",
+        "instruction": "嘉宾自由发挥，用夸张语气表达；不得贬低或泄露他人隐私；可跳过。",
+        "intensity": 5,
         "tags": [
-          "轻松分享"
+          "dare",
+          "即兴"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -212,12 +223,13 @@
       {
         "id": "td-010",
         "packId": "truth-dare",
-        "type": "dare",
-        "content": "用不发出声音的夸张表演，演一个“突然收到好消息”的瞬间，让大家猜。",
-        "instruction": "被点到的人完成；表演不涉及身体接触，可以随时跳过。",
-        "intensity": 3,
+        "type": "truth",
+        "content": "你最近一次因为一件小事笑到停不下来，是什么事？请用最夸张的方式描述。",
+        "instruction": "回答限时60秒，不得涉及他人隐私；可跳过。",
+        "intensity": 5,
         "tags": [
-          "活跃气氛"
+          "truth",
+          "夸张描述"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

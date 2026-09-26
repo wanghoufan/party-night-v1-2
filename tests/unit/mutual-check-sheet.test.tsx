@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import { MutualCheckSheet, type MutualCheckPlayer } from "@/components/game/MutualCheckSheet";
+import { singleAnchorPlayerId } from "@/lib/v2-relationship/v2-routing";
 import { createInitialRelationshipState, type SessionParticipant } from "@/lib/v2-relationship/v2-state";
 
 /* ------------------------------------------------------------------ */
@@ -185,5 +186,150 @@ describe("MutualCheckSheet（B9 私密互选面板）", () => {
     tap("取消本轮");
     expect(onCancelled).toHaveBeenCalledTimes(1);
     expect(onFinished).not.toHaveBeenCalled();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* R-CB9｜Mutual UI 按「当前合法异性候选数」分支（与 Single-Anchor Guard 解耦）  */
+/* ------------------------------------------------------------------ */
+
+const male = (playerId: string, active = true): SessionParticipant => ({ playerId, active, pairGender: "male" });
+const female = (playerId: string, active = true): SessionParticipant => ({ playerId, active, pairGender: "female" });
+const named = (entries: readonly (readonly [string, string])[]): MutualCheckPlayer[] =>
+  entries.map(([id, displayName]) => ({ id, displayName }));
+
+/** 1男3女：f1/f2/f3 女、m1 男（Single-Anchor 桌，多数方每人只有 m1 一个合法候选）。 */
+const ANCHOR_TABLE: SessionParticipant[] = [female("f1"), male("m1"), female("f2"), female("f3")];
+const ANCHOR_NAMES = named([["f1", "小美"], ["m1", "阿豪"], ["f2", "小丽"], ["f3", "小雅"]]);
+
+/** 1男2女：3 人桌，Single-Anchor Guard 不触发（max=2 < 3）。 */
+const SMALL_TABLE: SessionParticipant[] = [female("f1"), male("m1"), female("f2")];
+const SMALL_NAMES = named([["f1", "小美"], ["m1", "阿豪"], ["f2", "小丽"]]);
+
+const renderSheet = (table: SessionParticipant[], list: MutualCheckPlayer[]) => {
+  const onFinished = vi.fn();
+  const onCancelled = vi.fn();
+  const view = (t: SessionParticipant[], l: MutualCheckPlayer[]) => (
+    <MutualCheckSheet
+      open
+      players={l}
+      participants={t}
+      checkpoint={9}
+      relationship={createInitialRelationshipState()}
+      onFinished={onFinished}
+      onCancelled={onCancelled}
+    />
+  );
+  const { rerender } = render(view(table, list));
+  return {
+    onFinished,
+    onCancelled,
+    rerender: (t: SessionParticipant[], l: MutualCheckPlayer[] = list) => rerender(view(t, l)),
+  };
+};
+
+/** 走完一位参与者的交接并进入选择页。 */
+const enterSelect = () => { tap("已交给 TA"); tap("是，继续"); tap("我准备好了"); };
+/** 提交后交接下一位：SUBMITTED → MASKED → NEXT。 */
+const handOffAfterSubmit = () => { tap("继续"); tap("已遮好"); tap("继续"); };
+
+describe("MutualCheckSheet｜R-CB9 单候选 Yes/No 与多人候选 UI 分支", () => {
+  it("1男3女：多数方只剩单一候选 → 显示 Yes/No 文案与「愿意 / 暂时没有」两个选项", () => {
+    renderSheet(ANCHOR_TABLE, ANCHOR_NAMES);
+    enterSelect();
+    expect(screen.getByText("今晚到现在，你愿意继续了解 TA 吗？")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "愿意" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "暂时没有" })).toBeInTheDocument();
+    // Yes/No 分支不列名单、不给第三人（含异性但非候选）任何选项
+    expect(screen.queryByRole("button", { name: "小丽" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "小雅" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "阿豪" })).toBeNull();
+  });
+
+  it("1男3女：anchor 本人有多候选 → 仍是现有多人候选 UI（不强制 Yes/No）", () => {
+    renderSheet(ANCHOR_TABLE, ANCHOR_NAMES);
+    enterSelect();
+    tap("暂时没有");
+    handOffAfterSubmit();
+    enterSelect(); // 轮到 anchor m1
+    expect(screen.getByText("只选一个人，或跳过")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "小美" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "小丽" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "小雅" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "愿意" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "暂时没有" })).toBeNull();
+  });
+
+  it("1男2女（Guard 不触发）多数方唯一候选 → 仍用 Yes/No，证明 UI 与 Guard 解耦", () => {
+    expect(singleAnchorPlayerId(SMALL_TABLE)).toBeNull(); // Guard=false
+    renderSheet(SMALL_TABLE, SMALL_NAMES);
+    enterSelect();
+    expect(screen.getByText("今晚到现在，你愿意继续了解 TA 吗？")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "愿意" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "暂时没有" })).toBeInTheDocument();
+  });
+
+  it("愿意 → 映射到唯一候选：双方愿意才成 MATCH", () => {
+    const table = [female("f1"), male("m1")];
+    const names = named([["f1", "小美"], ["m1", "阿豪"]]);
+    const { onFinished } = renderSheet(table, names);
+
+    enterSelect();
+    tap("愿意");
+    handOffAfterSubmit();
+    enterSelect();
+    tap("愿意");
+    handOffAfterSubmit();
+
+    expect(screen.getByText("互选成功")).toBeInTheDocument();
+    expect(screen.getByText("小美 × 阿豪")).toBeInTheDocument();
+    tap("继续游戏");
+    expect(onFinished.mock.calls[0]![0].matches).toEqual([{ pairKey: "f1::m1", playerIds: ["f1", "m1"] }]);
+  });
+
+  it("暂时没有 → null：单向不成立、不公开任何结果", () => {
+    const table = [female("f1"), male("m1")];
+    const names = named([["f1", "小美"], ["m1", "阿豪"]]);
+    const { onFinished } = renderSheet(table, names);
+
+    enterSelect();
+    tap("暂时没有");
+    handOffAfterSubmit();
+    enterSelect();
+    tap("愿意");
+    handOffAfterSubmit();
+
+    expect(screen.getByText("本轮已完成，继续游戏")).toBeInTheDocument();
+    expect(screen.queryByText("互选成功")).toBeNull();
+    tap("继续游戏");
+    expect(onFinished.mock.calls[0]![0].matches).toEqual([]);
+  });
+
+  it("唯一候选在提交前失效（暂离/候选变化）→ 拒绝提交并给可读提示，不产生非法 MATCH", () => {
+    const table = [female("f1"), male("m1")];
+    const names = named([["f1", "小美"], ["m1", "阿豪"]]);
+    const { rerender, onFinished } = renderSheet(table, names);
+
+    enterSelect();
+    expect(screen.getByRole("button", { name: "愿意" })).toBeInTheDocument();
+
+    // 作答期间 m1 暂离：真实合法边消失，快照里的唯一候选已失效
+    rerender([female("f1"), male("m1", false)]);
+    tap("愿意");
+
+    expect(screen.getByText("TA 现在不在可选范围内，先跳过吧。")).toBeInTheDocument();
+    // 仍停在选择页：没有提交、没有公开结果
+    expect(screen.getByRole("button", { name: "愿意" })).toBeInTheDocument();
+    expect(screen.queryByText("已提交")).toBeNull();
+
+    // 走完流程：失效目标只能按「暂时没有」（= null）收场，最终空结果，不产生非法 MATCH
+    tap("暂时没有");
+    handOffAfterSubmit();
+    enterSelect();
+    tap("跳过");
+    tap("已遮好");
+    tap("继续");
+    tap("继续游戏");
+    expect(onFinished.mock.calls[0]![0].matches).toEqual([]);
   });
 });

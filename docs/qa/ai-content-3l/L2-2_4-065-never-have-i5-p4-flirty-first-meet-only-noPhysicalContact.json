@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L2-2_4-065-never-have-i5-p4-flirty-first-meet-only-noPhysicalContact",
+    "layer": "L2",
+    "group": "2.4",
+    "title": "雷区单命中「身体接触」",
+    "seq": 65,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "minPlayers": 2,
+    "intensity": 5,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": true,
+      "noAlcoholPenalty": false,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": false,
+      "noPublicPosting": false,
+      "noStrangerContact": false,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "仅开「身体接触」",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_4-065-never-have-i5-p4-flirty-first-meet-only-noPhysicalContact",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：暧昧；最高强度：5。\n可用玩法：never-have。\n已开启的结构化雷区：physical-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4195,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "nh-01",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在第一次见面时，偷偷观察对方超过三次。",
+        "instruction": "说“我有过”的人，简单说一句当时在看什么；不想说可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "观察",
+          "初次见面"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-02",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有因为一个人的声音，而在心里多停留几秒。",
+        "instruction": "说“我有过”的人，用三个词形容那种声音；不想说可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "声音",
+          "心动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-03",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在拼桌时，悄悄希望某个人坐得离我近一点。",
+        "instruction": "说“我有过”的人，指出当时最想靠近的方位，不必点名；不想说可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "距离",
+          "拼桌"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-04",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有因为一个眼神，而整晚都在回想。",
+        "instruction": "说“我有过”的人，描述那个眼神给你的第一感觉；不想说可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "眼神",
+          "回想"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-05",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在聊天时，故意把话题绕回某个人身上。",
+        "instruction": "说“我有过”的人，说出一个绕回话题的关键词；不想说可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "聊天",
+          "关注"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-06",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在第一次见面的人面前，突然变得比平时更爱笑。",
+        "instruction": "说“我有过”的人，对左手边的人笑一下；不想做可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "笑容",
+          "紧张"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-07",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有因为一句普通的问候，而反复猜测对方的语气。",
+        "instruction": "说“我有过”的人，复述那句问候，并说出你猜到的语气；不想说可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "问候",
+          "猜测"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-08",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在聚会中，偷偷注意某个人和谁说话最多。",
+        "instruction": "说“我有过”的人，说出你注意到的互动方向，不点名；不想说可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "注意",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-09",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在告别时，故意放慢动作，只为了多待一会儿。",
+        "instruction": "说“我有过”的人，用一个动作演示当时的慢；不想做可以跳过。",
+        "intensity": 4,
+        "tags": [
+          "告别",
+          "留恋"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-10",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在第一次见面后，想象过下一次见面的场景。",
+        "instruction": "说“我有过”的人，用一句话描述那个想象画面；不想说可以跳过。",
+        "intensity": 5,
+        "tags": [
+          "想象",
+          "下一次"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4195ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=never-have"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [physical-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（never-have）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4195ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 5/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

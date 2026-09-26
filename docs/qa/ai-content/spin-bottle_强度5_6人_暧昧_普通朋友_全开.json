@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "普通朋友",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4502,
+    "latencyMs": 61743,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "spin-bottle-001",
+        "id": "spin-01",
         "packId": "spin-bottle",
-        "type": "truth",
-        "content": "说出一件你最近一次因为某位在场朋友的小动作而心跳加速的瞬间，但不用说是谁。",
-        "instruction": "瓶口指向的人回答；不想回答可以跳过并改为说一件今天最开心的小事。",
+        "type": "spin",
+        "content": "瓶口指向谁，谁就用一个emoji形容今晚的气氛，并解释为什么。",
+        "instruction": "旋转瓶子；瓶口指向的人完成；可随时跳过。",
         "intensity": 1,
         "tags": [
-          "暧昧",
-          "轻松"
+          "破冰",
+          "气氛"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,15 +93,47 @@
         "source": "ai"
       },
       {
-        "id": "spin-bottle-002",
+        "id": "spin-02",
         "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "和瓶口指向的人对视十秒，期间谁先笑或移开视线，就要夸对方一个优点。",
-        "instruction": "两人自愿参与；可以随时喊停。",
+        "type": "spin",
+        "content": "瓶口指向谁，谁就说一件今天亲眼见到的小确幸。",
+        "instruction": "旋转瓶子；瓶口指向的人分享；可随时跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-03",
+        "packId": "spin-bottle",
+        "type": "spin",
+        "content": "瓶口指向谁，谁就选一位嘉宾，说出对方给你的第一印象；只限正面或中性，不得评价外貌。",
+        "instruction": "旋转瓶子；瓶口指向的人选择一位嘉宾回答；可随时跳过。",
         "intensity": 2,
         "tags": [
-          "暧昧",
-          "互动"
+          "印象",
+          "赞美"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-04",
+        "packId": "spin-bottle",
+        "type": "spin",
+        "content": "瓶口指向谁，谁就和转动瓶子的人各说一个“如果今晚是一部电影，它的片名是……”。",
+        "instruction": "旋转瓶子；瓶口指向的人与转动瓶子的人各说一句；可随时跳过。",
+        "intensity": 2,
+        "tags": [
+          "合作",
+          "电影"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,15 +141,15 @@
         "source": "ai"
       },
       {
-        "id": "spin-bottle-003",
+        "id": "spin-05",
         "packId": "spin-bottle",
-        "type": "truth",
-        "content": "如果今天必须选一位在场朋友陪你夜游一小时，你会选谁？说一个不涉及隐私的理由。",
-        "instruction": "瓶口指向的人回答；理由可以很随意，不必深入。",
-        "intensity": 1,
+        "type": "spin",
+        "content": "瓶口指向谁，谁就回答：你最容易对哪种小细节产生好感？不必举例具体人。",
+        "instruction": "旋转瓶子；瓶口指向的人回答；可随时跳过。",
+        "intensity": 3,
         "tags": [
-          "暧昧",
-          "选择"
+          "提问",
+          "好感"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -123,12 +157,44 @@
         "source": "ai"
       },
       {
-        "id": "spin-bottle-004",
+        "id": "spin-06",
         "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "用一句歌词或电影台词，对瓶口指向的人表达“今晚和你聊天很开心”。",
-        "instruction": "被指向的人听完后只需微笑或说谢谢，不用回应更多。",
-        "intensity": 2,
+        "type": "spin",
+        "content": "瓶口指向谁，谁就邀请一位嘉宾，一起用“深夜、路灯、偶遇”三个词编一个不超过三句话的微故事。",
+        "instruction": "旋转瓶子；瓶口指向的人邀请一位嘉宾共同完成；可随时跳过。",
+        "intensity": 3,
+        "tags": [
+          "合作",
+          "故事"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-07",
+        "packId": "spin-bottle",
+        "type": "spin",
+        "content": "瓶口指向谁，谁就对一位嘉宾说：“今晚你有一个瞬间让我好奇。”被点到的嘉宾只能回问一次“哪个瞬间”，对方可回答或跳过。",
+        "instruction": "旋转瓶子；瓶口指向的人选择一位嘉宾互动；可随时跳过。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "好奇"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-08",
+        "packId": "spin-bottle",
+        "type": "spin",
+        "content": "瓶口指向谁，谁就看向一位同意参与的嘉宾，认真说：“如果今晚只能记住一个画面，我可能会选你刚才笑的样子。”说完立刻补一句玩笑化解。",
+        "instruction": "旋转瓶子；瓶口指向的人选择一位同意参与的嘉宾；可随时跳过。",
+        "intensity": 4,
         "tags": [
           "暧昧",
           "表达"
@@ -139,15 +205,15 @@
         "source": "ai"
       },
       {
-        "id": "spin-bottle-005",
+        "id": "spin-09",
         "packId": "spin-bottle",
-        "type": "truth",
-        "content": "描述你心中最舒服的约会氛围，比如天气、音乐或聊天节奏，但不能提到具体地点和人物。",
-        "instruction": "瓶口指向的人回答；其他人可以点头表示共鸣。",
-        "intensity": 1,
+        "type": "spin",
+        "content": "瓶口指向谁，谁就向全场提问：在场谁最像“让人放下戒备的深夜电台”？只能选一人并说一个理由，不能重复。",
+        "instruction": "旋转瓶子；瓶口指向的人向全场提问并选一人；可随时跳过。",
+        "intensity": 4,
         "tags": [
-          "暧昧",
-          "想象"
+          "群问",
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -155,79 +221,15 @@
         "source": "ai"
       },
       {
-        "id": "spin-bottle-006",
+        "id": "spin-10",
         "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "和瓶口指向的人互相说一个对方给你的第一印象，只说好话或中性观察。",
-        "instruction": "两人轮流说；不能评价外貌身材，也不能涉及隐私。",
-        "intensity": 2,
+        "type": "spin",
+        "content": "瓶口指向谁，谁就选一位嘉宾，用最认真的语气说：“今晚你让我有点分心。”停顿三秒后补充：“因为你的接梗速度太快了。”说完可跳过。",
+        "instruction": "旋转瓶子；瓶口指向的人选择一位嘉宾表达；可随时跳过。",
+        "intensity": 5,
         "tags": [
           "暧昧",
-          "初印象"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "spin-bottle-007",
-        "packId": "spin-bottle",
-        "type": "truth",
-        "content": "在场的人里，谁的声音最让你觉得安心？说一个不涉及隐私的理由。",
-        "instruction": "瓶口指向的人回答；被提到的人可以简单说声谢谢。",
-        "intensity": 1,
-        "tags": [
-          "暧昧",
-          "好感"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-bottle-008",
-        "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "闭眼三秒，然后睁眼对瓶口指向的人说一句“今晚有你真好”，说完立刻转移话题。",
-        "instruction": "被指向的人可以自由回应或跳过；不强制任何后续互动。",
-        "intensity": 2,
-        "tags": [
-          "暧昧",
-          "轻告白"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "spin-bottle-009",
-        "packId": "spin-bottle",
-        "type": "truth",
-        "content": "如果要用一种颜色形容今晚的氛围，你会选什么颜色？为什么？",
-        "instruction": "瓶口指向的人回答；答案可以天马行空。",
-        "intensity": 1,
-        "tags": [
-          "暧昧",
-          "氛围"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-bottle-010",
-        "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "瓶口指向的人可以向你提一个不越界的小请求，比如一起击掌、碰拳或合唱一句歌；你可以接受、拒绝或换一个。",
-        "instruction": "双方自愿；任何身体接触都需先口头同意，且不得涉及敏感部位。",
-        "intensity": 3,
-        "tags": [
-          "暧昧",
-          "协商"
+          "玩笑"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

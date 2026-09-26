@@ -1,0 +1,334 @@
+{
+  "cell": {
+    "id": "L1-1-038-spin-bottle-i1-p6-icebreaker-friends-default",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 38,
+    "packId": "spin-bottle",
+    "packName": "转瓶子",
+    "minPlayers": 2,
+    "intensity": 1,
+    "players": 6,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "friends",
+    "relationshipLabel": "普通朋友",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-038-spin-bottle-i1-p6-icebreaker-friends-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "spin-bottle"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：普通朋友；氛围：破冰；最高强度：1。\n可用玩法：spin-bottle。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3266,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "spin-ice-01",
+        "packId": "spin-bottle",
+        "type": "icebreaker",
+        "content": "用三个词形容你今天的开机状态。",
+        "instruction": "转瓶选出的人回答，其他人不得追问。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "表达"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-02",
+        "packId": "spin-bottle",
+        "type": "icebreaker",
+        "content": "说出你最近循环播放的一首歌。",
+        "instruction": "转瓶选出的人回答，说完即可。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "音乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-03",
+        "packId": "spin-bottle",
+        "type": "icebreaker",
+        "content": "模仿一个你熟悉的动物叫声，让大家猜。",
+        "instruction": "转瓶选出的人模仿，猜中后换下一位。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-04",
+        "packId": "spin-bottle",
+        "type": "icebreaker",
+        "content": "给左手边的人一个真诚的赞美。",
+        "instruction": "转瓶选出的人执行，措辞需友善。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-05",
+        "packId": "spin-bottle",
+        "type": "icebreaker",
+        "content": "用一句话介绍你最近学会的小技能。",
+        "instruction": "转瓶选出的人分享，其他人安静听完。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-06",
+        "packId": "spin-bottle",
+        "type": "icebreaker",
+        "content": "和瓶口指向的人击掌一次，并说出对方一个优点。",
+        "instruction": "两人完成击掌与赞美，不想做可跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "配对"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-07",
+        "packId": "spin-bottle",
+        "type": "icebreaker",
+        "content": "说出一种你无法接受的披萨配料。",
+        "instruction": "转瓶选出的人回答，理由可省略。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "口味"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-08",
+        "packId": "spin-bottle",
+        "type": "icebreaker",
+        "content": "全员同时指向你觉得最会讲笑话的人。",
+        "instruction": "所有人一起指，得票最多者讲一个短笑话。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "全员"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-09",
+        "packId": "spin-bottle",
+        "type": "icebreaker",
+        "content": "用表情包语气说一句晚安。",
+        "instruction": "转瓶选出的人表演，其他人可鼓掌。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-10",
+        "packId": "spin-bottle",
+        "type": "icebreaker",
+        "content": "说出你包里或口袋里最没用的东西。",
+        "instruction": "转瓶选出的人回答，不必展示实物。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3266ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=spin-bottle"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 1"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤6"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（spin-bottle）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3266ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

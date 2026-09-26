@@ -1,0 +1,334 @@
+{
+  "cell": {
+    "id": "L1-1-029-most-likely-i4-p4-flirty-friends-all-on",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 29,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "minPlayers": 3,
+    "intensity": 4,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "friends",
+    "relationshipLabel": "普通朋友",
+    "boundaryFlags": {
+      "noPhysicalContact": true,
+      "noAlcoholPenalty": true,
+      "noExPartners": true,
+      "noSexualHistory": true,
+      "noMoneyIncome": true,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": true,
+      "noSocialAccounts": true
+    },
+    "boundaryLabel": "全开",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-029-most-likely-i4-p4-flirty-friends-all-on",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 4,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：普通朋友；氛围：暧昧；最高强度：4。\n可用玩法：most-likely。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4863,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "ml-01",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "在今晚的聚会中，谁最会不经意间说出让人心动的话？",
+        "instruction": "所有人同时指向自己认为最符合的人；被指到最多的人分享一个无关隐私的、最近让自己感到开心的小瞬间。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-02",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最擅长用眼神和微笑制造暧昧气氛？",
+        "instruction": "投票后，得票最高的人选择一位嘉宾，用一句不超过十个字的礼貌赞美回应对方，内容不得涉及身体或隐私。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-03",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在聊天时偷偷记住别人随口说过的喜好？",
+        "instruction": "投票并公布结果；得票最高者说出一种自己确实记得的、在场某人提过的普通喜好，不追问来源。",
+        "intensity": 1,
+        "tags": [
+          "默契",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-04",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最适合在深夜陪人聊一些不着边际的轻松话题？",
+        "instruction": "投票后，得票最高的人获得一个特权：指定一位嘉宾和自己一起用三十秒描述一个理想中的周末场景。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "话题"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-05",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易因为一句普通的关心而产生好感？",
+        "instruction": "所有人投票；得票最高者可以拒绝回答，也可以选择用“是”或“不是”简单回应，不解释原因。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "情绪"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-06",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最会在聚会中默默照顾别人的感受？",
+        "instruction": "投票后，得票最高的人指定一位嘉宾，由对方用一句话描述自己观察到的一个贴心小举动。",
+        "intensity": 1,
+        "tags": [
+          "默契",
+          "温暖"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-07",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能把暧昧玩笑接得自然又不尴尬？",
+        "instruction": "投票并公布；得票最高者现场接一句由左边嘉宾提出的、完全无害的普通玩笑，接不上可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "反应"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-08",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在今晚结束后还会回想某句话？",
+        "instruction": "投票后，得票最高者可以选择分享一个今晚听到的、让自己印象深刻的普通句子，不说明是哪位说的。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "回味"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-09",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最擅长用倾听让人放下防备？",
+        "instruction": "投票并公布结果；得票最高的人获得一次提问机会，可以向任意一位嘉宾提一个关于兴趣爱好或日常习惯的普通问题，对方可拒答。",
+        "intensity": 2,
+        "tags": [
+          "默契",
+          "倾听"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-10",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能成为今晚大家心里默默觉得“有点特别”的人？",
+        "instruction": "所有人闭眼投票，由主持人统计后只公布票数不公布名字；得票最高者可以选择跳过或说一句“谢谢大家”。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "氛围"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4863ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=most-likely"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 4"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [physical-contact,alcohol,ex-partner,sexual-history,money,phone-privacy,public-posting,stranger-contact,photo-video,social-account] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（most-likely）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4863ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

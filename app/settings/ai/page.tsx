@@ -13,6 +13,7 @@ import { Icon } from "@/components/ui/Icon";
 import { ThemeSelector } from "@/components/theme/ThemeSelector";
 import { SoundToggle } from "@/components/audio/SoundToggle";
 import { clearSecretReducer, initialClearSecretState } from "@/lib/ai/clear-secret-state";
+import { testDirectConnection } from "@/lib/ai/direct-provider";
 import { createCustomProfile, DEEPSEEK_PROFILE } from "@/lib/ai/presets";
 import { providerErrorMessage } from "@/lib/ai/provider-errors";
 import type { AIProviderProfile } from "@/lib/ai/provider";
@@ -21,7 +22,7 @@ import { preferencesRepository } from "@/lib/storage/preferences-repository";
 
 type Connection = { status: "idle" | "testing" | "success" | "error"; message?: string };
 
-/** 自包含安装包（B-1）：没有服务器代理，AI 在线能力整体缺席，界面要说清楚而不是让用户白试。 */
+/** 自包含安装包（B-1）：没有服务器代理，Key 只走本机直连；界面如实说明「直连失败自动改用本地题库」。 */
 const selfContained = process.env.NEXT_PUBLIC_SELF_CONTAINED === "1";
 
 export default function AISettingsPage() {
@@ -53,10 +54,13 @@ export default function AISettingsPage() {
   async function testConnection() {
     const key = secretRef.current?.read() || await aiProviderRepository.getSecret(activeId);
     if (!key) return setConnection({ status: "error", message: "请先填写 API Key" });
-    // 自包含版（B-1）没有 /api 代理，测试连接必然失败：直接说清原因，不让用户对着转圈等。
-    if (selfContained) return setConnection({ status: "error", message: "本机自包含版不带服务器代理，无法测试连接" });
     setConnection({ status: "testing" });
     try {
+      // 自包含版（B-1）没有 /api 代理：由本机直连用户填写的 HTTPS 接口做真实连通测试，成功/失败都明确显示。
+      if (selfContained) {
+        const result = await testDirectConnection(active, key, `settings-${active.id}`);
+        return setConnection(result.ok ? { status: "success", message: `连接成功 · ${result.latencyMs ?? 0} ms` } : { status: "error", message: providerErrorMessage(result.code, active.name) });
+      }
       const response = await fetch("/api/test-provider", { method: "POST", cache: "no-store", headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` }, body: JSON.stringify({ profile: active, sessionId: `settings-${active.id}` }) });
       const result = await response.json() as { ok: boolean; latencyMs?: number; code?: string };
       setConnection(result.ok ? { status: "success", message: `连接成功 · ${result.latencyMs ?? 0} ms` } : { status: "error", message: providerErrorMessage(result.code) });
@@ -99,5 +103,5 @@ export default function AISettingsPage() {
     setProfiles((items) => [...items, profile]); setActiveId(profile.id);
   }
 
-  return <NeonBackground><main className="screen ai-settings"><header className="screen-header"><Link href="/" aria-label="返回首页"><Icon name="back" /></Link><h1>AI 模型设置</h1><span /></header><ThemeSelector /><SoundToggle /><ProviderSelector profiles={profiles} value={activeId} onChange={setActiveId} /><section className="settings-panel">{active.type === "custom-openai" && <label><span>提供商名称</span><input value={active.name} onChange={(event) => setProfiles((items) => items.map((item) => item.id === active.id ? { ...item, name: event.target.value } : item))} /></label>}<label><span>Base URL</span><input value={active.baseUrl} readOnly={active.type !== "custom-openai"} onChange={(event) => setProfiles((items) => items.map((item) => item.id === active.id ? { ...item, baseUrl: event.target.value } : item))} /></label><label><span>模型</span><input value={active.modelId} readOnly={active.type !== "custom-openai"} onChange={(event) => setProfiles((items) => items.map((item) => item.id === active.id ? { ...item, modelId: event.target.value } : item))} /></label><SecretInput ref={secretRef} /><label className="persist-choice"><input type="checkbox" checked={persist} onChange={(event) => setPersist(event.target.checked)} /><span>使用 Web Crypto 加密后保存到本设备</span></label>{selfContained && <aside className="provider-note"><strong>本机自包含版</strong><p>这个安装包完全离线、不带服务器代理，AI 组局需要联网版；这里填写的 Key 仍会加密存在本机，联网版（同一站点）可直接复用。</p></aside>}<p className="settings-note">浏览器本地保存只是个人自用的便利模式：加密只保护静态存储，不等同于强机密存储。需要更高机密性时请改用服务端代理，别在共享设备上填写 Key。</p><div className="settings-actions"><Button variant="secondary" type="button" onClick={() => void testConnection()}>⚡ 测试连接</Button><Button type="button" onClick={() => void save()}>保存配置</Button></div><ConnectionStatus {...connection} />{notice && <p className="settings-notice" role="status">{notice}</p>}{active.type === "opencode-go" && <aside className="provider-note"><strong>实验性 Provider</strong><p>OpenCode Go 官方主要面向 OpenCode / 同类 coding agents。Party Night 属非典型流量，兼容性可能变化；仅在你主动选择后启用，绝不自动 fallback。</p></aside>}{active.type === "custom-openai" && <aside className="provider-note"><strong>安全限制</strong><p>仅允许 HTTPS 公网地址。服务器会拒绝本机、私网、link-local、metadata 地址和跨主机重定向。</p></aside>}<button className="custom-provider-link" type="button" onClick={addCustom}>＋ 添加自定义 OpenAI Compatible</button></section><DangerZone configured={configured} confirmOpen={clearState.confirmOpen} clearing={clearState.clearing} onOpen={() => dispatchClear({ type: "open" })} onCancel={() => dispatchClear({ type: "cancel" })} onConfirm={() => void clear()} /></main><BottomTabBar /></NeonBackground>;
+  return <NeonBackground><main className="screen ai-settings"><header className="screen-header"><Link href="/" aria-label="返回首页"><Icon name="back" /></Link><h1>AI 模型设置</h1><span /></header><ThemeSelector /><SoundToggle /><ProviderSelector profiles={profiles} value={activeId} onChange={setActiveId} /><section className="settings-panel">{active.type === "custom-openai" && <label><span>提供商名称</span><input value={active.name} onChange={(event) => setProfiles((items) => items.map((item) => item.id === active.id ? { ...item, name: event.target.value } : item))} /></label>}<label><span>Base URL</span><input value={active.baseUrl} readOnly={active.type !== "custom-openai"} onChange={(event) => setProfiles((items) => items.map((item) => item.id === active.id ? { ...item, baseUrl: event.target.value } : item))} /></label><label><span>模型</span><input value={active.modelId} readOnly={active.type !== "custom-openai"} onChange={(event) => setProfiles((items) => items.map((item) => item.id === active.id ? { ...item, modelId: event.target.value } : item))} /></label><SecretInput ref={secretRef} /><label className="persist-choice"><input type="checkbox" checked={persist} onChange={(event) => setPersist(event.target.checked)} /><span>使用 Web Crypto 加密后保存到本设备</span></label>{selfContained && <aside className="provider-note"><strong>本机自包含版</strong><p>这个安装包不带服务器代理：联网时由本机直接请求你填写的 HTTPS 公网接口，Key 只随请求头发送，不写进地址或日志；直连失败会自动改用本地题库，组局不中断。</p></aside>}<p className="settings-note">浏览器本地保存只是个人自用的便利模式：加密只保护静态存储，不等同于强机密存储。需要更高机密性时请改用服务端代理，别在共享设备上填写 Key。</p><div className="settings-actions"><Button variant="secondary" type="button" onClick={() => void testConnection()}>⚡ 测试连接</Button><Button type="button" onClick={() => void save()}>保存配置</Button></div><ConnectionStatus {...connection} />{notice && <p className="settings-notice" role="status">{notice}</p>}{active.type === "opencode-go" && <aside className="provider-note"><strong>实验性 Provider</strong><p>OpenCode Go 官方主要面向 OpenCode / 同类 coding agents。Party Night 属非典型流量，兼容性可能变化；仅在你主动选择后启用，绝不自动 fallback。</p></aside>}{active.type === "custom-openai" && <aside className="provider-note"><strong>安全限制</strong><p>仅允许 HTTPS 公网地址。服务器会拒绝本机、私网、link-local、metadata 地址和跨主机重定向。</p></aside>}<button className="custom-provider-link" type="button" onClick={addCustom}>＋ 添加自定义 OpenAI Compatible</button></section><DangerZone configured={configured} confirmOpen={clearState.confirmOpen} clearing={clearState.clearing} onOpen={() => dispatchClear({ type: "open" })} onCancel={() => dispatchClear({ type: "cancel" })} onConfirm={() => void clear()} /></main><BottomTabBar /></NeonBackground>;
 }

@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "刚认识",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3985,
+    "latencyMs": 26712,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "mnl-001",
+        "id": "ml-001",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在聚会上第一个讲出让大家笑到停不下来的段子？",
-        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人分享一个自己觉得最好笑的小故事。",
+        "content": "谁最可能在刚认识的人群里第一个抛出有趣话题，让大家都接得上？",
+        "instruction": "所有人倒数三秒后同时指向最符合描述的人；得票最多者用一句话回应，也可以选择跳过。不追问隐私，不强迫解释。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "幽默"
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,14 +93,126 @@
         "source": "ai"
       },
       {
-        "id": "mnl-002",
+        "id": "ml-002",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在一场陌生人聚会中迅速交到新朋友？",
-        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人说一个自己主动认识新朋友的经历。",
+        "content": "谁最可能默默记住每个人的名字，并在下一次自然叫出来？",
+        "instruction": "所有人同时指向心中人选；得票最多者可以分享一个记住名字的小技巧，也可以跳过。不涉及任何私人信息。",
         "intensity": 1,
         "tags": [
-          "社交",
+          "破冰",
+          "观察力"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-003",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能用一个表情或动作，就让全场笑出声？",
+        "instruction": "先闭眼三秒，再同时指向最符合描述的人；得票最多者做一个表情或选择跳过。不评价外貌，不强迫表演。",
+        "intensity": 2,
+        "tags": [
+          "气氛",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-004",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能把普通规则玩出综艺效果，成为隐藏的节奏发动机？",
+        "instruction": "所有人同时投票；得票最多者可以用一句话解释自己的玩法思路，也可以跳过。不强迫任何人加码。",
+        "intensity": 2,
+        "tags": [
+          "气氛",
+          "综艺感"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-005",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能成为今晚的气氛充电宝，一开口就把话题带热？",
+        "instruction": "所有人同时指向心中人选；得票最多者可以点名一位同伴互相说一句认可，也可以选择跳过。不涉及身体接触。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "气氛"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-006",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能用最认真的表情说出最离谱的答案，还让人忍不住相信？",
+        "instruction": "所有人倒数三秒后同时指向；得票最多者说一个无害的离谱答案，或直接跳过。内容不得羞辱他人或泄露隐私。",
+        "intensity": 3,
+        "tags": [
+          "搞笑",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-007",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在三轮游戏内被大家发现是隐藏的接梗高手？",
+        "instruction": "所有人同时投票；得票最多者可以接一个由大家随口给出的日常话题，也可以跳过。不涉及隐私话题。",
+        "intensity": 2,
+        "tags": [
+          "接梗",
+          "气氛"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-008",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能主动提议换个更放开的玩法，但会先确认大家都愿意？",
+        "instruction": "所有人同时指向心中人选；得票最多者可以提出一个安全的小调整，大家用举手决定是否采用。可以随时跳过。",
+        "intensity": 3,
+        "tags": [
+          "共识",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-009",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能注意到有人安静下来，并用不尴尬的方式把对方拉回话题？",
+        "instruction": "所有人同时投票；得票最多者可以用一句轻松的话邀请一位同伴发言，也可以跳过。不强迫表达。",
+        "intensity": 1,
+        "tags": [
+          "关照",
           "破冰"
         ],
         "boundaryTags": [],
@@ -107,127 +221,15 @@
         "source": "ai"
       },
       {
-        "id": "mnl-003",
+        "id": "ml-010",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在玩游戏时偷偷改变规则来让自己赢？",
-        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人用一句话为自己辩解。",
+        "content": "谁最可能把桌上的普通小食摆得像一场庆功宴，仪式感拉满？",
+        "instruction": "所有人同时指向心中人选；得票最多者可以分享一个让聚会更有仪式感的小点子，也可以跳过。不涉及拍照或公开发布。",
         "intensity": 2,
         "tags": [
-          "游戏",
-          "幽默"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mnl-004",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在KTV里唱到停不下来，成为麦霸？",
-        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人清唱一句自己最喜欢的歌。",
-        "intensity": 2,
-        "tags": [
-          "音乐",
-          "娱乐"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mnl-005",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在聚会结束后主动整理场地、收拾垃圾？",
-        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人接受大家的一句真诚夸奖。",
-        "intensity": 1,
-        "tags": [
-          "日常",
-          "暖心"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mnl-006",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能因为看剧或打游戏而熬夜到天亮？",
-        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人分享一个自己熬夜的有趣后果。",
-        "intensity": 2,
-        "tags": [
-          "娱乐",
-          "生活"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mnl-007",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在旅行中迷路却坚持不查地图，最后发现新景点？",
-        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人讲一个自己迷路或走错路的小故事。",
-        "intensity": 2,
-        "tags": [
-          "旅行",
-          "冒险"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mnl-008",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在朋友难过时第一个察觉并送上安慰？",
-        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人对左边的人说一句鼓励的话。",
-        "intensity": 1,
-        "tags": [
-          "暖心",
-          "朋友"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mnl-009",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在点外卖时纠结半小时，最后点了和上次一样的餐？",
-        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人模仿自己点餐时纠结的样子。",
-        "intensity": 1,
-        "tags": [
-          "日常",
-          "幽默"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mnl-010",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能成为下次聚会的发起人，并在群里积极组织？",
-        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人当场口头策划下一次聚会的一个小环节。",
-        "intensity": 2,
-        "tags": [
-          "社交",
-          "组织"
+          "仪式感",
+          "气氛"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

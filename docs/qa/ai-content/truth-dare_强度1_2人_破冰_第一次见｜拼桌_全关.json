@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "第一次见 / 拼桌",
       "vibes": [
@@ -65,9 +65,11 @@
   },
   "response": {
     "status": 200,
-    "attempts": 1,
-    "latencyMs": 4313,
+    "attempts": 2,
+    "latencyMs": 17493,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,165 +77,133 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "ice-1",
+        "id": "td-001",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你最近一次大笑是因为什么？",
-        "instruction": "请嘉宾1回答；如果不想回答，可以说“跳过”，然后由嘉宾2换一个新问题。",
+        "content": "最近一周里，哪件小事让你觉得挺开心？",
+        "instruction": "由当前玩家回答，其他人倾听；不想回答可以直接跳过。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "分享"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "ice-2",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "如果明天放假一天，你最想做什么？",
-        "instruction": "请嘉宾2回答；回答后嘉宾1可以简单回应一句。",
-        "intensity": 1,
-        "tags": [
-          "轻松",
-          "兴趣"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "ice-3",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "你更喜欢猫还是狗？为什么？",
-        "instruction": "两位嘉宾同时用手势表示选择，然后各自用一句话说明理由。",
-        "intensity": 1,
-        "tags": [
-          "选择",
-          "分享"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "ice-4",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "你最近学会的一个小技能或小知识是什么？",
-        "instruction": "请两位嘉宾轮流回答，每人不超过两句话。",
-        "intensity": 1,
-        "tags": [
-          "分享",
-          "成长"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "ice-5",
+        "id": "td-002",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "用三个词形容你此刻的心情。",
-        "instruction": "请嘉宾1说出三个词，嘉宾2可以猜猜原因；猜错也没关系。",
+        "content": "用三个词形容你此刻的心情，并解释其中一个词。",
+        "instruction": "说完即可，若感到为难可跳过。",
         "intensity": 1,
-        "tags": [
-          "表达",
-          "破冰"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "ice-6",
+        "id": "td-003",
         "packId": "truth-dare",
-        "type": "dare",
-        "content": "模仿一种常见动物的叫声或动作，持续三秒。",
-        "instruction": "请嘉宾2完成；如果觉得尴尬可以直接说“跳过”，由嘉宾1换一个轻松话题。",
+        "type": "truth",
+        "content": "如果你可以立刻学会一项轻松的小技能，会选什么？为什么？",
+        "instruction": "简短分享即可；不想回答可以直接跳过。",
         "intensity": 1,
-        "tags": [
-          "互动",
-          "趣味"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "ice-7",
+        "id": "td-004",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "和对面的人击一次掌，并说一句“今晚请多关照”。",
-        "instruction": "两位嘉宾可以自愿完成；任何一方不愿身体接触就改为挥手致意。",
+        "content": "用一句像电影台词的话，向嘉宾2介绍你自己。",
+        "instruction": "面向嘉宾2说一句即可；可跳过。",
         "intensity": 1,
-        "tags": [
-          "互动",
-          "礼貌"
-        ],
-        "boundaryTags": [
-          "physical-contact"
-        ],
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近单曲循环或反复看的内容是什么？推荐一句理由。",
+        "instruction": "说出一首歌、一部剧或一个片段即可；可跳过。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个emoji概括你对今晚聚会的期待，并让大家猜一个。",
+        "instruction": "可只展示emoji或直接说答案；可跳过。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果现在多出一小时空闲，你会用来做什么？",
+        "instruction": "按真实想法回答即可；不想回答可以直接跳过。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和对方隔空击掌，并说一句‘今晚请多指教’。",
+        "instruction": "只做隔空动作，不发生身体接触；可跳过。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "pair",
         "source": "ai"
       },
       {
-        "id": "ice-8",
+        "id": "td-009",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你心中理想的周末聚会是什么样子？",
-        "instruction": "请两位嘉宾分别用一句话回答，然后找出一个共同点。",
+        "content": "你更喜欢计划好的行程，还是临时起意？举一个最近的小例子。",
+        "instruction": "简短回答即可；不想回答可以直接跳过。",
         "intensity": 1,
-        "tags": [
-          "分享",
-          "共同点"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "ice-9",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "给今晚的聚会起一个有趣的名字。",
-        "instruction": "请嘉宾1先提一个，嘉宾2可以修改一个字或直接同意。",
-        "intensity": 1,
-        "tags": [
-          "创意",
-          "合作"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "ice-10",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "如果可以和任何人共进晚餐，你会选谁？为什么？",
-        "instruction": "请嘉宾2回答；嘉宾1可以追问一个轻松的小问题，但对方有权跳过。",
-        "intensity": 1,
-        "tags": [
-          "想象",
-          "分享"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用一句友善的祝福结束本轮，送给在场的人。",
+        "instruction": "可以面向大家说；可跳过。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
         "source": "ai"
       }
     ]

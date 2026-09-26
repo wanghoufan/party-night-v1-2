@@ -1,0 +1,333 @@
+{
+  "cell": {
+    "id": "L1-1-024-truth-dare-i1-p2-flirty-first-meet-all-on",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 24,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "minPlayers": 2,
+    "intensity": 1,
+    "players": 2,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": true,
+      "noAlcoholPenalty": true,
+      "noExPartners": true,
+      "noSexualHistory": true,
+      "noMoneyIncome": true,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": true,
+      "noSocialAccounts": true
+    },
+    "boundaryLabel": "全开",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-024-truth-dare-i1-p2-flirty-first-meet-all-on",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：第一次见 / 拼桌；氛围：暧昧；最高强度：1。\n可用玩法：truth-dare。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4117,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-td-01",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "第一次见面时，你最先注意到对方的哪个细节？",
+        "instruction": "轮流回答，答完可说“跳过”换题。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-02",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果用一种饮品形容今晚的心情，你会选什么？为什么？",
+        "instruction": "只描述心情，不需要真的喝任何东西。",
+        "intensity": 1,
+        "tags": [
+          "聊天",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-03",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "给对方起一个今晚专用的昵称，并解释原因。",
+        "instruction": "昵称需双方都觉得舒服，不舒服可随时跳过。",
+        "intensity": 1,
+        "tags": [
+          "互动",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-04",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你觉得自己最容易让人误会的表情或小动作是什么？",
+        "instruction": "可以现场示范一下，也可以只口述。",
+        "intensity": 1,
+        "tags": [
+          "自我分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-05",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个词形容你对今晚同桌的第一印象。",
+        "instruction": "三个词即可，不解释也可以。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-06",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "最近一次让你忍不住笑出声的小事是什么？",
+        "instruction": "轮流回答，其他人可以追问一个安全的小问题。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-07",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "保持眼神接触五秒，然后说出对方一个让你放松的特点。",
+        "instruction": "双方都同意才进行；任何一方可跳过。",
+        "intensity": 1,
+        "tags": [
+          "互动",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-08",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "在一场聚会里，你通常会用什么方式表达“我有点在意你”？",
+        "instruction": "只谈表达方式，不涉及私人经历细节。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "自我分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-09",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "给对方一个只属于今晚的暗号，下次在人群里可以用它打招呼。",
+        "instruction": "暗号需简单、非身体接触、双方同意。",
+        "intensity": 1,
+        "tags": [
+          "互动",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-10",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果今晚只能记住一个瞬间，你希望它是什么样子？",
+        "instruction": "轮流说出一个安全、具体的画面即可。",
+        "intensity": 1,
+        "tags": [
+          "收尾",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4117ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=truth-dare"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 1"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [physical-contact,alcohol,ex-partner,sexual-history,money,phone-privacy,public-posting,stranger-contact,photo-video,social-account] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤2"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（truth-dare）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4117ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

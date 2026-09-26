@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 13,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "origin": "base",
+    "intensity": 3,
+    "players": 4,
+    "vibe": {
+      "key": "wild",
+      "label": "放开玩"
+    },
+    "relationship": {
+      "key": "new",
+      "label": "刚认识"
+    },
+    "boundary": {
+      "mode": "default",
+      "label": "默认",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "刚认识",
+      "vibes": [
+        "放开玩"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：刚认识；氛围：放开玩；最高强度：3。\n可用玩法：most-likely。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3985,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "mnl-001",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在聚会上第一个讲出让大家笑到停不下来的段子？",
+        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人分享一个自己觉得最好笑的小故事。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "幽默"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-002",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在一场陌生人聚会中迅速交到新朋友？",
+        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人说一个自己主动认识新朋友的经历。",
+        "intensity": 1,
+        "tags": [
+          "社交",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-003",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在玩游戏时偷偷改变规则来让自己赢？",
+        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人用一句话为自己辩解。",
+        "intensity": 2,
+        "tags": [
+          "游戏",
+          "幽默"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-004",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在KTV里唱到停不下来，成为麦霸？",
+        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人清唱一句自己最喜欢的歌。",
+        "intensity": 2,
+        "tags": [
+          "音乐",
+          "娱乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-005",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在聚会结束后主动整理场地、收拾垃圾？",
+        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人接受大家的一句真诚夸奖。",
+        "intensity": 1,
+        "tags": [
+          "日常",
+          "暖心"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-006",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能因为看剧或打游戏而熬夜到天亮？",
+        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人分享一个自己熬夜的有趣后果。",
+        "intensity": 2,
+        "tags": [
+          "娱乐",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-007",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在旅行中迷路却坚持不查地图，最后发现新景点？",
+        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人讲一个自己迷路或走错路的小故事。",
+        "intensity": 2,
+        "tags": [
+          "旅行",
+          "冒险"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-008",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在朋友难过时第一个察觉并送上安慰？",
+        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人对左边的人说一句鼓励的话。",
+        "intensity": 1,
+        "tags": [
+          "暖心",
+          "朋友"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-009",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在点外卖时纠结半小时，最后点了和上次一样的餐？",
+        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人模仿自己点餐时纠结的样子。",
+        "intensity": 1,
+        "tags": [
+          "日常",
+          "幽默"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-010",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能成为下次聚会的发起人，并在群里积极组织？",
+        "instruction": "所有人同时指向自己认为最符合的人；得票最多的人当场口头策划下一次聚会的一个小环节。",
+        "intensity": 2,
+        "tags": [
+          "社交",
+          "组织"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

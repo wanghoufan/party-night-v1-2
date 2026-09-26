@@ -1,0 +1,324 @@
+{
+  "cell": {
+    "id": "L1-1-005-never-have-i2-p6-random-friends-default",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 5,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "minPlayers": 2,
+    "intensity": 2,
+    "players": 6,
+    "vibeKey": "random",
+    "vibeLabel": "随机",
+    "relationshipKey": "friends",
+    "relationshipLabel": "普通朋友",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-005-never-have-i2-p6-random-friends-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "随机"
+      ],
+      "intensity": 2,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：普通朋友；氛围：随机；最高强度：2。\n可用玩法：never-have。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 2986,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "never-have-1",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聚会中假装认识某个其实不认识的人。",
+        "instruction": "符合的人举手或说“我有”，不想分享可直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-2",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在朋友面前唱过跑调的歌。",
+        "instruction": "符合的人举手或说“我有”，不想分享可直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "娱乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-3",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聚会中偷偷看过时间想早点离开。",
+        "instruction": "符合的人举手或说“我有”，不想分享可直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-4",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未因为一个笑话笑到停不下来。",
+        "instruction": "符合的人举手或说“我有”，不想分享可直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "娱乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-5",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在朋友家过夜后第二天才回家。",
+        "instruction": "符合的人举手或说“我有”，不想分享可直接跳过。",
+        "intensity": 2,
+        "tags": [
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-6",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聚会上跳过舞。",
+        "instruction": "符合的人举手或说“我有”，不想分享可直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "娱乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-7",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在朋友面前做过一个夸张的表情。",
+        "instruction": "符合的人举手或说“我有”，不想分享可直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "娱乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-8",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聚会中主动提议玩一个新游戏。",
+        "instruction": "符合的人举手或说“我有”，不想分享可直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-9",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在朋友面前模仿过别人的说话方式。",
+        "instruction": "符合的人举手或说“我有”，不想分享可直接跳过。",
+        "intensity": 2,
+        "tags": [
+          "娱乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-10",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聚会结束后主动帮忙收拾。",
+        "instruction": "符合的人举手或说“我有”，不想分享可直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 2986ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=never-have"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 2"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤6"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（never-have）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "2986ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

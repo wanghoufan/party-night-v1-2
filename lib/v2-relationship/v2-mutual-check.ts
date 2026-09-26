@@ -109,6 +109,41 @@ export function mutualCandidateIds(
     .map((participant) => participant.playerId);
 }
 
+/* ------------------------------------------------------------------ */
+/* R-CB9｜Mutual UI 按「当前合法异性候选数」分支（与 Guard 阈值解耦）          */
+/* ------------------------------------------------------------------ */
+
+/** 仅剩一个合法候选时的固定问句（用户 V1.2 §七原文，不许改写、不许拼接姓名）。 */
+export const MUTUAL_SINGLE_CANDIDATE_PROMPT = "今晚到现在，你愿意继续了解 TA 吗？";
+/** 唯一候选分支的两个选项：「愿意」→ 该唯一候选；「暂时没有」→ null。 */
+export const MUTUAL_SINGLE_CANDIDATE_YES = "愿意";
+export const MUTUAL_SINGLE_CANDIDATE_NO = "暂时没有";
+/** 候选在作答期间暂离/失效时的可读提示：拒绝提交、不产生非法 MATCH。 */
+export const MUTUAL_STALE_TARGET_NOTICE = "TA 现在不在可选范围内，先跳过吧。";
+
+/**
+ * 某玩家在**当前合法 pair 池**里的合法异性候选（去重、升序）。
+ *
+ * 与 `mutualCandidateIds` / `beginMutualCheckRun` 同源（都从 `eligiblePairKeys` 取），
+ * 是 Mutual 单候选 UI 分支（R-CB9）与提交前边合法校验的唯一真源：
+ * - 只看真实存在的 eligible 边，不引入第二套判定、不看 Single-Anchor Guard 阈值；
+ * - 暂离（`active=false`）/ 性别未录入的参与者天然不在结果里，因此失效目标既选不到、也提交不了。
+ */
+export function mutualPartnerIds(
+  playerId: string,
+  participants: readonly SessionParticipant[],
+  pairKeys: readonly string[] = eligiblePairKeys(participants),
+): string[] {
+  const partners = new Set<string>();
+  for (const key of pairKeys) {
+    const [first, second] = key.split("::") as [string | undefined, string | undefined];
+    if (!first || !second) continue;
+    if (first === playerId && second !== playerId) partners.add(second);
+    else if (second === playerId && first !== playerId) partners.add(first);
+  }
+  return [...partners].sort();
+}
+
 /** 建立一次 mutual run：无合法 pair 时 pairRuns/candidates 为空（调用方不得弹）。 */
 export function beginMutualCheckRun(participants: readonly SessionParticipant[]): MutualCheckRun {
   const pairKeys = eligiblePairKeys(participants);

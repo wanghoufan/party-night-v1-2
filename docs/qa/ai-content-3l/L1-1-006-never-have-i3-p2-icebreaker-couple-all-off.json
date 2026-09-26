@@ -1,0 +1,343 @@
+{
+  "cell": {
+    "id": "L1-1-006-never-have-i3-p2-icebreaker-couple-all-off",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 6,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "minPlayers": 2,
+    "intensity": 3,
+    "players": 2,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "couple",
+    "relationshipLabel": "情侣 / 暧昧",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": false,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": false,
+      "noPublicPosting": false,
+      "noStrangerContact": false,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "全关",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-006-never-have-i3-p2-icebreaker-couple-all-off",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "情侣 / 暧昧",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：情侣 / 暧昧；氛围：破冰；最高强度：3。\n可用玩法：never-have。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3794,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "nh-001",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在第一次见面时主动要过对方的联系方式。",
+        "instruction": "符合的人举手或说“我有过”；不符合的人说“我没有”。任何人可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "社交"
+        ],
+        "boundaryTags": [
+          "stranger-contact"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-002",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有因为一条消息反复琢磨对方的语气。",
+        "instruction": "符合的人举手或说“我有过”；不符合的人说“我没有”。任何人可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-003",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在聚会中偷偷给某个人发过消息。",
+        "instruction": "符合的人举手或说“我有过”；不符合的人说“我没有”。任何人可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "社交"
+        ],
+        "boundaryTags": [
+          "phone-privacy"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-004",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有为了见一个人而特意换过衣服或打理发型。",
+        "instruction": "符合的人举手或说“我有过”；不符合的人说“我没有”。任何人可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-005",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在深夜和某个人聊到忘记时间。",
+        "instruction": "符合的人举手或说“我有过”；不符合的人说“我没有”。任何人可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-006",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在合照时故意站得离某个人更近一点。",
+        "instruction": "符合的人举手或说“我有过”；不符合的人说“我没有”。任何人可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "暧昧"
+        ],
+        "boundaryTags": [
+          "photo-video"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-007",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有把某个人设为特别关注或置顶聊天。",
+        "instruction": "符合的人举手或说“我有过”；不符合的人说“我没有”。任何人可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "暧昧"
+        ],
+        "boundaryTags": [
+          "phone-privacy",
+          "social-account"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-008",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在一群人里第一眼就注意到某个人。",
+        "instruction": "符合的人举手或说“我有过”；不符合的人说“我没有”。任何人可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "心动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-009",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有因为对方的一句夸奖而开心一整天。",
+        "instruction": "符合的人举手或说“我有过”；不符合的人说“我没有”。任何人可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-010",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从来没有在送礼物前反复猜测对方会不会喜欢。",
+        "instruction": "符合的人举手或说“我有过”；不符合的人说“我没有”。任何人可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "关心"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3794ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=never-have"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 3"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [无] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤2"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（never-have）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3794ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

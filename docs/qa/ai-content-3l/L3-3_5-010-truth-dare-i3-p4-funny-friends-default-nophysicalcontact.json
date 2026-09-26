@@ -1,0 +1,334 @@
+{
+  "cell": {
+    "id": "L3-3_5-010-truth-dare-i3-p4-funny-friends-default-nophysicalcontact",
+    "layer": "L3",
+    "group": "3.5",
+    "title": "极端 customText · 纯符号",
+    "seq": 10,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "minPlayers": 2,
+    "intensity": 3,
+    "players": 4,
+    "vibeKey": "funny",
+    "vibeLabel": "搞笑",
+    "relationshipKey": "friends",
+    "relationshipLabel": "普通朋友",
+    "boundaryFlags": {
+      "noPhysicalContact": true,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认 + 身体接触雷区开",
+    "customText": "★☆※◆◇○●△▲▽▼§№℃€£¥∞≠≤≥※★☆※◆◇○●△▲▽▼§№℃，。！！？？……——～·",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L3-3_5-010-truth-dare-i3-p4-funny-friends-default-nophysicalcontact",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": "★☆※◆◇○●△▲▽▼§№℃€£¥∞≠≤≥※★☆※◆◇○●△▲▽▼§№℃，。！！？？……——～·"
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：普通朋友；氛围：搞笑；最高强度：3。\n可用玩法：truth-dare。\n已开启的结构化雷区：physical-contact、alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：★☆※◆◇○●△▲▽▼§№℃€£¥∞≠≤≥※★☆※◆◇○●△▲▽▼§№℃，。！！？？……——～·；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4109,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "td-001",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近一次在朋友面前出糗是什么时候？",
+        "instruction": "请尽量生动地描述当时的场景，演一演最好。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "回忆"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-002",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用最夸张的播音腔朗读一段你手机里最近的一条外卖或快递通知。",
+        "instruction": "读之前先清嗓子，读完后保持严肃三秒。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-003",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你给朋友起过最离谱的外号是什么？为什么这么叫？",
+        "instruction": "说出外号来源，但不能指名道姓。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "友情"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-004",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "模仿一种动物走路，绕场一圈，边走边给自己配音。",
+        "instruction": "动物自选，配音要原创，不能重复别人刚做过的。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "模仿"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你做过最没用的省钱操作是什么？后来成功了吗？",
+        "instruction": "讲清楚操作和结果，越细越好。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个表情和三个拟声词，演一段“手机没电却要扫码”的戏。",
+        "instruction": "全程不能说话，只能靠表情和声音。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果能给今晚的聚会加一个离谱的奖项，你会颁给谁？奖项叫什么？",
+        "instruction": "必须说理由，但理由不能人身攻击。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和右手边的人合作，用“新闻播报”方式介绍桌上任意一件物品。",
+        "instruction": "一人当主播，一人当现场记者，限时三十秒。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "合作"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你人生中最尴尬的一次“认错人”经历是什么？",
+        "instruction": "描述现场反应和你的补救方式。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "自嘲"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "全场轮流用一个词形容你，你要用另一个词接龙回去，接不上就表演一个冷笑话。",
+        "instruction": "顺序由主持人指定，每人只能用一个词。",
+        "intensity": 3,
+        "tags": [
+          "搞笑",
+          "全员"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4109ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=truth-dare"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 3"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [physical-contact,alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（truth-dare）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4109ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

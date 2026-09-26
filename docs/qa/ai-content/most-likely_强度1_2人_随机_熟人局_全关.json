@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "熟人局",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4516,
+    "latencyMs": 15488,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -77,14 +79,11 @@
       {
         "id": "ml-001",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在聚会上突然开始讲一个没人听懂的长篇故事？",
-        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人简单回应一句，可选择跳过。",
+        "type": "最可能投票",
+        "content": "谁最可能在群聊里发完消息后马上撤回？",
+        "instruction": "所有人倒数三秒，同时指向一位玩家；得票最多者积1分。任何玩家都可随时说“跳过”，不扣分；平票则平票者各积1分。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -93,14 +92,11 @@
       {
         "id": "ml-002",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在看电影时提前猜出结局并剧透？",
-        "instruction": "倒数三秒后一起指向答案，得票最多者分享一个最近看的电影，可选择跳过。",
+        "type": "最可能投票",
+        "content": "谁最可能在聚餐时主动负责点菜？",
+        "instruction": "所有人倒数三秒，同时指向一位玩家；得票最多者积1分。任何玩家都可随时说“跳过”，不扣分；平票则平票者各积1分。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -109,14 +105,11 @@
       {
         "id": "ml-003",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在群聊里发完消息又立刻撤回？",
-        "instruction": "所有人同时指向一人，被指最多的人模仿一次自己撤回消息时的表情，可选择跳过。",
+        "type": "最可能投票",
+        "content": "谁最可能看电影时提前猜中结局？",
+        "instruction": "所有人倒数三秒，同时指向一位玩家；得票最多者积1分。任何玩家都可随时说“跳过”，不扣分；平票则平票者各积1分。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -125,14 +118,11 @@
       {
         "id": "ml-004",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能为了追剧而熬夜到天亮？",
-        "instruction": "一起指向答案，得票最多者用一句话形容自己熬夜后的状态，可选择跳过。",
+        "type": "最可能投票",
+        "content": "谁最可能旅行前把行程整理成表格？",
+        "instruction": "所有人倒数三秒，同时指向一位玩家；得票最多者积1分。任何玩家都可随时说“跳过”，不扣分；平票则平票者各积1分。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -141,14 +131,11 @@
       {
         "id": "ml-005",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在旅行时把行程安排到每分钟？",
-        "instruction": "所有人同时指向一人，被指最多的人分享一个旅行小习惯，可选择跳过。",
+        "type": "最可能投票",
+        "content": "谁最可能在KTV里一直当观众，不太抢麦？",
+        "instruction": "所有人倒数三秒，同时指向一位玩家；得票最多者积1分。任何玩家都可随时说“跳过”，不扣分；平票则平票者各积1分。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -157,14 +144,11 @@
       {
         "id": "ml-006",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能忘记朋友的生日但事后诚恳道歉？",
-        "instruction": "倒数后一起指向答案，得票最多者说一句最常用的道歉语，可选择跳过。",
+        "type": "最可能投票",
+        "content": "谁最可能在聊天中突然切换到新话题？",
+        "instruction": "所有人倒数三秒，同时指向一位玩家；得票最多者积1分。任何玩家都可随时说“跳过”，不扣分；平票则平票者各积1分。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -173,14 +157,11 @@
       {
         "id": "ml-007",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在KTV里一直霸占麦克风？",
-        "instruction": "所有人同时指向一人，被指最多者清唱一句歌或选择跳过。",
+        "type": "最可能投票",
+        "content": "谁最可能记得别人随口提过的小事？",
+        "instruction": "所有人倒数三秒，同时指向一位玩家；得票最多者积1分。任何玩家都可随时说“跳过”，不扣分；平票则平票者各积1分。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -189,14 +170,11 @@
       {
         "id": "ml-008",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能点外卖时纠结半小时最后选了常吃的那家？",
-        "instruction": "一起指向答案，得票最多者说出自己最常点的外卖，可选择跳过。",
+        "type": "最可能投票",
+        "content": "谁最可能在玩桌游前认真读完整本规则？",
+        "instruction": "所有人倒数三秒，同时指向一位玩家；得票最多者积1分。任何玩家都可随时说“跳过”，不扣分；平票则平票者各积1分。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -205,14 +183,11 @@
       {
         "id": "ml-009",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在拍照时要求重拍很多次？",
-        "instruction": "所有人同时指向一人，被指最多者摆一个自己最满意的拍照姿势，可选择跳过。",
+        "type": "最可能投票",
+        "content": "谁最可能出门前反复确认有没有带钥匙？",
+        "instruction": "所有人倒数三秒，同时指向一位玩家；得票最多者积1分。任何玩家都可随时说“跳过”，不扣分；平票则平票者各积1分。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -221,14 +196,11 @@
       {
         "id": "ml-010",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在周末一整天不出门？",
-        "instruction": "倒数三秒后一起指向答案，得票最多者分享一个宅家最爱做的事，可选择跳过。",
+        "type": "最可能投票",
+        "content": "谁最可能最后一个离开聚会？",
+        "instruction": "所有人倒数三秒，同时指向一位玩家；得票最多者积1分。任何玩家都可随时说“跳过”，不扣分；平票则平票者各积1分。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",

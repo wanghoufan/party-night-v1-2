@@ -4,7 +4,7 @@ import type { CustomGamePack, Player, SessionConfig } from "@/lib/domain/schemas
 import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
 import { BUILTIN_GAME_PACKS } from "@/lib/game-packs/registry";
 import { createSession } from "@/lib/engine/session-engine";
-import { listSwitchablePacks, mixedCandidatePackIds, switchPackAndDeal } from "@/lib/engine/pack-switcher";
+import { listSwitchablePacks, mixedCandidatePackIds, packMinPlayersNotice, switchPackAndDeal } from "@/lib/engine/pack-switcher";
 
 const players = (total: number, active = total): Player[] =>
   ["a", "b", "c", "d"].slice(0, total).map((id, index) => ({ id, displayName: `玩家${id}`, active: index < active, createdAt: "x", lastUsedAt: "x" }));
@@ -81,6 +81,53 @@ describe("main-session pack switcher candidates", () => {
     const mixed = createSession(config({ players: players(4), mode: "mixed" }), BUILTIN_SEED_CARDS);
     expect(listSwitchablePacks(single).map((pack) => pack.id)).toEqual(listSwitchablePacks(mixed).map((pack) => pack.id));
     expect(listSwitchablePacks(single).map((pack) => pack.id)).toContain("spin-bottle");
+  });
+});
+
+/**
+ * P1（RC 前必修）：玩法准入必须按 **在场人数** 收口（AI-MATRIX-PLAN §1，players < minPlayers 的玩法不生成）。
+ * 否则 2 人局直选 pointing-game / most-likely 会走到「生成 0 张卡 → 耗尽死局」。
+ */
+describe("混合候选与直选拦截按在场人数过滤", () => {
+  it("混合候选按 active 人数收口：2 人局不再包含 pointing-game / most-likely", () => {
+    const three = mixedCandidatePackIds([], [], 3);
+    expect(three).toContain("pointing-game");
+    expect(three).toContain("most-likely");
+
+    const two = mixedCandidatePackIds([], [], 2);
+    expect(two).not.toContain("pointing-game");
+    expect(two).not.toContain("most-likely");
+    expect(two).toContain("truth-dare");
+    expect(two).toContain("never-have");
+
+    // 6 人局照旧全量（高于门槛的玩法一个不少）
+    expect(mixedCandidatePackIds([], [], 6)).toEqual(three);
+  });
+
+  it("缺省 playerCount 维持全局开关口径（不按人数过滤）", () => {
+    expect(mixedCandidatePackIds([])).toContain("pointing-game");
+    expect(mixedCandidatePackIds([])).toContain("most-likely");
+  });
+
+  it("自定义玩法同样按人数收口，且仍受关闭名单影响", () => {
+    const custom = [customPack("custom-big", true, 5), customPack("custom-small", true, 2)];
+    const ids = mixedCandidatePackIds(custom, [], 2);
+    expect(ids).not.toContain("custom-big");
+    expect(ids).toContain("custom-small");
+    expect(mixedCandidatePackIds(custom, ["custom-small"], 2)).not.toContain("custom-small");
+  });
+
+  it("packMinPlayersNotice：人数不够给一句「至少需要 N 人」拦截文案", () => {
+    expect(packMinPlayersNotice("pointing-game", 2)).toMatch(/「指人游戏」至少需要 3 人/);
+    expect(packMinPlayersNotice("most-likely", 2)).toMatch(/「谁最可能」至少需要 3 人/);
+    expect(packMinPlayersNotice("custom-big", 2, [customPack("custom-big", true, 5)])).toMatch(/至少需要 5 人/);
+  });
+
+  it("packMinPlayersNotice：够玩或玩法未知一律返回 undefined（未知 id 交原回落逻辑）", () => {
+    expect(packMinPlayersNotice("pointing-game", 3)).toBeUndefined();
+    expect(packMinPlayersNotice("pointing-game", 6)).toBeUndefined();
+    expect(packMinPlayersNotice("spin-bottle", 2)).toBeUndefined();
+    expect(packMinPlayersNotice("not-a-pack", 2)).toBeUndefined();
   });
 });
 

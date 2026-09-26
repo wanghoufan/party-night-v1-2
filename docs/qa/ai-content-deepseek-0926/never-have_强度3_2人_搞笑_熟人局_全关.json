@@ -1,0 +1,245 @@
+{
+  "cell": {
+    "index": 21,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "origin": "base",
+    "intensity": 3,
+    "players": 2,
+    "vibe": {
+      "key": "funny",
+      "label": "搞笑"
+    },
+    "relationship": {
+      "key": "familiar",
+      "label": "熟人局"
+    },
+    "boundary": {
+      "mode": "all-off",
+      "label": "全关",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "熟人局",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：熟人局；氛围：搞笑；最高强度：3。\n可用玩法：never-have。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4120,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "nh-001",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我曾在熟人群里发错消息",
+        "instruction": "没做过的人举手；做过的人不用说明细节，直接跳到下一张。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-002",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我曾在群聊里把发给别人的话发到了错误的人那里",
+        "instruction": "做过的人举手，然后由右手边的人指定他做一个搞怪表情，也可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "尴尬"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-003",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我曾假装听懂了一个完全不懂的梗",
+        "instruction": "没做过的人要现场编一个假梗，其他人判断真假。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-004",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我曾在拍照时故意抢镜",
+        "instruction": "做过的人模仿当时抢镜的动作，所有人投票最搞笑的一个。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "照片"
+        ],
+        "boundaryTags": [
+          "photo-video"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-005",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我曾把别人的名字叫错还坚持自己没叫错",
+        "instruction": "做过的人用最理直气壮的语气重复一次错名字，然后立刻道歉。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-006",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我曾为了逃避发言假装信号不好",
+        "instruction": "做过的人表演一段“喂喂喂听不见”的戏，限时五秒。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-007",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我曾把外卖备注写成段子",
+        "instruction": "没做过的人要即兴给一个虚构外卖写一句搞笑备注，不涉及真实隐私。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "创作"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-008",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我曾在KTV里抢过别人的歌",
+        "instruction": "做过的人清唱一句最拿手的歌，可以只哼旋律，也可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "音乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-009",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我曾把闹钟按掉后又睡过头",
+        "instruction": "做过的人用最夸张的方式表演“惊醒”，其他人给反应打分。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-010",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我曾在熟人面前讲冷笑话然后自己先笑",
+        "instruction": "没做过的人要讲一个冷笑话，讲完必须自己先笑，否则接受一个搞怪惩罚。",
+        "intensity": 3,
+        "tags": [
+          "搞笑",
+          "挑战"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

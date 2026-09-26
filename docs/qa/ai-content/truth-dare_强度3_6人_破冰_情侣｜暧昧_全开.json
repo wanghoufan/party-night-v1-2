@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "情侣 / 暧昧",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 5502,
+    "latencyMs": 25384,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,162 +77,130 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "td-ice-001",
+        "id": "td-001",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你手机里最舍不得删的一张风景照是在哪里拍的？为什么它对你这么重要？",
-        "instruction": "选择一位嘉宾回答，其他人可以追问细节，但不要追问照片里其他人的身份。",
+        "content": "请用三个词形容你今晚第一次和大家围坐在一起时的感觉，并简单说一句理由。",
+        "instruction": "由当前玩家回答；可以随时跳过，其他人不追问。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "兴趣"
-        ],
-        "boundaryTags": [
-          "photo-video"
-        ],
+        "tags": [],
+        "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "td-ice-002",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "如果明天可以立刻学会一项新技能，你会选什么？学会后最想展示给谁看？",
-        "instruction": "轮流回答，每人限时三十秒；不想说可以跳过并说“跳过”。",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "想象"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "td-ice-003",
+        "id": "td-002",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "用三个词形容此刻坐在你左边的人，并说出理由。",
-        "instruction": "只描述观察到的优点或有趣之处，禁止评价外貌身材或开冒犯玩笑；被描述的人可以喊停更换对象。",
+        "content": "向任意一位嘉宾做一个不超过10秒的自我介绍，必须包含一个真实爱好和一个夸张称号。",
+        "instruction": "选择一位愿意倾听的嘉宾；可以跳过或改成只做自我介绍，不涉及隐私。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
-        "minPlayers": 3,
+        "minPlayers": 2,
         "participantMode": "pair",
         "source": "ai"
       },
       {
-        "id": "td-ice-004",
+        "id": "td-003",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "最近一次让你笑到停不下来的事情是什么？可以只讲片段，不必透露当事人。",
-        "instruction": "由一位嘉宾先答，其他人依次分享；若涉及他人隐私可模糊处理或跳过。",
+        "content": "你觉得自己在别人眼里最容易被记住的特点是什么？如果朋友没告诉过你，也可以猜一个。",
+        "instruction": "由当前玩家回答；可以随时跳过，其他人不追问。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "故事"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "td-ice-005",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "模仿一种动物叫声，让其他嘉宾猜是什么动物，猜错就再来一次，最多三次。",
-        "instruction": "保持音量适中，不打扰邻居；不愿模仿可改为哼一段旋律。",
-        "intensity": 2,
-        "tags": [
-          "破冰",
-          "表演"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "td-ice-006",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "你心中“理想的周末”是什么样的？请描述从早到晚的三个画面。",
-        "instruction": "每人分享后，其他人只能问一个好奇问题，不能评价或比较。",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "生活"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "td-ice-007",
+        "id": "td-004",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "用夸张的语气赞美右边的人三十秒，内容必须具体到一件事，比如刚才的发言或笑声。",
-        "instruction": "赞美需真诚且不涉及身体接触；被赞美者可以随时说“够了”结束。",
+        "content": "选择一位嘉宾，用三个不重复的形容词真诚地夸奖对方；不能使用外貌评价，也不能涉及隐私。",
+        "instruction": "先确认对方愿意接受夸奖；可以随时跳过或换人。",
         "intensity": 2,
-        "tags": [
-          "破冰",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "td-ice-008",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "如果给今晚的聚会起一个电影名，你会起什么？为什么？",
-        "instruction": "所有人同时想十秒，然后依次说出自己的片名和一句理由。",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "创意"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "td-ice-009",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "选一位嘉宾，和他/她一起用“是的，而且……”接龙编一个三十秒的迷你故事。",
-        "instruction": "故事必须积极有趣，不得包含危险、违法或冒犯内容；任意一方可随时结束。",
-        "intensity": 2,
-        "tags": [
-          "破冰",
-          "合作"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "pair",
         "source": "ai"
       },
       {
-        "id": "td-ice-010",
+        "id": "td-005",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你最近学到的一个小知识或小技巧是什么？愿意现场教大家一步吗？",
-        "instruction": "分享者可以选择只讲不演示；其他人跟着做时注意安全，不勉强。",
+        "content": "如果你要用一首歌代表你此刻的心情，会选哪首？请说出歌名和一句原因。",
+        "instruction": "由当前玩家回答；可以随时跳过，其他人不追问。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "分享"
-        ],
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "模仿一种动物或卡通角色的走路方式，走五步即可；保持安全，不碰撞他人。",
+        "instruction": "在安全空间内完成；可以随时跳过或只描述动作。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "在恋爱或暧昧关系里，你最看重的一种小默契是什么？可以说现象，不必指名。",
+        "instruction": "全场轮流回答；不愿回答可跳过，其他人不追问。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和一位嘉宾轮流说出对方可能喜欢的三种食物；猜错的人向对方比一个赞美手势即可。",
+        "instruction": "选择一位愿意参与的嘉宾；可以跳过或只猜一种食物。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果今晚只能增加一个规则让聚会更舒服，你会加什么？为什么？",
+        "instruction": "全场轮流回答；可以随时跳过，其他人不追问。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用一句不超过15字的话，向全场表达“很高兴认识你”，不能直接说原句。",
+        "instruction": "由当前玩家完成；可以随时跳过或换一句祝福。",
+        "intensity": 2,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
@@ -240,14 +210,6 @@
   },
   "screen": {
     "pass": true,
-    "issues": [
-      {
-        "key": "redline:danger-illegal",
-        "label": "疑似红线（否定/免责语境） · 危险或违法",
-        "severity": "suspect",
-        "cardId": "td-ice-009",
-        "excerpt": "选一位嘉宾,和他/她一起用“是的,而且......”接龙编一个三十秒的迷你故事。 故事必须积极有趣,不得包含危险、违法或冒犯内容;任意一方可随时结束。"
-      }
-    ]
+    "issues": []
   }
 }

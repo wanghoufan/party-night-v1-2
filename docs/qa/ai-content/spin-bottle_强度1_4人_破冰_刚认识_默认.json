@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "刚认识",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3253,
+    "latencyMs": 18239,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,160 +77,130 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "spin-ice-01",
+        "id": "spin-01",
         "packId": "spin-bottle",
-        "type": "question",
-        "content": "你最近学会的一个小技能是什么？",
-        "instruction": "转瓶指向的人回答，其他人可以追问一个细节。",
+        "type": "自我介绍",
+        "content": "名字与喜欢",
+        "instruction": "瓶口指向的人先开始，按顺时针每人说“我是___，我喜欢___”。不能重复前面说过的喜欢内容。任何任务都可跳过。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "兴趣"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-ice-02",
-        "packId": "spin-bottle",
-        "type": "question",
-        "content": "如果明天放假一天，你最想做什么？",
-        "instruction": "转瓶指向的人用三句话分享，其他人不打断。",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "想象"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-ice-03",
-        "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "用三个词形容今天的自己。",
-        "instruction": "转瓶指向的人说出三个词，再解释其中一个。",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "自我描述"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-ice-04",
-        "packId": "spin-bottle",
-        "type": "question",
-        "content": "你最近听过的一首好听的歌是什么？",
-        "instruction": "转瓶指向的人分享歌名或哼两句，其他人可以点头回应。",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "音乐"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-ice-05",
-        "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "模仿一个你熟悉的日常声音。",
-        "instruction": "转瓶指向的人表演，其他人猜是什么声音。",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "表演"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-ice-06",
-        "packId": "spin-bottle",
-        "type": "question",
-        "content": "你最喜欢的一种小吃是什么？为什么？",
-        "instruction": "转瓶指向的人回答，其他人可以分享类似喜好。",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "美食"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-ice-07",
-        "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "和右边的人击掌一次，并说一句你好。",
-        "instruction": "转瓶指向的人与右边的人完成击掌和问候。",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "spin-ice-08",
-        "packId": "spin-bottle",
-        "type": "question",
-        "content": "你最近一次开怀大笑是因为什么？",
-        "instruction": "转瓶指向的人简短分享，其他人可以笑着回应。",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "情绪"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-ice-09",
-        "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "说出在场每个人名字中的一个字并组成一句话。",
-        "instruction": "转瓶指向的人尝试用名字中的字造句，其他人可以帮忙。",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "协作"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "spin-ice-10",
+        "id": "spin-02",
         "packId": "spin-bottle",
-        "type": "question",
-        "content": "如果给今晚取一个主题，你会取什么？",
-        "instruction": "转瓶指向的人说出主题，其他人可以投票是否同意。",
+        "type": "分享",
+        "content": "三个词形容此刻",
+        "instruction": "瓶口指向的人用三个词形容自己此刻的心情，并各用一句话简单解释。任何任务都可跳过。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "收尾"
-        ],
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-03",
+        "packId": "spin-bottle",
+        "type": "挑战",
+        "content": "无用技能展示",
+        "instruction": "瓶口指向的人分享一个自己拥有但没什么用的技能，可以现场演示5秒，不能做危险动作。任何任务都可跳过。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-04",
+        "packId": "spin-bottle",
+        "type": "分享",
+        "content": "最近的小确幸",
+        "instruction": "瓶口指向的人说一件最近让自己开心的小事，不需要涉及隐私。任何任务都可跳过。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-05",
+        "packId": "spin-bottle",
+        "type": "问答",
+        "content": "如果变成日常物品",
+        "instruction": "瓶口指向的人说说如果自己是一种日常物品会是什么，并给一个理由；下一位嘉宾可以追问一个友好问题。任何任务都可跳过。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-06",
+        "packId": "spin-bottle",
+        "type": "表演",
+        "content": "表情猜猜猜",
+        "instruction": "瓶口指向的人不出声表演一种情绪，其他嘉宾猜是什么情绪。不能有身体接触。任何任务都可跳过。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-07",
+        "packId": "spin-bottle",
+        "type": "分享",
+        "content": "旅行小推荐",
+        "instruction": "瓶口指向的人推荐一个自己去过或想去的地方，用三句话说明理由，不用分享具体住址或详细行程。任何任务都可跳过。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-08",
+        "packId": "spin-bottle",
+        "type": "表演",
+        "content": "音乐接力",
+        "instruction": "瓶口指向的人哼唱一段自己喜欢的歌，其他人猜歌名；如果不想唱，可以说出歌词意境并跳过。任何任务都可跳过。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-09",
+        "packId": "spin-bottle",
+        "type": "互动",
+        "content": "选择题二选一",
+        "instruction": "瓶口指向的人先回答：猫还是狗？山还是海？甜还是辣？然后指定下一位嘉宾回答同一组问题。任何任务都可跳过。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-10",
+        "packId": "spin-bottle",
+        "type": "故事",
+        "content": "一分钟小故事",
+        "instruction": "瓶口指向的人用“昨天、今天、明天”三个词编一个不超过一分钟的轻松小故事，内容保持健康友好。任何任务都可跳过。",
+        "intensity": 1,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
@@ -238,6 +210,14 @@
   },
   "screen": {
     "pass": true,
-    "issues": []
+    "issues": [
+      {
+        "key": "redline:danger-illegal",
+        "label": "疑似红线（否定/免责语境） · 危险或违法",
+        "severity": "suspect",
+        "cardId": "spin-03",
+        "excerpt": "无用技能展示 瓶口指向的人分享一个自己拥有但没什么用的技能,可以现场演示5秒,不能做危险动作。任何任务都可跳过。"
+      }
+    ]
   }
 }

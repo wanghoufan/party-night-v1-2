@@ -38,7 +38,7 @@ import {
   type ReduceDelta,
   type RelationshipEvent,
 } from "./v2-reducer";
-import { rankPairs } from "./v2-routing";
+import { isSingleAnchorExposed, rankPairs, singleAnchorPlayerId } from "./v2-routing";
 import { advanceGuarantee, type FiveGuaranteeEvent } from "./v2-guarantee";
 import {
   applyHostDecision,
@@ -77,6 +77,14 @@ export interface V2RouterInput {
   softDedupWindow: number;
   /** D7：非 null 时该 pair 处于第 2 次合格机会，Router 只能从合法 5 档集出卡。 */
   requireFiveTierForPair: string | null;
+  /**
+   * R-CB6｜Single-Anchor Guard：true = 本轮只许出**非定向**卡（`targetMode === "all-players"`），
+   * 用于把 anchor 的 pair opportunity 隔开一轮（已在展示那一刻起算，与 completed/skipped 无关）。
+   *
+   * 缺省 `undefined` = false = 与改动前逐条一致（定向卡照常可出）。
+   * 仅由 Guard 强制非定向轮置 true，普通桌 / 普通 pair opportunity 一律不带。
+   */
+  requireNonTargetedOpportunity?: boolean;
 }
 
 /**
@@ -91,6 +99,35 @@ export interface V2RouterPort {
   pack(input: V2RouterInput): readonly V2RouterCard[];
   /** 全局 relationship-aware 硬合法集，已排序。 */
   global(input: V2RouterInput): readonly V2RouterCard[];
+}
+
+/* ------------------------------------------------------------------ */
+/* R-CB6/R-CB7｜Single-Anchor Guard（薄调度层，不改 Router 主语义）          */
+/* ------------------------------------------------------------------ */
+
+/** 受控 bypass 的机器可读 reason：上轮 anchor 曝光后，本轮抽不出任何合法非定向卡。 */
+export const NO_LEGAL_NON_TARGETED_CANDIDATE = "NO_LEGAL_NON_TARGETED_CANDIDATE" as const;
+
+export type V2SingleAnchorGuardReason = typeof NO_LEGAL_NON_TARGETED_CANDIDATE;
+
+/**
+ * 本轮 Single-Anchor Guard 决策（随 outcome 回传，机器可读；**不进 RelationshipState**）。
+ *
+ * 两层消解（R-CB7）：
+ * - 第一层在 `scheduleTargetPair`：决定**本轮是否进入 pair opportunity**（`applied=true` + 目标 pair
+ *   为 `null` = 先走非定向轮，该轮不进 D7、不消耗 pending）；
+ * - 第二层在既有 D7 冻结规则里：一旦本轮确实是 pair opportunity，D7 的五档强制/合格机会口径
+ *   优先于 Coverage / Signal 排序（`requireFiveTierForPair` 是硬过滤）。
+ */
+export interface V2SingleAnchorGuard {
+  /** 本局是否 Single-Anchor 桌（min==1 且 max>=3，只看 active + 已录入 pairGender）。 */
+  singleAnchorTable: boolean;
+  /** anchor（少数方唯一玩家）id；普通桌 / 无法识别时为 null。 */
+  anchorPlayerId: string | null;
+  /** 本轮 Guard 是否生效（阻止本轮再进 anchor 的 pair opportunity）。 */
+  applied: boolean;
+  /** 受控 bypass 的机器可读 reason；正常轮为 null。 */
+  reason: V2SingleAnchorGuardReason | null;
 }
 
 /* ------------------------------------------------------------------ */
@@ -118,6 +155,8 @@ export function createV2SessionState(input: {
       lastExhaustionLevel: "BUCKET_OK",
       finished: false,
       hostDecisions: {},
+      // R-CB6：新局尚无展示事实 = 无曝光。
+      lastTargetedPairKey: null,
     },
   };
 }
@@ -204,7 +243,10 @@ export function signalsFromRelationship(relationship: RelationshipState): V2Pair
   return signals;
 }
 
-/** Pair 路由：合法 pair 池按 R3 冻结排序取首位；无合法 pair 时返回 null（中性降级）。 */
+/**
+ * Pair 路由：合法 pair 池按 R3 冻结排序取首位；无合法 pair 时返回 null（中性降级）。
+ * R-CB5：把 `relationship.playerCoverage` 作为软排序第 5 参传入（只降权，不越硬合法）。
+ */
 export function selectTargetPair(
   state: V2SessionState,
   signals?: V2PairSignals,
@@ -214,6 +256,7 @@ export function selectTargetPair(
     signals ?? signalsFromRelationship(state.relationship),
     new Set(Object.keys(state.relationship.matches)),
     state.relationship.cooldowns,
+    state.relationship.playerCoverage,
   );
   return ranked[0] ?? null;
 }
@@ -240,18 +283,22 @@ export interface V2CardOutcome {
   /** 实际出卡所用软去重窗口档（BUCKET_EMPTY 时 < 起始窗口）。 */
   dedupWindowApplied: number;
   guaranteeAdvance: V2GuaranteeAdvance;
+  /** 本轮 Single-Anchor Guard 决策（机器可读；`applied=true` 且 `targetPairKey=null` 即非定向轮）。 */
+  guard: V2SingleAnchorGuard;
   state: V2SessionState;
 }
 
 export interface V2PackExhaustedOutcome {
   kind: "PACK_EXHAUSTED";
   guidance: string;
+  guard: V2SingleAnchorGuard;
   state: V2SessionState;
 }
 
 export interface V2GlobalExhaustedOutcome {
   kind: "RELATIONSHIP_GLOBAL_EXHAUSTED";
   guidance: string;
+  guard: V2SingleAnchorGuard;
   state: V2SessionState;
 }
 
@@ -260,6 +307,7 @@ export interface V2AwaitingHostOutcome {
   kind: "AWAITING_HOST_EXHAUSTION_DECISION";
   exhaustionCycle: number;
   idempotencyKey: string;
+  guard: V2SingleAnchorGuard;
   state: V2SessionState;
 }
 
@@ -326,10 +374,104 @@ function withTracker(
   };
 }
 
+/* ------------------------------------------------------------------ */
+/* R-CB6/R-CB7 第一层：本轮是否进入 pair opportunity（薄调度）              */
+/* ------------------------------------------------------------------ */
+
+/** 未发生调度时的 Guard 视图（仍如实回传本局是否 Single-Anchor 桌）。 */
+function idleGuard(state: V2SessionState): V2SingleAnchorGuard {
+  const anchorPlayerId = singleAnchorPlayerId(state.participants);
+  return {
+    singleAnchorTable: anchorPlayerId !== null,
+    anchorPlayerId,
+    applied: false,
+    reason: null,
+  };
+}
+
+/** 组装一次 Router 输入（探针与出卡共用同一入口，避免两侧过滤口径漂移）。 */
+function sessionRouterInput(
+  state: V2SessionState,
+  request: V2DrawRequest,
+  startWindow: number,
+  target: { targetPairKey: string | null; requireNonTargetedOpportunity: boolean },
+): V2RouterInput {
+  return {
+    relationship: state.relationship,
+    participants: state.participants,
+    targetPairKey: target.targetPairKey,
+    intensityLimit: request.intensityLimit,
+    softDedupWindow: startWindow,
+    requireFiveTierForPair: null,
+    ...(target.requireNonTargetedOpportunity ? { requireNonTargetedOpportunity: true } : {}),
+  };
+}
+
 /**
- * 主链出卡：Pair 路由 → D7 保障判定 → 软去重窗口（当前档起，空则 5→0 逐步放宽）
- * → B5 五层级判定。命中卡片时把 `CARD_PRESENTED` 计入 `recentCardIds`（保最近 5 张）
- * 并推进保障；三层皆空时返回 Host 决策等待态（不自动洗牌、不自动结束）。
+ * 该输入在软去重窗口阶梯（当前档 → … → 0）上是否**真抽得出卡**。
+ * 与出卡路径同一放宽规则：只看 bucket，不看 pack/global —— 判据是「本轮能不能出这张非定向卡」，
+ * 保证 Guard 的非定向轮不会变成空转或意外耗尽态。
+ */
+function hasDrawableCard(router: V2RouterPort, input: V2RouterInput, startWindow: number): boolean {
+  if (router.bucket(input).length > 0) return true;
+  let window = widenDedupWindow(startWindow);
+  for (;;) {
+    if (router.bucket({ ...input, softDedupWindow: window }).length > 0) return true;
+    if (window === 0) return false;
+    window = widenDedupWindow(window);
+  }
+}
+
+interface SingleAnchorSchedule {
+  targetPairKey: string | null;
+  guard: V2SingleAnchorGuard;
+}
+
+/**
+ * 本轮目标 pair 的唯一调度点（R-CB6/R-CB7 第一层；不重写 Router）。
+ *
+ * - 普通路径：`selectTargetPair` 的 R3 冻结排序首位（Coverage 已在其内部参与软排序）；
+ * - Guard 触发（Single-Anchor 桌 + 上轮已展示的 targeted pair 涉及 anchor）时：
+ *   若本轮抽得出合法非定向卡（`targetPairKey=null` + 只许 `all-players` 的硬过滤），
+ *   则本轮改走非定向轮（`targetPairKey=null`，不进 pair opportunity、不计 D7 合格机会）；
+ *   若完全抽不出非定向卡，则**受控 bypass**：照常进入 pair opportunity，并回传
+ *   `NO_LEGAL_NON_TARGETED_CANDIDATE`（有限步内返回，不死锁、不空转）。
+ * - 无合法 pair（D4 降级）时 Guard 不介入：没有 pair opportunity 可保护。
+ */
+function scheduleTargetPair(
+  state: V2SessionState,
+  router: V2RouterPort,
+  request: V2DrawRequest,
+  startWindow: number,
+): SingleAnchorSchedule {
+  const guard = idleGuard(state);
+  const ranked = selectTargetPair(state, request.signals);
+
+  if (
+    ranked === null ||
+    !isSingleAnchorExposed(guard.anchorPlayerId, state.orchestration.lastTargetedPairKey)
+  ) {
+    return { targetPairKey: ranked, guard };
+  }
+
+  const nonTargeted = sessionRouterInput(state, request, startWindow, {
+    targetPairKey: null,
+    requireNonTargetedOpportunity: true,
+  });
+  if (hasDrawableCard(router, nonTargeted, startWindow)) {
+    return { targetPairKey: null, guard: { ...guard, applied: true } };
+  }
+  return {
+    targetPairKey: ranked,
+    guard: { ...guard, applied: true, reason: NO_LEGAL_NON_TARGETED_CANDIDATE },
+  };
+}
+
+/**
+ * 主链出卡：**Single-Anchor Guard 调度（R-CB6/R-CB7 第一层）** → Pair 路由 → D7 保障判定
+ * → 软去重窗口（当前档起，空则 5→0 逐步放宽）→ B5 五层级判定。命中卡片时把 `CARD_PRESENTED`
+ * 计入 `recentCardIds`（保最近 5 张）、记录**本轮展示事实**（`lastTargetedPairKey`，Guard 的唯一
+ * 曝光输入）并推进保障；三层皆空时返回 Host 决策等待态（不自动洗牌、不自动结束）。
  */
 export function drawV2SessionCard(
   state: V2SessionState,
@@ -338,20 +480,20 @@ export function drawV2SessionCard(
 ): V2DrawOutcome {
   /* AWAITING 期间暂停抽卡：不自动洗牌/结束，重入直接返回同一等待态。 */
   if (state.orchestration.awaitingHostDecision) {
-    return toAwaitingOutcome(state);
+    return toAwaitingOutcome(state, idleGuard(state));
   }
 
-  const targetPairKey = selectTargetPair(state, request.signals);
   const startWindow = state.orchestration.softDedupWindow;
 
-  const baseInput: V2RouterInput = {
-    relationship: state.relationship,
-    participants: state.participants,
+  /* R-CB6/R-CB7 第一层：先决定本轮是否进入 pair opportunity；Guard 只在这一层介入。 */
+  const { targetPairKey, guard } = scheduleTargetPair(state, router, request, startWindow);
+  /** Guard 强制的非定向轮：本轮 Router 只许出非定向卡（硬过滤）。 */
+  const guardRound = guard.applied && targetPairKey === null;
+
+  const baseInput: V2RouterInput = sessionRouterInput(state, request, startWindow, {
     targetPairKey,
-    intensityLimit: request.intensityLimit,
-    softDedupWindow: startWindow,
-    requireFiveTierForPair: null,
-  };
+    requireNonTargetedOpportunity: guardRound,
+  });
 
   /* D7 保障：先判定本回合是否合格机会、是否必须强制合法 5 档，并处理 pause/resume。 */
   const tracker = targetPairKey
@@ -430,6 +572,7 @@ export function drawV2SessionCard(
       exhaustionLevel: level,
       dedupWindowApplied: appliedWindow,
       guaranteeAdvance,
+      guard,
       state: {
         ...state,
         relationship: {
@@ -444,12 +587,17 @@ export function drawV2SessionCard(
           softDedupWindow: SOFT_DEDUP_WINDOW,
           awaitingHostDecision: false,
           lastExhaustionLevel: level,
+          // R-CB6：本轮**展示事实**——定向轮记该 pair key，非定向轮记 null。
+          // 与 D7 的「CARD_PRESENTED 即 offered」同口径（展示即记，不看终态），
+          // 因此 targeted 展示后紧跟 skip，下轮 Guard 依然生效。
+          lastTargetedPairKey: targetPairKey,
         },
       },
     };
   }
 
   /* 耗尽：窗口停在放宽到的档位（全空即 0）并随 Session 持久化。 */
+  // 本轮没有展示任何卡 → `lastTargetedPairKey` 原样保留（不写 null、不清 Guard）。
   const exhaustedState: V2SessionState = {
     ...state,
     relationship,
@@ -462,12 +610,13 @@ export function drawV2SessionCard(
   };
 
   if (level === "PACK_EXHAUSTED") {
-    return { kind: "PACK_EXHAUSTED", guidance: PACK_EXHAUSTED_GUIDANCE, state: exhaustedState };
+    return { kind: "PACK_EXHAUSTED", guidance: PACK_EXHAUSTED_GUIDANCE, guard, state: exhaustedState };
   }
   if (level === "RELATIONSHIP_GLOBAL_EXHAUSTED") {
     return {
       kind: "RELATIONSHIP_GLOBAL_EXHAUSTED",
       guidance: RELATIONSHIP_GLOBAL_EXHAUSTED_GUIDANCE,
+      guard,
       state: exhaustedState,
     };
   }
@@ -475,15 +624,17 @@ export function drawV2SessionCard(
     kind: "AWAITING_HOST_EXHAUSTION_DECISION",
     exhaustionCycle: state.relationship.exhaustionCycle,
     idempotencyKey: hostDecisionKey(state.sessionId, state.relationship.exhaustionCycle + 1),
+    guard,
     state: exhaustedState,
   };
 }
 
-function toAwaitingOutcome(state: V2SessionState): V2AwaitingHostOutcome {
+function toAwaitingOutcome(state: V2SessionState, guard: V2SingleAnchorGuard): V2AwaitingHostOutcome {
   return {
     kind: "AWAITING_HOST_EXHAUSTION_DECISION",
     exhaustionCycle: state.relationship.exhaustionCycle,
     idempotencyKey: hostDecisionKey(state.sessionId, state.relationship.exhaustionCycle + 1),
+    guard,
     state,
   };
 }

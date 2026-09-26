@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "熟人局",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3406,
+    "latencyMs": 22683,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,46 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "compatibility-1",
+        "id": "compat-001",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果嘉宾1和嘉宾2同时被问“今晚谁更可能先笑场”，两人会指同一个人吗？请同时说出名字。",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "默契"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compatibility-2",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "两人同时回答：如果一起点外卖，谁更可能点最辣的？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "默契"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compatibility-3",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "两人同时选择：如果组队参加搞笑比赛，谁负责上台讲段子？",
+        "content": "如果咱俩突然被扔进一档搞笑综艺，导演第一个安排去扮丑的人会是谁？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
           "搞笑",
+          "熟人局",
           "选择"
         ],
         "boundaryTags": [],
@@ -123,15 +94,16 @@
         "source": "ai"
       },
       {
-        "id": "compatibility-4",
+        "id": "compat-002",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时回答：谁更可能在一首歌里把歌词全唱错还继续唱？",
+        "content": "对方讲冷笑话时，你通常会在第几秒开始假装笑？",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
+        "intensity": 1,
         "tags": [
           "搞笑",
-          "音乐"
+          "反应",
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -139,15 +111,16 @@
         "source": "ai"
       },
       {
-        "id": "compatibility-5",
+        "id": "compat-003",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时选择：如果一起拍搞笑短视频，谁演“被迫营业”的角色？",
+        "content": "如果咱俩合伙开一家只卖一种菜的店，会卖什么？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
           "搞笑",
-          "表演"
+          "脑洞",
+          "开放"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -155,15 +128,16 @@
         "source": "ai"
       },
       {
-        "id": "compatibility-6",
+        "id": "compat-004",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时回答：谁更可能把一句普通的话说成冷笑话？",
+        "content": "对方最可能因为什么在聚会上突然消失五分钟？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
           "搞笑",
-          "默契"
+          "熟人局",
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -171,15 +145,67 @@
         "source": "ai"
       },
       {
-        "id": "compatibility-7",
+        "id": "compat-005",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时回答：如果一起逛超市，谁更可能推着购物车突然跳舞？",
+        "content": "如果必须给对方起一个搞笑外号，你会叫TA什么？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "互损",
+          "开放"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-006",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "聚会游戏输了，对方最可能找的借口是什么？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "游戏",
+          "选择"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-007",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "咱俩一起点外卖，最后一定会多出来的一样东西是什么？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "日常",
+          "开放"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-008",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果咱俩的聊天记录被做成表情包，出镜率最高的一句话是什么？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 3,
         "tags": [
           "搞笑",
-          "即兴"
+          "熟人局",
+          "开放"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -187,15 +213,16 @@
         "source": "ai"
       },
       {
-        "id": "compatibility-8",
+        "id": "compat-009",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时选择：如果给对方起一个搞笑外号，会选哪种风格？",
+        "content": "对方在KTV里最可能做出哪种操作？",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 3,
+        "intensity": 2,
         "tags": [
           "搞笑",
-          "外号"
+          "KTV",
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -203,31 +230,16 @@
         "source": "ai"
       },
       {
-        "id": "compatibility-9",
+        "id": "compat-010",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时回答：谁更可能在一场严肃对话里突然破功笑出来？",
+        "content": "只能回答是或不是：对方比我更会砍价。",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 4,
+        "intensity": 1,
         "tags": [
           "搞笑",
-          "反应"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compatibility-10",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "两人同时选择：如果一起模仿一种搞笑日常场景，选哪个最合适？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 5,
-        "tags": [
-          "搞笑",
-          "模仿"
+          "默契",
+          "二选一"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

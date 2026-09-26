@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L2-2_4-071-never-have-i5-p4-flirty-first-meet-only-noExPartners",
+    "layer": "L2",
+    "group": "2.4",
+    "title": "雷区单命中「前任相关」",
+    "seq": 71,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "minPlayers": 2,
+    "intensity": 5,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": false,
+      "noExPartners": true,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": false,
+      "noPublicPosting": false,
+      "noStrangerContact": false,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "仅开「前任相关」",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_4-071-never-have-i5-p4-flirty-first-meet-only-noExPartners",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": true,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：暧昧；最高强度：5。\n可用玩法：never-have。\n已开启的结构化雷区：ex-partner；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4236,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "nh-01",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在第一次见面的人面前，故意放慢说话的速度。",
+        "instruction": "符合的人轻轻举手或点头即可，不想说可以跳过，不需要解释。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "初识"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-02",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在拼桌时，偷偷记住对面那个人的小动作。",
+        "instruction": "举手的人可以只说“有”，不必讲具体是谁或细节。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-03",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未因为一个人坐得离我很近，而突然变得很在意自己的坐姿。",
+        "instruction": "举手示意即可，跳过的人不需要说明理由。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "距离"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-04",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在认识不到一小时的人面前，主动找话题多聊几句。",
+        "instruction": "符合的人举手；也可以只说“跳过”，全场尊重。",
+        "intensity": 1,
+        "tags": [
+          "初识",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-05",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在暧昧气氛里，假装没听懂对方的一句试探。",
+        "instruction": "举手即可，不需要复述那句话，也不要追问别人。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "试探"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-06",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在拼桌时，因为一个人的笑而走神几秒。",
+        "instruction": "符合的人轻轻举手；若不想暴露，直接跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "走神"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-07",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在第一次见面的场合，想过“如果早点认识就好了”。",
+        "instruction": "举手示意，不要求说出对象，也不允许追问具体人选。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "初识"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-08",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在别人靠近说话时，刻意没有后退。",
+        "instruction": "举手即可；任何人不舒服都可以随时跳过。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "距离"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-09",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在拼桌的局里，偷偷期待过某个人再坐近一点。",
+        "instruction": "举手或跳过，不需要解释，也不要评价别人的选择。",
+        "intensity": 4,
+        "tags": [
+          "暧昧",
+          "期待"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-10",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在第一次见面的晚上，把一句普通的话反复想了两遍。",
+        "instruction": "符合的人举手；全场不追问内容，跳过完全允许。",
+        "intensity": 4,
+        "tags": [
+          "暧昧",
+          "回味"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4236ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=never-have"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [ex-partner] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（never-have）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4236ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 5/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

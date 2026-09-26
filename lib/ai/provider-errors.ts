@@ -27,15 +27,20 @@ export function providerErrorCodeForException(message: string): ProviderErrorCod
   return "REQUEST_FAILED";
 }
 
-export function providerErrorMessage(code?: string): string {
+/**
+ * 错误码 → 面向用户的文案。`providerName` 默认 "DeepSeek"：服务器模式调用点不传参，
+ * 文案与既有口径保持一致；自包含版由本机直连，需传入真实 provider 名（如 "OpenCode Go"），
+ * 避免直连失败时误报成 DeepSeek。网络失败一律提示「手机网络」（本应用主战场是手机端）。
+ */
+export function providerErrorMessage(code?: string, providerName = "DeepSeek"): string {
   switch (code) {
     case "AUTH_FAILED": return "鉴权失败，请检查 API Key";
-    case "BALANCE_REQUIRED": return "DeepSeek 账户余额不足，请先充值";
+    case "BALANCE_REQUIRED": return `${providerName} 账户余额不足，请先充值`;
     case "MODEL_UNAVAILABLE": return "当前模型不可用，请检查模型设置";
     case "RATE_LIMITED": return "请求过于频繁，请稍后再试";
     case "PROVIDER_REQUEST_INVALID": return "接口拒绝了请求，请检查模型与账户状态";
-    case "TIMEOUT": return "连接 DeepSeek 超时，请稍后再试";
-    case "NETWORK_ERROR": return "服务器无法连接 DeepSeek，请检查电脑网络";
+    case "TIMEOUT": return `连接 ${providerName} 超时，请稍后再试`;
+    case "NETWORK_ERROR": return `服务器无法连接 ${providerName}，请检查手机网络`;
     case "URL_REJECTED": return "接口地址未通过安全检查";
     default: return "AI 服务暂时不可用，请稍后再试";
   }

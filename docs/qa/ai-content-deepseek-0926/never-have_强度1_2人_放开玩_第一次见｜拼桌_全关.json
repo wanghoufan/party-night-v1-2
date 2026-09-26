@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 18,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "origin": "base",
+    "intensity": 1,
+    "players": 2,
+    "vibe": {
+      "key": "wild",
+      "label": "放开玩"
+    },
+    "relationship": {
+      "key": "first-meet",
+      "label": "第一次见 / 拼桌"
+    },
+    "boundary": {
+      "mode": "all-off",
+      "label": "全关",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "放开玩"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：第一次见 / 拼桌；氛围：放开玩；最高强度：1。\n可用玩法：never-have。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3915,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "nh-01",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在第一次见面的人面前，一口气说完过三个自己的小怪癖。",
+        "instruction": "说出三个无伤大雅的小怪癖；不想说可以跳过，其他人不许追问。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-02",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有因为拼桌而认识一个后来常联系的朋友。",
+        "instruction": "如果中招就简单说说当时怎么熟起来的；不想说可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-03",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在陌生人面前唱过歌。",
+        "instruction": "中招的人可以哼两句副歌，也可以只做口型；允许跳过。",
+        "intensity": 1,
+        "tags": [
+          "才艺",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-04",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有点过一道自己完全没吃过的菜。",
+        "instruction": "中招的人说出那道菜的名字和味道评价；不想说可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "生活",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-05",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在聚会里当过第一个开口的人。",
+        "instruction": "中招的人分享一句开场白，供大家以后参考；允许跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-06",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有因为一个冷笑话笑到停不下来。",
+        "instruction": "中招的人讲一个自己觉得最好笑的冷笑话；不想讲可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "幽默",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-07",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在旅行中临时改过计划。",
+        "instruction": "中招的人说说改成了什么，结果如何；不想说可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "旅行",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-08",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有收藏过自己从不用的东西。",
+        "instruction": "中招的人说出其中一件，并决定留还是扔；允许跳过。",
+        "intensity": 1,
+        "tags": [
+          "生活",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-09",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在第一次见面时猜错对方的职业。",
+        "instruction": "中招的人说说当时猜的是什么，以及对方实际做什么；不想说可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "猜谜"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-10",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在聚会结束时想再组一次局。",
+        "instruction": "中招的人说一个下次想玩的活动，其他人可以点头或摇头；允许跳过。",
+        "intensity": 1,
+        "tags": [
+          "收尾",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

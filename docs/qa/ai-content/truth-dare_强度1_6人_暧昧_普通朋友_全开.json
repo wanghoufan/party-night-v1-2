@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "普通朋友",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4552,
+    "latencyMs": 25547,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,160 +77,130 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "td-001",
+        "id": "td-amb-01",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你最近一次因为某个人的一句话而反复回味，是什么话？",
-        "instruction": "由当前玩家回答；不想回答可以说“跳过”，其他人不得追问。",
+        "content": "如果你要用一句电影台词形容在场某个人给你的感觉，你会选哪句？为什么？",
+        "instruction": "被点到的嘉宾可选择回答、换成轻量版或跳过；跳过不解释、不惩罚。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "暧昧"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "td-002",
+        "id": "td-amb-02",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "对左手边的玩家说一句你今天最想说的赞美，必须具体到某个细节。",
-        "instruction": "只允许口头表达，不得有任何身体接触；被赞美者只需说谢谢。",
+        "content": "用最温柔的语气念一句：‘今晚的你和平时不太一样。’念完后保持微笑三秒，再自然地把话题交给下一位。",
+        "instruction": "被点到的嘉宾可选择完成、换成轻量版或跳过；跳过不解释、不惩罚。",
         "intensity": 1,
-        "tags": [
-          "互动",
-          "暧昧"
-        ],
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-amb-03",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "说出在场某个人给你的第一印象，以及后来有没有一点点变化。不用点名，可以用‘那位刚才笑得很轻的人’这样描述。",
+        "instruction": "被点到的嘉宾可选择回答、换成轻量版或跳过；跳过不解释、不惩罚。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-amb-04",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "选一位嘉宾，和他/她轮流用‘我猜你今晚会……’造三个不涉及隐私的小句子，对方只需回答‘被你说中了’或‘才不是’。",
+        "instruction": "被点到的嘉宾可选择完成、换成轻量版或跳过；跳过不解释、不惩罚。",
+        "intensity": 1,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "pair",
         "source": "ai"
       },
       {
-        "id": "td-003",
+        "id": "td-amb-05",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "如果今晚只能和一个人多聊十分钟，你会选谁，为什么？",
-        "instruction": "由当前玩家回答，答案只停留在聊天层面，不得追问隐私。",
+        "content": "如果今晚只能和一个人多聊十分钟，你会更想听谁讲故事？为什么？可以用一个形容词形容你想听的理由。",
+        "instruction": "被点到的嘉宾可选择回答、换成轻量版或跳过；跳过不解释、不惩罚。",
         "intensity": 1,
-        "tags": [
-          "选择",
-          "暧昧"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "td-004",
+        "id": "td-amb-06",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "用三个词形容此刻房间里让你觉得最舒服的人，并说出理由。",
-        "instruction": "口头完成即可，不得指向任何身体评价或外貌打分。",
+        "content": "用三个形容词形容此刻的氛围，其中至少一个要让在场的人觉得有点心跳加速；不能重复上一位说过的词。",
+        "instruction": "被点到的嘉宾可选择完成、换成轻量版或跳过；跳过不解释、不惩罚。",
         "intensity": 1,
-        "tags": [
-          "观察",
-          "暧昧"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "td-005",
+        "id": "td-amb-07",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你觉得自己最容易让人误会的习惯是什么？",
-        "instruction": "由当前玩家回答；其他人只倾听，不评价、不嘲笑。",
+        "content": "所有人轮流说一个自己最近觉得‘有点好猜’的小习惯，例如爱把杯子放在桌角；不涉及私人信息。",
+        "instruction": "轮到的人可选择回答、换成轻量版或跳过；跳过不解释、不惩罚。",
         "intensity": 1,
-        "tags": [
-          "自我",
-          "轻松"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "single",
+        "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "td-006",
+        "id": "td-amb-08",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "选一位玩家，用一句电影台词般的语气邀请对方“下次一起喝杯无酒精饮料”。",
-        "instruction": "只允许语言表演，不得触碰对方，也不得强迫对方答应。",
+        "content": "选一位嘉宾，在双方都愿意的前提下，认真对视三秒，然后说一句‘你今天有点特别’，说完立刻聊一句天气。",
+        "instruction": "被点到的嘉宾可选择完成、换成轻量版或跳过；跳过不解释、不惩罚。",
         "intensity": 1,
-        "tags": [
-          "表演",
-          "暧昧"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "pair",
         "source": "ai"
       },
       {
-        "id": "td-007",
+        "id": "td-amb-09",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你最近一次心跳加快是因为什么事情？不需要涉及感情对象。",
-        "instruction": "回答可以很日常；若觉得太私人，直接说跳过。",
+        "content": "如果给今晚起一个只有你们能懂的小标题，你会起什么？不能包含真实姓名或具体地点。",
+        "instruction": "被点到的嘉宾可选择回答、换成轻量版或跳过；跳过不解释、不惩罚。",
         "intensity": 1,
-        "tags": [
-          "日常",
-          "轻松"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "td-008",
+        "id": "td-amb-10",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "给右手边的玩家起一个今晚限定的友好昵称，并解释由来。",
-        "instruction": "昵称必须友善、不涉及外貌或羞辱；对方可以拒绝接受。",
+        "content": "每个人依次用‘我觉得今晚最有趣的是……’造句，不能重复上一个人的答案；如果轮到你时想不到，就说‘我保留答案’并跳过。",
+        "instruction": "轮到的人可选择完成、换成轻量版或跳过；跳过不解释、不惩罚。",
         "intensity": 1,
-        "tags": [
-          "互动",
-          "轻松"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "td-009",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "在一段普通朋友关系里，你最看重对方哪一点？",
-        "instruction": "由当前玩家回答，其他人不得把答案联系到具体某人。",
-        "intensity": 1,
-        "tags": [
-          "价值观",
-          "轻松"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "td-010",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "用一句话描述今晚的氛围，并把它说成一句不尴尬的广告词。",
-        "instruction": "全场一起听完即可，不要求任何人配合表演或接触。",
-        "intensity": 1,
-        "tags": [
-          "氛围",
-          "创意"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",

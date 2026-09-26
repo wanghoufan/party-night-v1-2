@@ -8,7 +8,12 @@ import {
   beginMutualCheckRun,
   clearMutualCheckRun,
   finalizeMutualCheckRun,
+  mutualPartnerIds,
   submitMutualChoice,
+  MUTUAL_SINGLE_CANDIDATE_NO,
+  MUTUAL_SINGLE_CANDIDATE_PROMPT,
+  MUTUAL_SINGLE_CANDIDATE_YES,
+  MUTUAL_STALE_TARGET_NOTICE,
   type MutualCheckPublicResult,
   type MutualCheckRun,
 } from "@/lib/v2-relationship/v2-mutual-check";
@@ -76,6 +81,13 @@ export function MutualCheckSheet({
   const [cursor, setCursor] = useState(0);
   const [pending, setPending] = useState<string | null>(null);
   const [result, setResult] = useState<MutualCheckPublicResult | null>(null);
+  /**
+   * 当前玩家进入选择页时定格的合法候选快照（R-CB9）。
+   * 定格只为了让位给「单一候选 → Yes/No」这一个稳定视图；提交前仍会用最新参与者再校验一次边合法性，
+   * 所以快照过期不会造成非法选择落盘。
+   */
+  const [candidates, setCandidates] = useState<readonly string[]>([]);
+  const [staleNotice, setStaleNotice] = useState("");
 
   useEffect(() => {
     participantsRef.current = participants;
@@ -105,6 +117,17 @@ export function MutualCheckSheet({
     return runRef.current;
   }
 
+  /** 某玩家此刻的合法异性候选（从真实 eligible pair 池派生，与 Guard 阈值无关）。 */
+  const legalCandidates = (playerId: string): string[] => mutualPartnerIds(playerId, participantsRef.current);
+
+  /** 进入选择页：把此刻的合法候选定格为本人的候选快照（单一候选才走 Yes/No 视图）。 */
+  function enterSelect() {
+    setPending(null);
+    setStaleNotice("");
+    setCandidates(legalCandidates(current.id));
+    setStep("SELECT");
+  }
+
   /**
    * 收一位参与者的选择并推进状态链。
    * 离开 PRIVATE_SELECT / READY 前先清掉当次 draft 与选中态（R4 §5.1 不变式 7）。
@@ -118,6 +141,19 @@ export function MutualCheckSheet({
       setResult(finalizeMutualCheckRun(run, relationshipRef.current));
     }
     setStep(skipped ? "MASKED" : "SUBMITTED");
+  }
+
+  /**
+   * 提交前边合法校验（R-CB9 已知风险）：作答期间候选可能暂离/变化，快照里的目标可能已经失效。
+   * 失效则拒绝提交、只给可读提示，绝不把非法目标送进 `submitMutualChoice`。
+   */
+  function submitChoice(targetPlayerId: string | null) {
+    if (targetPlayerId !== null && !legalCandidates(current.id).includes(targetPlayerId)) {
+      setPending(null);
+      setStaleNotice(MUTUAL_STALE_TARGET_NOTICE);
+      return;
+    }
+    completePerson(targetPlayerId, false);
   }
 
   function nextPerson() {
@@ -186,33 +222,58 @@ export function MutualCheckSheet({
           {maskNote}
           <div className="mutual-mask__actions">
             <Button variant="ghost" type="button" onClick={() => completePerson(null, true)}>跳过</Button>
-            <Button type="button" onClick={() => setStep("SELECT")}>我准备好了</Button>
+            <Button type="button" onClick={enterSelect}>我准备好了</Button>
           </div>
         </>);
-      case "SELECT":
+      case "SELECT": {
+        // R-CB9：分支只看「本人当前合法异性候选数」，与 Single-Anchor Guard 阈值解耦。
+        if (candidates.length === 0) {
+          return panel("选择你想进一步认识的人", <>
+            <h2>暂时没有可选的人</h2>
+            <p className="mutual-mask__body">{MUTUAL_STALE_TARGET_NOTICE}</p>
+            {maskNote}
+            <div className="mutual-mask__actions">
+              <Button variant="ghost" type="button" onClick={() => completePerson(null, true)}>跳过</Button>
+            </div>
+          </>);
+        }
+        if (candidates.length === 1) {
+          // 唯一合法候选：Yes/No 两选项，唯一候选 → 愿意；null → 暂时没有（映射既有 mutual choice）。
+          const partnerId = candidates[0]!;
+          return panel("选择你想进一步认识的人", <>
+            <h2>{MUTUAL_SINGLE_CANDIDATE_PROMPT}</h2>
+            <p className="mutual-mask__body">只有你们互相愿意才会公布结果；暂时没有不影响游戏，也不会有任何惩罚。</p>
+            {staleNotice && <p className="mutual-mask__note" role="alert">{staleNotice}</p>}
+            {maskNote}
+            <div className="mutual-mask__actions">
+              <Button variant="ghost" type="button" onClick={() => submitChoice(null)}>{MUTUAL_SINGLE_CANDIDATE_NO}</Button>
+              <Button type="button" onClick={() => submitChoice(partnerId)}>{MUTUAL_SINGLE_CANDIDATE_YES}</Button>
+            </div>
+          </>);
+        }
         return panel("选择你想进一步认识的人", <>
           <h2>只选一个人，或跳过</h2>
           <div className="mutual-choice-list">
-            {players
-              .filter((player) => player.id !== current.id)
-              .map((player) => (
-                <button
-                  key={player.id}
-                  type="button"
-                  className={`mutual-choice${pending === player.id ? " mutual-choice--on" : ""}`}
-                  aria-pressed={pending === player.id}
-                  onClick={() => setPending(player.id)}
-                >
-                  {player.displayName}
-                </button>
-              ))}
+            {candidates.map((playerId) => (
+              <button
+                key={playerId}
+                type="button"
+                className={`mutual-choice${pending === playerId ? " mutual-choice--on" : ""}`}
+                aria-pressed={pending === playerId}
+                onClick={() => setPending(playerId)}
+              >
+                {nameOf(playerId)}
+              </button>
+            ))}
           </div>
           <div className="mutual-mask__actions">
             <Button variant="ghost" type="button" onClick={() => completePerson(null, true)}>跳过</Button>
-            <Button type="button" disabled={pending === null} onClick={() => completePerson(pending, false)}>提交</Button>
+            <Button type="button" disabled={pending === null} onClick={() => submitChoice(pending)}>提交</Button>
           </div>
+          {staleNotice && <p className="mutual-mask__note" role="alert">{staleNotice}</p>}
           <p className="mutual-mask__note">只有你们互相选中彼此才会公布结果；其余情况不会显示，也不影响游戏。</p>
         </>);
+      }
       case "SUBMITTED":
         return panel("已提交", <>
           <h2>已提交</h2>

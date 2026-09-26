@@ -1,0 +1,338 @@
+{
+  "cell": {
+    "id": "L2-2_2-027-most-likely-i3-p4-flirty-first-meet-default",
+    "layer": "L2",
+    "group": "2.2",
+    "title": "暧昧全量",
+    "seq": 27,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "minPlayers": 3,
+    "intensity": 3,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_2-027-most-likely-i3-p4-flirty-first-meet-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：暧昧；最高强度：3。\n可用玩法：most-likely。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 5154,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "ml-001",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在第一次约会时就偷偷查对方社交账号？",
+        "instruction": "所有人同时指向一位玩家。被指最多的人分享一个无伤大雅的初次约会小癖好。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "暧昧"
+        ],
+        "boundaryTags": [
+          "social-account"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-002",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在拼桌时用眼神跟陌生人调情？",
+        "instruction": "所有人同时指向一位玩家。被指最多的人用三秒眼神对左手边的人表达‘你好有趣’。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "眼神"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-003",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能因为对方记得自己随口提过的小事而心动？",
+        "instruction": "所有人同时指向一位玩家。被指最多的人分享一个自己容易被细节打动的瞬间。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "心动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-004",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在暧昧期故意晚回消息，其实心里一直在等？",
+        "instruction": "所有人同时指向一位玩家。被指最多的人承认或否认，并给出一个不涉及隐私的理由。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "拉扯"
+        ],
+        "boundaryTags": [
+          "phone-privacy"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-005",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在一群人里只对某个人笑得不一样？",
+        "instruction": "所有人同时指向一位玩家。被指最多的人对右手边的人展示一个‘只给你’的微笑。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "微笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-006",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能把‘随便聊聊’聊成深夜心动对话？",
+        "instruction": "所有人同时指向一位玩家。被指最多的人选一个人，用一句话把‘今天天气’聊出暧昧感。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "对话"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-007",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能因为对方的声音而脑补出一整部电影？",
+        "instruction": "所有人同时指向一位玩家。被指最多的人描述一种自己喜欢的声音特质，不指向具体人。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "声音"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-008",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在拼桌局结束后，偷偷回味某个瞬间？",
+        "instruction": "所有人同时指向一位玩家。被指最多的人用一个词形容今晚最让自己回味的氛围。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "回味"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-009",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能用‘我们只是朋友’来掩饰心跳？",
+        "instruction": "所有人同时指向一位玩家。被指最多的人对左手边的人说一句‘我们只是朋友’，并保持三秒眼神。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "掩饰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-010",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在下一次聚会时，主动坐到某个人旁边？",
+        "instruction": "所有人同时指向一位玩家。被指最多的人选一个人，隔空碰一下杯（可用手势），并说一句‘下次坐你旁边’。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "下次"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 5154ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=most-likely"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 3"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "FAIL",
+      "severity": "P0",
+      "detail": "1 张卡 boundaryTags 命中已开雷区：ml-004:phone-privacy"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（most-likely）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "5154ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "FAIL",
+  "p0": 1,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

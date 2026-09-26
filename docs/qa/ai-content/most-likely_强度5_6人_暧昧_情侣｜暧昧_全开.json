@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "情侣 / 暧昧",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3679,
+    "latencyMs": 29102,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,16 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "most-likely-1",
+        "id": "mn-01",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最容易在心动时先移开视线？",
-        "instruction": "全场同时指向一个人；被指最多者分享一个不涉及隐私的小反应，也可以跳过。",
+        "content": "谁最可能在今晚第一个用眼神和某人达成小默契？",
+        "instruction": "所有人倒数三秒后同时指向一个人。被选中的嘉宾用一个词形容此刻气氛；不想说可以跳过。",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "观察"
+          "默契",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,15 +94,16 @@
         "source": "ai"
       },
       {
-        "id": "most-likely-2",
+        "id": "mn-02",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最容易把关心藏在玩笑里？",
-        "instruction": "全场同时指向一个人；被指最多者用一个词形容自己表达关心的方式。",
+        "content": "谁最可能在道别后，把一句普通的‘再见’回味很久？",
+        "instruction": "全员投票选出最可能的人。被选中者可以说一句不涉及隐私的‘再见’语气示范，或直接跳过。",
         "intensity": 2,
         "tags": [
           "暧昧",
-          "表达"
+          "回味",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,47 +111,16 @@
         "source": "ai"
       },
       {
-        "id": "most-likely-3",
+        "id": "mn-03",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最容易因为一句晚安反复回想？",
-        "instruction": "全场同时指向一个人；被指最多者说说自己会不会在意晚安的语气。",
-        "intensity": 2,
-        "tags": [
-          "暧昧",
-          "心动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "most-likely-4",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最容易在聊天时故意晚一点回复？",
-        "instruction": "全场同时指向一个人；被指最多者选择回答“会”或“不会”，不解释也可以。",
-        "intensity": 2,
-        "tags": [
-          "暧昧",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "most-likely-5",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最容易记住对方随口提过的小喜好？",
-        "instruction": "全场同时指向一个人；被指最多者说出一种自己会记住的小喜好类型，不涉及具体隐私。",
+        "content": "谁最可能在心动对象面前突然变得比平时安静？",
+        "instruction": "全员投票。被选中者只需选择‘会’或‘不会’，无需解释；也可以跳过。",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "细节"
+          "心动",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -155,31 +128,16 @@
         "source": "ai"
       },
       {
-        "id": "most-likely-6",
+        "id": "mn-04",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最容易在人群里偷偷寻找某个人的身影？",
-        "instruction": "全场同时指向一个人；被指最多者用一个动作或表情表示“被发现了”，也可以跳过。",
-        "intensity": 3,
-        "tags": [
-          "暧昧",
-          "眼神"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "most-likely-7",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最容易把“随便”说成一种期待？",
-        "instruction": "全场同时指向一个人；被指最多者用一句话把“随便”翻译成真实想法，不涉及隐私。",
+        "content": "谁最可能用一句玩笑藏住真正的在意？",
+        "instruction": "全员投票。被选中者说一句无关痛痒的玩笑，不能指向他人隐私；可跳过。",
         "intensity": 2,
         "tags": [
           "暧昧",
-          "默契"
+          "玩笑",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -187,31 +145,16 @@
         "source": "ai"
       },
       {
-        "id": "most-likely-8",
+        "id": "mn-05",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最容易因为对方靠近一点就紧张？",
-        "instruction": "全场同时指向一个人；被指最多者说说自己紧张时会做什么小动作，不涉及身体接触。",
-        "intensity": 3,
-        "tags": [
-          "暧昧",
-          "距离"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "most-likely-9",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最容易在暧昧期先主动找话题？",
-        "instruction": "全场同时指向一个人；被指最多者分享一个安全的话题开场方式。",
+        "content": "谁最可能在一群人里，只对某一个人的笑话笑得最真？",
+        "instruction": "全员投票。被选中者可以说出那个笑话的关键词，或指向今晚笑声最合拍的人；可跳过。",
         "intensity": 2,
         "tags": [
           "暧昧",
-          "主动"
+          "默契",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -219,15 +162,84 @@
         "source": "ai"
       },
       {
-        "id": "most-likely-10",
+        "id": "mn-06",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最容易把喜欢写成只有自己懂的暗号？",
-        "instruction": "全场同时指向一个人；被指最多者说一个不涉及隐私的“暗号”类型，也可以跳过。",
-        "intensity": 3,
+        "content": "谁最可能把暧昧当成一场慢速舞，不急着踩拍？",
+        "instruction": "全员投票。被选中者用一个不接触他人的动作形容自己的节奏，或跳过。",
+        "intensity": 2,
         "tags": [
           "暧昧",
-          "暗号"
+          "节奏",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-07",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在聚会结束时，最想和同一个人多聊五分钟？",
+        "instruction": "全员投票。被选中者可以口头邀请一位嘉宾下次再聊，不必现在决定；可跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "聊天",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-08",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能把喜欢写成一句只有自己懂的暗号？",
+        "instruction": "全员投票。被选中者说一个不涉及隐私的暗号词，或跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "暗号",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-09",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在别人起哄时假装镇定，耳朵却先红？",
+        "instruction": "全员投票。被选中者可以用手扇风或说‘好热’来回应，也可跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "起哄",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-10",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能成为今晚最会倾听心事的人？",
+        "instruction": "全员投票。被选中者给在场一位嘉宾一句真诚且不涉及隐私的夸奖；可跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "倾听",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

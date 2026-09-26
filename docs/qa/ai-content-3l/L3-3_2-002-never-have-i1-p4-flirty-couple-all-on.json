@@ -1,0 +1,334 @@
+{
+  "cell": {
+    "id": "L3-3_2-002-never-have-i1-p4-flirty-couple-all-on",
+    "layer": "L3",
+    "group": "3.2",
+    "title": "强度单调 I1",
+    "seq": 2,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "minPlayers": 2,
+    "intensity": 1,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "couple",
+    "relationshipLabel": "情侣 / 暧昧",
+    "boundaryFlags": {
+      "noPhysicalContact": true,
+      "noAlcoholPenalty": true,
+      "noExPartners": true,
+      "noSexualHistory": true,
+      "noMoneyIncome": true,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": true,
+      "noSocialAccounts": true
+    },
+    "boundaryLabel": "全开",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": "3.2-never-have-flirty-couple-p4",
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L3-3_2-002-never-have-i1-p4-flirty-couple-all-on",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "情侣 / 暧昧",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：情侣 / 暧昧；氛围：暧昧；最高强度：1。\n可用玩法：never-have。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3980,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "nh-01",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在心动的人面前假装看手机，其实什么都没在看。",
+        "instruction": "说出这句话后，愿意分享的人可以补充一句当时的心跳感受；不想说就跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "心动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-02",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未因为对方一句晚安而反复回味很久。",
+        "instruction": "不需要解释细节，只需举手或说“我有过”。任何人不舒服都可直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "心动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-03",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聊天框里打了一大段话，最后又全部删掉只发一个表情。",
+        "instruction": "分享时只说感受，不必念出聊天内容；不分享也完全没问题。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-04",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未偷偷记住对方随口提过的一个小喜好。",
+        "instruction": "可以说出那个喜好是什么，也可以只承认有或没有。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "细节"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-05",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在人群里第一眼就找到某个人。",
+        "instruction": "只回答有或没有，不点名也可以。跳过永远被允许。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "心动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-06",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未因为一条含糊的回复而猜测对方的心情。",
+        "instruction": "可以分享当时的心情关键词，比如“紧张”“开心”；不想说就跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-07",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在分别后回头多看一眼。",
+        "instruction": "只需承认有或没有，不必描述具体场景。任何人不舒服可跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "心动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-08",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未把一句普通的关心理解成特别的在意。",
+        "instruction": "分享时只说感受，不评价他人；不分享也完全没问题。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "心动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-09",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在约会前反复挑衣服。",
+        "instruction": "可以说出当时的纠结心情，也可以只回答有或没有。跳过永远被允许。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "约会"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-10",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在暧昧期假装不在意，其实一直在等消息。",
+        "instruction": "只回答有或没有，不展示任何私密信息；不想说就跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3980ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=never-have"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 1"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [physical-contact,alcohol,ex-partner,sexual-history,money,phone-privacy,public-posting,stranger-contact,photo-video,social-account] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（never-have）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3980ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

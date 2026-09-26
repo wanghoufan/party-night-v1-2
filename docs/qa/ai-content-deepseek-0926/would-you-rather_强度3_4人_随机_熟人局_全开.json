@@ -1,0 +1,250 @@
+{
+  "cell": {
+    "index": 75,
+    "packId": "would-you-rather",
+    "packName": "二选一",
+    "origin": "extra",
+    "intensity": 3,
+    "players": 4,
+    "vibe": {
+      "key": "random",
+      "label": "随机"
+    },
+    "relationship": {
+      "key": "familiar",
+      "label": "熟人局"
+    },
+    "boundary": {
+      "mode": "all-on",
+      "label": "全开",
+      "flags": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "熟人局",
+      "vibes": [
+        "随机"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "would-you-rather"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：熟人局；氛围：随机；最高强度：3。\n可用玩法：would-you-rather。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3874,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-wyr-01",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "每次聚会都由你负责点菜和安排流程，但大家都会听你的 VS 每次聚会你只管到场享受，但所有安排都交给别人决定",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "选择"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wyr-02",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "拥有瞬间学会任何一首歌的能力，但只能在洗澡时唱 VS 拥有完美歌喉，但每次开口都会忘词",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "趣味",
+          "音乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wyr-03",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "未来一年每次聚餐都只能吃你最爱的菜 VS 未来一年每次聚餐都随机抽一道没吃过的菜",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "生活",
+          "美食"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wyr-04",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "可以随时知道朋友此刻的心情，但不能告诉对方你知道 VS 每次都能准确猜中朋友的心情，但只在事后才知道对错",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "心理",
+          "朋友"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wyr-05",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "你的手机永远只剩 1% 电量，但从不关机 VS 你的手机永远满电，但每十分钟自动重启一次",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "科技",
+          "生活"
+        ],
+        "boundaryTags": [
+          "phone-privacy"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wyr-06",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "能回到过去任意一天待一小时，但不能改变任何事 VS 能去未来任意一天待一小时，但回来后会忘记所有细节",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "想象",
+          "时间"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wyr-07",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "这辈子只能看一部电影，但可以反复看任意次数 VS 这辈子可以看所有电影，但每部只能看一次",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "娱乐",
+          "电影"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wyr-08",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "你的所有社交动态只有好友能看，但点赞数永远为零 VS 你的所有社交动态所有人可见，但没人知道是你发的",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "社交",
+          "网络"
+        ],
+        "boundaryTags": [
+          "public-posting",
+          "social-account"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wyr-09",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "每次旅行都能拍出完美的照片，但只能自己欣赏 VS 每次旅行照片都很普通，但可以随时分享给所有人",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "旅行",
+          "分享"
+        ],
+        "boundaryTags": [
+          "photo-video"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-wyr-10",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "拥有一个永远不说谎的朋友，但每句话都直白到扎心 VS 拥有一个永远让你开心的朋友，但从不说真心话",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 3,
+        "tags": [
+          "友情",
+          "选择"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

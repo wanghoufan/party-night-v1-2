@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "普通朋友",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4101,
+    "latencyMs": 30460,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,31 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "nh-001",
+        "id": "never-have-001",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从来没有在公共场合假装认识某个明星，还跟朋友说“那是我朋友”。",
-        "instruction": "符合的人握拳示意或说“我有”，然后简单讲讲当时怎么演的。不想说就跳过。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "社交"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-002",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从来没有把闹钟设成提前一小时，结果闹钟响完又睡回去。",
-        "instruction": "符合的人举个手，并分享一个你用过最离谱的赖床理由。不想说就跳过。",
+        "content": "我从未把袜子穿反一整天都没发现。",
+        "instruction": "读出卡片上的句子。如果你其实做过，就跳过这张换下一张；其他做过的人放下一根手指或记一分。任何人可随时说“跳过”。",
         "intensity": 1,
         "tags": [
-          "搞笑",
-          "日常"
+          "日常",
+          "搞笑"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,15 +93,15 @@
         "source": "ai"
       },
       {
-        "id": "nh-003",
+        "id": "never-have-002",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从来没有为了追剧假装自己很忙，拒绝过朋友的邀约。",
-        "instruction": "符合的人点点头，并说出那部剧的名字。不想说就跳过。",
+        "content": "我从未把盐当成糖放进饮料里。",
+        "instruction": "读出卡片上的句子。如果你其实做过，就跳过这张换下一张；其他做过的人放下一根手指或记一分。任何人可随时说“跳过”。",
         "intensity": 2,
         "tags": [
-          "搞笑",
-          "娱乐"
+          "厨房翻车",
+          "搞笑"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -123,79 +109,15 @@
         "source": "ai"
       },
       {
-        "id": "nh-004",
+        "id": "never-have-003",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从来没有在KTV里点过一首自己完全不会唱的歌，然后全程混过去。",
-        "instruction": "符合的人站起来模仿一句当时的“混唱”现场。不想演就跳过。",
-        "intensity": 3,
-        "tags": [
-          "搞笑",
-          "表演"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-005",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从来没有把别人的名字叫错，还硬着头皮继续聊下去。",
-        "instruction": "符合的人讲一个你叫错名字后最尴尬的瞬间。不想说就跳过。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "社交"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-006",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从来没有在朋友圈发完又秒删，因为觉得太丢人。",
-        "instruction": "符合的人描述一下那条内容的类型，不用展示具体内容。不想说就跳过。",
-        "intensity": 3,
-        "tags": [
-          "搞笑",
-          "网络"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-007",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从来没有在超市里推着购物车假装自己在开赛车。",
-        "instruction": "符合的人现场模拟一个转弯动作，并配音。不想演就跳过。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "表演"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-008",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从来没有在电梯里对着镜子偷偷练习过表情。",
-        "instruction": "符合的人做出一个你练习过的表情，让大家猜是什么情绪。不想演就跳过。",
+        "content": "我从未对着镜子给自己加油打气。",
+        "instruction": "读出卡片上的句子。如果你其实做过，就跳过这张换下一张；其他做过的人放下一根手指或记一分。任何人可随时说“跳过”。",
         "intensity": 1,
         "tags": [
-          "搞笑",
-          "日常"
+          "日常",
+          "搞笑"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -203,31 +125,111 @@
         "source": "ai"
       },
       {
-        "id": "nh-009",
+        "id": "never-have-004",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从来没有在群聊里发错消息，然后赶紧撤回。",
-        "instruction": "符合的人说说当时发错给了谁，不用读出内容。不想说就跳过。",
-        "intensity": 3,
-        "tags": [
-          "搞笑",
-          "社交"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-010",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从来没有在餐厅里把服务员叫成“老师”，然后假装没事。",
-        "instruction": "符合的人用一句台词还原当时的对话。不想演就跳过。",
+        "content": "我从未因为追剧或看小说熬到天亮。",
+        "instruction": "读出卡片上的句子。如果你其实做过，就跳过这张换下一张；其他做过的人放下一根手指或记一分。任何人可随时说“跳过”。",
         "intensity": 2,
         "tags": [
-          "搞笑",
-          "日常"
+          "熬夜",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-005",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未把洗发水当成沐浴露用完一次澡。",
+        "instruction": "读出卡片上的句子。如果你其实做过，就跳过这张换下一张；其他做过的人放下一根手指或记一分。任何人可随时说“跳过”。",
+        "intensity": 2,
+        "tags": [
+          "浴室翻车",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-006",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在唱歌时忘词，然后继续哼完整首歌。",
+        "instruction": "读出卡片上的句子。如果你其实做过，就跳过这张换下一张；其他做过的人放下一根手指或记一分。任何人可随时说“跳过”。",
+        "intensity": 2,
+        "tags": [
+          "K歌",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-007",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未假装听懂别人讲的专业话题，还点头点得像捣蒜。",
+        "instruction": "读出卡片上的句子。如果你其实做过，就跳过这张换下一张；其他做过的人放下一根手指或记一分。任何人可随时说“跳过”。",
+        "intensity": 3,
+        "tags": [
+          "社交尴尬",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-008",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未对自动门、电梯或红绿灯说过“谢谢”。",
+        "instruction": "读出卡片上的句子。如果你其实做过，就跳过这张换下一张；其他做过的人放下一根手指或记一分。任何人可随时说“跳过”。",
+        "intensity": 1,
+        "tags": [
+          "日常",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-009",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未给家里的植物或玩偶起名字，还认真跟它聊天。",
+        "instruction": "读出卡片上的句子。如果你其实做过，就跳过这张换下一张；其他做过的人放下一根手指或记一分。任何人可随时说“跳过”。",
+        "intensity": 1,
+        "tags": [
+          "可爱",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-010",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未把闹钟按掉后继续睡，醒来发现已经迟到。",
+        "instruction": "读出卡片上的句子。如果你其实做过，就跳过这张换下一张；其他做过的人放下一根手指或记一分。任何人可随时说“跳过”。",
+        "intensity": 2,
+        "tags": [
+          "早起困难",
+          "搞笑"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

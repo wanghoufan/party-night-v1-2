@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "很熟",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3647,
+    "latencyMs": 27917,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,11 +80,12 @@
         "id": "compat-001",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果只能选一种饮品代表今晚的心情，两人同时说出更接近哪一种？",
+        "content": "如果现在给今晚配一首背景音乐，两人同时说出第一首想到的歌名。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "破冰",
+          "默契",
           "轻松"
         ],
         "boundaryTags": [],
@@ -94,12 +97,13 @@
         "id": "compat-002",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时回答：第一次见面时，谁先主动开口说话？",
+        "content": "周末最想一起做哪件事？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "破冰",
-          "回忆"
+          "默契",
+          "周末"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -110,12 +114,13 @@
         "id": "compat-003",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时回答：如果周末一起出门，更可能去以下哪种地方？",
+        "content": "用一种动物形容对方此刻给人的感觉，两人同时说。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "破冰",
-          "日常"
+          "默契",
+          "想象"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -126,12 +131,13 @@
         "id": "compat-004",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时回答：在对方眼里，你更像早起的人还是夜猫子？",
+        "content": "如果只能选一种超能力来度过今天，选哪个？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "破冰",
-          "习惯"
+          "默契",
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -142,12 +148,13 @@
         "id": "compat-005",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时口头回答：用一种天气形容你们现在的默契程度。",
+        "content": "第一次见面时，你对对方的第一印象是什么？同时说一个词。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "破冰",
-          "默契"
+          "默契",
+          "回忆"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -158,12 +165,13 @@
         "id": "compat-006",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时回答：一起看剧时，谁更容易先猜出结局？",
+        "content": "吃火锅时，蘸料里必须有的是？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "破冰",
-          "趣味"
+          "默契",
+          "食物"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -174,12 +182,13 @@
         "id": "compat-007",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时回答：如果现在点一份外卖分享，更想点以下哪一类？",
+        "content": "如果明天一起去一个步行能到的地方，最想去哪里？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "破冰",
-          "口味"
+          "默契",
+          "出行"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -190,12 +199,13 @@
         "id": "compat-008",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时口头回答：你们之间最有默契的一个小习惯是什么？",
+        "content": "两人同时回答：更喜欢哪种天气？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "破冰",
-          "默契"
+          "默契",
+          "天气"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -206,12 +216,13 @@
         "id": "compat-009",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时回答：如果要给对方贴一个正面标签，更接近哪一个？",
+        "content": "如果现在要合作想一个队名，你们会叫自己什么？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "破冰",
-          "印象"
+          "默契",
+          "合作"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -222,12 +233,13 @@
         "id": "compat-010",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "两人同时回答：今晚结束后，最想一起做的一件小事是什么？",
+        "content": "一起做一顿简单饭时，最看重的是？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "破冰",
-          "收尾"
+          "默契",
+          "日常"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

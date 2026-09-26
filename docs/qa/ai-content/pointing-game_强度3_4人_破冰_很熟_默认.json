@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "很熟",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3088,
+    "latencyMs": 25537,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,16 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "pn-point-01",
+        "id": "pointing-001",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指认一位你觉得最会活跃气氛的人，被指到的人再指认下一位。",
+        "content": "请所有人同时指向你觉得今天最让人放松的人；不想指可以跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
           "破冰",
-          "互动"
+          "指向",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -91,15 +94,50 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-02",
+        "id": "pointing-002",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指认一位你最想组队合作完成任务的人，并说一个理由。",
+        "content": "请所有人同时指向你心中最适合当聚会气氛组组长的人；不想指可以跳过。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "指向",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-003",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向你觉得最会讲冷笑话的人；不想指可以跳过。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "指向",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-004",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向你觉得最会安慰别人的人；不想指可以跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
           "破冰",
-          "协作"
+          "指向",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -107,15 +145,50 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-03",
+        "id": "pointing-005",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指认一位你觉得今天穿搭最有亮点的人，被指到的人向大家比个手势。",
+        "content": "请所有人同时指向你觉得最会选零食分享的人；不想指可以跳过。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "指向",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-006",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向你觉得最适合演电影里聪明配角的人；不想指可以跳过。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "指向",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-007",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向你觉得最守时的人；不想指可以跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
           "破冰",
-          "赞美"
+          "指向",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -123,15 +196,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-04",
+        "id": "pointing-008",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指认一位你最想听他讲一个冷笑话的人，被指到的人讲一个笑话。",
+        "content": "请所有人同时指向你觉得最会鼓励别人的人；不想指可以跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
           "破冰",
-          "娱乐"
+          "指向",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -139,15 +213,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-05",
+        "id": "pointing-009",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指认一位你觉得最有可能成为团队智囊的人，并说出你的判断。",
+        "content": "请所有人同时指向你觉得最会安排游戏顺序的人；不想指可以跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 2,
         "tags": [
           "破冰",
-          "判断"
+          "指向",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -155,79 +230,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-06",
+        "id": "pointing-010",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指认一位你最想和他交换一个周末计划的人，被指到的人先分享自己的计划。",
+        "content": "请所有人同时指向你觉得笑容最有感染力的人；不想指可以跳过。",
         "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 2,
+        "intensity": 1,
         "tags": [
           "破冰",
-          "分享"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-point-07",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指认一位你觉得最有耐心的人，被指到的人接受大家的一个小提问。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 2,
-        "tags": [
-          "破冰",
-          "问答"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-point-08",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指认一位你最想一起完成一个即兴小挑战的人，两人一起做一个同步动作。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 2,
-        "tags": [
-          "破冰",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-point-09",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指认一位你觉得最会保守秘密的人，被指到的人说一个无关紧要的小秘密。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 3,
-        "tags": [
-          "破冰",
-          "信任"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-point-10",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指认一位你最想向他请教一个生活小技巧的人，被指到的人分享一个实用技巧。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 3,
-        "tags": [
-          "破冰",
-          "分享"
+          "指向",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,

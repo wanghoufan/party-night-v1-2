@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "普通朋友",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 2250,
+    "latencyMs": 31222,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,14 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "pn-point-01",
+        "id": "pointing-01",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向今晚笑得最开心的人。",
+        "content": "所有人同时指向今晚笑容最有感染力的人，并说出一个让你有这种感觉的瞬间。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "轻松"
+          "pointing",
+          "icebreaker"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -90,14 +93,15 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-02",
+        "id": "pointing-02",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向最会讲冷笑话的人。",
+        "content": "所有人同时指向刚才最认真听别人说话的人，并给他一句真诚的肯定。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "轻松"
+          "pointing",
+          "icebreaker"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -105,14 +109,15 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-03",
+        "id": "pointing-03",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向最可能主动点歌的人。",
+        "content": "所有人同时指向今晚最会接梗的人，并复述他一句不带隐私的玩笑。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "轻松"
+          "pointing",
+          "icebreaker"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -120,14 +125,15 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-04",
+        "id": "pointing-04",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向今晚说话最少的人。",
+        "content": "所有人同时指向你右手边第二个人，并说出一个你想向他学习的小优点。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "轻松"
+          "pointing",
+          "icebreaker"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -135,14 +141,15 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-05",
+        "id": "pointing-05",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向最会带动气氛的人。",
+        "content": "所有人同时指向今晚最会照顾大家感受的人，并举一个具体例子。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "轻松"
+          "pointing",
+          "icebreaker"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -150,14 +157,15 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-06",
+        "id": "pointing-06",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向最可能第一个想回家的人。",
+        "content": "所有人同时指向你认为最会讲故事的人，并说一个他讲过的有趣细节。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "轻松"
+          "pointing",
+          "icebreaker"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -165,14 +173,15 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-07",
+        "id": "pointing-07",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向最会拍照摆姿势的人。",
+        "content": "所有人同时指向今晚最放松的人，并送上一句让他继续保持的鼓励。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "轻松"
+          "pointing",
+          "icebreaker"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -180,14 +189,15 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-08",
+        "id": "pointing-08",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向最可能突然唱歌的人。",
+        "content": "所有人同时指向最会带动气氛的人，并模仿他一个无害的小动作。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "轻松"
+          "pointing",
+          "icebreaker"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -195,14 +205,15 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-09",
+        "id": "pointing-09",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向今晚最会捧场的人。",
+        "content": "所有人同时指向你觉得最可靠的朋友，并说一件让你安心的小事。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "轻松"
+          "pointing",
+          "icebreaker"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -210,14 +221,15 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-10",
+        "id": "pointing-10",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向最可能组织下一次聚会的人。",
+        "content": "所有人同时指向今晚你想多聊几句的人，并说出一个想聊的轻松话题。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "轻松"
+          "pointing",
+          "icebreaker"
         ],
         "boundaryTags": [],
         "minPlayers": 3,

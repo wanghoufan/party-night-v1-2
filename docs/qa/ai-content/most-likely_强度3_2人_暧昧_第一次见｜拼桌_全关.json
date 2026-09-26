@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "第一次见 / 拼桌",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3703,
+    "latencyMs": 23048,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,159 +77,130 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "ml-001",
+        "id": "mnl-001",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "在座谁最容易因为一个眼神就脑补出一整部偶像剧？",
-        "instruction": "所有人同时指向自己心里的答案，被指最多的人说说为什么。",
+        "content": "谁最可能在拼桌时先开口打破沉默？",
+        "instruction": "两人倒数三声后同时指向自己或对方。得票多者用一句话说明理由；平票则各说一个词。任何人不舒服都可以说“跳过”，无需解释。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "暧昧"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-002",
+        "id": "mnl-002",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "在座谁最可能主动开口要对方的联系方式？",
-        "instruction": "同时指向答案，被指的人可以现场礼貌询问一位嘉宾是否愿意交换联系方式。不愿则跳过。",
+        "content": "谁最可能记得对方点过的非酒精饮料？",
+        "instruction": "两人倒数三声后同时指向自己或对方。得票多者用一句话说明理由；平票则各说一个词。任何人不舒服都可以说“跳过”，无需解释。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "暧昧"
-        ],
-        "boundaryTags": [
-          "social-account"
-        ],
+        "tags": [],
+        "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-003",
+        "id": "mnl-003",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "在座谁最擅长用一句话让气氛变得微妙？",
-        "instruction": "同时指向答案，被指最多的人现场对一位嘉宾说一句不超过十个字的夸奖。",
+        "content": "谁最可能因为一个冷笑话偷偷笑出来？",
+        "instruction": "两人倒数三声后同时指向自己或对方。得票多者用一句话说明理由；平票则各说一个词。任何人不舒服都可以说“跳过”，无需解释。",
         "intensity": 1,
-        "tags": [
-          "暧昧",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-004",
+        "id": "mnl-004",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "在座谁最容易在第一次见面时就被人记住？",
-        "instruction": "同时指向答案，被指的人分享一个自己希望被别人记住的特点。",
-        "intensity": 1,
-        "tags": [
-          "破冰"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "ml-005",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "在座谁最可能因为一条消息反复琢磨对方的语气？",
-        "instruction": "同时指向答案，被指的人可以分享一个无关隐私的小习惯。",
+        "content": "谁最可能在聊天时先移开视线，又很快看回来？",
+        "instruction": "两人倒数三声后同时指向自己或对方。得票多者用一句话说明理由；平票则各说一个词。任何人不舒服都可以说“跳过”，无需解释。",
         "intensity": 2,
-        "tags": [
-          "暧昧"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-006",
+        "id": "mnl-005",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "在座谁最可能先心动却假装若无其事？",
-        "instruction": "同时指向答案，被指的人可以选择用一个词形容自己此刻的心情。",
+        "content": "谁最可能把今晚的偶遇讲给朋友听，却先不说名字？",
+        "instruction": "两人倒数三声后同时指向自己或对方。得票多者用一句话说明理由；平票则各说一个词。任何人不舒服都可以说“跳过”，无需解释。",
         "intensity": 2,
-        "tags": [
-          "暧昧"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-007",
+        "id": "mnl-006",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "在座谁最可能为了多聊一会儿而故意放慢语速？",
-        "instruction": "同时指向答案，被指的人对一位嘉宾说一句礼貌的赞美，对方可以只回谢谢。",
+        "content": "谁最可能在下次见面时装作不记得对方的名字，其实记得很清楚？",
+        "instruction": "两人倒数三声后同时指向自己或对方。得票多者用一句话说明理由；平票则各说一个词。任何人不舒服都可以说“跳过”，无需解释。",
         "intensity": 2,
-        "tags": [
-          "暧昧",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-008",
+        "id": "mnl-007",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "在座谁最可能把普通的一句话听出弦外之音？",
-        "instruction": "同时指向答案，被指的人猜一位嘉宾现在最想聊的话题。",
+        "content": "谁最可能在这局结束后还想再聊十分钟？",
+        "instruction": "两人倒数三声后同时指向自己或对方。得票多者用一句话说明理由；平票则各说一个词。任何人不舒服都可以说“跳过”，无需解释。",
         "intensity": 2,
-        "tags": [
-          "暧昧"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-009",
+        "id": "mnl-008",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "在座谁最可能因为对方的一个小动作而心里一动？",
-        "instruction": "同时指向答案，被指的人可以分享一个让自己觉得舒服的礼貌距离。",
+        "content": "谁最可能先用玩笑掩饰认真？",
+        "instruction": "两人倒数三声后同时指向自己或对方。得票多者用一句话说明理由；平票则各说一个词。任何人不舒服都可以说“跳过”，无需解释。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-009",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能觉得对方的声音比预想中更好听？",
+        "instruction": "两人倒数三声后同时指向自己或对方。得票多者用一句话说明理由；平票则各说一个词。任何人不舒服都可以说“跳过”，无需解释。",
         "intensity": 3,
-        "tags": [
-          "暧昧"
-        ],
-        "boundaryTags": [
-          "physical-contact"
-        ],
+        "tags": [],
+        "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-010",
+        "id": "mnl-010",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "在座谁最可能让今晚的拼桌变成一次难忘的相遇？",
-        "instruction": "所有人同时指向答案，被指最多的人可以用一句话收尾今晚的聚会。任何任务都可以跳过。",
+        "content": "谁最可能在道别时回头多看一眼？",
+        "instruction": "两人倒数三声后同时指向自己或对方。得票多者用一句话说明理由；平票则各说一个词。任何人不舒服都可以说“跳过”，无需解释。",
         "intensity": 3,
-        "tags": [
-          "暧昧",
-          "收尾"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",

@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L2-2_3-063-spin-bottle-i5-p4-flirty-first-meet-default",
+    "layer": "L2",
+    "group": "2.3",
+    "title": "拼桌全量",
+    "seq": 63,
+    "packId": "spin-bottle",
+    "packName": "转瓶子",
+    "minPlayers": 2,
+    "intensity": 5,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_3-063-spin-bottle-i5-p4-flirty-first-meet-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "spin-bottle"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：暧昧；最高强度：5。\n可用玩法：spin-bottle。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4202,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-spin-001",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "说出你对在场某位嘉宾的第一印象，用三个形容词。",
+        "instruction": "由转瓶选中的人回答；不想回答可以跳过，改为喝一口水。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "初印象"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-spin-002",
+        "packId": "spin-bottle",
+        "type": "互动",
+        "content": "与转瓶指向的嘉宾对视十秒，先笑的人分享一件今天的小开心。",
+        "instruction": "双方自愿参与；任何一方可随时喊停。",
+        "intensity": 2,
+        "tags": [
+          "对视",
+          "轻暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-spin-003",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "描述你理想中一次愉快的初次见面会是什么样子。",
+        "instruction": "由转瓶选中的人回答，其他人不追问。",
+        "intensity": 1,
+        "tags": [
+          "话题",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-spin-004",
+        "packId": "spin-bottle",
+        "type": "互动",
+        "content": "向转瓶指向的嘉宾用一个词表达此刻的氛围，并说明理由。",
+        "instruction": "只表达感受，不做评价；可选择跳过。",
+        "intensity": 2,
+        "tags": [
+          "氛围",
+          "表达"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-spin-005",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "分享一个你最近学会的小技能或小习惯。",
+        "instruction": "由转瓶选中的人分享，时长不超过一分钟。",
+        "intensity": 1,
+        "tags": [
+          "分享",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-spin-006",
+        "packId": "spin-bottle",
+        "type": "互动",
+        "content": "和转瓶指向的嘉宾互相说一句真诚的赞美，内容不涉及外貌评价。",
+        "instruction": "赞美需具体、友善；双方均可跳过。",
+        "intensity": 2,
+        "tags": [
+          "赞美",
+          "友善"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-spin-007",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "如果今晚只能记住一个瞬间，你希望是什么？",
+        "instruction": "由转瓶选中的人回答，其他人倾听不打断。",
+        "intensity": 2,
+        "tags": [
+          "期待",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-spin-008",
+        "packId": "spin-bottle",
+        "type": "互动",
+        "content": "所有人同时指向今晚最想多聊一句的人，被指到的人可以问一个轻松问题。",
+        "instruction": "只问轻松问题，不涉及隐私；任何人可弃权。",
+        "intensity": 2,
+        "tags": [
+          "全员",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-spin-009",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "用一句话形容你此刻的心情，并说出一个让你放松的小方法。",
+        "instruction": "由转瓶选中的人回答；可以只回答后半部分。",
+        "intensity": 1,
+        "tags": [
+          "心情",
+          "放松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-spin-010",
+        "packId": "spin-bottle",
+        "type": "互动",
+        "content": "与转瓶指向的嘉宾击掌一次，并各自说一个今晚想尝试的小目标。",
+        "instruction": "击掌需双方同意；目标只谈今晚、不涉及隐私。",
+        "intensity": 2,
+        "tags": [
+          "击掌",
+          "小目标"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4202ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=spin-bottle"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（spin-bottle）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4202ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 10/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

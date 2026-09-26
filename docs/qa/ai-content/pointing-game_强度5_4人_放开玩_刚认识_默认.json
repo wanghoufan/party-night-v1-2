@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "刚认识",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3157,
+    "latencyMs": 25739,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,10 +77,10 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "pn-01",
+        "id": "pointing-001",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向今晚笑得最大声的人。如果指到自己，就换成指向离你最近的人。",
+        "content": "请所有人同时用手指向今天让你第一印象最亲切的人。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
@@ -91,78 +93,14 @@
         "source": "ai"
       },
       {
-        "id": "pn-02",
+        "id": "pointing-002",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向你觉得最会讲笑话的人，并说出一个他/她可能讲过的梗。",
+        "content": "请所有人同时用手指向此刻你觉得笑容最放松的人。",
         "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 2,
+        "intensity": 1,
         "tags": [
           "破冰",
-          "表达"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-03",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向今晚最可能主动发起新游戏的人。被指到的人可以立刻发起或跳过。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 2,
-        "tags": [
-          "互动",
-          "选择"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-04",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向你觉得最会照顾别人情绪的人，并对他说一句真诚的夸奖。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 2,
-        "tags": [
-          "温暖",
-          "表达"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-05",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向今晚最可能第一个想回家的人。如果没人想承认，就一起倒数三秒重新指。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 3,
-        "tags": [
-          "互动",
-          "猜测"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-06",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向你认为最会玩这个游戏的人。被指到的人要设计一条新的指人指令，大家执行一轮。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 3,
-        "tags": [
-          "创造",
           "互动"
         ],
         "boundaryTags": [],
@@ -171,62 +109,126 @@
         "source": "ai"
       },
       {
-        "id": "pn-07",
+        "id": "pointing-003",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向今晚你最想多了解一点的人。被指到的人可以用一句话介绍自己，也可以选择跳过。",
+        "content": "请所有人同时用手指向如果组队玩游戏，你最想选为队友的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 2,
+        "tags": [
+          "组队",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-004",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时用手指向今天穿搭颜色最让你眼前一亮的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 2,
+        "tags": [
+          "观察",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-005",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时用手指向刚才发言时你最想接话的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 2,
+        "tags": [
+          "聊天",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-006",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时用手指向此刻坐姿最有派对感觉的人。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 3,
-        "tags": [
-          "了解",
-          "选择"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-08",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向你觉得最会保守秘密的人。被指到的人不用回答，只需微笑或摇头。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 3,
-        "tags": [
-          "互动",
-          "猜测"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-09",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向今晚最可能和你成为朋友的人。被指到的人可以和你击掌或碰拳，也可以拒绝。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 4,
-        "tags": [
-          "社交",
-          "选择"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-10",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向你觉得最会带气氛的人，然后所有人一起为他/她鼓掌五秒。被指到的人可以指定下一轮由谁来指。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 4,
         "tags": [
           "气氛",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-007",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时用手指向你觉得能带动全场气氛的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 3,
+        "tags": [
+          "气氛",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-008",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时用手指向今天说话声音最让你觉得舒服的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 3,
+        "tags": [
+          "感受",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-009",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时用手指向你觉得最有幽默感的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 4,
+        "tags": [
+          "幽默",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-010",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时用手指向如果今晚要选一位最想进一步认识的人，你会选谁。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 5,
+        "tags": [
+          "社交",
           "互动"
         ],
         "boundaryTags": [],

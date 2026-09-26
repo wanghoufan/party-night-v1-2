@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "普通朋友",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4115,
+    "latencyMs": 27127,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "most-likely-01",
+        "id": "ml-001",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在群聊里发一条没人看懂的表情包，然后自己先笑三分钟？",
-        "instruction": "所有人同时指向你心中的人选；被指最多者分享一个自己发过的迷惑表情包。",
+        "content": "谁最可能聚会一开始就讲一个冷场又好笑的笑话？",
+        "instruction": "所有人同时指向最符合的人；票数最多者简单分享理由，也可以跳过。",
         "intensity": 1,
         "tags": [
-          "幽默",
-          "日常"
+          "破冰",
+          "幽默"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,15 +93,111 @@
         "source": "ai"
       },
       {
-        "id": "most-likely-02",
+        "id": "ml-002",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在聚会中途突然提议换个地方继续玩？",
-        "instruction": "所有人同时指向你心中的人选；被指最多者说出一个自己临时起意的计划。",
+        "content": "谁最可能点歌后自己先嗨起来，把气氛带跑偏？",
+        "instruction": "所有人同时指向最符合的人；票数最多者简单分享理由，也可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "气氛",
+          "K歌"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-003",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能说“马上到”，结果大家都到了还在路上？",
+        "instruction": "所有人同时指向最符合的人；票数最多者简单分享理由，也可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "日常",
+          "迟到"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-004",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能玩游戏时认真到像在参加决赛？",
+        "instruction": "所有人同时指向最符合的人；票数最多者简单分享理由，也可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "游戏",
+          "胜负欲"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-005",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在一群人里突然讲一段没头没尾又很好笑的故事？",
+        "instruction": "所有人同时指向最符合的人；票数最多者简单分享理由，也可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "聊天",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-006",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能主动提议下一场聚会，但最后只负责提出想法？",
+        "instruction": "所有人同时指向最符合的人；票数最多者简单分享理由，也可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "聚会",
+          "规划"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-007",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能把零食放在自己手边，然后大方说“大家一起吃”？",
+        "instruction": "所有人同时指向最符合的人；票数最多者简单分享理由，也可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "零食",
+          "嘴硬"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-008",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能笑到停不下来，最后大家都忘了在笑什么？",
+        "instruction": "所有人同时指向最符合的人；票数最多者简单分享理由，也可以跳过。",
         "intensity": 1,
         "tags": [
-          "社交",
-          "性格"
+          "大笑",
+          "传染"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,79 +205,15 @@
         "source": "ai"
       },
       {
-        "id": "most-likely-03",
+        "id": "ml-009",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能记得在场每个人的生日？",
-        "instruction": "所有人同时指向你心中的人选；被指最多者可以点名一位朋友，让对方说出自己的生日月份。",
-        "intensity": 1,
-        "tags": [
-          "友情",
-          "观察"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "most-likely-04",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在看电影时第一个睡着？",
-        "instruction": "所有人同时指向你心中的人选；被指最多者分享自己最近一次看电影睡着的经历。",
-        "intensity": 2,
-        "tags": [
-          "幽默",
-          "生活"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "most-likely-05",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能因为一句歌词突然开始讲一段人生道理？",
-        "instruction": "所有人同时指向你心中的人选；被指最多者用一句歌词总结自己的本周状态。",
-        "intensity": 2,
-        "tags": [
-          "性格",
-          "音乐"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "most-likely-06",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在旅行时把行程表做得像一本说明书？",
-        "instruction": "所有人同时指向你心中的人选；被指最多者说出自己旅行必带的一件物品。",
-        "intensity": 2,
-        "tags": [
-          "旅行",
-          "习惯"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "most-likely-07",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在被问“你还好吗”时，先回答“我没事”然后开始倒苦水？",
-        "instruction": "所有人同时指向你心中的人选；被指最多者用一个词形容自己最近的心情。",
+        "content": "谁最可能用一本正经的表情说出最离谱的一句话？",
+        "instruction": "所有人同时指向最符合的人；票数最多者简单分享理由，也可以跳过。",
         "intensity": 3,
         "tags": [
-          "情绪",
-          "社交"
+          "反差",
+          "幽默"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -187,47 +221,15 @@
         "source": "ai"
       },
       {
-        "id": "most-likely-08",
+        "id": "ml-010",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能为了追一部剧熬到天亮？",
-        "instruction": "所有人同时指向你心中的人选；被指最多者说出自己最上头的一部剧名。",
-        "intensity": 3,
-        "tags": [
-          "娱乐",
-          "习惯"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "most-likely-09",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在朋友遇到麻烦时，二话不说先帮忙再问原因？",
-        "instruction": "所有人同时指向你心中的人选；被指最多者可以指定一位朋友，互相说一句真心的感谢。",
-        "intensity": 3,
-        "tags": [
-          "友情",
-          "性格"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "most-likely-10",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能把一件小事记很久，然后在某天突然提起？",
-        "instruction": "所有人同时指向你心中的人选；被指最多者分享一件自己记了很久的小事。",
+        "content": "谁最可能把全场气氛推到最嗨，然后自己先安静下来？",
+        "instruction": "所有人同时指向最符合的人；票数最多者简单分享理由，也可以跳过。",
         "intensity": 4,
         "tags": [
-          "回忆",
-          "性格"
+          "气氛",
+          "反差"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

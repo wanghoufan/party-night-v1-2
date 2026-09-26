@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "熟人局",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4130,
+    "latencyMs": 17171,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,16 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "mnl-001",
+        "id": "ml-01",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在聚会上第一个主动打开话题？",
-        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人分享一件最近发生的小事。",
+        "content": "谁最可能聚会一开始就主动找话题？",
+        "instruction": "所有人倒数三秒后同时指向一个人；被指到的人可补充一句理由，也可以选择跳过。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "社交"
+          "轻松",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,15 +94,16 @@
         "source": "ai"
       },
       {
-        "id": "mnl-002",
+        "id": "ml-02",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能记住在场每个人的名字和喜好？",
-        "instruction": "所有人同时指认，被指最多的人可以指定下一位提问者。",
+        "content": "谁最可能讲冷笑话，结果自己先笑到停不下来？",
+        "instruction": "所有人同时指向最符合的人；不想投票或不想被点名都可以跳过。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "观察力"
+          "搞笑",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,15 +111,16 @@
         "source": "ai"
       },
       {
-        "id": "mnl-003",
+        "id": "ml-03",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在陌生场合迅速交到新朋友？",
-        "instruction": "所有人同时指认，被指最多的人说一个自己常用的开场白。",
+        "content": "谁最可能旅行前做一份超详细攻略？",
+        "instruction": "所有人同时指向一个人；被指到的人可以分享一个旅行小习惯，也可以跳过。",
         "intensity": 2,
         "tags": [
-          "破冰",
-          "社交"
+          "旅行",
+          "习惯",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -123,15 +128,84 @@
         "source": "ai"
       },
       {
-        "id": "mnl-004",
+        "id": "ml-04",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能为了追一部剧熬夜到天亮？",
-        "instruction": "所有人同时指认，被指最多的人分享一部最近在追的作品。",
+        "content": "谁最可能看剧时忍不住先看结局？",
+        "instruction": "所有人同时指向一个人；被指到的人可回应“认了”或“冤枉”，也可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "追剧",
+          "习惯",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-05",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能点菜时纠结最久？",
+        "instruction": "所有人同时指向一个人；如果票数分散，就由得票最多的人说一句感想，也可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "吃饭",
+          "选择困难",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-06",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能玩游戏输了立刻要求再来一局？",
+        "instruction": "所有人同时指向一个人；被指到的人可接受挑战或直接跳过。",
+        "intensity": 3,
+        "tags": [
+          "游戏",
+          "胜负欲",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-07",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能半夜突然想吃夜宵？",
+        "instruction": "所有人同时指向一个人；被指到的人可以报一个想吃的夜宵，也可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "夜宵",
+          "生活",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-08",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能把闹钟按掉继续睡？",
+        "instruction": "所有人同时指向一个人；被指到的人可解释一次赖床经历，也可以跳过。",
         "intensity": 2,
         "tags": [
           "日常",
-          "娱乐"
+          "习惯",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -139,15 +213,16 @@
         "source": "ai"
       },
       {
-        "id": "mnl-005",
+        "id": "ml-09",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在旅行时把行程安排得井井有条？",
-        "instruction": "所有人同时指认，被指最多的人简单说说自己旅行前必做的一件事。",
+        "content": "谁最可能记得身边朋友的生日？",
+        "instruction": "所有人同时指向一个人；被指到的人可点头或摇头，不需要说出任何人的生日。",
         "intensity": 2,
         "tags": [
-          "日常",
-          "旅行"
+          "朋友",
+          "细节",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -155,79 +230,16 @@
         "source": "ai"
       },
       {
-        "id": "mnl-006",
+        "id": "ml-10",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在群里发消息后没人回复还继续发？",
-        "instruction": "所有人同时指认，被指最多的人模仿一次自己发消息的语气。",
-        "intensity": 3,
+        "content": "谁最可能看恐怖片时捂住眼睛，又从指缝里偷看？",
+        "instruction": "所有人同时指向一个人；被指到的人可模仿一下动作，也可以直接跳过。",
+        "intensity": 2,
         "tags": [
-          "社交",
-          "幽默"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mnl-007",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在看电影时第一个猜出结局？",
-        "instruction": "所有人同时指认，被指最多的人分享一部自己猜中结局的电影。",
-        "intensity": 3,
-        "tags": [
-          "娱乐",
-          "观察力"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mnl-008",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在聚会结束后主动收拾场地？",
-        "instruction": "所有人同时指认，被指最多的人可以指定两个人一起完成一个简单的模仿动作。",
-        "intensity": 3,
-        "tags": [
-          "破冰",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mnl-009",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在点外卖时纠结超过十分钟？",
-        "instruction": "所有人同时指认，被指最多的人说出自己最常点的一道菜。",
-        "intensity": 4,
-        "tags": [
-          "日常",
-          "幽默"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mnl-010",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在朋友需要帮助时第一个出现？",
-        "instruction": "所有人同时指认，被指最多的人接受大家的一句真诚夸奖。",
-        "intensity": 5,
-        "tags": [
-          "破冰",
-          "情感"
+          "电影",
+          "反应",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

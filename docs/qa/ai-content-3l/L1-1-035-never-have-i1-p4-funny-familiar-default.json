@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L1-1-035-never-have-i1-p4-funny-familiar-default",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 35,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "minPlayers": 2,
+    "intensity": 1,
+    "players": 4,
+    "vibeKey": "funny",
+    "vibeLabel": "搞笑",
+    "relationshipKey": "familiar",
+    "relationshipLabel": "熟人局",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-035-never-have-i1-p4-funny-familiar-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "熟人局",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：熟人局；氛围：搞笑；最高强度：1。\n可用玩法：never-have。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4507,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "nh-01",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有在视频会议里假装网络卡顿，其实只是想偷偷关掉摄像头。",
+        "instruction": "符合的人举手或喊“我做过”，不符合的人可以随意吐槽。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "职场"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-02",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有把外卖备注写成过离谱要求，比如“请画一只小恐龙”。",
+        "instruction": "做过的人举手，并简单讲讲外卖小哥的回复。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-03",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有在商场里认错人，热情地拍完对方肩膀才发现根本不认识。",
+        "instruction": "做过的人举手，其他人可以模仿当时的尴尬表情。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "社死"
+        ],
+        "boundaryTags": [
+          "physical-contact"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-04",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有为了凑满减，点过自己根本吃不完的外卖。",
+        "instruction": "做过的人举手，并报出当时点了几人份。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-05",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有在KTV里唱过一首自己完全不会的歌，全靠念歌词混过去。",
+        "instruction": "做过的人举手，可以现场清唱一句最心虚的歌词。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "聚会"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-06",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有把闹钟设成一串间隔五分钟的连环闹钟，最后还是迟到。",
+        "instruction": "做过的人举手，并说说自己最多设过几个闹钟。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-07",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有在电梯里对着镜子偷偷练习过微笑或表情。",
+        "instruction": "做过的人举手，其他人可以投票选出最像“电梯影帝”的人。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "社死"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-08",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有把快递收件人姓名改成过奇怪的名字，比如“宇宙无敌收件侠”。",
+        "instruction": "做过的人举手，并念出自己用过的收件人名字。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-09",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有在朋友圈发完内容后，五分钟内删掉，因为越想越后悔。",
+        "instruction": "做过的人举手，不用透露具体内容，只需描述当时的心情。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-10",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有在自助餐里假装很能吃，结果第二轮就饱到走不动。",
+        "instruction": "做过的人举手，其他人可以评选“最速饱腹奖”。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "美食"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4507ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=never-have"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 1"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（never-have）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4507ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

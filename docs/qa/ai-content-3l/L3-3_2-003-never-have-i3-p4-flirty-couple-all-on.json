@@ -1,0 +1,334 @@
+{
+  "cell": {
+    "id": "L3-3_2-003-never-have-i3-p4-flirty-couple-all-on",
+    "layer": "L3",
+    "group": "3.2",
+    "title": "强度单调 I3",
+    "seq": 3,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "minPlayers": 2,
+    "intensity": 3,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "couple",
+    "relationshipLabel": "情侣 / 暧昧",
+    "boundaryFlags": {
+      "noPhysicalContact": true,
+      "noAlcoholPenalty": true,
+      "noExPartners": true,
+      "noSexualHistory": true,
+      "noMoneyIncome": true,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": true,
+      "noSocialAccounts": true
+    },
+    "boundaryLabel": "全开",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": "3.2-never-have-flirty-couple-p4",
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L3-3_2-003-never-have-i3-p4-flirty-couple-all-on",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "情侣 / 暧昧",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：情侣 / 暧昧；氛围：暧昧；最高强度：3。\n可用玩法：never-have。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4035,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "nh-01",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聚会上偷偷观察某个人的表情，只为了判断对方是否也对我有同样的好感。",
+        "instruction": "有过的人请举起手或点头；没有的人可以跳过或保持沉默。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-02",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未给某个人发过一条反复修改了好几次、最后又删掉的消息。",
+        "instruction": "有过的人请举手；愿意分享删掉前最后一句话的人可以简短说说，不想说就跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "犹豫"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-03",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聊天时故意把回复延后几分钟，只为了显得自己不那么在意。",
+        "instruction": "有过的人请举手；没有的人可以摇头或跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "小心思"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-04",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未因为某个人随口的一句话，偷偷开心或失落了一整个下午。",
+        "instruction": "有过的人请举手；愿意的人可以用一句话描述当时的心情，不想说就跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "情绪"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-05",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在人群里下意识寻找某个人的身影，找到后又假装只是随便看看。",
+        "instruction": "有过的人请举手；没有的人可以摇头或跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "视线"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-06",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在道别之后，又回头看了一眼某个人的方向。",
+        "instruction": "有过的人请举手；愿意的人可以指一下当时大概的场景，不想说就跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "离别"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-07",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聊天框里打过一句很认真、很直接的话，然后又全部删掉换成轻松的玩笑。",
+        "instruction": "有过的人请举手；没有的人可以摇头或跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "真心话"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-08",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未因为某个人对我多笑了一下，就在心里排练过下一次见面的开场白。",
+        "instruction": "有过的人请举手；愿意的人可以分享开场白里的一句话，不想说就跳过。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "期待"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-09",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在听到某首歌的时候，第一个想到的是某个特定的人。",
+        "instruction": "有过的人请举手；愿意的人可以只说歌名，不必解释原因，不想说就跳过。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "音乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-10",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在心里给某个人留过一个特别的位置，却一直没有说出口。",
+        "instruction": "有过的人请举手；然后可以选择对在场某个人说一句不涉及隐私的真心话，也可以选择跳过。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "心事"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4035ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=never-have"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 3"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [physical-contact,alcohol,ex-partner,sexual-history,money,phone-privacy,public-posting,stranger-contact,photo-video,social-account] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（never-have）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4035ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

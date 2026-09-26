@@ -399,6 +399,21 @@ export interface V2OrchestrationState {
   finished: boolean;
   /** 幂等账本：key = sessionId + '::' + 决策后 exhaustionCycle。 */
   hostDecisions: Record<string, V2HostDecisionRecord>;
+  /**
+   * R-CB6｜最近一次**已展示**的定向轮目标 pair（非定向轮 / 尚未出卡 = `null`）。
+   *
+   * 这是 Single-Anchor Guard 的唯一曝光输入（「上张已展示的 targeted card 是否涉及 anchor」），
+   * 语义等同 D7 的 `CARD_PRESENTED` 即 offered：展示即记，不看 completed / skipped 终态，
+   * 所以 targeted 展示后紧跟 skip，Guard 依然生效。
+   *
+   * 边界：
+   * - **可选、带默认值**：旧 Session 缺该字段一律按 `null`（无曝光）处理，向后兼容、不需要迁移；
+   * - 只是一个标量展示事实，不是第二套 Fairness State —— Coverage 仍只认 `relationship.playerCoverage`；
+   * - 不写回 `RelationshipState`；与 reducer 的 Coverage 计数时机解耦（reducer 仍在
+   *   `REL_CARD_COMPLETED` / `REL_CARD_SKIPPED` 才写 `offeredTargeted`，本字段不改它）；
+   * - 仅本地 Relationship Engine 可见：不进 AI payload / prompt / 日志 / 导出（R-CB10）。
+   */
+  lastTargetedPairKey?: string | null;
 }
 
 /** 与 v2-exhaustion 的 ExhaustionLevel 同值域（本文件不 import 控制器，避免循环）。 */
@@ -428,4 +443,6 @@ export const v2OrchestrationStateSchema = z.object({
   ]),
   finished: z.boolean(),
   hostDecisions: z.record(z.string(), v2HostDecisionRecordSchema),
+  // R-CB6：可选字段，旧 Session 缺省即可（缺省 = 无曝光），不需要迁移。
+  lastTargetedPairKey: z.string().nullable().optional(),
 });

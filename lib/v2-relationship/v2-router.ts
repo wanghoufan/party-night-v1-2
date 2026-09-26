@@ -18,6 +18,8 @@
  * Pair 目标 gating（R4 / D4）：
  * - `targetPairKey === null`（中性 / 无合法男女 pair 的普通玩法降级）：只出 `all-players` 卡，
  *   pair/MATCH/私密互选类卡一律不可出 —— 降级局不跑 Pair Routing、MATCH 与 5 档专属。
+ * - `requireNonTargetedOpportunity === true`（R-CB6 Single-Anchor Guard 的非定向轮）：同样只出
+ *   `all-players` 卡（与上一行的判断同一 targetMode 口径，不新增卡类型体系）。
  * - `targetPairKey !== null`：额外开放定向 pair 卡；`match-pair`（matchRequired）卡
  *   只在 relationship.matches 里已有该 pair 的 MATCH 时才可出。
  */
@@ -75,6 +77,8 @@ function minPlayersForCard(card: V13MainlineCard): number {
 /** pair / 全桌目标 gating（D4 降级：无合法 pair 只出全桌卡）。 */
 function isTargetEligible(card: V13MainlineCard, input: V2RouterInput): boolean {
   if (card.targetMode === ALL_PLAYERS_TARGET_MODE) return true;
+  // R-CB6｜Single-Anchor Guard 的非定向轮：只许 all-players，定向 pair 卡一律不出（沿用同一 targetMode 口径，不另立类型）。
+  if (input.requireNonTargetedOpportunity === true) return false;
   if (input.targetPairKey === null) return false;
   if (card.targetMode === MATCH_TARGET_MODE) {
     return input.relationship.matches[input.targetPairKey] !== undefined;

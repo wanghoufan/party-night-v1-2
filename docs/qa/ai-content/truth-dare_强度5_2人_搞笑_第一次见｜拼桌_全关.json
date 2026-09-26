@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "第一次见 / 拼桌",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4217,
+    "latencyMs": 26351,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,162 +77,130 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "td-001",
+        "id": "pn-td-01",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你人生中做过最丢脸、但事后想起来最好笑的一件事是什么？",
-        "instruction": "轮流回答，其他人可以追问细节，但答题者可以随时跳过。",
+        "content": "如果这场拼桌是一部低成本喜剧，你觉得自己拿到的角色名是什么？请配一句出场台词。",
+        "instruction": "由对方指定一人回答；不想答可以跳过，不必解释。",
         "intensity": 1,
-        "tags": [
-          "搞笑",
-          "破冰"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "td-002",
+        "id": "pn-td-02",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "用你最夸张的播音腔，介绍旁边这位嘉宾的“隐藏身份”，比如“来自火星的泡面鉴赏家”。",
-        "instruction": "介绍不超过30秒，被介绍的嘉宾可以喊停。",
+        "content": "用播报天气预报的口气，播报“本桌未来十分钟的情绪天气”。",
+        "instruction": "由对方指定一人完成；不想做可以跳过，不必解释。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-03",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近一次笑到停不下来是因为什么？只讲20秒版本，可以省略丢脸细节。",
+        "instruction": "由对方指定一人回答；不想答可以跳过，不必解释。",
         "intensity": 2,
-        "tags": [
-          "搞笑",
-          "表演"
-        ],
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-04",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "模仿一位你熟悉的老师或长辈催你交作业，但台词里每个名词都要用食物名代替。",
+        "instruction": "由对方指定一人完成；不想做可以跳过，不必解释。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-05",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果必须用一种食物形容你现在的社交电量，你是什么食物？为什么？",
+        "instruction": "由对方指定一人回答；不想答可以跳过，不必解释。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-06",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个词夸对方，但每个词都要听起来像在夸又像在损，最后补一句真诚的。",
+        "instruction": "由对方指定一人完成；不想做可以跳过，不必解释。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-07",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最想拥有哪种毫无用处但很酷的超能力？现场演示一下使用它的姿势。",
+        "instruction": "由对方指定一人回答；不想答可以跳过，不必解释。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-08",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和对方轮流说一个“我从来没做过”的离谱但无害小事，例如“我从来没把袜子穿反出门”。接不上的人做一个夸张的震惊表情。",
+        "instruction": "两人一起完成；任何一方可随时跳过，不必解释。",
+        "intensity": 2,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "pair",
         "source": "ai"
       },
       {
-        "id": "td-003",
+        "id": "pn-td-09",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "如果给你一个完全不会尴尬的超能力，你最想用来做什么恶作剧？",
-        "instruction": "回答后，其他嘉宾可以投票选出最离谱的答案。",
+        "content": "如果给对方起一个只在今晚使用的搞笑外号，你会叫什么？为什么？",
+        "instruction": "由对方指定一人回答；不想答可以跳过，不必解释。",
         "intensity": 1,
-        "tags": [
-          "搞笑",
-          "脑洞"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "td-004",
+        "id": "pn-td-10",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "模仿一种动物，并让其他嘉宾猜是什么，猜错的人要学这个动物叫一声。",
-        "instruction": "模仿时不能说话，最多表演20秒。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "模仿"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "td-005",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "你手机相册里最新一张截图是什么内容？如果不想展示，可以用一句话描述。",
-        "instruction": "只描述或展示自己愿意分享的部分，涉及隐私可以跳过。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "分享"
-        ],
-        "boundaryTags": [
-          "phone-privacy"
-        ],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "td-006",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "用三个表情包动作，表演你今天从起床到出门的完整流程。",
-        "instruction": "动作要连贯，其他人负责配音。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "表演"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "td-007",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "你最近一次笑到肚子疼是因为什么？请还原现场。",
-        "instruction": "可以用语言和表情还原，不必真的笑到肚子疼。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "故事"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "td-008",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "给其他嘉宾分别起一个“今晚专属外号”，并说出理由，理由必须夸赞对方。",
-        "instruction": "外号要友好搞笑，不能涉及外貌羞辱或隐私。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "td-009",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "如果今晚的聚会要拍成一部电影，你觉得片名和类型会是什么？为什么？",
-        "instruction": "其他嘉宾可以补充海报标语。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "创意"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "td-010",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "用最正经的语气，朗读一段你即兴编的“泡面说明书”，要包含三个步骤和一个警告。",
-        "instruction": "朗读不超过40秒，内容必须健康无害。",
+        "content": "用颁奖典礼的语气，给对方颁发一个“本桌最____奖”，奖项名和理由都要离谱但友好。",
+        "instruction": "由对方指定一人完成；不想做可以跳过，不必解释。",
         "intensity": 3,
-        "tags": [
-          "搞笑",
-          "即兴"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",

@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 32,
+    "packId": "would-you-rather",
+    "packName": "二选一",
+    "origin": "base",
+    "intensity": 3,
+    "players": 6,
+    "vibe": {
+      "key": "flirty",
+      "label": "暧昧"
+    },
+    "relationship": {
+      "key": "friends",
+      "label": "普通朋友"
+    },
+    "boundary": {
+      "mode": "all-on",
+      "label": "全开",
+      "flags": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "would-you-rather"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：普通朋友；氛围：暧昧；最高强度：3。\n可用玩法：would-you-rather。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3794,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "wnr-1",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "在深夜的便利店里，和喜欢的人共撑一把伞走回家 VS 在周末的午后，和喜欢的人并肩坐在公园长椅上各自看书",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wnr-2",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "收到一条只有你懂的深夜语音 VS 收到一封手写的、夹在书里的便签",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "文字"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wnr-3",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "和喜欢的人一起养一盆总是忘记浇水的绿植 VS 和喜欢的人一起拼一幅永远差最后一块的拼图",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "共同小事"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wnr-4",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "对方记得你随口提过的小愿望并悄悄实现 VS 对方在你低落时什么都不说，只是安静陪在旁边",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "默契"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wnr-5",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "在人群里，和喜欢的人对上三秒不移开的目光 VS 在安静的房间，和喜欢的人同时说出同一句话",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "瞬间"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wnr-6",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "和喜欢的人分享一副耳机，各听一边 VS 和喜欢的人交换外套，各穿一天",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wnr-7",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "在聊天框里打了一大段话又全部删掉，只发一个表情 VS 把想说的话录成一段语音，却设置成仅自己可见",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "犹豫"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wnr-8",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "和喜欢的人约好一起看一场日出，哪怕要早起 VS 和喜欢的人约好一起看一场午夜场电影，哪怕会困",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "约定"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wnr-9",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "对方在聚会上悄悄替你挡掉一个不想回答的问题 VS 对方在散场后陪你多走一段路，只为了把话说完",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "照顾"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wnr-10",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "和喜欢的人把暧昧停在最心动的那一刻，永远不说破 VS 和喜欢的人把暧昧推向明确，哪怕结果未知",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "选择"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

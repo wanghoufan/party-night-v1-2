@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "很熟",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3545,
+    "latencyMs": 25655,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,12 +80,12 @@
         "id": "wyr-001",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "每次聚会都负责选餐厅和点菜 VS 每次聚会都负责拍照和整理照片",
+        "content": "瞬间掌握所有动物的语言，能和它们聊天 VS 瞬间掌握所有人类的语言，能和任何人交流",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
-          "日常",
-          "选择"
+          "语言",
+          "想象"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -94,12 +96,12 @@
         "id": "wyr-002",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "拥有读心术，但只能读最熟的人 VS 拥有隐身术，但每天只能用十分钟",
+        "content": "周末去一座从未去过的城市闲逛 VS 周末待在家把想看的剧一次看完",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 2,
+        "intensity": 1,
         "tags": [
-          "脑洞",
-          "超能力"
+          "周末",
+          "消遣"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -110,12 +112,12 @@
         "id": "wyr-003",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "未来一年所有外卖都只能点同一家 VS 未来一年所有饮料都只能喝白开水",
+        "content": "每天可以隐身一小时 VS 每天可以飞行十分钟",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 1,
+        "intensity": 2,
         "tags": [
-          "生活",
-          "忍耐"
+          "超能力",
+          "趣味"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -126,11 +128,11 @@
         "id": "wyr-004",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "能瞬间学会任何一门乐器 VS 能瞬间学会任何一门语言",
+        "content": "未来一年只能吃火锅 VS 未来一年只能吃烧烤",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 2,
         "tags": [
-          "技能",
+          "美食",
           "选择"
         ],
         "boundaryTags": [],
@@ -142,12 +144,12 @@
         "id": "wyr-005",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "每次旅行都坐头等舱但只能去一个城市 VS 每次旅行都坐经济舱但可以环游世界",
+        "content": "能记住所有读过的书 VS 能记住所有听过的歌",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 2,
+        "intensity": 3,
         "tags": [
-          "旅行",
-          "取舍"
+          "记忆",
+          "兴趣"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -158,12 +160,12 @@
         "id": "wyr-006",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "永远不用排队，但每次都要提前两小时出门 VS 永远可以睡到自然醒，但每次约会都迟到十分钟",
+        "content": "这辈子永远不用排队 VS 这辈子永远不会堵车",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 2,
         "tags": [
-          "时间",
-          "日常"
+          "日常",
+          "便利"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -174,12 +176,12 @@
         "id": "wyr-007",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "只能和熟人组队玩任何游戏 VS 只能和陌生人组队玩任何游戏",
+        "content": "每天效率翻倍，但必须早起 VS 每天灵感爆棚，但经常熬夜",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 3,
         "tags": [
-          "社交",
-          "选择"
+          "习惯",
+          "效率"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -190,12 +192,12 @@
         "id": "wyr-008",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "余生只能吃甜食 VS 余生只能吃辣食",
+        "content": "以后只能看经典老片 VS 以后只能看最新上映",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 1,
+        "intensity": 2,
         "tags": [
-          "饮食",
-          "脑洞"
+          "影视",
+          "娱乐"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -206,12 +208,12 @@
         "id": "wyr-009",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "拥有一个永远整洁的房间，但必须每天整理一小时 VS 拥有一个永远混乱的房间，但每天多出一小时自由时间",
+        "content": "每天能暂停时间十分钟，但自己也不能动 VS 每天能倒带三十秒，但一天只能用一次",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 2,
+        "intensity": 4,
         "tags": [
-          "生活",
-          "时间"
+          "时间",
+          "超能力"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -222,12 +224,12 @@
         "id": "wyr-010",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "能预知明天所有小事，但大事完全不知道 VS 能预知明天所有大事，但小事完全不知道",
+        "content": "人生可以重播任意一天 VS 人生可以快进到任意未来节点",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 3,
+        "intensity": 5,
         "tags": [
-          "脑洞",
-          "未来"
+          "人生",
+          "想象"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

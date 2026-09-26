@@ -1,0 +1,334 @@
+{
+  "cell": {
+    "id": "L1-1-008-truth-dare-i4-p6-icebreaker-close-default",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 8,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "minPlayers": 2,
+    "intensity": 4,
+    "players": 6,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "close",
+    "relationshipLabel": "很熟",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-008-truth-dare-i4-p6-icebreaker-close-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "很熟",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 4,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：很熟；氛围：破冰；最高强度：4。\n可用玩法：truth-dare。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4658,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-ice-01",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "说出你最近一次因为小事开心一整天的经历。",
+        "instruction": "由主持人指定一位嘉宾回答；回答前可以先想十秒，不想说可跳过。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-ice-02",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三种不同的语气说一句“今晚很高兴见到大家”。",
+        "instruction": "面向全体完成，语气由其他嘉宾轮流指定；感到尴尬可随时跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-ice-03",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果明天可以多出一小时完全属于自己的时间，你最想用来做什么？",
+        "instruction": "主持人随机抽一位嘉宾回答，其他人不能追问私人细节。",
+        "intensity": 1,
+        "tags": [
+          "想象",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-ice-04",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "模仿一种你熟悉的动物叫声，让其他嘉宾猜是什么动物。",
+        "instruction": "限时二十秒，猜中即结束；不想模仿可以改用描述方式代替。",
+        "intensity": 2,
+        "tags": [
+          "互动",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-ice-05",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "说出一件你一直想尝试但还没开始的小爱好。",
+        "instruction": "由左边第一位嘉宾提问并指定回答者；回答者可以只分享名称，不解释原因。",
+        "intensity": 2,
+        "tags": [
+          "兴趣",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-ice-06",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和身边一位嘉宾合作，用三个词编一个关于今晚的迷你故事。",
+        "instruction": "两人轮流各说一个词，第三人补充最后一个词；不涉及任何私人信息。",
+        "intensity": 2,
+        "tags": [
+          "合作",
+          "创意"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-ice-07",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最喜欢的一部电影或一首歌是什么？用一句话说明理由。",
+        "instruction": "主持人指定回答者，其他人不能评价或追问；可跳过。",
+        "intensity": 2,
+        "tags": [
+          "兴趣",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-ice-08",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用不常用的那只手在纸上写下一句给今晚的祝福，并展示给一位嘉宾看。",
+        "instruction": "只展示给指定的一位嘉宾，不拍照、不发布；写不好也可以直接口述。",
+        "intensity": 3,
+        "tags": [
+          "挑战",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-ice-09",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "在你看来，一个让人放松的聚会最重要的是什么？",
+        "instruction": "全体嘉宾依次用一句话回答，也可以选择跳过；不评价他人答案。",
+        "intensity": 3,
+        "tags": [
+          "讨论",
+          "氛围"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-ice-10",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "选一位嘉宾，用夸张的播音腔为他/她念一段你现场编的“今晚之星”颁奖词。",
+        "instruction": "颁奖词只能围绕今晚的公开表现，不涉及外貌、隐私或身份信息；被选中的嘉宾可以拒绝。",
+        "intensity": 4,
+        "tags": [
+          "表演",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4658ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=truth-dare"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 4"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤6"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（truth-dare）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4658ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

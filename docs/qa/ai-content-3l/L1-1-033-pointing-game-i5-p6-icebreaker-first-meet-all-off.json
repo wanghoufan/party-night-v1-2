@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L1-1-033-pointing-game-i5-p6-icebreaker-first-meet-all-off",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 33,
+    "packId": "pointing-game",
+    "packName": "指人游戏",
+    "minPlayers": 3,
+    "intensity": 5,
+    "players": 6,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": false,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": false,
+      "noPublicPosting": false,
+      "noStrangerContact": false,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "全关",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-033-pointing-game-i5-p6-icebreaker-first-meet-all-off",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "pointing-game"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：第一次见 / 拼桌；氛围：破冰；最高强度：5。\n可用玩法：pointing-game。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 6053,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pg-001",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向今晚你最想第一个认识的人。",
+        "instruction": "被指到的人向大家做一个简短的自我介绍。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "认识"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pg-002",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向你觉得笑容最亲切的人。",
+        "instruction": "被指到的人分享一个让自己开心的小习惯。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pg-003",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向你最想和TA拼桌聊天的人。",
+        "instruction": "两人互相说一个最近觉得有趣的小事。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "交流"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pg-004",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向你猜最会讲冷笑话的人。",
+        "instruction": "被指到的人讲一个冷笑话，不想讲可跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "幽默"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pg-005",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向你觉得今天穿搭最用心的人。",
+        "instruction": "被指到的人说说今天穿搭的一个小想法。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "赞美"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pg-006",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向你认为最有可能第一个打破沉默的人。",
+        "instruction": "被指到的人向任意一位嘉宾提一个轻松问题。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pg-007",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向你觉得最会照顾别人感受的人。",
+        "instruction": "被指到的人分享一个让聚会更舒服的小建议。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "共情"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pg-008",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向你最想组队完成一个小挑战的人。",
+        "instruction": "两人一起想一个不用道具的默契小动作并展示。",
+        "intensity": 3,
+        "tags": [
+          "破冰",
+          "合作"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pg-009",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向你猜最有可能去过很多地方旅行的人。",
+        "instruction": "被指到的人简单说一个印象深刻的旅行片段。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pg-010",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向今晚你最想再见到的人。",
+        "instruction": "被指到的人对大家说一句今晚的结束语。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "收尾"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 6053ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=pointing-game"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [无] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤6"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（pointing-game）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "6053ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 9/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

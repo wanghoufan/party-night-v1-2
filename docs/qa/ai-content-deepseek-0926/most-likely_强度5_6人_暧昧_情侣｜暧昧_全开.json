@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 17,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "origin": "base",
+    "intensity": 5,
+    "players": 6,
+    "vibe": {
+      "key": "flirty",
+      "label": "暧昧"
+    },
+    "relationship": {
+      "key": "couple",
+      "label": "情侣 / 暧昧"
+    },
+    "boundary": {
+      "mode": "all-on",
+      "label": "全开",
+      "flags": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "情侣 / 暧昧",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：情侣 / 暧昧；氛围：暧昧；最高强度：5。\n可用玩法：most-likely。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3679,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "most-likely-1",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易在心动时先移开视线？",
+        "instruction": "全场同时指向一个人；被指最多者分享一个不涉及隐私的小反应，也可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "most-likely-2",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易把关心藏在玩笑里？",
+        "instruction": "全场同时指向一个人；被指最多者用一个词形容自己表达关心的方式。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "表达"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "most-likely-3",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易因为一句晚安反复回想？",
+        "instruction": "全场同时指向一个人；被指最多者说说自己会不会在意晚安的语气。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "心动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "most-likely-4",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易在聊天时故意晚一点回复？",
+        "instruction": "全场同时指向一个人；被指最多者选择回答“会”或“不会”，不解释也可以。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "most-likely-5",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易记住对方随口提过的小喜好？",
+        "instruction": "全场同时指向一个人；被指最多者说出一种自己会记住的小喜好类型，不涉及具体隐私。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "细节"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "most-likely-6",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易在人群里偷偷寻找某个人的身影？",
+        "instruction": "全场同时指向一个人；被指最多者用一个动作或表情表示“被发现了”，也可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "眼神"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "most-likely-7",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易把“随便”说成一种期待？",
+        "instruction": "全场同时指向一个人；被指最多者用一句话把“随便”翻译成真实想法，不涉及隐私。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "默契"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "most-likely-8",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易因为对方靠近一点就紧张？",
+        "instruction": "全场同时指向一个人；被指最多者说说自己紧张时会做什么小动作，不涉及身体接触。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "距离"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "most-likely-9",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易在暧昧期先主动找话题？",
+        "instruction": "全场同时指向一个人；被指最多者分享一个安全的话题开场方式。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "主动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "most-likely-10",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易把喜欢写成只有自己懂的暗号？",
+        "instruction": "全场同时指向一个人；被指最多者说一个不涉及隐私的“暗号”类型，也可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "暗号"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

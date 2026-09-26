@@ -115,9 +115,11 @@ export function diffPlayerRoster(
   return { exited, away, returned };
 }
 
-/** 全部合法无向边（pairKey，升序去重）：R4 §2.2 pair pool。 */
+/** 全部合法无向边（pairKey，升序去重）：R4 §2.2 pair pool。
+ *  显式传空 Coverage（第 5 参）：本函数只枚举合法边集合，不参与 Coverage 软排序，
+ *  行为与改动前逐条一致。 */
 export function eligiblePairKeys(participants: readonly SessionParticipant[]): string[] {
-  return rankPairs([...participants], {}, new Set(), {});
+  return rankPairs([...participants], {}, new Set(), {}, {});
 }
 
 /** pair pool 是否为空 → ACTIVE / NO_ELIGIBLE_PAIR（含单目标性别、全员未选、人数不足）。 */

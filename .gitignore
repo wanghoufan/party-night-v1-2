@@ -19,3 +19,5 @@ USER_MODEL_OVERRIDE.md
 
 # 项目临时材料（不入仓、不参与后续处理）
 temp/
+# 根目录转送提示词记录：内容与 temp/ 内 MD 同源，且逐轮过期，只放 temp/ 不入仓
+/agent.md

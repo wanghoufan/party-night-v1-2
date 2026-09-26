@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "熟人局",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3386,
+    "latencyMs": 20444,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "wyr-1",
+        "id": "wyr-01",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "深夜一起走一段安静的路，谁都不说话 VS 在热闹的聚会上，隔着人群对视三秒",
+        "content": "互相看一眼就忍不住笑出来 VS 同时说出同一句口头禅",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "氛围"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,15 +93,15 @@
         "source": "ai"
       },
       {
-        "id": "wyr-2",
+        "id": "wyr-02",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "收到一条只写了你名字的深夜消息 VS 收到一张没有文字、只有风景的照片",
+        "content": "收到一句只你能听懂的晚安 VS 对方还记得你随口提过的小事",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "猜测"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,15 +109,15 @@
         "source": "ai"
       },
       {
-        "id": "wyr-3",
+        "id": "wyr-03",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "对方记得你随口提过的小习惯 VS 对方突然问你一个从没问过的问题",
+        "content": "聚会结束后顺路一起走一段 VS 到家后收到一条“到了吗”",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "了解"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -123,15 +125,15 @@
         "source": "ai"
       },
       {
-        "id": "wyr-4",
+        "id": "wyr-04",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "并肩坐着各看各的，偶尔肩膀碰到 VS 面对面坐着聊天，谁先移开视线谁输",
+        "content": "并肩坐着时悄悄靠近一点点 VS 玩一个需要对视五秒的小游戏",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "距离"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -139,15 +141,15 @@
         "source": "ai"
       },
       {
-        "id": "wyr-5",
+        "id": "wyr-05",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "被夸今天有点不一样 VS 被问今天是不是有心事",
+        "content": "对方记得你喜欢的饮料 VS 对方把最后一颗糖留给你",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "关心"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -155,15 +157,15 @@
         "source": "ai"
       },
       {
-        "id": "wyr-6",
+        "id": "wyr-06",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "一起听一首很慢的歌，谁都不切歌 VS 一起看一部老电影，谁都不快进",
+        "content": "偶尔安静地对视一下 VS 轻轻开玩笑互相打趣",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "陪伴"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -171,15 +173,15 @@
         "source": "ai"
       },
       {
-        "id": "wyr-7",
+        "id": "wyr-07",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "对方把外套借给你，说不用急着还 VS 对方把伞往你那边偏，自己淋湿一半",
+        "content": "一起笑到停不下来 VS 一起看了一会儿窗外的夜色",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "照顾"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -187,33 +189,31 @@
         "source": "ai"
       },
       {
-        "id": "wyr-8",
+        "id": "wyr-08",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "在群里被@，只有他接住了你的梗 VS 私下收到一句只有你们懂的暗号",
+        "content": "被叫只属于你们之间的昵称 VS 被连名带姓但语气很温柔地叫住",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "默契"
+          "轻松"
         ],
-        "boundaryTags": [
-          "social-account"
-        ],
+        "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "wyr-9",
+        "id": "wyr-09",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "对方突然靠近，帮你拿掉头发上的东西 VS 对方突然退后一步，认真看你一眼",
+        "content": "对方把耳机分你一半一起听歌 VS 对方把外套借你披一会儿",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "瞬间"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -224,12 +224,12 @@
         "id": "wyr-10",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "把今天最想说却没说的那句话咽回去 VS 把那句话换成一句无关紧要的玩笑",
+        "content": "聊天时对方突然认真看你一眼 VS 分别时对方回头多看你一眼",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
           "暧昧",
-          "试探"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

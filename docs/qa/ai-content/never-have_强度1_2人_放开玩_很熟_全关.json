@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "很熟",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4266,
+    "latencyMs": 27895,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "never-have-1",
+        "id": "nh-01",
         "packId": "never-have",
-        "type": "statement",
-        "content": "我从来没有因为刷手机而错过重要的约定时间。",
-        "instruction": "承认做过的人请举手，然后由举手者分享一次最离谱的迟到经历。",
+        "type": "never-have",
+        "content": "我从未把闹钟按掉后继续睡回笼觉，结果差点迟到。",
+        "instruction": "若你做过这件事，举手并说“我做过”；没做过就保持不动。任何人可随时跳过。",
         "intensity": 1,
         "tags": [
-          "日常",
-          "时间管理"
+          "icebreaker",
+          "casual"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,31 +93,15 @@
         "source": "ai"
       },
       {
-        "id": "never-have-2",
+        "id": "nh-02",
         "packId": "never-have",
-        "type": "statement",
-        "content": "我从来没有在洗澡时突然忘词，把歌唱成完全不同的另一首歌。",
-        "instruction": "做过的人请现场哼一句当时唱错的歌，其他人猜原曲。",
+        "type": "never-have",
+        "content": "我从未因为追剧或打游戏熬到凌晨，第二天发誓再也不这样。",
+        "instruction": "若你做过这件事，举手并说“我做过”；没做过就保持不动。任何人可随时跳过。",
         "intensity": 1,
         "tags": [
-          "趣味",
-          "音乐"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "never-have-3",
-        "packId": "never-have",
-        "type": "statement",
-        "content": "我从来没有为了追一部剧而通宵到天亮。",
-        "instruction": "做过的人描述当时追的剧名，没做过的人投票猜评分。",
-        "intensity": 1,
-        "tags": [
-          "娱乐",
-          "熬夜"
+          "icebreaker",
+          "casual"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -123,47 +109,15 @@
         "source": "ai"
       },
       {
-        "id": "never-have-4",
+        "id": "nh-03",
         "packId": "never-have",
-        "type": "statement",
-        "content": "我从来没有把发给别人的消息错发到另一个群聊。",
-        "instruction": "做过的人说出发错内容的类型（文字、表情、图片），不用读原文。",
+        "type": "never-have",
+        "content": "我从未在电梯里忘记按楼层，直到别人进来才想起。",
+        "instruction": "若你做过这件事，举手并说“我做过”；没做过就保持不动。任何人可随时跳过。",
         "intensity": 1,
         "tags": [
-          "社交",
-          "趣事"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "never-have-5",
-        "packId": "never-have",
-        "type": "statement",
-        "content": "我从来没有在公共场合不小心摔倒或滑倒。",
-        "instruction": "做过的人分享当时最尴尬的一秒，其他人给予掌声安慰。",
-        "intensity": 1,
-        "tags": [
-          "日常",
-          "糗事"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "never-have-6",
-        "packId": "never-have",
-        "type": "statement",
-        "content": "我从来没有因为贪吃而把第二天的早餐提前吃掉。",
-        "instruction": "做过的人说出偷吃的是什么，大家投票是否值得。",
-        "intensity": 1,
-        "tags": [
-          "生活",
-          "美食"
+          "icebreaker",
+          "casual"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -171,47 +125,15 @@
         "source": "ai"
       },
       {
-        "id": "never-have-7",
+        "id": "nh-04",
         "packId": "never-have",
-        "type": "statement",
-        "content": "我从来没有在KTV里抢过别人的麦克风。",
-        "instruction": "做过的人现场清唱两句，其他人打分，最高分可指定下一轮谁先答。",
+        "type": "never-have",
+        "content": "我从未在雨天忘带伞，只好用外套挡雨。",
+        "instruction": "若你做过这件事，举手并说“我做过”；没做过就保持不动。任何人可随时跳过。",
         "intensity": 1,
         "tags": [
-          "聚会",
-          "音乐"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "never-have-8",
-        "packId": "never-have",
-        "type": "statement",
-        "content": "我从来没有假装听懂一个其实完全不懂的话题。",
-        "instruction": "做过的人说出那个话题的关键词，其他人猜他当时到底懂了多少。",
-        "intensity": 1,
-        "tags": [
-          "社交",
-          "幽默"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "never-have-9",
-        "packId": "never-have",
-        "type": "statement",
-        "content": "我从来没有把闹钟按掉后又睡过头。",
-        "instruction": "做过的人分享当时有没有成功赶上重要的事，其他人举牌判断真假。",
-        "intensity": 1,
-        "tags": [
-          "日常",
-          "起床"
+          "icebreaker",
+          "casual"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -219,19 +141,99 @@
         "source": "ai"
       },
       {
-        "id": "never-have-10",
+        "id": "nh-05",
         "packId": "never-have",
-        "type": "statement",
-        "content": "我从来没有在旅行中因为迷路而意外发现好玩的地方。",
-        "instruction": "做过的人说出那个地方的类型（公园、小店、街道），不用透露具体位置。",
+        "type": "never-have",
+        "content": "我从未在KTV里抢过别人的歌，还唱得特别投入。",
+        "instruction": "若你做过这件事，举手并说“我做过”；没做过就保持不动。任何人可随时跳过。",
         "intensity": 1,
         "tags": [
-          "旅行",
-          "惊喜"
+          "icebreaker",
+          "casual"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "single",
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-06",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在照镜子时才发现脸上有东西，之前还和人聊了半天。",
+        "instruction": "若你做过这件事，举手并说“我做过”；没做过就保持不动。任何人可随时跳过。",
+        "intensity": 1,
+        "tags": [
+          "icebreaker",
+          "casual"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-07",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在冬天把袜子穿反一整天，回家才发现。",
+        "instruction": "若你做过这件事，举手并说“我做过”；没做过就保持不动。任何人可随时跳过。",
+        "intensity": 1,
+        "tags": [
+          "icebreaker",
+          "casual"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-08",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在点餐时纠结超过十分钟，最后选了最先看到的。",
+        "instruction": "若你做过这件事，举手并说“我做过”；没做过就保持不动。任何人可随时跳过。",
+        "intensity": 1,
+        "tags": [
+          "icebreaker",
+          "casual"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-09",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在走路时走神，差点撞到路边的柱子。",
+        "instruction": "若你做过这件事，举手并说“我做过”；没做过就保持不动。任何人可随时跳过。",
+        "intensity": 1,
+        "tags": [
+          "icebreaker",
+          "casual"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-10",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在打电话时找手机，然后发现正在通话中。",
+        "instruction": "若你做过这件事，举手并说“我做过”；没做过就保持不动。任何人可随时跳过。",
+        "intensity": 1,
+        "tags": [
+          "icebreaker",
+          "casual"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
         "source": "ai"
       }
     ]

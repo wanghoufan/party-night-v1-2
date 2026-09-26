@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 11,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "origin": "base",
+    "intensity": 1,
+    "players": 6,
+    "vibe": {
+      "key": "funny",
+      "label": "搞笑"
+    },
+    "relationship": {
+      "key": "couple",
+      "label": "情侣 / 暧昧"
+    },
+    "boundary": {
+      "mode": "all-on",
+      "label": "全开",
+      "flags": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "情侣 / 暧昧",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：情侣 / 暧昧；氛围：搞笑；最高强度：1。\n可用玩法：most-likely。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4710,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "ml-01",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在聚餐时把辣椒酱当成饮料一口闷下去？",
+        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人表演一个夸张的辣到喷火表情，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "反应"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-02",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在KTV里抢麦唱到破音还坚持唱完？",
+        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人用假音唱一句歌，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "才艺"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-03",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能把遥控器藏起来假装找不到，只为了看自己想看的节目？",
+        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人模仿一段找遥控器的戏，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "模仿"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-04",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在自拍时不小心开成前置摄像头，然后被自己的大脸吓到？",
+        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人用手机做出被吓到的夸张表情，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表情"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-05",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在逛街时迷路，最后靠导航走回原点？",
+        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人原地转三圈然后假装找到方向，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "方向感"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-06",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在群里发错消息，把吐槽发给被吐槽的人？",
+        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人表演一个撤回消息的慌张动作，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "社死"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-07",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能一边说减肥一边把最后一块炸鸡吃掉？",
+        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人用慢动作表演偷吃炸鸡，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "吃货"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-08",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在睡觉时说梦话，第二天还不承认？",
+        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人即兴说一句梦话，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "即兴"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-09",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能把袜子穿反一整天都没发现？",
+        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人低头检查自己的袜子，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-10",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在看电影时剧透，然后说“我以为你看过了”？",
+        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人用最无辜的表情说一句道歉，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

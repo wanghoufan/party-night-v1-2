@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 1,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "origin": "base",
+    "intensity": 1,
+    "players": 4,
+    "vibe": {
+      "key": "funny",
+      "label": "搞笑"
+    },
+    "relationship": {
+      "key": "new",
+      "label": "刚认识"
+    },
+    "boundary": {
+      "mode": "default",
+      "label": "默认",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "刚认识",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：刚认识；氛围：搞笑；最高强度：1。\n可用玩法：truth-dare。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4085,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "td-001",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近一次因为一件很小的事情笑到停不下来，是什么事？",
+        "instruction": "轮流回答，其他人可以追问细节，但不得强迫回答。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-002",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用最夸张的语气，模仿一位你刚认识的人做自我介绍。",
+        "instruction": "被模仿的人可以笑着点评，但不能要求重来超过一次。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "模仿"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-003",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果给你一个完全没用的超能力，你希望是什么？为什么？",
+        "instruction": "回答后，其他人可以投票选出最没用的那个。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "脑洞"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-004",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个表情或三个词，形容你今天出门前的心情。",
+        "instruction": "说完后让大家猜一猜，猜错的人表演一个搞怪表情。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表情"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你听过最离谱的“养生建议”是什么？",
+        "instruction": "可以分享网上看到的说法，但不要涉及真实医疗建议。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "站起来，用广播腔播报一条“本场聚会最新通知”。",
+        "instruction": "内容必须友好搞笑，不能针对任何人的外貌或隐私。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果今晚的聚会变成一部电影，你觉得片名会叫什么？",
+        "instruction": "每人说一个片名，最后选出一个最搞笑的。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "创意"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用一句话把在场任意一位嘉宾夸到不好意思。",
+        "instruction": "被夸的人只需要说谢谢，不允许反驳或要求换人。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "夸夸"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你做过最“社死”但又很好笑的一件事是什么？",
+        "instruction": "如果不想说具体细节，可以只讲一个模糊版本。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "现场编一句押韵的顺口溜，主题是“刚认识也能一起玩”。",
+        "instruction": "说完后大家一起鼓掌，不评价押韵水平。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "顺口溜"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

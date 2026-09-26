@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "第一次见 / 拼桌",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3977,
+    "latencyMs": 23563,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,8 +80,8 @@
         "id": "nh-001",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在第一次见面时就偷偷记住对方身上最好闻的味道。",
-        "instruction": "愿意分享的人轻轻点头或简短说说；不想回答可直接跳过。",
+        "content": "我从未在第一次见面的聚会上，因为某个人的笑声而忍不住多看几秒。",
+        "instruction": "如果你做过，轻敲桌面或举手；不想说就跳过，无需解释。其他人不追问、不评判。",
         "intensity": 1,
         "tags": [
           "破冰",
@@ -94,12 +96,12 @@
         "id": "nh-002",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在拼桌时因为一个眼神而突然忘记原本要说的话。",
-        "instruction": "愿意的人用手指比出1到5表示心动程度；不想比可跳过。",
+        "content": "我从未在拼桌时，悄悄把座位往某个人旁边挪近一点。",
+        "instruction": "如果你做过，轻敲桌面或举手；不想说就跳过，无需解释。其他人不追问、不评判。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "心动"
+          "暧昧"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -110,8 +112,56 @@
         "id": "nh-003",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在短短几分钟里，想象过和刚认识的人下次见面的场景。",
-        "instruction": "愿意的人只说“有”或“没有”，不追问细节。",
+        "content": "我从未在聊天中，因为对方一句话而脸红，但假装没被注意到。",
+        "instruction": "如果你做过，轻敲桌面或举手；不想说就跳过，无需解释。其他人不追问、不评判。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "轻互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-004",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在认识不久的人面前，故意说一个有趣的话题来延长聊天。",
+        "instruction": "如果你做过，轻敲桌面或举手；不想说就跳过，无需解释。其他人不追问、不评判。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-005",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聚会里，和同桌的人交换过只属于当晚的默契眼神。",
+        "instruction": "如果你做过，轻敲桌面或举手；不想说就跳过，无需解释。其他人不追问、不评判。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "默契"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-006",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在第一次见面时，想象过如果以后再见会是什么场景。",
+        "instruction": "如果你做过，轻敲桌面或举手；不想说就跳过，无需解释。其他人不追问、不评判。",
         "intensity": 2,
         "tags": [
           "暧昧",
@@ -123,63 +173,15 @@
         "source": "ai"
       },
       {
-        "id": "nh-004",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从未故意放慢说话速度，只为了让对面的人多听一会儿。",
-        "instruction": "愿意的人可以模仿自己放慢语速的一句话；不想模仿就跳过。",
-        "intensity": 2,
-        "tags": [
-          "暧昧",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-005",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从未在第一次见面的桌上，偷偷给某个人起过只有自己知道的昵称。",
-        "instruction": "愿意的人说出昵称的第一个字即可；不想说可跳过。",
-        "intensity": 2,
-        "tags": [
-          "暧昧",
-          "秘密"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-006",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从未因为对方一句普通的问候，反复回味到今晚结束。",
-        "instruction": "愿意的人用一句话描述当时的感觉；不想描述可跳过。",
-        "intensity": 2,
-        "tags": [
-          "暧昧",
-          "回味"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
         "id": "nh-007",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在拼桌时，把最好看的餐具悄悄推向某个人那边。",
-        "instruction": "愿意的人指出自己会推给谁；不想指可跳过。",
+        "content": "我从未对同桌的人产生过“想继续了解”的好奇，却没有说出口。",
+        "instruction": "如果你做过，轻敲桌面或举手；不想说就跳过，无需解释。其他人不追问、不评判。",
         "intensity": 2,
         "tags": [
           "暧昧",
-          "小动作"
+          "好奇"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -190,25 +192,9 @@
         "id": "nh-008",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在第一次见面时，因为对方笑了一下而希望时间慢一点。",
-        "instruction": "愿意的人说一个希望慢下来的瞬间；不想说可跳过。",
-        "intensity": 3,
-        "tags": [
-          "暧昧",
-          "心动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-009",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从未在刚认识的人面前，故意留下一个下次还能聊的话题。",
-        "instruction": "愿意的人说出那个话题的关键词；不想说可跳过。",
-        "intensity": 3,
+        "content": "我从未在聚会中，用一句玩笑试探过某个人的反应。",
+        "instruction": "如果你做过，轻敲桌面或举手；不想说就跳过，无需解释。其他人不追问、不评判。",
+        "intensity": 2,
         "tags": [
           "暧昧",
           "试探"
@@ -219,15 +205,31 @@
         "source": "ai"
       },
       {
+        "id": "nh-009",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在第一次见面时，主动记住同桌的人一个很小的细节。",
+        "instruction": "如果你做过，轻敲桌面或举手；不想说就跳过，无需解释。其他人不追问、不评判。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "细节"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
         "id": "nh-010",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在拼桌结束后，偷偷希望对方先开口说再见。",
-        "instruction": "愿意的人用点头或摇头回答；不想回答可跳过。",
+        "content": "我从未在分别时，对只认识一晚的同桌产生过一点舍不得。",
+        "instruction": "如果你做过，轻敲桌面或举手；不想说就跳过，无需解释。其他人不追问、不评判。",
         "intensity": 3,
         "tags": [
           "暧昧",
-          "告别"
+          "余韵"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

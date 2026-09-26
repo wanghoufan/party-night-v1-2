@@ -49,4 +49,17 @@ describe("PackSwitcherSheet", () => {
     open({ open: false });
     expect(screen.queryByRole("dialog")).toBeNull();
   });
+
+  it("候选只剩当前玩法时给出空候选提示（R-CB4），不静默", () => {
+    open({
+      packs: packs.filter((pack) => pack.id === "never-have"),
+      emptyNotice: "当前在场 1 人没有可玩的玩法：请增加在场玩家，或去「游戏包」开启一个玩法。",
+    });
+    expect(screen.getByRole("status")).toHaveTextContent("没有可玩的玩法");
+  });
+
+  it("有别的候选时不显示空候选提示", () => {
+    open({ emptyNotice: "不该出现的提示" });
+    expect(screen.queryByText("不该出现的提示")).toBeNull();
+  });
 });

@@ -1,0 +1,334 @@
+{
+  "cell": {
+    "id": "L1-1-023-most-likely-i2-p4-funny-first-meet-all-off",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 23,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "minPlayers": 3,
+    "intensity": 2,
+    "players": 4,
+    "vibeKey": "funny",
+    "vibeLabel": "搞笑",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": false,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": false,
+      "noPublicPosting": false,
+      "noStrangerContact": false,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "全关",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-023-most-likely-i2-p4-funny-first-meet-all-off",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 2,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：搞笑；最高强度：2。\n可用玩法：most-likely。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4864,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "ml-001",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "在座谁最可能因为抢最后一串烤串而和朋友翻脸？",
+        "instruction": "所有人同时指向自己认为最可能的人，被指最多的人需要还原一次当时的抢串现场。",
+        "intensity": 1,
+        "tags": [
+          "搞怪",
+          "第一次见"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-002",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "在座谁最可能在第一次见面的饭局上把别人的名字叫错三次？",
+        "instruction": "投票后，票数最高的人要用嘉宾1到嘉宾4的名字现场编一句顺口溜。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-003",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "在座谁最可能因为看错导航把大家带进死胡同还嘴硬？",
+        "instruction": "大家指向心中人选，票数最高者用一句话为自己辩解，其他人可以嘘声。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "无厘头"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-004",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "在座谁最可能在拼桌时第一个打破沉默，讲一个冷到结冰的笑话？",
+        "instruction": "投票选出人选后，那个人立刻讲一个冷笑话，没人笑则算失败，失败者要模仿一种动物叫声。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "搞怪"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-005",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "在座谁最可能因为选电影和同伴争论到错过开场？",
+        "instruction": "所有人指向最可能的人，被选中的人用30秒演一段选电影时的纠结。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-006",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "在座谁最可能在第一次见面的聚会上把饮料洒在自己身上？",
+        "instruction": "投票后，票数最高的人要假装洒了饮料并即兴说一句台词，可跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "搞怪"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-007",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "在座谁最可能因为手机没电而向刚认识的人借充电宝并聊成朋友？",
+        "instruction": "大家同时指向人选，被选中者要现场模拟一段借充电宝的开场白。",
+        "intensity": 1,
+        "tags": [
+          "社交",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-008",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "在座谁最可能在KTV里抢麦但唱得最投入？",
+        "instruction": "投票后，票数最高者不用真唱，只需用夸张表情表演一段无声演唱。",
+        "intensity": 1,
+        "tags": [
+          "表演",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-009",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "在座谁最可能在拼桌时把别人的饮料和自己的搞混？",
+        "instruction": "大家指向人选，被选中者要假装喝错后说一句化解尴尬的话。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "搞怪"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-010",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "在座谁最可能在聚会结束时提出再续一摊但第二天就后悔？",
+        "instruction": "投票选出人选，那个人要用一句话说服大家续摊，其他人集体用叹气回应。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4864ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=most-likely"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 2"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [无] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（most-likely）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4864ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

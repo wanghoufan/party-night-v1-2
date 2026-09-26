@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "情侣 / 暧昧",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3984,
+    "latencyMs": 50926,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,160 +77,130 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "nh-001",
+        "id": "nh-01",
         "packId": "never-have",
         "type": "never-have",
-        "content": "从来没有在聚会中假装手机没电来逃避合影",
-        "instruction": "轮流回答“我有”或“我没有”，也可以直接跳过；不追问细节。",
+        "content": "我从未在KTV里把一首歌唱到破音。",
+        "instruction": "若做过就举手或喊“我做过”；不想回答可随时跳过，不解释。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "聚会"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-002",
+        "id": "nh-02",
         "packId": "never-have",
         "type": "never-have",
-        "content": "从来没有在KTV里抢过别人的歌",
-        "instruction": "轮到的人说“我有”或“我没有”，其他嘉宾可以鼓掌回应，但不得起哄逼问。",
+        "content": "我从未跟着音乐偷偷学过一段舞，却从没在别人面前跳过。",
+        "instruction": "若做过就举手或喊“我做过”；不想回答可随时跳过，不解释。",
         "intensity": 1,
-        "tags": [
-          "音乐",
-          "轻松"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-003",
+        "id": "nh-03",
         "packId": "never-have",
         "type": "never-have",
-        "content": "从来没有为了追剧熬到天亮",
-        "instruction": "依次表态，若选择跳过则直接说“跳过”，其他人不得追问原因。",
+        "content": "我从未在看电影时中途睡着，醒来后假装自己看完了。",
+        "instruction": "若做过就举手或喊“我做过”；不想回答可随时跳过，不解释。",
         "intensity": 1,
-        "tags": [
-          "日常",
-          "轻松"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-004",
+        "id": "nh-04",
         "packId": "never-have",
         "type": "never-have",
-        "content": "从来没有在朋友家过夜时偷偷换过枕头",
-        "instruction": "每人用一句夸张或平淡的方式回答，不涉及任何隐私细节。",
+        "content": "我从未在洗澡时开过个人演唱会。",
+        "instruction": "若做过就举手或喊“我做过”；不想回答可随时跳过，不解释。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-05",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未因为追剧熬到天亮，第二天还嘴硬说不困。",
+        "instruction": "若做过就举手或喊“我做过”；不想回答可随时跳过，不解释。",
         "intensity": 2,
-        "tags": [
-          "趣事",
-          "聚会"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-005",
+        "id": "nh-06",
         "packId": "never-have",
         "type": "never-have",
-        "content": "从来没有在约会时迟到超过二十分钟",
-        "instruction": "轮流回答“我有”或“我没有”，可以补充一个不涉及隐私的小理由。",
+        "content": "我从未在喜欢的人面前故意说反话。",
+        "instruction": "若做过就举手或喊“我做过”；不想回答可随时跳过，不解释。",
         "intensity": 2,
-        "tags": [
-          "约会",
-          "趣事"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-006",
+        "id": "nh-07",
         "packId": "never-have",
         "type": "never-have",
-        "content": "从来没有在群聊里发错表情包后假装无事发生",
-        "instruction": "表态即可，不要求展示聊天记录，也不追问具体对象。",
+        "content": "我从未在暧昧期假装看不懂对方的暗示。",
+        "instruction": "若做过就举手或喊“我做过”；不想回答可随时跳过，不解释。",
         "intensity": 2,
-        "tags": [
-          "社交",
-          "轻松"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-007",
+        "id": "nh-08",
         "packId": "never-have",
         "type": "never-have",
-        "content": "从来没有在旅行中临时改变计划并玩得更开心",
-        "instruction": "轮流分享一个不涉及具体地点和同行者隐私的简短感受。",
-        "intensity": 2,
-        "tags": [
-          "旅行",
-          "趣事"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-008",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "从来没有在聚会上假装听懂了一个笑话",
-        "instruction": "回答“我有”或“我没有”，可以顺势讲一个不冒犯任何人的冷笑话。",
-        "intensity": 2,
-        "tags": [
-          "聚会",
-          "幽默"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-009",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "从来没有在游戏里因为太投入而喊出声",
-        "instruction": "表态即可，不追问游戏名称或队友身份，允许直接跳过。",
+        "content": "我从未和喜欢的人对视超过十秒还不笑场。",
+        "instruction": "若做过就举手或喊“我做过”；不想回答可随时跳过，不解释。",
         "intensity": 3,
-        "tags": [
-          "游戏",
-          "趣事"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-010",
+        "id": "nh-09",
         "packId": "never-have",
         "type": "never-have",
-        "content": "从来没有在公开场合把陌生人的名字叫错",
-        "instruction": "轮流回答，可以只做表情或手势代替语言，其他人不得嘲笑或追问。",
+        "content": "我从未在朋友起哄时脸红到耳朵，还假装是天气太热。",
+        "instruction": "若做过就举手或喊“我做过”；不想回答可随时跳过，不解释。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-10",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在喜欢的人面前假装毫不在意，结果被朋友一眼看穿。",
+        "instruction": "若做过就举手或喊“我做过”；不想回答可随时跳过，不解释。",
         "intensity": 3,
-        "tags": [
-          "社交",
-          "轻松"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -238,14 +210,6 @@
   },
   "screen": {
     "pass": true,
-    "issues": [
-      {
-        "key": "redline:coerced-strip-privacy",
-        "label": "疑似红线（否定/免责语境） · 隐私脱衣非自愿",
-        "severity": "suspect",
-        "cardId": "nh-006",
-        "excerpt": "从来没有在群聊里发错表情包后假装无事发生 表态即可,不要求展示聊天记录,也不追问具体对象。"
-      }
-    ]
+    "issues": []
   }
 }

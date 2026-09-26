@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L2-2_4-078-pointing-game-i5-p4-flirty-first-meet-only-noMoneyIncome",
+    "layer": "L2",
+    "group": "2.4",
+    "title": "雷区单命中「收入 / 财富」",
+    "seq": 78,
+    "packId": "pointing-game",
+    "packName": "指人游戏",
+    "minPlayers": 3,
+    "intensity": 5,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": false,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": true,
+      "noPhonePrivacy": false,
+      "noPublicPosting": false,
+      "noStrangerContact": false,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "仅开「收入 / 财富」",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_4-078-pointing-game-i5-p4-flirty-first-meet-only-noMoneyIncome",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "pointing-game"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：暧昧；最高强度：5。\n可用玩法：pointing-game。\n已开启的结构化雷区：money；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3873,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-pointing-01",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指一指今晚你最想悄悄多看两眼的人。",
+        "instruction": "被指到的人可以猜是谁指了自己，猜对则指人者说一句真心夸赞。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-02",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指一指你觉得笑声最好听的人。",
+        "instruction": "如果被指到的人愿意，可以对大家笑一下作为回应。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-03",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指一指今晚你最想和谁并肩坐一会儿的人。",
+        "instruction": "被指到的人可以选择换座到对方旁边，也可以只挥手示意。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "靠近"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-04",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指一指你觉得说话最温柔的人。",
+        "instruction": "被指到的人说出一件今天让自己心情变好的小事。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-05",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指一指如果只能和一个人交换一个秘密，你会选谁。",
+        "instruction": "被指到的人可以只说秘密属于哪一类，不必说出内容。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "信任"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-06",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指一指今晚你最想收到谁发来的一条晚安消息。",
+        "instruction": "被指到的人可以当场说一句晚安，也可以选择跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "心动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-07",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指一指你觉得最会照顾别人情绪的人。",
+        "instruction": "被指到的人可以指定下一位指人者，并说明为什么选他。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-08",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指一指如果今晚要组队完成一件小事，你最想选谁当搭档。",
+        "instruction": "被指到的人说出一个自己擅长的小技能，作为组队理由。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "组队"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-09",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指一指你觉得最有可能在下次聚会继续出现的人。",
+        "instruction": "被指到的人可以回应一句是否愿意再来，也可以微笑不答。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "期待"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-10",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指一指今晚你最想和谁说一句“认识你很高兴”。",
+        "instruction": "被指到的人可以同样回一句，也可以选择跳过。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "收尾"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3873ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=pointing-game"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [money] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（pointing-game）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3873ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 7/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

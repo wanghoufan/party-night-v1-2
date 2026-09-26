@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "普通朋友",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4174,
+    "latencyMs": 15807,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "mn-01",
+        "id": "mn-001",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在大家聊天时突然安静下来，然后说出一句让所有人接不上话的冷幽默？",
-        "instruction": "所有人闭眼，数到三后同时指向你认为最符合的人。被指最多的人分享一个自己的冷幽默时刻，也可以跳过。",
+        "content": "在座谁最可能成为聚会的即兴气氛担当？",
+        "instruction": "所有人同时投票，指认或说出名字；得票最高者可以分享一个轻松小故事，也可以跳过。",
         "intensity": 1,
         "tags": [
-          "社交",
-          "幽默"
+          "破冰",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,15 +93,47 @@
         "source": "ai"
       },
       {
-        "id": "mn-02",
+        "id": "mn-002",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在KTV里一直帮别人点歌，自己却不好意思唱？",
-        "instruction": "所有人闭眼，数到三后同时指向你认为最符合的人。被指最多的人可以点一首歌，也可以选择跳过。",
+        "content": "在座谁最可能把冷笑话讲得停不下来？",
+        "instruction": "所有人同时投票，指认或说出名字；得票最高者讲一个冷笑话，也可以跳过。",
         "intensity": 1,
+        "tags": [
+          "幽默",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-003",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "在座谁最可能看剧看到忘记时间？",
+        "instruction": "所有人同时投票，指认或说出名字；得票最高者说说最近在追的剧，也可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "日常",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-004",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "在座谁最可能在唱歌时把副歌变成全场大合唱？",
+        "instruction": "所有人同时投票，指认或说出名字；得票最高者领唱一句熟悉歌词，也可以跳过。",
+        "intensity": 2,
         "tags": [
           "音乐",
-          "社交"
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,15 +141,15 @@
         "source": "ai"
       },
       {
-        "id": "mn-03",
+        "id": "mn-005",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在聚餐时默默记住每个人的口味偏好？",
-        "instruction": "所有人闭眼，数到三后同时指向你认为最符合的人。被指最多的人分享一个自己观察到的朋友小习惯，也可以跳过。",
+        "content": "在座谁最可能第一个提议玩桌游？",
+        "instruction": "所有人同时投票，指认或说出名字；得票最高者推荐一个适合朋友聚会的桌游，也可以跳过。",
         "intensity": 1,
         "tags": [
-          "聚会",
-          "观察"
+          "桌游",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -123,15 +157,15 @@
         "source": "ai"
       },
       {
-        "id": "mn-04",
+        "id": "mn-006",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能因为沉迷一部剧或游戏而忘记回复消息？",
-        "instruction": "所有人闭眼，数到三后同时指向你认为最符合的人。被指最多的人可以讲一个自己最近沉迷的娱乐内容，也可以跳过。",
+        "content": "在座谁最可能把零食分享给所有人？",
+        "instruction": "所有人同时投票，指认或说出名字；得票最高者说说自己最喜欢的零食，也可以跳过。",
         "intensity": 1,
         "tags": [
-          "娱乐",
-          "日常"
+          "分享",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -139,15 +173,15 @@
         "source": "ai"
       },
       {
-        "id": "mn-05",
+        "id": "mn-007",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在旅行中主动负责查路线和做攻略？",
-        "instruction": "所有人闭眼，数到三后同时指向你认为最符合的人。被指最多的人分享一次印象深刻的旅行经历，也可以跳过。",
-        "intensity": 1,
+        "content": "在座谁最可能模仿经典电影台词？",
+        "instruction": "所有人同时投票，指认或说出名字；得票最高者模仿一句经典台词，也可以跳过。",
+        "intensity": 2,
         "tags": [
-          "旅行",
-          "社交"
+          "表演",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -155,63 +189,15 @@
         "source": "ai"
       },
       {
-        "id": "mn-06",
+        "id": "mn-008",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在群里发消息后因为没人回复而悄悄撤回？",
-        "instruction": "所有人闭眼，数到三后同时指向你认为最符合的人。被指最多的人可以讲一个自己群聊里的趣事，也可以跳过。",
-        "intensity": 1,
-        "tags": [
-          "群聊",
-          "日常"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mn-07",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在点外卖时纠结很久，最后点了和上次一样的东西？",
-        "instruction": "所有人闭眼，数到三后同时指向你认为最符合的人。被指最多的人分享自己最常点的一道菜，也可以跳过。",
-        "intensity": 1,
-        "tags": [
-          "美食",
-          "日常"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mn-08",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在朋友遇到麻烦时第一个提出实际帮助？",
-        "instruction": "所有人闭眼，数到三后同时指向你认为最符合的人。被指最多的人可以分享一次自己帮助朋友的经历，也可以跳过。",
-        "intensity": 1,
-        "tags": [
-          "友情",
-          "互助"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "mn-09",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在玩游戏时嘴上说随便，实际特别想赢？",
-        "instruction": "所有人闭眼，数到三后同时指向你认为最符合的人。被指最多的人可以讲一个自己游戏时的好胜瞬间，也可以跳过。",
+        "content": "在座谁最可能在团队游戏里记错规则？",
+        "instruction": "所有人同时投票，指认或说出名字；得票最高者复述一条自己记得最牢的游戏规则，也可以跳过。",
         "intensity": 1,
         "tags": [
           "游戏",
-          "幽默"
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -219,15 +205,31 @@
         "source": "ai"
       },
       {
-        "id": "mn-10",
+        "id": "mn-009",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在周末选择宅家，而不是出门聚会？",
-        "instruction": "所有人闭眼，数到三后同时指向你认为最符合的人。被指最多的人可以分享自己理想的周末安排，也可以跳过。",
-        "intensity": 1,
+        "content": "在座谁最可能用一句话让全场笑出来？",
+        "instruction": "所有人同时投票，指认或说出名字；得票最高者说一句轻松的话逗大家笑，也可以跳过。",
+        "intensity": 2,
         "tags": [
-          "周末",
-          "社交"
+          "幽默",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-010",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "在座谁最可能成为下一次聚会的发起人？",
+        "instruction": "所有人同时投票，指认或说出名字；得票最高者提出一个安全的聚会点子，也可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "聚会",
+          "投票"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

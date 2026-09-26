@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "情侣 / 暧昧",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3357,
+    "latencyMs": 6583,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,12 +80,12 @@
         "id": "compat-001",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果今晚只能选一种口味的夜宵，你们会同时选哪个？",
+        "content": "如果只能选一种约会方式，你们会同时选哪一个？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "默契",
-          "轻松"
+          "轻松",
+          "日常"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -94,12 +96,12 @@
         "id": "compat-002",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果现在立刻出发去旅行，你们会同时选海边还是山里？",
+        "content": "第一次见面时，你们觉得对方最可能的印象是什么？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "默契",
-          "选择"
+          "初印象",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -110,12 +112,12 @@
         "id": "compat-003",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "描述一下你心中理想的周末早晨，看看两人答案有多接近。",
+        "content": "如果周末突然多出一天假期，你们会同时选择怎么过？",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
+        "intensity": 1,
         "tags": [
-          "默契",
-          "想象"
+          "周末",
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -126,12 +128,12 @@
         "id": "compat-004",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "同时说出对方最可能先笑出声的瞬间是什么。",
+        "content": "你们觉得一段关系里最重要的是什么？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
-          "默契",
-          "观察"
+          "价值观",
+          "开放题"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -142,12 +144,12 @@
         "id": "compat-005",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果能一起养一只宠物，你们会同时选猫还是狗？",
+        "content": "如果一起养一只宠物，你们会同时选哪种？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "默契",
-          "选择"
+          "宠物",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -158,12 +160,12 @@
         "id": "compat-006",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "同时说出你们第一次见面时对方穿的颜色，看能不能对上。",
+        "content": "你们同时说出一个最适合一起看的电影类型。",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
+        "intensity": 1,
         "tags": [
-          "默契",
-          "回忆"
+          "电影",
+          "默契"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -174,12 +176,12 @@
         "id": "compat-007",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果只能选一首歌当今晚的背景音乐，你们会同时选哪一类？",
+        "content": "如果只能用一个词形容你们现在的相处状态，你们会同时说什么？",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
+        "intensity": 2,
         "tags": [
-          "默契",
-          "音乐"
+          "关系",
+          "开放题"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -190,12 +192,12 @@
         "id": "compat-008",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "描述你眼中对方最让人放松的一个小习惯，然后互相对照。",
+        "content": "你们觉得对方最喜欢自己哪一点？同时回答。",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 3,
+        "intensity": 2,
         "tags": [
-          "默契",
-          "观察"
+          "欣赏",
+          "开放题"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -206,12 +208,12 @@
         "id": "compat-009",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "同时说出你们下一次约会最想做的事，看是否撞车。",
+        "content": "如果一起规划一次一日游，你们会同时选哪种目的地？",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
+        "intensity": 1,
         "tags": [
-          "默契",
-          "计划"
+          "旅行",
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -222,12 +224,12 @@
         "id": "compat-010",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果今晚要一起完成一个无聊小挑战，你们会同时选拼图还是猜词？",
+        "content": "你们同时回答：下一次约会最想尝试什么新活动？",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
+        "intensity": 2,
         "tags": [
-          "默契",
-          "游戏"
+          "约会",
+          "开放题"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

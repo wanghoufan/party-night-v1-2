@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "普通朋友",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4083,
+    "latencyMs": 23362,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,159 +77,130 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "spin-bottle-001",
+        "id": "spin-001",
         "packId": "spin-bottle",
-        "type": "搞笑挑战",
-        "content": "用最夸张的播音腔念出你手机里最近一条外卖订单的名称。",
-        "instruction": "被转到的玩家完成；若不想做可说“跳过”，大家鼓掌放过。",
+        "type": "表演",
+        "content": "转瓶子选出一个人，用最夸张的播音腔播报一条‘今天天气’通知。",
+        "instruction": "被转到的玩家用新闻主播语气播报天气，内容必须包含‘局部地区有零食雨’。可跳过，跳过则全体鼓掌一次。",
         "intensity": 1,
-        "tags": [
-          "搞笑"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "spin-bottle-002",
+        "id": "spin-002",
         "packId": "spin-bottle",
-        "type": "模仿秀",
-        "content": "模仿一种动物的叫声，让其他玩家猜是什么动物。",
-        "instruction": "被转到的玩家完成；猜中后换下一位。",
+        "type": "模仿",
+        "content": "转瓶子选出一个人，模仿一种动物的叫声，其他玩家猜是什么动物。",
+        "instruction": "被转到的玩家只能发出叫声和动作，不能说出动物名字；猜中后换下一位。可跳过，跳过则指定一人代替。",
         "intensity": 1,
-        "tags": [
-          "搞笑",
-          "模仿"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "spin-bottle-003",
+        "id": "spin-003",
         "packId": "spin-bottle",
-        "type": "集体问答",
-        "content": "说出三种你认为是“最没用的超能力”，其他人投票选出最离谱的一个。",
-        "instruction": "所有人依次发言，然后举手投票。",
+        "type": "接龙",
+        "content": "全体用‘如果我在派对上变成……’开头接故事，每人一句。",
+        "instruction": "从转瓶子指向的玩家开始，顺时针每人加一句，故事必须搞笑且不涉及现实隐私。可跳过，跳过则说‘我选择吃瓜’。",
         "intensity": 1,
-        "tags": [
-          "搞笑",
-          "脑洞"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "spin-bottle-004",
+        "id": "spin-004",
         "packId": "spin-bottle",
-        "type": "表情挑战",
-        "content": "用表情和动作演一个“刚发现袜子穿反了”的人。",
-        "instruction": "被转到的玩家完成；允许跳过。",
+        "type": "挑战",
+        "content": "转瓶子选出两人，进行‘谁先笑’对视挑战，但不能有身体接触。",
+        "instruction": "两人面对面站立或坐着，保持表情严肃，先笑的人表演一个鬼脸。可跳过，跳过则各说一个冷笑话。",
         "intensity": 1,
-        "tags": [
-          "搞笑",
-          "表演"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-bottle-005",
-        "packId": "spin-bottle",
-        "type": "双人合作",
-        "content": "两人合作，用“因为……所以……”造一个关于今天聚会的搞笑句子。",
-        "instruction": "被转到的玩家和其左边的人一起完成。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "合作"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "pair",
         "source": "ai"
       },
       {
-        "id": "spin-bottle-006",
+        "id": "spin-005",
         "packId": "spin-bottle",
-        "type": "快速抢答",
-        "content": "说出五个带“子”字的物品名称，不能重复，限时十秒。",
-        "instruction": "被转到的玩家完成；其他人可以倒计时。",
+        "type": "问答",
+        "content": "转瓶子选出一个人，回答‘你最想拥有哪种搞笑超能力？’并解释用途。",
+        "instruction": "答案必须离谱且无害，例如‘让所有袜子自动配对’。可跳过，跳过则编一个超能力名字。",
         "intensity": 1,
-        "tags": [
-          "搞笑",
-          "反应"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "spin-bottle-007",
+        "id": "spin-006",
         "packId": "spin-bottle",
-        "type": "故事接龙",
-        "content": "每人说一句话，编一个“冰箱里住着小精灵”的搞笑故事。",
-        "instruction": "从被转到的玩家开始，顺时针每人一句。",
+        "type": "表演",
+        "content": "转瓶子选出一个人，用方言或奇怪口音念一段菜单。",
+        "instruction": "菜单内容由其他玩家现场编三个菜名，被转到的玩家用指定口音念出来。可跳过，跳过则用正常口音说‘我不饿’。",
         "intensity": 1,
-        "tags": [
-          "搞笑",
-          "故事"
-        ],
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-007",
+        "packId": "spin-bottle",
+        "type": "合作",
+        "content": "全体一起用三个词编一个迷你广告，推销一件不存在的搞笑商品。",
+        "instruction": "从转瓶子指向的玩家开始，每人说一个词，最后组成广告词。可跳过，跳过则喊‘下一位’。",
+        "intensity": 1,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "spin-bottle-008",
+        "id": "spin-008",
         "packId": "spin-bottle",
-        "type": "无声表演",
-        "content": "只用动作表演“在超市找不到购物车”，让大家猜。",
-        "instruction": "被转到的玩家完成；猜中后换下一位。",
+        "type": "猜谜",
+        "content": "转瓶子选出一个人，表演一个日常动作，让其他人猜。",
+        "instruction": "动作只能是无实物表演，不能说话；猜中后换人。可跳过，跳过则公布答案并让下一位继续。",
         "intensity": 1,
-        "tags": [
-          "搞笑",
-          "表演"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
       },
       {
-        "id": "spin-bottle-009",
+        "id": "spin-009",
         "packId": "spin-bottle",
-        "type": "夸夸挑战",
-        "content": "用三个夸张的比喻夸一夸你右边的人，但必须听起来很好笑。",
-        "instruction": "被转到的玩家完成；被夸的人要回一句“谢谢，我也觉得”。",
+        "type": "搞笑",
+        "content": "转瓶子选出两人，用最正式的语气互相夸奖对方的‘虚拟发明’。",
+        "instruction": "每人先编一个不存在的发明，再认真夸奖对方发明很厉害。不能涉及真实隐私。可跳过，跳过则一起说‘发明成功’。",
         "intensity": 1,
-        "tags": [
-          "搞笑",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "pair",
         "source": "ai"
       },
       {
-        "id": "spin-bottle-010",
+        "id": "spin-010",
         "packId": "spin-bottle",
-        "type": "集体投票",
-        "content": "投票选出今晚“最可能因为看剧哭鼻子”的人，并给一个搞笑理由。",
-        "instruction": "所有人参与投票，被选中的人可以选择跳过或接受。",
+        "type": "全员",
+        "content": "全体轮流用‘我从来没……’说一件搞笑的日常小事，内容必须轻松无害。",
+        "instruction": "每人说一件无害的搞笑小事，例如‘我从来没把袜子穿成同色’。可跳过，跳过则说‘我从来没有跳过’。",
         "intensity": 1,
-        "tags": [
-          "搞笑",
-          "投票"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",

@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "熟人局",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3260,
+    "latencyMs": 20295,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,95 +77,16 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "pn-001",
+        "id": "pointing-01",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向在场你最想一起完成一个小挑战的人。",
-        "instruction": "被指到的人可以接受或拒绝，拒绝无需理由。",
+        "content": "请所有人同时指向今晚你觉得笑声最有感染力的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
           "破冰",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-002",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向在场你觉得最会讲冷笑话的人。",
-        "instruction": "被指到的人现场讲一个冷笑话，大家给掌声或嘘声。",
-        "intensity": 1,
-        "tags": [
-          "幽默",
-          "破冰"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-003",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向在场你认识时间最长的人。",
-        "instruction": "两人互相说一句认识以来印象最深的小事。",
-        "intensity": 2,
-        "tags": [
-          "回忆",
-          "交流"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-004",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向在场你觉得最靠谱的人。",
-        "instruction": "被指到的人指定下一位玩家，由他分享一件最近的小确幸。",
-        "intensity": 2,
-        "tags": [
-          "互动",
-          "分享"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-005",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向在场你最想组队玩一局游戏的人。",
-        "instruction": "两人成为下一轮的固定搭档，直到有人选择换人。",
-        "intensity": 2,
-        "tags": [
-          "组队",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-006",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向在场你觉得今天穿得最有趣的人。",
-        "instruction": "被指到的人用三个词形容自己的穿搭风格。",
-        "intensity": 1,
-        "tags": [
           "轻松",
-          "观察"
+          "熟人局"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -171,31 +94,33 @@
         "source": "ai"
       },
       {
-        "id": "pn-007",
+        "id": "pointing-02",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向在场你最想听他讲一个故事的人。",
-        "instruction": "被指到的人讲一个不超过一分钟的虚构小故事。",
-        "intensity": 2,
-        "tags": [
-          "故事",
-          "创意"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-008",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指向在场你觉得最会活跃气氛的人。",
-        "instruction": "被指到的人带领大家做一次集体击掌。",
+        "content": "请所有人同时指向此刻你最想与之分享一件小趣事的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
+        "tags": [
+          "分享",
+          "轻松",
+          "熟人局"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-03",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向你觉得最适合当本局气氛记录员的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 2,
         "tags": [
           "气氛",
-          "互动"
+          "角色",
+          "熟人局"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -203,15 +128,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-009",
+        "id": "pointing-04",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向在场你最想和他交换一个表情包的人。",
-        "instruction": "两人同时做一个表情，由其他人猜他们想表达的情绪。",
+        "content": "请所有人同时指向你心中最会接梗的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 2,
         "tags": [
           "幽默",
-          "互动"
+          "互动",
+          "熟人局"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -219,15 +145,101 @@
         "source": "ai"
       },
       {
-        "id": "pn-010",
+        "id": "pointing-05",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向在场你觉得最可能成为今晚游戏冠军的人。",
-        "instruction": "被指到的人获得一次免做任务的机会，可随时使用。",
+        "content": "请所有人同时指向此刻你最想给他一个虚拟掌声的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "鼓励",
+          "轻松",
+          "熟人局"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-06",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向你觉得聊天时最会倾听的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 2,
         "tags": [
-          "竞技",
-          "奖励"
+          "倾听",
+          "观察",
+          "熟人局"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-07",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向今晚你想多了解一点的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 3,
+        "tags": [
+          "了解",
+          "深度",
+          "熟人局"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-08",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向此刻最让你放松的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "放松",
+          "舒适",
+          "熟人局"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-09",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向你觉得最适合一起完成一个小挑战的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 2,
+        "tags": [
+          "合作",
+          "挑战",
+          "熟人局"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-10",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向你心中最会讲冷幽默的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 2,
+        "tags": [
+          "幽默",
+          "冷场",
+          "熟人局"
         ],
         "boundaryTags": [],
         "minPlayers": 3,

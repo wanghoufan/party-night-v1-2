@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 36,
+    "packId": "pointing-game",
+    "packName": "指人游戏",
+    "origin": "base",
+    "intensity": 1,
+    "players": 2,
+    "vibe": {
+      "key": "funny",
+      "label": "搞笑"
+    },
+    "relationship": {
+      "key": "first-meet",
+      "label": "第一次见 / 拼桌"
+    },
+    "boundary": {
+      "mode": "all-off",
+      "label": "全关",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "pointing-game"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：第一次见 / 拼桌；氛围：搞笑；最高强度：1。\n可用玩法：pointing-game。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3792,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-pointing-01",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "所有人一起指：今晚谁看起来最像会第一个笑场的人？被指到的人不用解释，直接学一种动物叫三秒。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-02",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "所有人一起指：如果现在要组队点外卖，谁最像会点错单的人？被指到的人说出一种最不想吃的东西。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-03",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "所有人一起指：谁最适合当今晚的“气氛组长”？被指到的人必须用最夸张的语气说一句“欢迎来到派对之夜”。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-04",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "所有人一起指：谁看起来最像会偷偷把歌单换成自己口味的人？被指到的人哼两句自己最近常听的歌。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "音乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-05",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "所有人一起指：谁最像会在一句话里说三个“然后”的人？被指到的人用“然后”开头说一句完整的话。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "语言"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-06",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "所有人一起指：谁最像会为了一张表情包跟人争论十分钟的人？被指到的人现场表演一个最常用的表情。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表情"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-07",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "所有人一起指：谁看起来最像会忘记自己手机放哪的人？被指到的人要说出一件自己经常找不到的东西。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-08",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "所有人一起指：谁最像会在聚会结束时说“再玩最后一局”的人？被指到的人用播音腔说“这是最后一局，真的”。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "聚会"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-09",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "所有人一起指：谁最像会突然开始讲一个没人问的冷知识？被指到的人说一个自己知道的冷知识。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "冷知识"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-pointing-10",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "所有人一起指：谁最像会第一个提议拍合照的人？被指到的人用手比一个最夸张的拍照姿势，保持三秒。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "姿势"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

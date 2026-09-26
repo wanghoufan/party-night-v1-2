@@ -27,7 +27,8 @@ const nextConfig: NextConfig = {
   ...(staticExport ? { trailingSlash: true, images: { unoptimized: true } } : {}),
   env: {
     NEXT_PUBLIC_APP_VERSION: process.env.npm_package_version ?? "dev",
-    // 自包含安装包（无服务器、无 /api）给前端一个可判定的开关：AI 在线能力直接降级，不发注定失败的请求。
+    // 自包含安装包（无服务器、无 /api）给前端一个可判定的开关：据此改走本机直连 Provider（direct-provider），
+    // 不再发注定失败的 /api 请求；直连失败由调用方回退本地题库。
     NEXT_PUBLIC_SELF_CONTAINED: staticExport ? "1" : "",
   },
   // 静态导出由 WebView 本地服务器托管，没有可注入的 HTTP 响应头；headers 只在服务器模式生效，

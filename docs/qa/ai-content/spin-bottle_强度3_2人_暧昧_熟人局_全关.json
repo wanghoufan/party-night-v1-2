@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "熟人局",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4411,
+    "latencyMs": 28315,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,94 +77,14 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "spin-01",
+        "id": "spin-001",
         "packId": "spin-bottle",
-        "type": "真心话",
-        "content": "说出你对在场某位嘉宾第一印象中最特别的一个细节。",
-        "instruction": "瓶口指向谁，谁回答；不想说可以跳过，改由你向另一位嘉宾提一个轻松问题。",
+        "type": "破冰",
+        "content": "三秒对视：和转到的对象安静对视三秒，先说“我输了”的人要夸对方一句。",
+        "instruction": "转动瓶子选出一位对象。双方可随时说跳过；若跳过则改为各自喝口水。",
         "intensity": 1,
         "tags": [
-          "破冰",
-          "回忆"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-02",
-        "packId": "spin-bottle",
-        "type": "大冒险",
-        "content": "用三个形容词描述你此刻的心情，并让其他嘉宾猜哪个最不准。",
-        "instruction": "瓶口指向谁，谁完成；可以只做描述环节，跳过猜测。",
-        "intensity": 1,
-        "tags": [
-          "轻松",
-          "表达"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-03",
-        "packId": "spin-bottle",
-        "type": "真心话",
-        "content": "如果今晚只能和一个人多聊十分钟，你会选谁？只说出理由的一半。",
-        "instruction": "瓶口指向谁，谁回答；可以只说理由的一半，另一半保留。",
-        "intensity": 2,
-        "tags": [
-          "暧昧",
-          "选择"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-04",
-        "packId": "spin-bottle",
-        "type": "大冒险",
-        "content": "与瓶口指向的嘉宾对视五秒，然后各自用一个词形容刚才的感觉。",
-        "instruction": "双方自愿参与；任一方可随时喊停，喊停后改为各自说一个词。",
-        "intensity": 2,
-        "tags": [
-          "对视",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "spin-05",
-        "packId": "spin-bottle",
-        "type": "真心话",
-        "content": "说一件你最近做过、但没告诉在场任何人的小事。",
-        "instruction": "瓶口指向谁，谁回答；不涉及隐私细节，可随时跳过。",
-        "intensity": 2,
-        "tags": [
-          "分享",
-          "秘密"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-06",
-        "packId": "spin-bottle",
-        "type": "大冒险",
-        "content": "给在场的一位嘉宾起一个只属于今晚的昵称，并解释由来。",
-        "instruction": "瓶口指向谁，谁完成；被起昵称的嘉宾可以拒绝接受。",
-        "intensity": 2,
-        "tags": [
-          "昵称",
+          "互动",
           "暧昧"
         ],
         "boundaryTags": [],
@@ -171,15 +93,15 @@
         "source": "ai"
       },
       {
-        "id": "spin-07",
+        "id": "spin-002",
         "packId": "spin-bottle",
-        "type": "真心话",
-        "content": "你更相信一见钟情还是日久生情？用今晚在场的人举例说明倾向。",
-        "instruction": "瓶口指向谁，谁回答；举例时不需要点名具体人。",
-        "intensity": 2,
+        "type": "了解",
+        "content": "第一印象盲盒：说出对另一位玩家的第一印象，并补一个现在才注意到的小细节。",
+        "instruction": "由转到的玩家回答；不想回答可说跳过并换一个安全话题。",
+        "intensity": 1,
         "tags": [
-          "感情观",
-          "讨论"
+          "了解",
+          "破冰"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -187,15 +109,63 @@
         "source": "ai"
       },
       {
-        "id": "spin-08",
+        "id": "spin-003",
         "packId": "spin-bottle",
-        "type": "大冒险",
-        "content": "用一句不直接说喜欢的话，向瓶口指向的嘉宾表达一点好感。",
-        "instruction": "双方自愿；被表达方可选择只回一个微笑或一个字。",
-        "intensity": 3,
+        "type": "暧昧",
+        "content": "心动形容词：用三个不重复的词形容对方，最后一个词必须让人有点脸红。",
+        "instruction": "转到的玩家对另一位玩家说；避免外貌羞辱或越界评价，可跳过。",
+        "intensity": 2,
         "tags": [
           "暧昧",
-          "表达"
+          "赞美"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-004",
+        "packId": "spin-bottle",
+        "type": "暧昧",
+        "content": "若即若离：靠近对方到你觉得暧昧的距离，停住，说一句“今晚你有点不一样”。",
+        "instruction": "只做动作和说话，不触碰；对方可随时喊停，转到的玩家可跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "距离"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-005",
+        "packId": "spin-bottle",
+        "type": "想象",
+        "content": "虚拟约会：为对方设计一句电影感约会邀请，必须包含一个具体地点和一句留白。",
+        "instruction": "转到的玩家对另一位说；不涉及隐私或金钱，可跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "想象"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-006",
+        "packId": "spin-bottle",
+        "type": "互动",
+        "content": "眼神拔河：两人对视，谁先移开视线就要回答“你最想和对方一起做的一件小事”。",
+        "instruction": "由瓶子决定一对；不想回答可跳过，回答不得涉及危险、违法或隐私。",
+        "intensity": 2,
+        "tags": [
+          "互动",
+          "暧昧"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -203,11 +173,59 @@
         "source": "ai"
       },
       {
-        "id": "spin-09",
+        "id": "spin-007",
+        "packId": "spin-bottle",
+        "type": "提问",
+        "content": "反客为主：转到的玩家可以问对方一个暧昧但安全的问题，对方也有权反问或跳过。",
+        "instruction": "问题不能涉及隐私、金钱、手机、账号或让人难堪的内容；双方同意才回答。",
+        "intensity": 2,
+        "tags": [
+          "提问",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-008",
+        "packId": "spin-bottle",
+        "type": "默契",
+        "content": "掌心暗号：在空中用手指写一个词给对方猜，猜中后一起隔空比心庆祝。",
+        "instruction": "转到的玩家先写，另一位猜；不想继续可随时跳过。",
+        "intensity": 1,
+        "tags": [
+          "默契",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-009",
+        "packId": "spin-bottle",
+        "type": "表演",
+        "content": "暧昧配音：为对方此刻的动作配一句电影台词，要像告白又不像告白。",
+        "instruction": "转到的玩家即兴发挥；不评价身材或外貌，可跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-010",
         "packId": "spin-bottle",
         "type": "真心话",
-        "content": "此刻如果现场安静十秒，你最想对谁说什么？只说第一句。",
-        "instruction": "瓶口指向谁，谁回答；可以只说第一句，也可以跳过。",
+        "content": "安全词告白：用“如果这不是游戏，我会……”开头说一句安全又暧昧的话，然后立刻说“开玩笑的”。",
+        "instruction": "转到的玩家对另一位说；不得越界承诺或施压，可跳过。",
         "intensity": 3,
         "tags": [
           "暧昧",
@@ -217,27 +235,19 @@
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
-      },
-      {
-        "id": "spin-10",
-        "packId": "spin-bottle",
-        "type": "大冒险",
-        "content": "和瓶口指向的嘉宾各自说一件今晚最想一起做的小事，不要求真的去做。",
-        "instruction": "双方自愿；只是口头约定，任何一方可随时结束这个话题。",
-        "intensity": 3,
-        "tags": [
-          "约定",
-          "暧昧"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
       }
     ]
   },
   "screen": {
     "pass": true,
-    "issues": []
+    "issues": [
+      {
+        "key": "redline:danger-illegal",
+        "label": "疑似红线（否定/免责语境） · 危险或违法",
+        "severity": "suspect",
+        "cardId": "spin-006",
+        "excerpt": "眼神拔河:两人对视,谁先移开视线就要回答“你最想和对方一起做的一件小事”。 由瓶子决定一对;不想回答可跳过,回答不得涉及危险、违法或隐私。"
+      }
+    ]
   }
 }

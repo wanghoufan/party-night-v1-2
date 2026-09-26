@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "普通朋友",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4200,
+    "latencyMs": 35230,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,162 +77,130 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "pn-001",
+        "id": "pointing-01",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "如果要在你们当中选一个人陪你熬夜看一部烂片，你会指向谁？被指到的人可以说不，并随机指回一个人。",
+        "content": "请指向今天第一个让你觉得气氛轻松起来的人。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
-        "tags": [
-          "选择",
-          "轻松"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 3,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "pn-002",
+        "id": "pointing-02",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "你们当中谁最可能在聚会中途偷偷去阳台发呆？请同时指向那个人，被指到的人要分享一个最近想放空的原因。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 2,
-        "tags": [
-          "观察",
-          "分享"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-003",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "如果要组队完成一次周末短途散步，你最想和谁一组？被选中的人可以点头，也可以摇头，然后说出一个想去的地方。",
+        "content": "请指向你认为最会讲冷笑话的人。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
-        "tags": [
-          "组队",
-          "日常"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 3,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "pn-004",
+        "id": "pointing-03",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "你们当中谁讲笑话时自己先笑？请指向那个人，被指到的人讲一个不超过三句的笑话，不好笑也允许跳过。",
+        "content": "请指向如果临时组队做菜，你最愿意让谁掌勺。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 2,
-        "tags": [
-          "幽默",
-          "表达"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 3,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "pn-005",
+        "id": "pointing-04",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "如果现在要选一个人帮你保管一小时的手机，你会指向谁？被指到的人只需口头答应或拒绝，不用真的交出手机。",
+        "content": "请指向你下次想约着一起逛展或散步的人。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 2,
-        "tags": [
-          "信任",
-          "口头"
-        ],
-        "boundaryTags": [
-          "phone-privacy"
-        ],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-006",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "你们当中谁最像会提前做旅行攻略的人？请指向那个人，被指到的人分享一个旅行中一定要带的小物。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 1,
-        "tags": [
-          "习惯",
-          "分享"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 3,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "pn-007",
+        "id": "pointing-05",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "如果要选一个人陪你逛一小时书店或菜市场，你会指向谁？被指到的人说出一种最近想尝试的食物。",
-        "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 1,
-        "tags": [
-          "生活",
-          "轻松"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-008",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "你们当中谁最可能在聊天时突然抛出冷知识？请指向那个人，被指到的人说一个自己确定的小知识。",
+        "content": "请指向你觉得最会活跃聚会气氛的人。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 2,
-        "tags": [
-          "知识",
-          "表达"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 3,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "pn-009",
+        "id": "pointing-06",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "如果现在要选一个人陪你完成一件五分钟的小挑战，比如原地整理桌面，你会指向谁？被指到的人可以接受或换人。",
+        "content": "请指向你愿意一起看一部烧脑电影并讨论的人。",
         "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 2,
-        "tags": [
-          "互动",
-          "挑战"
-        ],
+        "intensity": 3,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 3,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "pn-010",
+        "id": "pointing-07",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "你们当中谁最会安慰人？请指向那个人，被指到的人对左边的人说一句真诚的鼓励，内容由自己决定。",
+        "content": "请指向如果突然要上台发言，你觉得最镇定的人。",
         "instruction": "倒数三秒，一起指向那个人",
-        "intensity": 1,
-        "tags": [
-          "温暖",
-          "表达"
-        ],
+        "intensity": 3,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-08",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向你认为最会安慰朋友的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 3,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-09",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向你最想在未来重要时刻第一个分享好消息的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 4,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pointing-10",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请指向你如果遇到低谷，最愿意向谁求助的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 5,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 3,
         "participantMode": "all",

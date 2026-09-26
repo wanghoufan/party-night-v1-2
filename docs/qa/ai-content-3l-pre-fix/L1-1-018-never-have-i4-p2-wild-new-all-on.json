@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L1-1-018-never-have-i4-p2-wild-new-all-on",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 18,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "minPlayers": 2,
+    "intensity": 4,
+    "players": 2,
+    "vibeKey": "wild",
+    "vibeLabel": "放开玩",
+    "relationshipKey": "new",
+    "relationshipLabel": "刚认识",
+    "boundaryFlags": {
+      "noPhysicalContact": true,
+      "noAlcoholPenalty": true,
+      "noExPartners": true,
+      "noSexualHistory": true,
+      "noMoneyIncome": true,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": true,
+      "noSocialAccounts": true
+    },
+    "boundaryLabel": "全开",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-018-never-have-i4-p2-wild-new-all-on",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "刚认识",
+      "vibes": [
+        "放开玩"
+      ],
+      "intensity": 4,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：刚认识；氛围：放开玩；最高强度：4。\n可用玩法：never-have。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3995,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "nh-01",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在聚会上假装认识某个人，结果被当场拆穿。",
+        "instruction": "说出者举手指认自己是否做过；做过的人可以选择跳过，不做解释。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-02",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在KTV里唱到破音还坚持唱完。",
+        "instruction": "做过的人举手指认；可以分享当时最尴尬的一句歌词，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "音乐",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-03",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在第一次见面的人面前讲了一个没人笑的冷笑话。",
+        "instruction": "做过的人举手指认；愿意的话可以复述那个冷笑话，其他人自由反应。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "幽默"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-04",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在聚会中途偷偷查看过手机里的时间，想早点回家。",
+        "instruction": "做过的人举手指认；不需要解释原因，直接进入下一轮。",
+        "intensity": 2,
+        "tags": [
+          "社交",
+          "真实"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-05",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在朋友面前模仿过某个老师或长辈的口头禅。",
+        "instruction": "做过的人举手指认；可以现场模仿一句，也可以只举手不表演。",
+        "intensity": 2,
+        "tags": [
+          "表演",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-06",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在群里发错消息，然后秒撤回。",
+        "instruction": "做过的人举手指认；不用说出具体内容，保持隐私。",
+        "intensity": 2,
+        "tags": [
+          "日常",
+          "尴尬"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-07",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有为了逃避一场无聊的聚会，编过一个离谱的理由。",
+        "instruction": "做过的人举手指认；愿意的话只说理由的关键词，不涉及他人隐私。",
+        "intensity": 3,
+        "tags": [
+          "社交",
+          "坦白"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-08",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在朋友面前哭过，然后假装是眼睛进沙子。",
+        "instruction": "做过的人举手指认；不追问细节，允许直接跳过。",
+        "intensity": 3,
+        "tags": [
+          "情绪",
+          "真实"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-09",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在深夜给朋友发过一段很长的语音，第二天自己不敢听。",
+        "instruction": "做过的人举手指认；不播放语音、不透露内容，只确认是否发生过。",
+        "intensity": 3,
+        "tags": [
+          "深夜",
+          "友情"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-10",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "从来没有在聚会上因为笑得太猛，把饮料洒到自己身上。",
+        "instruction": "做过的人举手指认；可以简单描述当时的狼狈场面，也可以跳过。",
+        "intensity": 4,
+        "tags": [
+          "爆笑",
+          "失控"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider",
+      "filteredCount": 0,
+      "retryCount": 0
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3995ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=never-have"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 4"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [physical-contact,alcohol,ex-partner,sexual-history,money,phone-privacy,public-posting,stranger-contact,photo-video,social-account] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤2"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "FAIL",
+      "severity": "P0",
+      "detail": "1 处严格命中：nh-04 红线词 · 隐私脱衣非自愿"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（never-have）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3995ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "FAIL",
+  "p0": 1,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

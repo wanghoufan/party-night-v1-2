@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "情侣 / 暧昧",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4783,
+    "latencyMs": 29255,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "pn-point-01",
+        "id": "point-001",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "大家一起数三二一，同时指向全场最会讲冷笑话的人，被指到最多的人学猫叫。",
-        "instruction": "被点到的人要立刻模仿一种动物的叫声，持续 5 秒，其他人可以配合鼓掌。",
+        "content": "请所有人同时指向：今晚最可能把冷笑话讲成连续剧的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
           "搞笑",
-          "模仿"
+          "破冰"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -91,15 +93,15 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-02",
+        "id": "point-002",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "同时指向今晚穿得最像要出门约会的人，被指到最多的人站起来夸自己十秒。",
-        "instruction": "主持人喊开始后同时指，被指到的人要站起来用最夸张的语气夸自己一句。",
+        "content": "请所有人同时指向：最会用一句话让全场安静三秒再爆笑的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
           "搞笑",
-          "夸夸"
+          "反应"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -107,33 +109,63 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-03",
+        "id": "point-003",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "同时指向反应最慢的人，被指到最多的人找一个搭档一起摆一个搞笑姿势，保持到下一轮开始。",
-        "instruction": "被点到的人要选择一个搭档，一起摆一个搞笑合影姿势保持 5 秒，之后可自愿决定是否真的拍照。",
+        "content": "请所有人同时指向：最像临时被拉来主持但意外很稳的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "临场"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "point-004",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向：最可能在合唱时把和声唱成主旋律的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "音乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "point-005",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向：最可能把零食藏起来又忘记藏哪儿的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "point-006",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向：最会用表情和动作演完一部短剧的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 2,
         "tags": [
           "搞笑",
-          "合作"
-        ],
-        "boundaryTags": [
-          "photo-video"
-        ],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-point-04",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "同时指向最会接梗的人，被指到最多的人用一句歌词回答“今晚开心吗”。",
-        "instruction": "被点到的人用一句歌词回答“今晚开心吗”，其他人可以跟唱副歌。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "唱歌"
+          "表演"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -141,35 +173,31 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-05",
+        "id": "point-007",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "同时指向坐在最左边的人，被指到最多的人即兴编一个 15 秒搞笑小故事，主角是在场某人。",
-        "instruction": "被点到的人要即兴编一个 15 秒的小故事，主角必须是在场某人，但不得提及隐私或尴尬往事。",
+        "content": "请所有人同时指向：最可能因为选歌太纠结而让全场等三分钟的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "选择困难"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "point-008",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向：最像动画片里会突然放大招的配角的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 2,
         "tags": [
           "搞笑",
-          "即兴"
-        ],
-        "boundaryTags": [
-          "ex-partner",
-          "sexual-history",
-          "money"
-        ],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-point-06",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "同时指向笑声最大的人，被指到最多的人用播音腔念一句“今晚的派对由我守护”。",
-        "instruction": "被点到的人可以选择自己或指定一位嘉宾，用夸张的播音腔念一句“今晚的派对由我守护”。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "播音"
+          "脑洞"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -177,33 +205,15 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-07",
+        "id": "point-009",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "同时指向最安静的人，被指到最多的人带领全场做一个 10 秒的无接触搞笑动作。",
-        "instruction": "被点到的人要带领全场做一个 10 秒的无声搞笑动作，动作不得涉及身体接触。",
+        "content": "请所有人同时指向：最可能在游戏输掉后说“我刚才让着你们”的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 2,
         "tags": [
           "搞笑",
-          "带动"
-        ],
-        "boundaryTags": [
-          "physical-contact"
-        ],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-point-08",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "同时指向看起来最像“知识渊博”的人，被指到最多的人分享一个无用但有趣的小知识。",
-        "instruction": "被点到的人要说出自己最近学会的一个无用但有趣的小知识，其他人可以投票是否相信。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "冷知识"
+          "游戏"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -211,37 +221,17 @@
         "source": "ai"
       },
       {
-        "id": "pn-point-09",
+        "id": "point-010",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "同时指向今天表情最丰富的人，被指到最多的人用三个动作描述自己今天的心情。",
-        "instruction": "被点到的人要用三个表情包动作描述自己今天的心情，其他人猜是什么意思。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "表情"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-point-10",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "同时指向全场最会演的人，被指到最多的人邀请一位嘉宾一起用“外星语”对话 15 秒。",
-        "instruction": "被点到的人要邀请一位嘉宾一起用“外星语”对话 15 秒，内容不得涉及任何隐私话题。",
+        "content": "请所有人同时指向：今晚最有神秘组织接头暗号气质的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 2,
         "tags": [
           "搞笑",
-          "双人"
+          "气质"
         ],
-        "boundaryTags": [
-          "ex-partner",
-          "sexual-history",
-          "money"
-        ],
+        "boundaryTags": [],
         "minPlayers": 3,
         "participantMode": "all",
         "source": "ai"

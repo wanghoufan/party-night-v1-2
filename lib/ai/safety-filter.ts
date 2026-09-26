@@ -1,6 +1,6 @@
 import { BOUNDARIES } from "@/lib/domain/constants";
 import type { BoundaryProfile, GameCard, Intensity } from "@/lib/domain/schemas";
-import { dedupeCards, normalizeText } from "./normalize";
+import { dedupeCards, effectiveMinPlayers, normalizeText } from "./normalize";
 
 /**
  * 安全硬规则（FR-046 / T202）：与尺度、雷区无关，永远拦截。
@@ -52,7 +52,8 @@ export function filterCards(cards: GameCard[], context: SafetyContext): GameCard
 
   return dedupeCards(cards.filter((card) => {
     const text = normalizeText(`${card.content} ${card.instruction ?? ""}`);
-    if (card.intensity > context.intensity || card.minPlayers > context.playerCount) return false;
+    // 人数下限以 pack 契约为真源：实际下限 = max(卡自报, pack.minPlayers)，卡自报只能更严不能更宽（B5）。
+    if (card.intensity > context.intensity || effectiveMinPlayers(card) > context.playerCount) return false;
     if (card.maxPlayers && card.maxPlayers < context.playerCount) return false;
     if (card.boundaryTags.some((tag) => blockedTags.has(tag))) return false;
     if (isHardBlocked(text)) return false;

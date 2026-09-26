@@ -1,0 +1,337 @@
+{
+  "cell": {
+    "id": "L2-2_1-001-truth-dare-i5-p2-icebreaker-first-meet-default",
+    "layer": "L2",
+    "group": "2.1",
+    "title": "Intensity 5 全量",
+    "seq": 1,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "minPlayers": 2,
+    "intensity": 5,
+    "players": 2,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_1-001-truth-dare-i5-p2-icebreaker-first-meet-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：第一次见 / 拼桌；氛围：破冰；最高强度：5。\n可用玩法：truth-dare。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4259,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "ice-01",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近一次因为一件小事笑到停不下来，是什么事？",
+        "instruction": "轮流回答，每人不超过30秒；不想说就喊“跳过”。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ice-02",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果今天只能推荐一首歌给刚认识的人，你会推荐哪首？为什么？",
+        "instruction": "说完后可以不用播放，只描述理由。",
+        "intensity": 1,
+        "tags": [
+          "音乐",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ice-03",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个词形容你此刻的心情，并配一个表情。",
+        "instruction": "面向大家完成；允许跳过或改成只说一个词。",
+        "intensity": 1,
+        "tags": [
+          "表情",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "ice-04",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近学会的一个小技能或小知识是什么？",
+        "instruction": "每人分享一个，别人可以追问一次。",
+        "intensity": 1,
+        "tags": [
+          "分享",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ice-05",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "模仿一种常见动物的叫声，持续三秒。",
+        "instruction": "可以只做口型不出声；觉得尴尬就跳过。",
+        "intensity": 2,
+        "tags": [
+          "模仿",
+          "活跃"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "ice-06",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果能立刻拥有一种与旅行有关的能力，你希望是什么？",
+        "instruction": "描述能力并说一个想去的场景，不用真的出行。",
+        "intensity": 2,
+        "tags": [
+          "想象",
+          "旅行"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ice-07",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "给左手边的人起一个不涉及外貌和隐私的友善昵称，并说明理由。",
+        "instruction": "对方可以拒绝昵称；拒绝后换一个词即可。",
+        "intensity": 2,
+        "tags": [
+          "互动",
+          "友善"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "ice-08",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你更喜欢计划好的聚会还是临时起意的聚会？说一个具体经历。",
+        "instruction": "每人回答，经历可以模糊化处理，不必透露地点。",
+        "intensity": 2,
+        "tags": [
+          "聊天",
+          "偏好"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ice-09",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用一句广告词介绍你面前的桌子或房间，不能提到真实品牌。",
+        "instruction": "限时15秒；可以跳过或只说一句。",
+        "intensity": 3,
+        "tags": [
+          "创意",
+          "表达"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "ice-10",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果今晚结束后只能记住在场一个人的一个特点，你希望是什么特点？",
+        "instruction": "只能描述性格或氛围类特点，不评价外貌；不想说就跳过。",
+        "intensity": 3,
+        "tags": [
+          "收尾",
+          "印象"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4259ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=truth-dare"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤2"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（truth-dare）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4259ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 2,
+  "observes": [
+    "I5 格出现 8/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断",
+    "卡 ice-03：2 人局出现「大家/全场」类多人语境"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L3-3_3-005-pointing-game-i3-p2-icebreaker-friends-default",
+    "layer": "L3",
+    "group": "3.3",
+    "title": "最低人数边界 pointing-game@2人",
+    "seq": 5,
+    "packId": "pointing-game",
+    "packName": "指人游戏",
+    "minPlayers": 3,
+    "intensity": 3,
+    "players": 2,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "friends",
+    "relationshipLabel": "普通朋友",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "boundary-probe",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L3-3_3-005-pointing-game-i3-p2-icebreaker-friends-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "pointing-game"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：普通朋友；氛围：破冰；最高强度：3。\n可用玩法：pointing-game。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4237,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-point-1",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向此刻最想一起组队玩游戏的人，被指到的人说出一个自己最近的小爱好。",
+        "instruction": "手指指向即可，不必解释；被指到的人分享一个爱好，可以跳过分享。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "了解彼此"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-2",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向今天穿得最舒服的人，对方说出一个让自己感觉放松的小习惯。",
+        "instruction": "被指到的人只说习惯，不说别的；不想说可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-3",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向在场最可能早起的人，被指到的人说出自己起床后的第一个动作。",
+        "instruction": "只需回答动作，不必展开；可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-4",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你觉得最会讲笑话的人，被指到的人用一句话形容自己的幽默风格。",
+        "instruction": "一句话即可，不要求真的讲笑话；可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-5",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向最像团队里开心果的人，被指到的人说出一个自己最近遇到的开心小事。",
+        "instruction": "分享一件小事，不涉及隐私；可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-6",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你认为最会安慰别人的人，被指到的人说一句自己常用来鼓励朋友的话。",
+        "instruction": "只说一句鼓励的话；可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "温暖"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-7",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向最可能第一个尝试新事物的人，被指到的人说出一个自己一直想尝试但还没做的小事。",
+        "instruction": "说一件小事即可，不涉及危险或违法内容；可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "愿望"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-8",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你觉得最会倾听的人，被指到的人说出一个自己希望别人多了解自己的小特点。",
+        "instruction": "分享一个不敏感的特点；可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "了解彼此"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-9",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向今天最安静的人，被指到的人说出一个自己觉得最舒服的放松方式。",
+        "instruction": "只说放松方式，不涉及隐私；可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "破冰",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-10",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指向你最想进一步了解的人，被指到的人说出一个自己希望被问到的轻松话题。",
+        "instruction": "话题需轻松、不涉及隐私；可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "破冰",
+          "加深了解"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4237ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=pointing-game"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 3"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数(边界探测)",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张卡 minPlayers>2（玩法下限 3）：主局 filterCards 会把这些越下限卡全部滤掉（lib/ai/safety-filter.ts，minPlayers>playerCount 即滤除），PLAN §3.3「明确回落」成立"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零严格命中；1 处疑似（否定语境，单列复核）"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（pointing-game）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4237ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "卡 pn-point-7：疑似红线（否定/免责语境） · 危险或违法（否定/免责语境，疑似不判违规）"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

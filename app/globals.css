@@ -276,6 +276,9 @@ textarea {
 .quick-start-banner span { display: grid; gap: .2rem; }
 .quick-start-banner small { color: var(--color-text-muted); font-size: .68rem; }
 .quick-start-banner .button { min-height: 2.75rem; padding-inline: .85rem; font-size: .78rem; }
+/* P1：直选玩法人数不足时的拦截提示（停在 setup 页，不进生成）。 */
+.setup-pack-notice { display: grid; gap: .35rem; margin-bottom: 1.2rem; padding: .8rem; border: 1px solid rgba(255,174,53,.5); border-radius: var(--radius-xs); color: #ffd18a; background: rgba(255,174,53,.12); font-size: .78rem; line-height: 1.5; }
+.setup-pack-notice a { color: inherit; font-weight: 600; text-decoration: underline; }
 .setup-section { margin: 0 0 1.6rem; }
 .setup-section h2, .boundary-intro h2 { margin: 0 0 .8rem; font-size: .96rem; }
 .stepper { display: grid; grid-template-columns: 3.25rem 1fr 3.25rem; gap: .55rem; align-items: center; }
@@ -360,6 +363,10 @@ textarea {
 .game-toast { margin: 0 0 .7rem; padding: .5rem .7rem; border: 1px solid rgba(30,230,163,.42); border-radius: .7rem; color: var(--color-success); text-align: center; background: rgba(30,230,163,.1); font-size: .78rem; }
 /* D4=A 降级中性提示：只说“本局将使用普通玩法”，不公开任何人的字段值（B8）。 */
 .game-hint { margin: 0 0 .7rem; color: var(--color-text-muted); text-align: center; font-size: .74rem; }
+/* Change A 小改：整局来源回退本地题库时的一次性轻提示——可手动关闭、不遮挡/不阻塞任何操作。 */
+.game-fallback-notice { display: flex; align-items: center; gap: .6rem; margin: 0 0 .7rem; padding: .55rem .7rem; border: 1px solid rgba(255,174,53,.5); border-radius: .7rem; color: #ffd18a; background: rgba(255,174,53,.12); font-size: .78rem; line-height: 1.5; }
+.game-fallback-notice > span { flex: 1; }
+.game-fallback-notice > button { flex: none; display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border: 0; border-radius: 50%; color: inherit; background: rgba(255,255,255,.14); font-size: .85rem; line-height: 1; }
 /* 暂停禁用矩阵：暂停时推进动作与切玩法入口变灰，避免「暂停了还能偷偷走一轮」。 */
 .button:disabled { opacity: .45; }
 .pack-switch-entry:disabled { opacity: .45; }
@@ -726,6 +733,7 @@ textarea {
 :root[data-theme="light"] .resume-session a { color: #086c8e; }
 :root[data-theme="light"] .setup-progress i { background: #d7d2df; }
 :root[data-theme="light"] .quick-start-banner { background: rgba(0,140,184,.07); }
+:root[data-theme="light"] .setup-pack-notice { color: #81520b; border-color: rgba(129,82,11,.35); background: rgba(255,174,53,.14); }
 :root[data-theme="light"] .stepper button,
 :root[data-theme="light"] .stepper strong,
 :root[data-theme="light"] .player-names input,
@@ -750,6 +758,8 @@ textarea {
 :root[data-theme="light"] .generation-recovery p { color: #745d43; }
 :root[data-theme="light"] .paused-banner { color: #81520b; }
 :root[data-theme="light"] .game-toast { color: #0b6b4a; border-color: rgba(11,107,74,.35); background: rgba(11,107,74,.08); }
+:root[data-theme="light"] .game-fallback-notice { color: #81520b; border-color: rgba(129,82,11,.35); background: rgba(255,174,53,.14); }
+:root[data-theme="light"] .game-fallback-notice > button { background: rgba(129,82,11,.12); }
 :root[data-theme="light"] .game-motto { color: #ad1a78; text-shadow: none; }
 :root[data-theme="light"] .empty-deck a { color: #6335a8; }
 :root[data-theme="light"] .player-manager input { color: #211b35; background: #fff; }

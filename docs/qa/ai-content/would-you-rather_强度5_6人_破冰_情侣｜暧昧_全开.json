@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "情侣 / 暧昧",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3610,
+    "latencyMs": 34403,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,17 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "wyr-ice-001",
+        "id": "wyr-001",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "每次聚会都由你来决定全场玩什么 VS 每次聚会都由大家投票决定，你只负责配合",
+        "content": "先说“今天想和你聊很久” VS 先问“你最近最开心的小事是什么”",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
           "破冰",
-          "选择"
+          "情侣",
+          "暧昧",
+          "二选一"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,15 +95,17 @@
         "source": "ai"
       },
       {
-        "id": "wyr-ice-002",
+        "id": "wyr-002",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "拥有一种能瞬间学会任何乐器的能力 VS 拥有一种能瞬间学会任何语言的能力",
+        "content": "一起散步看傍晚的云 VS 一起在家拼一幅拼图",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
           "破冰",
-          "想象"
+          "情侣",
+          "暧昧",
+          "二选一"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,15 +113,35 @@
         "source": "ai"
       },
       {
-        "id": "wyr-ice-003",
+        "id": "wyr-003",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "未来的每一次旅行都能免费升到头等舱 VS 未来的每一顿外食都能免排队入座",
+        "content": "安静地交换歌单 VS 热闹地玩一局桌游",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "情侣",
+          "暧昧",
+          "二选一"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-004",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "每天都有轻松分享 VS 隔几天深聊一次",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 2,
         "tags": [
           "破冰",
-          "生活"
+          "情侣",
+          "暧昧",
+          "二选一"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -123,15 +149,35 @@
         "source": "ai"
       },
       {
-        "id": "wyr-ice-004",
+        "id": "wyr-005",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "能读懂在场每个人的表面情绪 VS 能让在场每个人都读懂你的表面情绪",
+        "content": "用可爱食物名当昵称 VS 用当天天气名当昵称",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "情侣",
+          "暧昧",
+          "二选一"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-006",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "一个眼神就懂对方想回家 VS 同时说出同一句话",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 2,
         "tags": [
           "破冰",
-          "互动"
+          "情侣",
+          "暧昧",
+          "二选一"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -139,15 +185,17 @@
         "source": "ai"
       },
       {
-        "id": "wyr-ice-005",
+        "id": "wyr-007",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "和在场任意一人组队完成一次默契挑战 VS 独自完成一次全场注视下的即兴表演",
+        "content": "一起探索没去过的小店 VS 一起窝着看一部老电影",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 3,
+        "intensity": 1,
         "tags": [
           "破冰",
-          "互动"
+          "情侣",
+          "暧昧",
+          "二选一"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -155,15 +203,17 @@
         "source": "ai"
       },
       {
-        "id": "wyr-ice-006",
+        "id": "wyr-008",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "以后每次聚会都提前十分钟到 VS 以后每次聚会都负责最后收尾收拾",
+        "content": "随时能分享废话的松弛感 VS 认真讨论未来的安全感",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 2,
         "tags": [
           "破冰",
-          "生活"
+          "情侣",
+          "暧昧",
+          "二选一"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -171,15 +221,17 @@
         "source": "ai"
       },
       {
-        "id": "wyr-ice-007",
+        "id": "wyr-009",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "只能靠表情和动作向全场传递一个词 VS 只能靠一句话让全场猜中你心里想的词",
+        "content": "收到手写便签：“今天也谢谢你出现” VS 收到手写便签：“下次还想和你见面”",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 3,
+        "intensity": 1,
         "tags": [
           "破冰",
-          "互动"
+          "情侣",
+          "暧昧",
+          "二选一"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -187,47 +239,17 @@
         "source": "ai"
       },
       {
-        "id": "wyr-ice-008",
+        "id": "wyr-010",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "今晚所有回答都必须用提问的方式说出来 VS 今晚所有回答都必须用唱歌的方式说出来",
+        "content": "每晚互道一句今天的小幸运 VS 每周一起解锁一个新口味",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 3,
+        "intensity": 1,
         "tags": [
           "破冰",
-          "趣味"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "wyr-ice-009",
-        "packId": "would-you-rather",
-        "type": "would-you-rather",
-        "content": "和身边最近的人互换一个无关紧要的小习惯 VS 让全场为你指定一个今晚要遵守的小规矩",
-        "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 4,
-        "tags": [
-          "破冰",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "wyr-ice-010",
-        "packId": "would-you-rather",
-        "type": "would-you-rather",
-        "content": "接下来三轮里你每次都要先夸一个人再回答 VS 接下来三轮里你每次都要先复述上一个人的答案再回答",
-        "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 4,
-        "tags": [
-          "破冰",
-          "互动"
+          "情侣",
+          "暧昧",
+          "二选一"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

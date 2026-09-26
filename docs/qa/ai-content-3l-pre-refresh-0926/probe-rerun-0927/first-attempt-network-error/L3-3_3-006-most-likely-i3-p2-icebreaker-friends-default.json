@@ -1,0 +1,170 @@
+{
+  "cell": {
+    "id": "L3-3_3-006-most-likely-i3-p2-icebreaker-friends-default",
+    "layer": "L3",
+    "group": "3.3",
+    "title": "负向边界探测 most-likely@2人",
+    "seq": 6,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "minPlayers": 3,
+    "intensity": 3,
+    "players": 2,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "friends",
+    "relationshipLabel": "普通朋友",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "boundary-probe",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L3-3_3-006-most-likely-i3-p2-icebreaker-friends-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：普通朋友；氛围：破冰；最高强度：3。\n可用玩法：most-likely。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 0,
+    "attempts": 1,
+    "latencyMs": 2,
+    "provider": "deepseek-official",
+    "code": "NETWORK_ERROR",
+    "generationSource": null,
+    "cardCount": 0,
+    "cards": [],
+    "meta": null
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "FAIL",
+      "severity": "P0",
+      "detail": "非 200：status=0 code=NETWORK_ERROR（已分类）"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "N/A",
+      "severity": null,
+      "detail": "请求未返回可用卡面，本项不适用（故意失败格：不产卡）"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "N/A",
+      "severity": null,
+      "detail": "请求未返回可用卡面，本项不适用（故意失败格：不产卡）"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "N/A",
+      "severity": null,
+      "detail": "请求未返回可用卡面，本项不适用（故意失败格：不产卡）"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "N/A",
+      "severity": null,
+      "detail": "请求未返回可用卡面，本项不适用（故意失败格：不产卡）"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "N/A",
+      "severity": null,
+      "detail": "请求未返回可用卡面，本项不适用（故意失败格：不产卡）"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "N/A",
+      "severity": null,
+      "detail": "请求未返回可用卡面，本项不适用（故意失败格：不产卡）"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "N/A",
+      "severity": null,
+      "detail": "请求未返回可用卡面，本项不适用（故意失败格：不产卡）"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "N/A",
+      "severity": null,
+      "detail": "请求未返回可用卡面，本项不适用（故意失败格：不产卡）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "N/A",
+      "severity": null,
+      "detail": "请求未返回可用卡面，本项不适用（故意失败格：不产卡）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "N/A",
+      "severity": null,
+      "detail": "请求未返回可用卡面，本项不适用（故意失败格：不产卡）"
+    }
+  ],
+  "verdict": "FAIL",
+  "p0": 1,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    0
+  ]
+}

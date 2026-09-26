@@ -1,0 +1,334 @@
+{
+  "cell": {
+    "id": "L1-1-003-most-likely-i3-p4-flirty-new-default",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 3,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "minPlayers": 3,
+    "intensity": 3,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "new",
+    "relationshipLabel": "刚认识",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-003-most-likely-i3-p4-flirty-new-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "刚认识",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：刚认识；氛围：暧昧；最高强度：3。\n可用玩法：most-likely。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4676,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "mnl-001",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "谁最可能在今晚结束后，偷偷把刚才的笑话记进备忘录？",
+        "instruction": "所有人同时指向自己觉得最可能的人；被指到的人说出一个愿意分享的小细节，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-002",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "谁最可能先因为一句普通的关心而心跳加速？",
+        "instruction": "倒数三秒后一起指向一个人；被指到的人可以选择回应一句模糊的赞美，或直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-003",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "谁最可能在聊天时故意把话题绕回同一个人身上？",
+        "instruction": "一起投票选出得票最高者；得票最高者可以选择描述一种喜欢的聊天节奏，不用点名。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-004",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "谁最可能用一个眼神就让气氛突然安静半秒？",
+        "instruction": "所有人指向一个人，然后由这个人决定是否用一个无害的小动作重现那个瞬间，或跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "气氛"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-005",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "谁最可能在刚认识的人面前假装很淡定，其实心里在疯狂打草稿？",
+        "instruction": "投票后，得票最高者分享一句自己常用的开场白，也可以选择跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-006",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "谁最可能因为对方记得自己随口说过的小事而默默加分？",
+        "instruction": "同时指向一个人；被指到的人可以选择说出一种自己会注意到的细节类型，不用涉及具体隐私。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "好感"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-007",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "谁最可能在今晚结束后，回想某句话到底有没有别的意思？",
+        "instruction": "一起投票；得票最高者可以决定是否用一句模糊的话回应现场，或跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "回味"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-008",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "谁最可能在不经意间成为全场目光的落点？",
+        "instruction": "所有人同时指向一个人；被指到的人可以选择对大家说一句轻松的感谢，或跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "气氛"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-009",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "谁最可能把一次普通的对视解释成某种信号？",
+        "instruction": "投票选出得票最高者；这个人可以选择描述一种让自己觉得特别的瞬间类型，不用指向任何人。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-010",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "谁最可能在今晚结束时，最想再多聊五分钟？",
+        "instruction": "一起指向一个人；被指到的人可以选择说一句想留给大家的话，或直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "收尾",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4676ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=most-likely"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 3"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（most-likely）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4676ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

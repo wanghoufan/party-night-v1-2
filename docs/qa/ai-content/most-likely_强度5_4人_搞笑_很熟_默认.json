@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "很熟",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3901,
+    "latencyMs": 31259,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -77,14 +79,11 @@
       {
         "id": "ml-01",
         "packId": "most-likely",
-        "type": "vote",
-        "content": "谁最可能在KTV里把副歌唱成原创歌词？",
-        "instruction": "所有人同时指向一个人，被指最多的人说一句最离谱的改编歌词。",
+        "type": "most-likely",
+        "content": "最可能在笑话讲到一半时，自己先笑到停不下来。",
+        "instruction": "所有人同时投票或指认；得票最多者用最严肃的表情说一句“这不好笑”。可跳过。",
         "intensity": 1,
-        "tags": [
-          "搞笑",
-          "音乐"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -93,14 +92,11 @@
       {
         "id": "ml-02",
         "packId": "most-likely",
-        "type": "vote",
-        "content": "谁最可能在群里发完消息立刻撤回？",
-        "instruction": "投票后，得票最高的人模仿一次自己撤回时的表情。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "日常"
-        ],
+        "type": "most-likely",
+        "content": "最可能在KTV点一首超高难度的歌，副歌一开就改成朗诵。",
+        "instruction": "所有人同时投票或指认；得票最多者用朗诵腔唱出下一句歌词。可跳过。",
+        "intensity": 3,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -109,14 +105,11 @@
       {
         "id": "ml-03",
         "packId": "most-likely",
-        "type": "vote",
-        "content": "谁最可能把外卖备注写成小作文？",
-        "instruction": "投票后，得票最高的人现场编一句最长的外卖备注。",
+        "type": "most-likely",
+        "content": "最可能在玩桌游时把规则背得比主持人还熟，然后输给第一次玩的人。",
+        "instruction": "所有人同时投票或指认；得票最多者接受一句夸张赞美。可跳过。",
         "intensity": 2,
-        "tags": [
-          "搞笑",
-          "生活"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -125,14 +118,11 @@
       {
         "id": "ml-04",
         "packId": "most-likely",
-        "type": "vote",
-        "content": "谁最可能在拍照时永远闭眼？",
-        "instruction": "投票后，被选中的人展示一张自己最满意的闭眼照（可跳过）。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "拍照"
-        ],
+        "type": "most-likely",
+        "content": "最可能在密室逃脱里负责尖叫，并坚称这是团队士气加成。",
+        "instruction": "所有人同时投票或指认；得票最多者表演三秒无声尖叫。可跳过。",
+        "intensity": 3,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -141,14 +131,11 @@
       {
         "id": "ml-05",
         "packId": "most-likely",
-        "type": "vote",
-        "content": "谁最可能把闹钟按掉后继续睡到中午？",
-        "instruction": "投票后，得票最高的人用一句话总结自己的赖床哲学。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "日常"
-        ],
+        "type": "most-likely",
+        "content": "最可能在狼人杀第一轮被投出去，还认真分析自己为什么是好人。",
+        "instruction": "所有人同时投票或指认；得票最多者用一句话为自己辩解。可跳过。",
+        "intensity": 3,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -157,14 +144,11 @@
       {
         "id": "ml-06",
         "packId": "most-likely",
-        "type": "vote",
-        "content": "谁最可能在电梯里对陌生人点头微笑到尴尬？",
-        "instruction": "投票后，被选中的人演示一次最尴尬的电梯问候。",
+        "type": "most-likely",
+        "content": "最可能在旅行时把行程排得像特种兵，结果第一天在酒店睡到中午。",
+        "instruction": "所有人同时投票或指认；得票最多者描述一个最想躺平的时刻。可跳过。",
         "intensity": 2,
-        "tags": [
-          "搞笑",
-          "社交"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -173,14 +157,11 @@
       {
         "id": "ml-07",
         "packId": "most-likely",
-        "type": "vote",
-        "content": "谁最可能把追剧进度当成人生进度？",
-        "instruction": "投票后，得票最高的人用一句话安利自己最近追的剧。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "追剧"
-        ],
+        "type": "most-likely",
+        "content": "最可能在大家认真聊天时，突然用一句冷笑话把气氛带偏。",
+        "instruction": "所有人同时投票或指认；得票最多者讲一个冷笑话。可跳过。",
+        "intensity": 2,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -189,14 +170,11 @@
       {
         "id": "ml-08",
         "packId": "most-likely",
-        "type": "vote",
-        "content": "谁最可能在点奶茶时纠结五分钟？",
-        "instruction": "投票后，被选中的人快速说出三种最爱的配料。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "美食"
-        ],
+        "type": "most-likely",
+        "content": "最可能在游戏输掉后要求“三局两胜”，然后连输三局。",
+        "instruction": "所有人同时投票或指认；得票最多者宣布“我接受三局两胜”。可跳过。",
+        "intensity": 2,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -205,14 +183,11 @@
       {
         "id": "ml-09",
         "packId": "most-likely",
-        "type": "vote",
-        "content": "谁最可能把表情包当成主要沟通语言？",
-        "instruction": "投票后，得票最高的人用三个表情包名字回答“今晚吃什么”。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "聊天"
-        ],
+        "type": "most-likely",
+        "content": "最可能在模仿秀里抽到最不可能的角色，却演得意外很像。",
+        "instruction": "所有人同时投票或指认；得票最多者模仿一个大家都熟悉的影视角色。可跳过。",
+        "intensity": 4,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -221,14 +196,11 @@
       {
         "id": "ml-10",
         "packId": "most-likely",
-        "type": "vote",
-        "content": "谁最可能在聚会上突然开始讲冷笑话？",
-        "instruction": "投票后，被选中的人讲一个冷笑话，冷场就算成功。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "聚会"
-        ],
+        "type": "most-likely",
+        "content": "最可能在所有人安静时，突然发出一声奇怪的拟音，让全场笑场。",
+        "instruction": "所有人同时投票或指认；得票最多者用嘴模仿一种动物叫声。可跳过。",
+        "intensity": 5,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",

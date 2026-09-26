@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "刚认识",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3824,
+    "latencyMs": 20919,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,160 +77,130 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "nh-01",
+        "id": "nh-001",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在初次见面时就记住对方的名字超过三次。",
-        "instruction": "符合情况的人请举手或点头示意，无需解释；任何人可跳过。",
+        "content": "我从未在电影院看电影时睡着。",
+        "instruction": "轮到你时说出这句话；做过的人举手或说“我做过”，无需解释，也可以随时跳过。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "自我观察"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-02",
+        "id": "nh-002",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在聚会中假装听懂别人聊的话题。",
-        "instruction": "符合情况的人请举手或点头示意，无需解释；任何人可跳过。",
+        "content": "我从未为了追一部剧熬夜到天亮。",
+        "instruction": "轮到你时说出这句话；做过的人举手或说“我做过”，无需解释，也可以随时跳过。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "幽默"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-03",
+        "id": "nh-003",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未因为想认识新朋友而主动加入一个陌生小组。",
-        "instruction": "符合情况的人请举手或点头示意，无需解释；任何人可跳过。",
+        "content": "我从未在旅行中彻底迷路。",
+        "instruction": "轮到你时说出这句话；做过的人举手或说“我做过”，无需解释，也可以随时跳过。",
         "intensity": 1,
-        "tags": [
-          "社交",
-          "自我观察"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-04",
+        "id": "nh-004",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在第一次见面时讲了一个没人笑的冷笑话。",
-        "instruction": "符合情况的人请举手或点头示意，无需解释；任何人可跳过。",
+        "content": "我从未吃过榴莲。",
+        "instruction": "轮到你时说出这句话；做过的人举手或说“我做过”，无需解释，也可以随时跳过。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "幽默"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-05",
+        "id": "nh-005",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在点餐时跟随别人选一样的菜，只因为不想纠结。",
-        "instruction": "符合情况的人请举手或点头示意，无需解释；任何人可跳过。",
+        "content": "我从未养过宠物。",
+        "instruction": "轮到你时说出这句话；做过的人举手或说“我做过”，无需解释，也可以随时跳过。",
         "intensity": 1,
-        "tags": [
-          "日常",
-          "自我观察"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-06",
+        "id": "nh-006",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在聊天时偷偷看时间，希望聚会早点结束。",
-        "instruction": "符合情况的人请举手或点头示意，无需解释；任何人可跳过。",
+        "content": "我从未在雨天忘带伞。",
+        "instruction": "轮到你时说出这句话；做过的人举手或说“我做过”，无需解释，也可以随时跳过。",
         "intensity": 1,
-        "tags": [
-          "日常",
-          "幽默"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-07",
+        "id": "nh-007",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未因为紧张而重复说过同一句话。",
-        "instruction": "符合情况的人请举手或点头示意，无需解释；任何人可跳过。",
+        "content": "我从未连续玩同一款游戏超过四小时。",
+        "instruction": "轮到你时说出这句话；做过的人举手或说“我做过”，无需解释，也可以随时跳过。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "自我观察"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-08",
+        "id": "nh-008",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在第一次见面的人面前打翻过饮料或餐具。",
-        "instruction": "符合情况的人请举手或点头示意，无需解释；任何人可跳过。",
+        "content": "我从未学过一门乐器。",
+        "instruction": "轮到你时说出这句话；做过的人举手或说“我做过”，无需解释，也可以随时跳过。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "幽默"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-09",
+        "id": "nh-009",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在聚会中悄悄观察大家谁和谁更聊得来。",
-        "instruction": "符合情况的人请举手或点头示意，无需解释；任何人可跳过。",
+        "content": "我从未在图书馆或书店里睡着。",
+        "instruction": "轮到你时说出这句话；做过的人举手或说“我做过”，无需解释，也可以随时跳过。",
         "intensity": 1,
-        "tags": [
-          "社交",
-          "观察"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-10",
+        "id": "nh-010",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在刚认识的人面前假装自己很忙。",
-        "instruction": "符合情况的人请举手或点头示意，无需解释；任何人可跳过。",
+        "content": "我从未把一件衣服穿到破洞还舍不得扔。",
+        "instruction": "轮到你时说出这句话；做过的人举手或说“我做过”，无需解释，也可以随时跳过。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "自我观察"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",

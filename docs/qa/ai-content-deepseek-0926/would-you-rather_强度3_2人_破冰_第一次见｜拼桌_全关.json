@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 30,
+    "packId": "would-you-rather",
+    "packName": "二选一",
+    "origin": "base",
+    "intensity": 3,
+    "players": 2,
+    "vibe": {
+      "key": "icebreaker",
+      "label": "破冰"
+    },
+    "relationship": {
+      "key": "first-meet",
+      "label": "第一次见 / 拼桌"
+    },
+    "boundary": {
+      "mode": "all-off",
+      "label": "全关",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "would-you-rather"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：第一次见 / 拼桌；氛围：破冰；最高强度：3。\n可用玩法：would-you-rather。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3806,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "wyr-ice-01",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "能瞬间学会任何语言，但每学一门就会忘掉一门旧语言 VS 能瞬间学会任何乐器，但每次演奏只能持续三分钟",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "想象"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-ice-02",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "未来一年每顿饭都只能吃同一道菜，但可以自由选择这道菜 VS 未来一年每顿饭都换新菜，但不能重复吃任何一道",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-ice-03",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "能随时知道别人对你的第一印象，但无法改变它 VS 永远不知道别人怎么看你，但可以随意塑造自己的形象",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-ice-04",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "每次旅行都能免费升舱，但目的地必须提前一周抽签决定 VS 每次旅行都能自选目的地，但只能坐最普通的交通方式",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "旅行"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-ice-05",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "获得一项无人能及的技能，但只有你自己知道它有多厉害 VS 获得一项普通技能，但全世界都会为你鼓掌",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "价值观"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-ice-06",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "能读懂任何人的情绪，但必须立刻说出来 VS 完全感受不到别人情绪，但可以自由选择回应方式",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-ice-07",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "每天多出一小时只属于自己，但这一小时不能用来睡觉 VS 每天少睡一小时，但多出的时间可以自由安排",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "时间"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-ice-08",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "能回到过去改一个决定，但改完后不能告诉任何人 VS 能预知未来一件小事，但无法改变它",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "想象"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-ice-09",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "所有朋友都记得你说过的每一句好话 VS 所有朋友都忘记你说过的每一句坏话",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "关系"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "wyr-ice-10",
+        "packId": "would-you-rather",
+        "type": "would-you-rather",
+        "content": "能瞬间整理好房间，但只能整理别人的房间 VS 能瞬间整理好自己的房间，但每次都会弄乱一个抽屉",
+        "instruction": "一起倒数三秒，说出你的选择",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

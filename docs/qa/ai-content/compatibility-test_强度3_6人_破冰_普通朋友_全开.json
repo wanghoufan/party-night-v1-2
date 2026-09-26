@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "普通朋友",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 2964,
+    "latencyMs": 21539,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,124 +77,12 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "compatibility-001",
+        "id": "compat-001",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果明天大家一起去郊游，你觉得对方会选哪种交通方式？",
+        "content": "如果只能选一种周末早餐，你会选甜口还是咸口？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "日常"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compatibility-002",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "你觉得对方更喜欢哪种口味的零食？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "生活"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compatibility-003",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "周末宅家时，对方更可能选择做什么？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "兴趣"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compatibility-004",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "对方更喜欢哪种天气？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "轻松"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compatibility-005",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "如果只能选一种饮料，对方会选？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "日常"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compatibility-006",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "你觉得对方更喜欢的颜色是哪一种？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "生活"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compatibility-007",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "对方更喜欢哪种类型的电影？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
-        "tags": [
-          "破冰",
-          "兴趣"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compatibility-008",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "如果一起点外卖，对方更可能选哪种主食？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
         "tags": [
           "破冰",
           "饮食"
@@ -203,12 +93,12 @@
         "source": "ai"
       },
       {
-        "id": "compatibility-009",
+        "id": "compat-002",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "对方更喜欢的旅行方式是？",
+        "content": "旅行时你更像计划派还是随性派？",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
+        "intensity": 1,
         "tags": [
           "破冰",
           "旅行"
@@ -219,15 +109,127 @@
         "source": "ai"
       },
       {
-        "id": "compatibility-010",
+        "id": "compat-003",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "你觉得对方更倾向于早起还是晚睡？",
+        "content": "吃火锅时，你必须点的一道菜是什么？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "饮食"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-004",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果今晚只能看一种类型的电影，你选喜剧、悬疑还是动画？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "电影"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-005",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "你更喜欢早起后立刻开始活动，还是慢慢进入状态？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "破冰",
           "习惯"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-006",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "选一个最想拥有的超能力：瞬间移动、隐身、读心？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "想象"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-007",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果组队玩游戏，你更愿意当输出、辅助还是指挥？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "游戏"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-008",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "喝奶茶时你通常选几分糖？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "饮食"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-009",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "下雨天有空，你会选择宅家还是出门？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-010",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果只能选一种夜宵，你选烧烤、泡面还是甜品？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "饮食"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

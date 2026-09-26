@@ -9,6 +9,7 @@ import {
   drawV2SessionCard,
   hostDecisionRequest,
   reduceV2SessionEvents,
+  selectTargetPair,
   type V2AwaitingHostOutcome,
   type V2CardOutcome,
   type V2DrawOutcome,
@@ -513,5 +514,55 @@ describe('v2-session（B6 Session 级编排器，D8=A+ / D2 单 Router）', () =
     expect(state.orchestration.finished).toBe(false);
     expect(state.orchestration.hostDecisions).toEqual({});
     expect(state.orchestration.lastExhaustionLevel).toBe('BUCKET_OK');
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* B2a：selectTargetPair 消费 relationship.playerCoverage（R-CB5 接线）   */
+/* ------------------------------------------------------------------ */
+
+describe('v2-session · selectTargetPair 消费 playerCoverage', () => {
+  const parts = [male('m1'), male('m2'), female('f1'), female('f2')];
+
+  it('offered 多的玩家相关 pair 让位给未获机会者（playerCoverage 真被消费）', () => {
+    const base = createV2SessionState({ sessionId: 's-cov', participants: parts });
+    // 空 Coverage：冻结排序取 pairKey 最小者
+    expect(selectTargetPair(base)).toBe('f1::m1');
+
+    const biased: V2SessionState = {
+      ...base,
+      relationship: {
+        ...base.relationship,
+        playerCoverage: {
+          m1: {
+            offeredTargeted: 5,
+            completedTargeted: 3,
+            consecutiveTargetedSkips: 0,
+            lowParticipation: false,
+          },
+        },
+      },
+    };
+    // 接线前会仍取 f1::m1；接线后已多次 offered 的 m1 让位，选未获机会的 m2
+    expect(selectTargetPair(biased)).toBe('f1::m2');
+  });
+
+  it('展示后连续 skip（lowParticipation）同样让位，偏向被冷落方', () => {
+    const base = createV2SessionState({ sessionId: 's-cov2', participants: parts });
+    const skipping: V2SessionState = {
+      ...base,
+      relationship: {
+        ...base.relationship,
+        playerCoverage: {
+          m1: {
+            offeredTargeted: 2,
+            completedTargeted: 0,
+            consecutiveTargetedSkips: 2,
+            lowParticipation: true,
+          },
+        },
+      },
+    };
+    expect(selectTargetPair(skipping)).toBe('f1::m2');
   });
 });

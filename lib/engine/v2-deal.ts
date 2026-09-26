@@ -17,6 +17,7 @@ import { getV2ContentAdapter } from "@/lib/v2-content/v2-content-adapter";
 import { EXPANSION_PACK_ID, isV2MainlinePack } from "@/lib/v2-content/v2-card-bridge";
 import { isRecentlyRejected } from "./card-eligibility";
 import { diffPlayerRoster, normalizeParticipants } from "@/lib/v2-relationship/v2-participants";
+import { singleAnchorPlayerId } from "@/lib/v2-relationship/v2-routing";
 import { applyPlayerExit, applyPlayerTemporarilyAway, type RelationshipEvent } from "@/lib/v2-relationship/v2-reducer";
 import {
   createInitialRelationshipState,
@@ -55,6 +56,9 @@ export interface DeckRouterOptions {
 
 const heatRank = (heat: RelationshipState["heat"]): number => HEAT_ORDER.indexOf(heat) + 1;
 
+/** 只认「全桌」目标模式的卡：Guard 的非定向轮与无合法 pair 的降级局都只出这类卡。 */
+const ALL_PLAYERS_TARGET_MODE = "all-players";
+
 /** SSOT 主线卡的 Heat 档/Pair 目标元数据；非 SSOT 卡返回 undefined（不做这两项 gating）。 */
 function ssotMeta(cardId: string) {
   return getV2ContentAdapter().cardById(cardId);
@@ -75,9 +79,16 @@ function heatEligible(card: GameCard, input: V2RouterInput): boolean {
  * - 其余 pair 定向卡在 `NO_ELIGIBLE_PAIR` 时**照常按普通玩法出**（R4 §4.1「保留普通抽卡」「进入普通玩法」）：
  *   参与者走既有 `selectParticipants`，不读、不展示任何 pairGender 字段，也就不存在猜性别问题。
  *   （V2 关系主线 API 的 SSOT Router 另有更严的读法，见 B7；本适配器只在 App 普通玩法降级时放宽。）
+ * - R-CB6｜`requireNonTargetedOpportunity === true`（Single-Anchor Guard 的非定向轮）：只出
+ *   `all-players` 卡 —— 与上面那条「降级照常出」是两回事，这是 Guard 显式要求的**硬过滤**，
+ *   此处不放宽。非 SSOT 卡（AI / 自定义 / 旧 seed）没有 `targetMode` 元数据、不具备定向 pair
+ *   语义，按非定向候选处理。
  */
 function targetEligible(card: GameCard, input: V2RouterInput): boolean {
   const meta = ssotMeta(card.id);
+  if (input.requireNonTargetedOpportunity === true) {
+    return !meta || !("targetMode" in meta) || meta.targetMode === ALL_PLAYERS_TARGET_MODE;
+  }
   if (!meta || !("targetMode" in meta)) return true;
   if (meta.targetMode === "match-pair" || meta.matchRequired === true) {
     return (
@@ -178,11 +189,19 @@ export const createInitialOrchestration = (): V2OrchestrationState => ({
   lastExhaustionLevel: "BUCKET_OK",
   finished: false,
   hostDecisions: {},
+  // R-CB6：尚未出卡 = 无定向曝光事实。
+  lastTargetedPairKey: null,
 });
 
-/** 从 Session 组装 V2 编排态（缺失即初始档：旧 Session 原样可玩）。 */
+/**
+ * 从 Session 组装 V2 编排态（缺失即初始档：旧 Session 原样可玩）。
+ * R-CB6：旧 Session 的 `v2Orchestration` 没有 `lastTargetedPairKey` 字段，
+ * 这里显式规范化为 `null`（无曝光），不迁移、不崩、不猜。
+ */
 export function orchestrationOf(session: GameSession): V2OrchestrationState {
-  return session.v2Orchestration ?? createInitialOrchestration();
+  const orchestration = session.v2Orchestration;
+  if (!orchestration) return createInitialOrchestration();
+  return { ...orchestration, lastTargetedPairKey: orchestration.lastTargetedPairKey ?? null };
 }
 
 /**
@@ -398,14 +417,24 @@ export function awaitingHostDecision(session: GameSession): V2AwaitingHostOutcom
   const orchestration = session.v2Orchestration;
   if (!orchestration?.awaitingHostDecision) return undefined;
   const relationship = relationshipOf(session);
+  const participants = normalizeParticipants(session.participants, session.config.players);
+  // R-CB6：恢复路径只组装决策请求，未发生调度 → Guard 决策恒为「未生效」，
+  // 但仍如实回传本局是否 Single-Anchor 桌（anchor 由当前名册现算，不落盘性别/身份）。
+  const anchorPlayerId = singleAnchorPlayerId(participants);
   return {
     kind: "AWAITING_HOST_EXHAUSTION_DECISION",
     exhaustionCycle: relationship.exhaustionCycle,
     idempotencyKey: hostDecisionKey(session.id, relationship.exhaustionCycle + 1),
+    guard: {
+      singleAnchorTable: anchorPlayerId !== null,
+      anchorPlayerId,
+      applied: false,
+      reason: null,
+    },
     state: {
       sessionId: session.id,
       relationship,
-      participants: normalizeParticipants(session.participants, session.config.players),
+      participants,
       orchestration,
     },
   };
@@ -425,4 +454,27 @@ export function applyHostDecisionToSession(
     exhaustionCycle: awaiting.exhaustionCycle,
   });
   return withV2State(session, result.state);
+}
+
+/** 洗牌也救不回（牌堆真空 / 本玩法在当前人数·尺度·雷区下无硬合法卡）时的兜底指引。 */
+export const NO_RECOVERABLE_CARDS_GUIDANCE = "本局这个玩法已经没有可出的题卡，洗牌也补不出新题。可以换个玩法，或者就此收工。";
+
+/**
+ * 「洗牌再玩」是否会真的补出题卡（纯函数，不改入参）。
+ *
+ * 耗尽等待态下先模拟一次 Host 洗牌（等价于 `/game` 的 `hostDecision("reshuffle")`：只清 used、cycle+1、
+ * 解除 awaiting），再按同一条出卡链试抽一次；抽不到卡说明洗牌是空转（牌堆本身为空，或本局玩法在这个
+ * 人数/尺度/雷区下没有任何硬合法卡），此时 UI 不得只给「洗牌再玩」——必须给结束本局/换玩法/回首页。
+ */
+export function reshuffleWouldRevealCard(session: GameSession): boolean {
+  const awaiting = awaitingHostDecision(session);
+  if (!awaiting) return false;
+  const decided = applyHostDecisionToSession(session, awaiting, "reshuffle");
+  const single = decided.config.mode === "single";
+  const { outcome } = drawDeckCard({
+    session: decided,
+    preferredPackIds: [decided.currentPackId],
+    enabledPackIds: single ? [decided.currentPackId] : decided.config.enabledPackIds,
+  });
+  return outcome.kind === "CARD";
 }

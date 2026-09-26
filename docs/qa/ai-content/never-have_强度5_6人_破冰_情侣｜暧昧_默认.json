@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "情侣 / 暧昧",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4331,
+    "latencyMs": 19470,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,14 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "nh-ice-01",
+        "id": "nh-001",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在第一次见面时就记住对方的名字，还主动复述了一遍。",
-        "instruction": "如果做过，请举手并分享当时的场合和小尴尬，不想说就跳过。",
+        "content": "我从未在聚会中主动向新朋友打招呼。",
+        "instruction": "若你做过，放下一根手指；若不想回答，可随时跳过。",
         "intensity": 1,
         "tags": [
-          "破冰",
-          "记忆"
+          "破冰"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,15 +92,14 @@
         "source": "ai"
       },
       {
-        "id": "nh-ice-02",
+        "id": "nh-002",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在聚会中假装听懂了一个笑话，其实完全没明白。",
-        "instruction": "做过的人举手，然后可以请一位嘉宾用更简单的话复述那个笑话。",
+        "content": "我从未因为一句玩笑话而脸红。",
+        "instruction": "若你做过，放下一根手指；若不想回答，可随时跳过。",
         "intensity": 1,
         "tags": [
-          "破冰",
-          "幽默"
+          "破冰"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,15 +107,29 @@
         "source": "ai"
       },
       {
-        "id": "nh-ice-03",
+        "id": "nh-003",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未因为紧张，把本来想说的话说成了完全相反的意思。",
-        "instruction": "做过的人举手，并说出当时想表达的真实意思，可跳过。",
+        "content": "我从未在聊天时故意发过一个表情包来缓和气氛。",
+        "instruction": "若你做过，放下一根手指；若不想回答，可随时跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-004",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未和喜欢或暧昧的人一起看过电影。",
+        "instruction": "若你做过，放下一根手指；若不想回答，可随时跳过。",
         "intensity": 2,
         "tags": [
-          "破冰",
-          "表达"
+          "破冰"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -123,15 +137,14 @@
         "source": "ai"
       },
       {
-        "id": "nh-ice-04",
+        "id": "nh-005",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在集体合照时偷偷踮脚或站到更靠前的位置。",
-        "instruction": "做过的人举手，并分享当时最想靠近谁或想显得更上镜的原因。",
+        "content": "我从未在紧张时下意识玩弄手指或衣角。",
+        "instruction": "若你做过，放下一根手指；若不想回答，可随时跳过。",
         "intensity": 1,
         "tags": [
-          "破冰",
-          "合照"
+          "破冰"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -139,15 +152,14 @@
         "source": "ai"
       },
       {
-        "id": "nh-ice-05",
+        "id": "nh-006",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在聊天时把同一个故事讲给同一个人听了两遍。",
-        "instruction": "做过的人举手，然后请其他嘉宾猜猜是什么故事，被猜到可跳过分享。",
+        "content": "我从未在集体活动中主动坐在某人旁边。",
+        "instruction": "若你做过，放下一根手指；若不想回答，可随时跳过。",
         "intensity": 2,
         "tags": [
-          "破冰",
-          "聊天"
+          "破冰"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -155,14 +167,13 @@
         "source": "ai"
       },
       {
-        "id": "nh-ice-06",
+        "id": "nh-007",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在喜欢的人面前故意表现得很忙或很冷淡。",
-        "instruction": "做过的人举手，并说出当时最想掩饰的心情，也可以只举手不解释。",
+        "content": "我从未和暧昧对象单独散步超过半小时。",
+        "instruction": "若你做过，放下一根手指；若不想回答，可随时跳过。",
         "intensity": 3,
         "tags": [
-          "破冰",
           "暧昧"
         ],
         "boundaryTags": [],
@@ -171,63 +182,46 @@
         "source": "ai"
       },
       {
-        "id": "nh-ice-07",
+        "id": "nh-008",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在约会前反复修改过要穿的衣服，最后又换回第一套。",
-        "instruction": "做过的人举手，并分享第一套和最终选择之间的纠结，可跳过。",
-        "intensity": 2,
-        "tags": [
-          "破冰",
-          "约会"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-ice-08",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从未因为对方一句普通的关心，自己脑补出一整段浪漫剧情。",
-        "instruction": "做过的人举手，并用一句话概括脑补的剧情，被点到的嘉宾可以跳过。",
+        "content": "我从未在关系暧昧时主动牵过对方的手。",
+        "instruction": "若你做过，放下一根手指；若不想回答，可随时跳过。",
         "intensity": 3,
         "tags": [
-          "破冰",
           "暧昧"
         ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-ice-09",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从未在群体活动中偷偷观察某个人，想知道对方是不是也在看我。",
-        "instruction": "做过的人举手，然后可以只回答“是或否”表示是否被对方发现，无需展开。",
-        "intensity": 3,
-        "tags": [
-          "破冰",
-          "观察"
+        "boundaryTags": [
+          "physical-contact"
         ],
-        "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-ice-10",
+        "id": "nh-009",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在道别后回头看过某个人，哪怕对方已经走远。",
-        "instruction": "做过的人举手，并分享当时回头的原因，或选择跳过分享。",
+        "content": "我从未对在场某位嘉宾产生过想进一步了解的好奇。",
+        "instruction": "若你做过，放下一根手指；若不想回答，可随时跳过。",
         "intensity": 4,
         "tags": [
-          "破冰",
-          "道别"
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-010",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在心动时假装若无其事。",
+        "instruction": "若你做过，放下一根手指；若不想回答，可随时跳过。",
+        "intensity": 5,
+        "tags": [
+          "暧昧"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

@@ -1,0 +1,306 @@
+{
+  "cell": {
+    "id": "L1-1-011-most-likely-i1-p6-icebreaker-familiar-all-on",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 11,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "minPlayers": 3,
+    "intensity": 1,
+    "players": 6,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "familiar",
+    "relationshipLabel": "熟人局",
+    "boundaryFlags": {
+      "noPhysicalContact": true,
+      "noAlcoholPenalty": true,
+      "noExPartners": true,
+      "noSexualHistory": true,
+      "noMoneyIncome": true,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": true,
+      "noSocialAccounts": true
+    },
+    "boundaryLabel": "全开",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-011-most-likely-i1-p6-icebreaker-familiar-all-on",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "熟人局",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：熟人局；氛围：破冰；最高强度：1。\n可用玩法：most-likely。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4634,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "mn-ice-01",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在聚会里第一个主动跟不熟的人打招呼？",
+        "instruction": "所有人同时指向自己认为最符合的人；被指最多的人分享一个自己认识新朋友的常用开场白，可以说“跳过”。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-02",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在群里发消息后才发现打错字？",
+        "instruction": "所有人倒数三下后同时指向一人；得票最多者讲一个自己发错消息的小糗事，可以说“跳过”。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-03",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在旅行时把行程安排得井井有条？",
+        "instruction": "所有人同时指向一人；得票最多者用三个词总结自己的旅行风格，可以说“跳过”。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-04",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在看电影时第一个猜出结局？",
+        "instruction": "所有人同时指向一人；得票最多者分享一部自己最喜欢的电影，可以说“跳过”。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-05",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在KTV里第一个拿起麦克风？",
+        "instruction": "所有人同时指向一人；得票最多者哼唱一句自己最爱的歌，可以说“跳过”。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-06",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在点外卖时纠结最久？",
+        "instruction": "所有人同时指向一人；得票最多者说出自己最常点的一道菜，可以说“跳过”。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-07",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在会议上悄悄记下好点子？",
+        "instruction": "所有人同时指向一人；得票最多者分享一个自己最近学到的小知识，可以说“跳过”。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-08",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在周末早起去运动？",
+        "instruction": "所有人同时指向一人；得票最多者说出自己最喜欢的放松方式，可以说“跳过”。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-09",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在聊天时引出冷门话题？",
+        "instruction": "所有人同时指向一人；得票最多者提出一个自己好奇的冷门问题，可以说“跳过”。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-10",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在聚会结束时提议下次再聚？",
+        "instruction": "所有人同时指向一人；得票最多者说出一个自己理想中的聚会活动，可以说“跳过”。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider",
+      "filteredCount": 0,
+      "retryCount": 0
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4634ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=most-likely"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 1"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [physical-contact,alcohol,ex-partner,sexual-history,money,phone-privacy,public-posting,stranger-contact,photo-video,social-account] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤6"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（most-likely）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4634ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

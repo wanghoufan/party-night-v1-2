@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "很熟",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3700,
+    "latencyMs": 40455,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "compat-01",
+        "id": "compat-001",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果今晚的聚会只能用一首歌来代表，你猜对方会选哪一首？",
+        "content": "如果今晚只能选一首歌代表你们现在的关系，你们会同时说出哪一首？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "music",
-          "warmup"
+          "破冰",
+          "默契"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,33 +93,15 @@
         "source": "ai"
       },
       {
-        "id": "compat-02",
+        "id": "compat-002",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "在今晚的四个人里，对方觉得谁最可能在聚会中途偷偷去看手机？",
+        "content": "周末更想一起做的事：A 去安静咖啡馆聊天，B 去看一场午夜电影，C 在家做一顿简单晚饭。请同时选择。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
-          "observation",
-          "fun"
-        ],
-        "boundaryTags": [
-          "phone-privacy"
-        ],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compat-03",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "如果现在要一起点一份宵夜，对方会选甜的还是咸的？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
-        "tags": [
-          "food",
-          "casual"
+          "约会",
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -125,15 +109,15 @@
         "source": "ai"
       },
       {
-        "id": "compat-04",
+        "id": "compat-003",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "对方觉得今晚谁会最先说“我有点困了”？",
+        "content": "你觉得我们之间更像哪一种默契？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
-          "observation",
-          "group"
+          "默契",
+          "暧昧"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -141,63 +125,15 @@
         "source": "ai"
       },
       {
-        "id": "compat-05",
+        "id": "compat-004",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果要给对方起一个只属于今晚的昵称，对方会喜欢可爱风还是帅气风？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
-        "tags": [
-          "nickname",
-          "flirty"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compat-06",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "对方觉得你们俩谁更擅长在冷场时救场？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
-        "tags": [
-          "social",
-          "self-awareness"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compat-07",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "如果明天可以一起去一个地方，对方会选海边、山上、还是待在室内？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
-        "tags": [
-          "travel",
-          "imagination"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compat-08",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "对方觉得今晚谁笑起来最让人放松？",
+        "content": "如果要给对方一句暧昧但不越界的赞美，你们会同时说什么？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 3,
         "tags": [
-          "warm",
-          "observation"
+          "赞美",
+          "暧昧"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -205,31 +141,95 @@
         "source": "ai"
       },
       {
-        "id": "compat-09",
+        "id": "compat-005",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果只能用一个词形容今晚的氛围，对方会用哪个词？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
-        "tags": [
-          "mood",
-          "words"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compat-10",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "对方觉得你们下一次见面，最可能因为什么理由？",
+        "content": "在一段暧昧里，你更看重：A 主动分享日常，B 见面时的眼神，C 记得小细节，D 给彼此空间。请同时选择。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 3,
         "tags": [
-          "future",
-          "connection"
+          "关系偏好",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-006",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果今晚的气氛只能停在“暧昧”，你们希望它更像：A 慢热升温，B 轻松玩笑，C 若即若离，D 直接说清。请同时选择。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 3,
+        "tags": [
+          "氛围",
+          "选择"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-007",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "你觉得自己在心动时最藏不住的反应是什么？两人同时回答一个词或短句。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 4,
+        "tags": [
+          "心动",
+          "自我观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-008",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果只能用一个词形容我们现在的距离，你们会同时说：A 一步之遥，B 隔着一层纸，C 刚好舒服，D 还想再近一点。请同时选择。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 4,
+        "tags": [
+          "距离感",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-009",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "你们同时说出一个最想和对方一起做的、不越界的浪漫小事。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 4,
+        "tags": [
+          "浪漫",
+          "想象"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "compat-010",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "如果今晚结束时只能留下一句让对方回味的话，你们会同时说什么？不能涉及隐私、承诺或越界内容。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 5,
+        "tags": [
+          "收尾",
+          "暧昧"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

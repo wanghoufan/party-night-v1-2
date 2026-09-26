@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L2-2_7-118-most-likely-i5-p4-flirty-first-meet-default",
+    "layer": "L2",
+    "group": "2.7",
+    "title": "身体接触对照组（雷区关）",
+    "seq": 118,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "minPlayers": 3,
+    "intensity": 5,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_7-118-most-likely-i5-p4-flirty-first-meet-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：暧昧；最高强度：5。\n可用玩法：most-likely。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4600,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "ml-01",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "在座谁最有可能在第一次见面的拼桌场合，偷偷记住某个人说话时的小表情？",
+        "instruction": "大家同时指向一个人；被指到的人可以选择说一个观察或直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "观察力",
+          "初次见面"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-02",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "在座谁最有可能因为一句温柔的玩笑，在心里反复回味一整晚？",
+        "instruction": "投票后，得票最多的人可以分享一句自己听过最温柔的话，或选择跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "回味"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-03",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "在座谁最有可能在拼桌时，用一句无关紧要的话故意引起某个人的注意？",
+        "instruction": "指向你心中的答案；被指到的人可以选择解释理由或说“下一位”。",
+        "intensity": 2,
+        "tags": [
+          "注意",
+          "拼桌"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-04",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "在座谁最有可能在第一次见面时，因为对方的一个眼神而突然忘记自己要说什么？",
+        "instruction": "大家同时投票；票数最高的人可以描述那个“忘记说话”的瞬间，或跳过。",
+        "intensity": 2,
+        "tags": [
+          "眼神",
+          "初次见面"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-05",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "在座谁最有可能在暧昧气氛里，假装看别处其实一直在用余光找人？",
+        "instruction": "投票后，被选中的人可以承认或否认，不需要解释细节。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "余光"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-06",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "在座谁最有可能因为一次拼桌，就偷偷期待下一次还能坐在同一个人旁边？",
+        "instruction": "指向一个人；被指到的人可以说“期待”或“不期待”，也可以直接跳过。",
+        "intensity": 3,
+        "tags": [
+          "期待",
+          "拼桌"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-07",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "在座谁最有可能在第一次见面时，就已经想好了一个只对某个人说的秘密开场白？",
+        "instruction": "投票后，得票最多的人可以选择说出开场白的第一句，或选择保密。",
+        "intensity": 3,
+        "tags": [
+          "开场白",
+          "初次见面"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-08",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "在座谁最有可能在暧昧的沉默里，先忍不住笑出来打破气氛？",
+        "instruction": "大家同时指向一个人；被指到的人可以模仿那个笑，或跳过。",
+        "intensity": 3,
+        "tags": [
+          "沉默",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-09",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "在座谁最有可能在拼桌结束后，悄悄回想某个人今天穿了什么颜色？",
+        "instruction": "投票后，票数最高的人可以只说一个颜色，不需要说明是谁。",
+        "intensity": 4,
+        "tags": [
+          "回想",
+          "拼桌"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-10",
+        "packId": "most-likely",
+        "type": "question",
+        "content": "在座谁最有可能在第一次见面的场合，因为对方靠近一点就心跳加速却装作没事？",
+        "instruction": "指向你心中的答案；被指到的人可以选择用一句话形容当时的感觉，或直接跳过。",
+        "intensity": 4,
+        "tags": [
+          "靠近",
+          "心跳"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4600ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=most-likely"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（most-likely）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4600ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 4/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "cell": {
+    "index": 79,
+    "packId": "pointing-game",
+    "packName": "指人游戏",
+    "origin": "extra",
+    "intensity": 1,
+    "players": 2,
+    "vibe": {
+      "key": "wild",
+      "label": "放开玩"
+    },
+    "relationship": {
+      "key": "new",
+      "label": "刚认识"
+    },
+    "boundary": {
+      "mode": "all-on",
+      "label": "全开",
+      "flags": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "刚认识",
+      "vibes": [
+        "放开玩"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "pointing-game"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：刚认识；氛围：放开玩；最高强度：1。\n可用玩法：pointing-game。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3658,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-001",
+        "packId": "pointing-game",
+        "type": "icebreaker",
+        "content": "说出你最近学会的一个小技能，并现场用一句话展示。",
+        "instruction": "轮流进行，每人不超过30秒；不想做可以直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "轻互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-002",
+        "packId": "pointing-game",
+        "type": "question",
+        "content": "如果周末多出两小时，你最想用来做什么？",
+        "instruction": "每人回答一句，不追问隐私。",
+        "intensity": 1,
+        "tags": [
+          "聊天",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-003",
+        "packId": "pointing-game",
+        "type": "challenge",
+        "content": "用三个词形容今天的聚会氛围，并说明理由。",
+        "instruction": "依次说，不能重复别人的词。",
+        "intensity": 1,
+        "tags": [
+          "表达",
+          "暖场"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-004",
+        "packId": "pointing-game",
+        "type": "question",
+        "content": "分享一个让你开心的小习惯，比如散步、听歌或整理桌面。",
+        "instruction": "只聊习惯本身，不涉及隐私信息。",
+        "intensity": 1,
+        "tags": [
+          "分享",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-005",
+        "packId": "pointing-game",
+        "type": "challenge",
+        "content": "模仿一种常见动物的叫声，让大家猜是什么。",
+        "instruction": "猜中即结束；可跳过。",
+        "intensity": 1,
+        "tags": [
+          "模仿",
+          "趣味"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-006",
+        "packId": "pointing-game",
+        "type": "question",
+        "content": "最近看过的一部作品里，你最想推荐给别人的是什么？",
+        "instruction": "说名称和一句推荐理由即可。",
+        "intensity": 1,
+        "tags": [
+          "推荐",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-007",
+        "packId": "pointing-game",
+        "type": "challenge",
+        "content": "用左手或非惯用手写下一句祝福，展示给大家看。",
+        "instruction": "不需要传递或拍照，写完展示即可。",
+        "intensity": 1,
+        "tags": [
+          "小挑战",
+          "展示"
+        ],
+        "boundaryTags": [
+          "photo-video"
+        ],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-008",
+        "packId": "pointing-game",
+        "type": "question",
+        "content": "如果可以瞬间学会一项无害技能，你会选什么？为什么？",
+        "instruction": "每人一句话回答。",
+        "intensity": 1,
+        "tags": [
+          "想象",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-009",
+        "packId": "pointing-game",
+        "type": "challenge",
+        "content": "用表情和动作表演一个日常场景，让大家猜。",
+        "instruction": "不涉及身体接触，猜中即结束。",
+        "intensity": 1,
+        "tags": [
+          "表演",
+          "猜谜"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-010",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向你觉得最会讲冷笑话的人，然后那个人说一个冷笑话。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 1,
+        "tags": [
+          "指人",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

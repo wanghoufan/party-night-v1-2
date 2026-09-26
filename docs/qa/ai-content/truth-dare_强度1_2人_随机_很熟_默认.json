@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "很熟",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3650,
+    "latencyMs": 18793,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,13 +80,10 @@
         "id": "td-001",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你最近一次因为一件小事偷偷开心了很久，是什么事？",
-        "instruction": "如实分享，不想回答就跳过。",
+        "content": "说出你最近一次真心大笑是因为什么，尽量描述当时的场景和你的反应。",
+        "instruction": "由另一位嘉宾念出；回答者可以随时说跳过。",
         "intensity": 1,
-        "tags": [
-          "轻松",
-          "分享"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
@@ -94,13 +93,10 @@
         "id": "td-002",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "用三种夸张的表情演绎你今天的心情。",
-        "instruction": "只做表情，不发出声音，坚持10秒。",
+        "content": "模仿一种你熟悉的动物叫声或走路姿势，持续大约10秒。",
+        "instruction": "如果不想模仿，可以改为用一句话描述这种动物，或者直接跳过。",
         "intensity": 1,
-        "tags": [
-          "表演",
-          "搞笑"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
@@ -110,29 +106,23 @@
         "id": "td-003",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "说出对方一个你欣赏但从来没当面夸过的优点。",
-        "instruction": "看着对方说，说完可以互相点头致意。",
+        "content": "你最想拥有的一项无用但有趣的技能是什么？为什么想拥有它？",
+        "instruction": "另一位嘉宾可以追问一句“为什么”，但回答者有权不回答。",
         "intensity": 1,
-        "tags": [
-          "夸夸",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "pair",
+        "participantMode": "single",
         "source": "ai"
       },
       {
         "id": "td-004",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "模仿一位你们共同认识的人说话的语气，说一句日常问候。",
-        "instruction": "不要指名道姓，模仿完由对方猜是谁。",
+        "content": "用三个词形容你此刻的心情，并配合一个表情或手势。",
+        "instruction": "说完后可以指定另一位嘉宾也用三个词形容你的心情，但对方可以跳过。",
         "intensity": 1,
-        "tags": [
-          "模仿",
-          "猜谜"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
@@ -142,13 +132,10 @@
         "id": "td-005",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "如果明天可以完全自由安排一天，你会怎么度过？",
-        "instruction": "描述三个具体安排即可。",
+        "content": "讲一件你最近学到的小知识，并说明它为什么让你意外。",
+        "instruction": "不需要专业准确，分享即可；可以跳过。",
         "intensity": 1,
-        "tags": [
-          "想象",
-          "日常"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
@@ -158,13 +145,10 @@
         "id": "td-006",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "用一句歌词来总结你们今天的聚会气氛。",
-        "instruction": "唱出来或念出来都可以。",
+        "content": "和另一位嘉宾一起，用不超过三句话编一个搞笑小故事的开头。",
+        "instruction": "一人说一句，轮流接龙；不想接的人可以喊“跳过”，由对方收尾。",
         "intensity": 1,
-        "tags": [
-          "音乐",
-          "总结"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "pair",
@@ -174,13 +158,10 @@
         "id": "td-007",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你最近学会的一个小技能或小知识是什么？",
-        "instruction": "简单讲讲你是怎么学会的。",
+        "content": "如果明天可以多出一个小时自由时间，你会用来做什么？",
+        "instruction": "回答后，另一位嘉宾可以猜猜你是不是真的会这么做。",
         "intensity": 1,
-        "tags": [
-          "分享",
-          "成长"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
@@ -190,13 +171,10 @@
         "id": "td-008",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "给对方出一个即兴谜语，答不上来就由出题人公布答案。",
-        "instruction": "谜底要健康、日常，不能涉及隐私。",
+        "content": "对另一位嘉宾做一个夸张但友善的赞美，必须具体到一件事。",
+        "instruction": "赞美要友善，不涉及外貌、隐私或让人难堪的内容；可以跳过。",
         "intensity": 1,
-        "tags": [
-          "谜语",
-          "互动"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "pair",
@@ -206,13 +184,10 @@
         "id": "td-009",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你最喜欢的一道家常菜是什么？它让你想到什么场景？",
-        "instruction": "分享味道和回忆即可。",
+        "content": "你最近循环播放的一首歌或一段音频是什么？可以只说出名字，也可以哼一小段旋律。",
+        "instruction": "不想哼唱就只说名字；可以跳过。",
         "intensity": 1,
-        "tags": [
-          "美食",
-          "回忆"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
@@ -222,16 +197,13 @@
         "id": "td-010",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "和对方一起用十秒钟摆出一个搞笑的合影姿势，但不拍照。",
-        "instruction": "只摆姿势，不实际拍摄或保存。",
+        "content": "用你家乡话或一种有趣的口音，说一句今天的祝福语。",
+        "instruction": "如果不会方言或口音，可以用正常语气夸张地说；可以跳过。",
         "intensity": 1,
-        "tags": [
-          "合作",
-          "搞笑"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "pair",
+        "participantMode": "single",
         "source": "ai"
       }
     ]

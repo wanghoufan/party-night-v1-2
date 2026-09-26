@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "情侣 / 暧昧",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4201,
+    "latencyMs": 37128,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,17 +80,15 @@
         "id": "td-001",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你最近一次在朋友圈发错内容后秒删，发的是什么？",
-        "instruction": "如实回答，或者选择跳过。其他嘉宾可以追问一个细节。",
+        "content": "请用天气预报的方式，描述你今天的心情和与暧昧对象或伴侣的聊天氛围。例如：‘局部地区有傻笑，傍晚转心动。’",
+        "instruction": "任意一位嘉宾回答，限时30秒；不想回答可跳过。",
         "intensity": 1,
         "tags": [
+          "破冰",
           "搞笑",
-          "社交"
+          "暧昧"
         ],
-        "boundaryTags": [
-          "public-posting",
-          "social-account"
-        ],
+        "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
         "source": "ai"
@@ -97,41 +97,9 @@
         "id": "td-002",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "模仿一位在场嘉宾的经典口头禅或招牌动作，让大家投票像不像。",
-        "instruction": "表演不超过30秒，被模仿者可以反驳或加戏。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "模仿"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "td-003",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "你和身边这位暧昧对象第一次聊天时，你心里给TA打的初始分是多少？满分10分。",
-        "instruction": "说出分数并解释一个加分项或减分项，允许跳过。",
-        "intensity": 3,
-        "tags": [
-          "暧昧",
-          "真心话"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "td-004",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "用最深情的语气对右手边的人念一句搞笑广告词，直到对方笑出声。",
-        "instruction": "坚持10秒，如果对方笑了就算成功；失败则接受一个轻量搞笑惩罚，比如学猫叫。",
-        "intensity": 2,
+        "content": "用颁奖典礼的语气，给在场一位嘉宾颁发一个搞笑但友善的奖项，例如‘最会接梗奖’或‘笑声最有感染力奖’，并说出具体理由。",
+        "instruction": "选择一位嘉宾完成，接受者可要求换人；可跳过。",
+        "intensity": 1,
         "tags": [
           "搞笑",
           "互动"
@@ -142,15 +110,48 @@
         "source": "ai"
       },
       {
-        "id": "td-005",
+        "id": "td-003",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你曾经因为哪件小事和伴侣或暧昧对象生闷气，但最后发现是自己想多了？",
-        "instruction": "描述事件但不指名道姓，允许跳过。",
+        "content": "如果你们的恋爱或暧昧关系是一部喜剧电影，请给它起一个片名和一句预告。可以由两人一起回答。",
+        "instruction": "适合情侣或暧昧中的两位嘉宾一起说；其他嘉宾可点评但不得嘲讽。可跳过。",
         "intensity": 2,
         "tags": [
           "情侣",
+          "暧昧",
           "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-004",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用机器人断句的方式，对任意一位嘉宾说一句真诚的夸奖。每个字之间停顿半秒，像机器人一样自然。",
+        "instruction": "任意一位嘉宾完成，被夸奖者可回应‘收到’；可跳过。",
+        "intensity": 2,
+        "tags": [
+          "互动",
+          "夸奖"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "请说出你最近一次笑到停不下来的原因，并表演当时的笑声，但音量保持适中。",
+        "instruction": "任意一位嘉宾回答并表演，限时20秒；可跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "个人"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -161,12 +162,12 @@
         "id": "td-006",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "现场编一句土味情话，说给左边的人听，要求对方给出评分。",
-        "instruction": "情话必须原创或改编，不能涉及身体接触；评分低于5分则再编一句。",
+        "content": "选择一位嘉宾，用三种不同情绪（新闻播报、撒娇、武侠）说同一句：‘今晚你负责搞笑。’",
+        "instruction": "任意一位嘉宾对选择对象完成，每种情绪一句；可跳过。",
         "intensity": 3,
         "tags": [
-          "暧昧",
-          "土味"
+          "搞笑",
+          "表演"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -177,12 +178,12 @@
         "id": "td-007",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "如果明天醒来获得一种超能力，但只能用来整蛊在场的人，你选什么能力？",
-        "instruction": "说出能力和第一个整蛊对象，大家可投票是否通过。",
-        "intensity": 1,
+        "content": "在座谁最容易把普通聊天变成相声现场？请说出一个不伤人的证据。",
+        "instruction": "任意一位嘉宾回答，不能人身攻击或泄露隐私；可跳过。",
+        "intensity": 2,
         "tags": [
           "搞笑",
-          "脑洞"
+          "全员"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -193,44 +194,46 @@
         "id": "td-008",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "用三个表情包形容你现在的感情状态，让大家猜是什么意思。",
-        "instruction": "只能用表情或动作，不能说话；猜错的人喝一口水。",
-        "intensity": 2,
+        "content": "和一位嘉宾进行‘无实物猜谜’：你只做表情和动作，让对方猜一个日常物品，例如奶茶、雨伞、地铁扶手。全程不能发出声音。",
+        "instruction": "两人一组完成，限时45秒；猜不中也可跳过或换题。",
+        "intensity": 3,
         "tags": [
-          "情侣",
-          "搞笑"
+          "互动",
+          "表演"
         ],
         "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "single",
+        "minPlayers": 2,
+        "participantMode": "pair",
         "source": "ai"
       },
       {
         "id": "td-009",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你在恋爱或暧昧中最离谱的一次吃醋原因是什么？",
-        "instruction": "说出来但不要提及具体隐私信息，允许跳过。",
-        "intensity": 4,
+        "content": "如果必须给你们下一次见面设计一个安全又搞笑的惩罚，会是什么？只限口头或表演类，并确保每个人都能轻松跳过。",
+        "instruction": "情侣或暧昧对象可一起回答；其他嘉宾可投票选出最搞笑方案。可跳过。",
+        "intensity": 3,
         "tags": [
+          "情侣",
           "暧昧",
-          "吃醋"
+          "搞笑"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "single",
+        "participantMode": "pair",
         "source": "ai"
       },
       {
         "id": "td-010",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "和右手边的人合作，用搞笑的语气演一段“分手后偶遇”的短剧，限时1分钟。",
-        "instruction": "只许搞笑演绎，不能有身体接触或侮辱性台词；观众举手表决是否合格。",
-        "intensity": 4,
+        "content": "用宫廷剧台词风格，邀请一位嘉宾和你一起完成一个夸张的‘结盟仪式’：双方隔空击掌并同时说一句口号，例如‘今晚笑到打鸣’。",
+        "instruction": "两人完成，保持隔空动作；可跳过或改成一人口头演绎。",
+        "intensity": 3,
         "tags": [
-          "情侣",
-          "短剧"
+          "互动",
+          "表演",
+          "搞笑"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

@@ -13,6 +13,26 @@ export const SESSION_SCHEMA_VERSION = 2 as const;
 export const intensitySchema = z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5)]);
 export type Intensity = z.infer<typeof intensitySchema>;
 
+/**
+ * 整局生成来源（Change B 补充；V1.4 R-060 二值语义的机器可判形态）：
+ * 只看最终持久化 Deck 是否实际采用 AI 卡——`ai` / `local-fallback`，判定实现见 `lib/domain/generation-source.ts`。
+ * 只有 `ai` 算 AI 通过；custom 卡中性，不产生第三种取值。
+ */
+export const generationSourceSchema = z.enum(["ai", "local-fallback"]);
+export type GenerationSource = z.infer<typeof generationSourceSchema>;
+
+/**
+ * 一次性回退提示的运行元数据（Change A 小改）：AI 生成失败回退本地题库时记录，
+ * game 页据此提示一次并显示失败原因（provider 名 → providerErrorMessage）。
+ * 只存面向用户的 Provider 名与错误码，绝不存 Key、Prompt 或任何凭据。
+ */
+export const generationFallbackSchema = z.object({
+  providerName: z.string().min(1),
+  code: z.string().min(1),
+  at: z.string(),
+});
+export type GenerationFallback = z.infer<typeof generationFallbackSchema>;
+
 export const boundaryTagSchema = z.enum([
   "physical-contact", "alcohol", "ex-partner", "sexual-history", "money",
   "phone-privacy", "public-posting", "stranger-contact", "photo-video", "social-account",
@@ -142,6 +162,18 @@ export const gameSessionSchema = z.object({
   mode: z.enum(["mixed", "single"]),
   config: sessionConfigSchema,
   deckSnapshot: z.array(gameCardSchema),
+  /**
+   * 整局生成来源（Change B 补充，运行元数据；与 Card `source` 不是一回事）：
+   * Deck 确定时按最终牌堆写入，`ai`＝牌堆里采用了任一 AI 卡，`local-fallback`＝没有 AI 卡
+   * （全本地题库/纯自定义/Provider 成功但无 AI 卡被采用）。只存二值枚举，不含 Key、Provider 名或 Prompt。
+   * 旧记录允许缺省（R-062：不伪造 Provider 成功事实），下一次实际生成后必有值。
+   */
+  generationSource: generationSourceSchema.optional(),
+  /**
+   * 一次性回退提示元数据（Change A 小改）：AI 生成失败回退本地时写入，game 页据此提示一次。
+   * 与 `generationSource` 一样是可选运行元数据；旧记录缺省即不提示失败原因（只按来源提示）。
+   */
+  generationFallback: generationFallbackSchema.optional(),
   usedCardIds: z.array(z.string()),
   rounds: z.array(roundHistorySchema),
   currentRound: activeRoundSchema.optional(),

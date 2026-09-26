@@ -1,0 +1,247 @@
+{
+  "cell": {
+    "index": 4,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "origin": "base",
+    "intensity": 3,
+    "players": 4,
+    "vibe": {
+      "key": "random",
+      "label": "随机"
+    },
+    "relationship": {
+      "key": "close",
+      "label": "很熟"
+    },
+    "boundary": {
+      "mode": "default",
+      "label": "默认",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "很熟",
+      "vibes": [
+        "随机"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：很熟；氛围：随机；最高强度：3。\n可用玩法：truth-dare。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4219,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "td-001",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近一次因为小事而真心大笑是什么时候？当时发生了什么？",
+        "instruction": "向所有人分享你的答案；如果不想说，可以说“跳过”。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "回忆"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-002",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你觉得自己在朋友眼中最靠谱的一个特点是什么？为什么？",
+        "instruction": "指定一位嘉宾回答，其他人可以补充观察。",
+        "intensity": 1,
+        "tags": [
+          "自我认知",
+          "友情"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-003",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个夸张的形容词介绍你左手边的人，并让他/她给你打分。",
+        "instruction": "被介绍的人只需要给1到10分，并说一句感受。",
+        "intensity": 1,
+        "tags": [
+          "互动",
+          "赞美"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-004",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果明天可以完全自由安排一天，你会怎么度过？请说出具体三个安排。",
+        "instruction": "所有人依次分享，每人限时30秒。",
+        "intensity": 1,
+        "tags": [
+          "想象",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-005",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "模仿一种你熟悉的动物叫声，让其他人猜是什么动物。",
+        "instruction": "猜对后换下一位；猜错则你再模仿另一种。",
+        "intensity": 1,
+        "tags": [
+          "表演",
+          "猜谜"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-006",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近学到的一个新知识或新技能是什么？可以简单演示一下吗？",
+        "instruction": "如果愿意，可以用口头描述代替演示；不愿意就跳过。",
+        "intensity": 2,
+        "tags": [
+          "成长",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-007",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和右边的人合作，用你们的身体摆出一个英文字母的形状，让大家猜。",
+        "instruction": "只做安全、舒适的动作；任何一方可随时喊停并换题。",
+        "intensity": 2,
+        "tags": [
+          "合作",
+          "肢体"
+        ],
+        "boundaryTags": [
+          "physical-contact"
+        ],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-008",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你心中最理想的一次朋友聚会是什么样的？请描述一个具体场景。",
+        "instruction": "所有人轮流说一个关键词，最后一位负责串成完整描述。",
+        "intensity": 2,
+        "tags": [
+          "愿景",
+          "聚会"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-009",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用你手机里任意一张不涉及隐私的照片，讲一个关于它的故事。",
+        "instruction": "只展示你愿意展示的内容；不想展示可以口述故事，跳过展示环节。",
+        "intensity": 2,
+        "tags": [
+          "故事",
+          "分享"
+        ],
+        "boundaryTags": [
+          "photo-video"
+        ],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-010",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果只能保留一段最近的记忆，你会保留哪一段？为什么？",
+        "instruction": "向所有人分享；如果内容涉及他人隐私，可以只讲自己的部分。",
+        "intensity": 3,
+        "tags": [
+          "回忆",
+          "深度"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

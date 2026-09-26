@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "情侣 / 暧昧",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4027,
+    "latencyMs": 28444,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,12 +80,11 @@
         "id": "wyr-001",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "周末一起在家看一整季剧集，外卖点到饱 VS 周末出门逛市集、看展览，一路拍照散步",
+        "content": "在家一起做一顿简单的饭，然后慢慢吃完 VS 去安静的公园散步，边走边聊到日落",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
-          "轻松",
-          "日常"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -94,12 +95,11 @@
         "id": "wyr-002",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "对方记得你随口提过的小愿望并悄悄实现 VS 对方在你低落时什么都不问，只安静陪着你",
+        "content": "出发前把路线和想做的事都安排好 VS 只定一个大方向，到了再随心决定",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
-          "情感",
-          "温暖"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -110,11 +110,11 @@
         "id": "wyr-003",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "每天互道早安晚安，消息秒回 VS 各自忙碌，但每周固定一次深聊",
+        "content": "直接告诉对方“我今天很想你” VS 默默记住对方提过的小事并找机会回应",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
-          "相处方式"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -125,12 +125,11 @@
         "id": "wyr-004",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "一起养一只猫，负责铲屎和陪玩 VS 一起养一缸鱼，负责换水和造景",
+        "content": "睡到自然醒，然后悠闲地吃一顿早午餐 VS 早起去人少的地方走一走，呼吸新鲜空气",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
-          "生活",
-          "趣味"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -141,12 +140,11 @@
         "id": "wyr-005",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "旅行时全程按攻略走，不浪费一分钟 VS 旅行时睡到自然醒，走哪算哪",
+        "content": "在家看一部老电影，边看边讨论 VS 一起拼一幅拼图，放点轻音乐",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
-          "旅行",
-          "性格"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -157,12 +155,11 @@
         "id": "wyr-006",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "收到一封手写长信，字迹歪歪扭扭但很真诚 VS 收到一段精心剪辑的两人回忆视频",
+        "content": "每天分享一件今天发生的小事 VS 每周留一次时间认真聊近况和感受",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
-          "礼物",
-          "心意"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -173,12 +170,11 @@
         "id": "wyr-007",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "吵架后立刻说清楚，哪怕声音有点大 VS 先各自冷静半天，再心平气和聊",
+        "content": "收到一封手写信，写满平常不好意思说的话 VS 收到一段专门录下的语音，讲一件开心的小事",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
-          "沟通",
-          "冲突"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -189,12 +185,11 @@
         "id": "wyr-008",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "约会地点永远由对方决定，你负责惊喜 VS 约会地点轮流决定，各自准备一次惊喜",
+        "content": "看轻松喜剧，笑完就睡 VS 看温和悬疑，一起猜结局",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
-          "约会",
-          "分工"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -205,11 +200,11 @@
         "id": "wyr-009",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "记住两人所有的纪念日并提前准备 VS 不刻意记日子，但把每天都过成纪念日",
+        "content": "养一盆需要一起照顾的绿植 VS 学做一道新菜，每周试一次",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
-          "仪式感"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -220,12 +215,11 @@
         "id": "wyr-010",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "对方在你朋友面前多夸你几句 VS 对方在只有你们俩时认真夸你",
+        "content": "有分歧时先各自冷静一会儿再聊 VS 有分歧时马上把感受说清楚，不让情绪过夜",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 1,
         "tags": [
-          "表达",
-          "认可"
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

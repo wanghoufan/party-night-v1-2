@@ -1,0 +1,339 @@
+{
+  "cell": {
+    "id": "L2-2_1-019-spin-bottle-i5-p2-wild-first-meet-default",
+    "layer": "L2",
+    "group": "2.1",
+    "title": "Intensity 5 全量",
+    "seq": 19,
+    "packId": "spin-bottle",
+    "packName": "转瓶子",
+    "minPlayers": 2,
+    "intensity": 5,
+    "players": 2,
+    "vibeKey": "wild",
+    "vibeLabel": "放开玩",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_1-019-spin-bottle-i5-p2-wild-first-meet-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "放开玩"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "spin-bottle"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：第一次见 / 拼桌；氛围：放开玩；最高强度：5。\n可用玩法：spin-bottle。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3754,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "spin-1",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "分享最近一次让你笑出声的小事。",
+        "instruction": "转瓶决定谁先回答，答完可把瓶口转向下一位。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-2",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "用三种不同语气说“今晚很高兴认识你”。",
+        "instruction": "转瓶选出挑战者，面对大家完成。",
+        "intensity": 1,
+        "tags": [
+          "表演",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-3",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "说一个你最近学到的新知识或冷门小技巧。",
+        "instruction": "转瓶决定回答者，其他人可以追问一个细节。",
+        "intensity": 2,
+        "tags": [
+          "聊天",
+          "知识"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-4",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "模仿一种动物叫声，让大家猜是什么动物。",
+        "instruction": "转瓶选出模仿者，猜中后换下一位转瓶。",
+        "intensity": 2,
+        "tags": [
+          "模仿",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-5",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "如果用一种天气形容你现在的心情，会是什么？为什么？",
+        "instruction": "转瓶决定回答者，回答不超过两句话。",
+        "intensity": 2,
+        "tags": [
+          "心情",
+          "表达"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-6",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "和右边的人合作，用身体比划一个常见职业，让其他人猜。",
+        "instruction": "转瓶选出两人，只做动作不出声，猜中即过关。",
+        "intensity": 3,
+        "tags": [
+          "合作",
+          "猜词"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-7",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "说一件你一直想尝试但还没做的小事。",
+        "instruction": "转瓶决定回答者，其他人可以给出一个鼓励建议。",
+        "intensity": 3,
+        "tags": [
+          "愿望",
+          "鼓励"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-8",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "为大家唱一句你喜欢的歌，歌词可以只哼旋律。",
+        "instruction": "转瓶选出挑战者，唱完大家一起鼓掌。",
+        "intensity": 3,
+        "tags": [
+          "唱歌",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-9",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "你觉得今晚到目前为止，最有意思的瞬间是什么？",
+        "instruction": "转瓶决定回答者，然后由回答者转动瓶子。",
+        "intensity": 4,
+        "tags": [
+          "回顾",
+          "感受"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-10",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "和对面的人互相说一句真诚的赞美，必须具体到某个细节。",
+        "instruction": "转瓶选出两人，面对面说出赞美，说完可自愿击掌。",
+        "intensity": 5,
+        "tags": [
+          "赞美",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3754ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=spin-bottle"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤2"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（spin-bottle）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3754ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 4,
+  "observes": [
+    "I5 格出现 5/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断",
+    "卡 spin-2：2 人局出现「大家/全场」类多人语境",
+    "卡 spin-4：2 人局出现「大家/全场」类多人语境",
+    "卡 spin-8：2 人局出现「大家/全场」类多人语境"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

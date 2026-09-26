@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L1-1-027-most-likely-i5-p4-wild-couple-default",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 27,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "minPlayers": 3,
+    "intensity": 5,
+    "players": 4,
+    "vibeKey": "wild",
+    "vibeLabel": "放开玩",
+    "relationshipKey": "couple",
+    "relationshipLabel": "情侣 / 暧昧",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-027-most-likely-i5-p4-wild-couple-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "情侣 / 暧昧",
+      "vibes": [
+        "放开玩"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：情侣 / 暧昧；氛围：放开玩；最高强度：5。\n可用玩法：most-likely。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4578,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "mn-01",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最有可能在第一次约会时故意迟到五分钟来显得自己很抢手？",
+        "instruction": "所有人同时指向你心中的人选，得票最多者获得1分并分享一个无伤大雅的小秘密。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-02",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最有可能在聊天时把对方发的每一条消息都反复读三遍？",
+        "instruction": "所有人同时指向你心中的人选，得票最多者获得1分并模仿一次自己看到心动消息时的表情。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-03",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最有可能在约会时偷偷把餐厅的纸巾折成小动物？",
+        "instruction": "所有人同时指向你心中的人选，得票最多者获得1分并现场用任意手边物品折一个简单形状。",
+        "intensity": 2,
+        "tags": [
+          "趣味",
+          "手作"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-04",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最有可能在KTV里抢走别人点的歌还唱得特别投入？",
+        "instruction": "所有人同时指向你心中的人选，得票最多者获得1分并清唱一句歌词，其他人用掌声打分。",
+        "intensity": 2,
+        "tags": [
+          "表演",
+          "音乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-05",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最有可能为了看一场首映而熬夜排队？",
+        "instruction": "所有人同时指向你心中的人选，得票最多者获得1分并说出自己最近一次熬夜的原因。",
+        "intensity": 2,
+        "tags": [
+          "生活",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-06",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最有可能在朋友聚会时突然变成气氛组组长？",
+        "instruction": "所有人同时指向你心中的人选，得票最多者获得1分并带领大家做一个三秒钟的集体动作。",
+        "intensity": 2,
+        "tags": [
+          "气氛",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-07",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最有可能在收到手写卡片后感动到眼眶泛红？",
+        "instruction": "所有人同时指向你心中的人选，得票最多者获得1分并说一句最想听到的夸奖。",
+        "intensity": 3,
+        "tags": [
+          "情感",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-08",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最有可能在旅行中把行程表安排到分钟？",
+        "instruction": "所有人同时指向你心中的人选，得票最多者获得1分并分享一个自己旅行中最随性的瞬间。",
+        "intensity": 3,
+        "tags": [
+          "旅行",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-09",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最有可能在吵架后先忍不住发一个搞笑表情包？",
+        "instruction": "所有人同时指向你心中的人选，得票最多者获得1分并现场做一个最擅长的搞笑表情。",
+        "intensity": 3,
+        "tags": [
+          "关系",
+          "幽默"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-10",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最有可能在深夜突然想聊人生理想？",
+        "instruction": "所有人同时指向你心中的人选，得票最多者获得1分并用一句话描述自己五年后理想的一天。",
+        "intensity": 3,
+        "tags": [
+          "深夜",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4578ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=most-likely"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（most-likely）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4578ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 6/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

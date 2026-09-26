@@ -1,0 +1,511 @@
+{
+  "cell": {
+    "id": "L3-3_6-013-truth-dare-i3-p4-funny-friends-default",
+    "layer": "L3",
+    "group": "3.6",
+    "title": "重放幂等 A",
+    "seq": 13,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "minPlayers": 2,
+    "intensity": 3,
+    "players": 4,
+    "vibeKey": "funny",
+    "vibeLabel": "搞笑",
+    "relationshipKey": "friends",
+    "relationshipLabel": "普通朋友",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "replay",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L3-3_6-013-truth-dare-i3-p4-funny-friends-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：普通朋友；氛围：搞笑；最高强度：3。\n可用玩法：truth-dare。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4157,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-001",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近一次在朋友面前出糗是什么事？",
+        "instruction": "请如实回答，不想回答可以跳过，换下一位。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-002",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用最夸张的语气模仿一位在场朋友的经典口头禅。",
+        "instruction": "模仿要善意搞笑，被模仿的人可以随时喊停。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "模仿"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-003",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你手机里最舍不得删的一张表情包是什么？描述一下画面。",
+        "instruction": "只描述内容，不需要展示手机或任何隐私信息。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表情包"
+        ],
+        "boundaryTags": [
+          "phone-privacy"
+        ],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-004",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个词总结你今天的穿搭，并让其他人投票是否贴切。",
+        "instruction": "只能说三个词，投票结果不影响任何惩罚，纯属娱乐。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "穿搭"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果给今晚的聚会起一个搞笑标题，你会起什么？",
+        "instruction": "标题要友善，不能针对任何人的外貌或隐私。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "创意"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "现场编一句押韵的顺口溜，夸一夸左边的人。",
+        "instruction": "内容必须友善搞笑，对方可以要求换一句。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "顺口溜"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你做过最离谱但没造成任何伤害的梦是什么？",
+        "instruction": "只讲能公开分享的部分，不想说可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "梦境"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用新闻播报腔朗读你手机里最近收到的一条不涉及隐私的通知。",
+        "instruction": "只读标题类通知，不得展示聊天内容或私人信息，可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "播报"
+        ],
+        "boundaryTags": [
+          "phone-privacy"
+        ],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最想在聚会上学会的一个搞笑技能是什么？",
+        "instruction": "说清楚技能名称，并现场演示三秒即可。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "技能"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和右手边的人合作，用身体动作演一个无声搞笑短剧，限时二十秒。",
+        "instruction": "只做安全、无接触的动作，任何一方可随时喊停。",
+        "intensity": 3,
+        "tags": [
+          "搞笑",
+          "合作"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3201,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "td-001",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近一次笑到停不下来是因为什么事？",
+        "instruction": "请用夸张的语气讲出来，允许任何人跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-002",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "模仿一种动物走路，让大家猜是什么动物。",
+        "instruction": "在客厅走一圈，允许跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-003",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你手机相册里最多的一类照片是什么？不用展示具体内容。",
+        "instruction": "只描述类别，不打开手机，允许跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑"
+        ],
+        "boundaryTags": [
+          "phone-privacy"
+        ],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-004",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用最严肃的表情说一句最搞笑的话。",
+        "instruction": "说完保持严肃三秒，允许跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你做过最尴尬的一件小事是什么？",
+        "instruction": "讲一个无关隐私的小糗事，允许跳过。",
+        "intensity": 2,
+        "tags": [
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "给在场每个人起一个搞笑的武侠绰号，并解释理由。",
+        "instruction": "依次说出，理由要夸张，允许跳过。",
+        "intensity": 2,
+        "tags": [
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果明天醒来变成一种食物，你希望是什么？为什么？",
+        "instruction": "认真回答，允许跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用新闻播报腔介绍自己今天吃过的早餐。",
+        "instruction": "像主播一样播报，允许跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你听过最离谱的借口是什么？",
+        "instruction": "可以讲别人的，不要点名隐私，允许跳过。",
+        "intensity": 2,
+        "tags": [
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和左边的人一起用两句话编一个搞笑广告。",
+        "instruction": "两人合作完成，内容健康，允许跳过。",
+        "intensity": 2,
+        "tags": [
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4157ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=truth-dare"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 3"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "FAIL",
+      "severity": "P0",
+      "detail": "2 张卡 boundaryTags 命中已开雷区：pn-003:phone-privacy；pn-008:phone-privacy"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（truth-dare）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4157ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    },
+    {
+      "id": "12-replay",
+      "name": "重放幂等",
+      "status": "PASS",
+      "severity": null,
+      "detail": "两次结构一致（卡数 10、packId 集合一致、来源均 ai）"
+    }
+  ],
+  "verdict": "FAIL",
+  "p0": 1,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

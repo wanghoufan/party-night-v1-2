@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "第一次见 / 拼桌",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3467,
+    "latencyMs": 21473,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "spin-bottle-ice-01",
+        "id": "spin-ice-01",
         "packId": "spin-bottle",
-        "type": "破冰",
-        "content": "用一个动物形容自己此刻的心情，并说出理由。",
-        "instruction": "轮流转盘，瓶口指向的人完成回答；不想回答可跳过。",
+        "type": "question",
+        "content": "用三个词介绍自己，并说明哪个词最希望今晚被大家记住。",
+        "instruction": "旋转瓶子，瓶口指向者回答；不愿可跳过。",
         "intensity": 1,
         "tags": [
-          "自我介绍",
-          "轻松"
+          "破冰",
+          "自我介绍"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,15 +93,15 @@
         "source": "ai"
       },
       {
-        "id": "spin-bottle-ice-02",
+        "id": "spin-ice-02",
         "packId": "spin-bottle",
-        "type": "破冰",
-        "content": "说出一个你最近学会的小技能或小知识。",
-        "instruction": "瓶口指向的人分享，其他人可以追问一句。",
+        "type": "question",
+        "content": "分享最近一件让你微笑的小事，不超过两句话。",
+        "instruction": "旋转瓶子，瓶口指向者回答；不愿可跳过。",
         "intensity": 1,
         "tags": [
-          "分享",
-          "兴趣"
+          "轻松",
+          "分享"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,14 +109,30 @@
         "source": "ai"
       },
       {
-        "id": "spin-bottle-ice-03",
+        "id": "spin-ice-03",
         "packId": "spin-bottle",
-        "type": "破冰",
-        "content": "用三个词描述你理想中的周末。",
-        "instruction": "瓶口指向的人说出三个词，并简单解释。",
+        "type": "question",
+        "content": "说出一个你最近想尝试但还没开始的兴趣。",
+        "instruction": "旋转瓶子，瓶口指向者回答，并可邀请一位嘉宾追问一个细节；不愿可跳过。",
         "intensity": 1,
         "tags": [
           "兴趣",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-04",
+        "packId": "spin-bottle",
+        "type": "question",
+        "content": "用“如果我是天气，我今天是……”造一个句子，并简单解释。",
+        "instruction": "旋转瓶子，瓶口指向者回答；不愿可跳过。",
+        "intensity": 1,
+        "tags": [
+          "想象",
           "轻松"
         ],
         "boundaryTags": [],
@@ -123,14 +141,46 @@
         "source": "ai"
       },
       {
-        "id": "spin-bottle-ice-04",
+        "id": "spin-ice-05",
         "packId": "spin-bottle",
-        "type": "破冰",
-        "content": "和左手边的人互相说出对方一个第一印象。",
-        "instruction": "两人依次说，注意只描述正面或中性的印象。",
+        "type": "question",
+        "content": "观察一圈，说出你觉得第一印象反差最大的一位嘉宾，并给出一个友善理由。",
+        "instruction": "旋转瓶子，瓶口指向者回答；不要评价外貌或隐私，不愿可跳过。",
         "intensity": 2,
         "tags": [
-          "互动",
+          "观察",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-06",
+        "packId": "spin-bottle",
+        "type": "question",
+        "content": "用三个线索描述你最喜欢的一种家乡小吃，让大家猜是什么。",
+        "instruction": "旋转瓶子，瓶口指向者描述，其他人可轮流猜；不愿可跳过。",
+        "intensity": 1,
+        "tags": [
+          "猜谜",
+          "饮食"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-07",
+        "packId": "spin-bottle",
+        "type": "task",
+        "content": "和瓶口指向者右边的人互相说出一个对彼此的第一印象关键词，并各补充一句。",
+        "instruction": "旋转瓶子，瓶口指向者与右边嘉宾配对完成；不评价外貌，任何一方不愿可跳过。",
+        "intensity": 2,
+        "tags": [
+          "配对",
           "第一印象"
         ],
         "boundaryTags": [],
@@ -139,15 +189,15 @@
         "source": "ai"
       },
       {
-        "id": "spin-bottle-ice-05",
+        "id": "spin-ice-08",
         "packId": "spin-bottle",
-        "type": "破冰",
-        "content": "分享一首你最近常听的歌，并说出喜欢它的原因。",
-        "instruction": "瓶口指向的人分享，其他人可记录歌名。",
-        "intensity": 1,
+        "type": "task",
+        "content": "用一句话即兴编一个以“今晚之后”开头的小故事，不涉及真实隐私。",
+        "instruction": "旋转瓶子，瓶口指向者完成；不愿可跳过。",
+        "intensity": 2,
         "tags": [
-          "音乐",
-          "分享"
+          "即兴",
+          "故事"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -155,31 +205,15 @@
         "source": "ai"
       },
       {
-        "id": "spin-bottle-ice-06",
+        "id": "spin-ice-09",
         "packId": "spin-bottle",
-        "type": "破冰",
-        "content": "说出一个你一直想尝试但还没做的事。",
-        "instruction": "瓶口指向的人回答，其他人不评价、不追问隐私。",
+        "type": "question",
+        "content": "选择一位嘉宾，猜他或她最喜欢的放松方式，对方只回答“接近”或“不对”，最多猜三次。",
+        "instruction": "旋转瓶子，瓶口指向者选择一位嘉宾进行；对方不愿可换人或跳过。",
         "intensity": 2,
         "tags": [
-          "愿望",
-          "分享"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-bottle-ice-07",
-        "packId": "spin-bottle",
-        "type": "破冰",
-        "content": "和右手边的人一起想一个共同点。",
-        "instruction": "两人合作说出一个共同点，限时30秒。",
-        "intensity": 2,
-        "tags": [
-          "互动",
-          "合作"
+          "猜测",
+          "互动"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -187,51 +221,19 @@
         "source": "ai"
       },
       {
-        "id": "spin-bottle-ice-08",
+        "id": "spin-ice-10",
         "packId": "spin-bottle",
-        "type": "破冰",
-        "content": "用一句话夸夸在场任意一位嘉宾。",
-        "instruction": "瓶口指向的人选择一位嘉宾，说出真诚的赞美。",
-        "intensity": 1,
+        "type": "group",
+        "content": "全桌用三个词给今晚起一个代号，由瓶口指向者汇总并说出理由。",
+        "instruction": "旋转瓶子，瓶口指向者负责组织，全桌一起完成；不愿参与可跳过。",
+        "intensity": 2,
         "tags": [
-          "赞美",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-bottle-ice-09",
-        "packId": "spin-bottle",
-        "type": "破冰",
-        "content": "大家同时说出自己最喜欢的食物，看看有没有重复的。",
-        "instruction": "全体一起说，重复的人可以击掌。",
-        "intensity": 1,
-        "tags": [
-          "全体",
-          "轻松"
+          "全桌",
+          "共创"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "spin-bottle-ice-10",
-        "packId": "spin-bottle",
-        "type": "破冰",
-        "content": "说出你最近遇到的一件小幸运。",
-        "instruction": "瓶口指向的人分享，其他人可以鼓掌。",
-        "intensity": 1,
-        "tags": [
-          "分享",
-          "正能量"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
         "source": "ai"
       }
     ]

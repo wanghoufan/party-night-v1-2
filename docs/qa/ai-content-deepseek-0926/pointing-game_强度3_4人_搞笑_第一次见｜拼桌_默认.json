@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 72,
+    "packId": "pointing-game",
+    "packName": "指人游戏",
+    "origin": "extra",
+    "intensity": 3,
+    "players": 4,
+    "vibe": {
+      "key": "funny",
+      "label": "搞笑"
+    },
+    "relationship": {
+      "key": "first-meet",
+      "label": "第一次见 / 拼桌"
+    },
+    "boundary": {
+      "mode": "default",
+      "label": "默认",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "pointing-game"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：搞笑；最高强度：3。\n可用玩法：pointing-game。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4525,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-001",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指到谁，谁就用最正经的语气宣布一件自己最不正经的糗事。",
+        "instruction": "被指到的人要假装自己是主持人，用最正经的语气宣布一件最不正经的糗事，其他人可以起哄，也可以直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-002",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指到谁，谁就用夸张口音推销一件桌上的物品，限时二十秒。",
+        "instruction": "被指到的人要用方言或夸张口音模仿一个电视购物主持人，推销一件桌上的物品，限时二十秒。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-003",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指到谁，谁就即兴编一句关于今晚拼桌的押韵顺口溜。",
+        "instruction": "被指到的人要即兴编一句押韵的顺口溜，主题是“今晚的拼桌”，说完大家一起鼓掌。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "即兴"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-004",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指到谁，谁就用最浮夸的方式赞美一位同桌的外套或发型。",
+        "instruction": "被指到的人要选一位同桌，用最浮夸的赞美夸奖对方的外套或发型，被夸的人必须回一句“谢谢，我也这么觉得”。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-005",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指到谁，谁就无声表演一个“第一次见网友”的尴尬瞬间，让大家猜。",
+        "instruction": "被指到的人要表演一个“第一次见网友”的尴尬瞬间，全程不说话，只用表情和动作，让大家猜。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-006",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指到谁，谁就快速说出三个拼桌时最怕遇到的场景，并配上叹气。",
+        "instruction": "被指到的人要快速说出三个“拼桌时最怕遇到”的场景，每说一个都要配一个夸张的叹气。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-007",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指到谁，谁就当十秒表情包生成器，按大家喊的情绪词立刻做表情。",
+        "instruction": "被指到的人要当十秒“表情包生成器”，根据大家喊出的情绪词（如尴尬、狂喜、无语）立刻做出对应表情。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "反应"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-008",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指到谁，谁就用最严肃的语气做一段关于吃最后一块小吃的学术报告。",
+        "instruction": "被指到的人要用最严肃的语气，给“如何优雅地吃完最后一块小吃”做一段三十秒的学术报告。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "即兴"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-009",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指到谁，谁就邀请一位同桌，一起演十秒“外星人第一次吃地球小吃”。",
+        "instruction": "被指到的人要邀请一位同桌，两人一起用“外星人第一次吃地球小吃”的设定演十秒，其他人负责配音效。",
+        "intensity": 3,
+        "tags": [
+          "搞笑",
+          "双人"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-010",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "指到谁，谁就带全员喊口号“今晚拼桌，快乐加倍”，不齐就再来一次。",
+        "instruction": "被指到的人要发起一个全员参与的口号：大家一起喊“今晚拼桌，快乐加倍”，喊得不齐就再来一次，最多三次。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "全员"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

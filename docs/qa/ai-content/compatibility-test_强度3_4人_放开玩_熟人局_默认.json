@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "熟人局",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3245,
+    "latencyMs": 27331,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,12 +80,13 @@
         "id": "compat-001",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果今晚只能点一种外卖当宵夜，你们会同时想到什么？",
+        "content": "两人同时回答：如果今晚只能选一种夜宵，你们会选什么？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "轻松",
-          "默契"
+          "夜宵",
+          "选择",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -94,12 +97,13 @@
         "id": "compat-002",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "周末更想出门玩还是宅家躺平？",
+        "content": "两人同时回答：对方更像猫系还是犬系？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "选择",
-          "默契"
+          "性格",
+          "印象",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -110,12 +114,13 @@
         "id": "compat-003",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "聚会时你们更常扮演哪种角色？",
+        "content": "两人同时说出：你们第一次见面时，对方给你的第一印象关键词。",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
+        "intensity": 2,
         "tags": [
-          "角色",
-          "默契"
+          "回忆",
+          "第一印象",
+          "熟人"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -126,12 +131,13 @@
         "id": "compat-004",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果一起旅行，谁最可能负责做攻略？说出同一个名字。",
+        "content": "两人同时回答：如果组队参加综艺，你们最想参加哪一类？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
-          "旅行",
-          "熟人局"
+          "组队",
+          "综艺",
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -142,12 +148,13 @@
         "id": "compat-005",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "电影看到一半发现很无聊，你们会一致选择？",
+        "content": "两人同时回答：对方最可能因为什么小事笑到停不下来？",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
+        "intensity": 2,
         "tags": [
-          "电影",
-          "默契"
+          "笑点",
+          "默契",
+          "观察"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -158,12 +165,13 @@
         "id": "compat-006",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "你们觉得今晚谁最可能第一个犯困？同时指向同一个人。",
+        "content": "两人同时回答：如果现在立刻出门散步，你们会往左还是往右？",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
+        "intensity": 1,
         "tags": [
-          "观察",
-          "熟人局"
+          "直觉",
+          "同步",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -174,12 +182,13 @@
         "id": "compat-007",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果突然停电只能做一件事，你们会同时选？",
+        "content": "两人同时回答：对方在 KTV 里最可能唱哪类歌？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
-          "突发",
-          "默契"
+          "音乐",
+          "娱乐",
+          "熟人"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -190,12 +199,13 @@
         "id": "compat-008",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "用一种颜色形容今晚的气氛，你们会说出同一个颜色吗？",
+        "content": "两人同时说出：一个你们都觉得最好笑的网络梗或口头禅。",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
+        "intensity": 2,
         "tags": [
-          "气氛",
-          "默契"
+          "梗",
+          "语言",
+          "共鸣"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -206,12 +216,13 @@
         "id": "compat-009",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果能立刻学会一项技能，你们会同时选？",
+        "content": "两人同时回答：如果一起被困在商场一晚，第一件事会做什么？",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
+        "intensity": 3,
         "tags": [
-          "技能",
-          "默契"
+          "脑洞",
+          "选择",
+          "冒险"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -222,12 +233,13 @@
         "id": "compat-010",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "你们认为今晚最有可能被大家吐槽的习惯是？同时回答。",
+        "content": "两人同时回答：你们更想拥有读心术还是瞬间移动？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 3,
         "tags": [
-          "吐槽",
-          "熟人局"
+          "脑洞",
+          "超能力",
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

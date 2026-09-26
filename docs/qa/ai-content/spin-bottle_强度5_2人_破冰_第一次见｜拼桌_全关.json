@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "第一次见 / 拼桌",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4165,
+    "latencyMs": 25264,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -77,13 +79,13 @@
       {
         "id": "spin-ice-01",
         "packId": "spin-bottle",
-        "type": "icebreaker",
-        "content": "说出你最近一次笑到停不下来的瞬间，越具体越好。",
-        "instruction": "由转瓶选中的人先分享，其余人认真倾听，分享完可鼓掌；任何人可跳过。",
+        "type": "破冰问答",
+        "content": "如果用一个物品代表你此刻的心情，你会选什么？",
+        "instruction": "转动瓶子，瓶口指向的人回答；不想答可以说“过”，由对方换一个问题。",
         "intensity": 1,
         "tags": [
-          "分享",
-          "轻松"
+          "破冰",
+          "问答"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -93,13 +95,13 @@
       {
         "id": "spin-ice-02",
         "packId": "spin-bottle",
-        "type": "icebreaker",
-        "content": "用三个词形容你此刻的心情，并简单说明原因。",
-        "instruction": "转瓶选中的人回答，其他人不追问；可随时跳过。",
+        "type": "二选一",
+        "content": "二选一：周末早起逛市集，还是熬夜看一部老电影？",
+        "instruction": "转动瓶子，瓶口指向的人选择并给一句理由；另一人可接一句自己的选择。",
         "intensity": 1,
         "tags": [
-          "表达",
-          "破冰"
+          "破冰",
+          "二选一"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -109,29 +111,29 @@
       {
         "id": "spin-ice-03",
         "packId": "spin-bottle",
-        "type": "question",
-        "content": "如果你能立刻掌握一项新技能，会选什么？为什么？",
-        "instruction": "由转瓶选中的人回答，其他人可简短回应；不想答就跳过。",
-        "intensity": 1,
+        "type": "共同点",
+        "content": "两人轮流说一个自己的小习惯，试着找到三个共同点。",
+        "instruction": "转动瓶子决定谁先说；每轮说一个不涉及隐私的小习惯，找不到就换一个。",
+        "intensity": 2,
         "tags": [
-          "想象",
-          "交流"
+          "破冰",
+          "互动"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "single",
+        "participantMode": "all",
         "source": "ai"
       },
       {
         "id": "spin-ice-04",
         "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "和左边的人互相说出对方一个第一印象，只讲正面感受。",
-        "instruction": "两人面对面轮流说，说完可击掌；若任何一方不适，直接跳过。",
+        "type": "故事接龙",
+        "content": "以“昨晚我梦见……”开头，两人各接一句，编一个 30 秒的小故事。",
+        "instruction": "转动瓶子，瓶口指向的人先开头；第二人接续。可以随时说“重来”。",
         "intensity": 2,
         "tags": [
-          "互动",
-          "第一印象"
+          "破冰",
+          "创意"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -141,13 +143,13 @@
       {
         "id": "spin-ice-05",
         "packId": "spin-bottle",
-        "type": "icebreaker",
-        "content": "分享一个你最近学会的小知识或生活窍门。",
-        "instruction": "转瓶选中的人分享，其他人可补充自己的版本；可跳过。",
-        "intensity": 1,
+        "type": "轻挑战",
+        "content": "用三个词形容你最近一次开心的小事。",
+        "instruction": "转动瓶子，瓶口指向的人说三个词，不必解释细节；不想说可跳过。",
+        "intensity": 2,
         "tags": [
-          "分享",
-          "生活"
+          "破冰",
+          "分享"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -157,29 +159,29 @@
       {
         "id": "spin-ice-06",
         "packId": "spin-bottle",
-        "type": "question",
-        "content": "你更喜欢计划好的旅行还是说走就走？说说理由。",
-        "instruction": "由转瓶选中的人回答，其他人不评判；可跳过。",
-        "intensity": 1,
+        "type": "猜一猜",
+        "content": "对方选一个常见职业，你通过三个是非问题猜出来。",
+        "instruction": "转动瓶子决定谁先猜；出题者只回答“是/不是/不确定”。不涉及真实隐私。",
+        "intensity": 2,
         "tags": [
-          "偏好",
-          "聊天"
+          "破冰",
+          "推理"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "single",
+        "participantMode": "pair",
         "source": "ai"
       },
       {
         "id": "spin-ice-07",
         "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "用动作比划一个你常做的日常小事，让大家猜。",
-        "instruction": "转瓶选中的人表演，其他人猜三次；不想演可换人。",
-        "intensity": 2,
+        "type": "如果旅行",
+        "content": "如果明天可以瞬移到一个国内城市吃早餐，你会选哪里？",
+        "instruction": "转动瓶子，瓶口指向的人回答；另一人可以追问一个不涉及隐私的理由。",
+        "intensity": 1,
         "tags": [
-          "表演",
-          "猜测"
+          "破冰",
+          "旅行"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -189,49 +191,49 @@
       {
         "id": "spin-ice-08",
         "packId": "spin-bottle",
-        "type": "question",
-        "content": "如果今晚只能推荐一首歌给大家，你会推荐哪首？",
-        "instruction": "转瓶选中的人说出歌名和一句推荐理由，其他人可记下；可跳过。",
-        "intensity": 1,
+        "type": "默契投票",
+        "content": "两人同时用手势表示：今晚更想聊天还是更想玩游戏。",
+        "instruction": "转动瓶子决定谁先解释选择；若不一致，各说一个折中方案。",
+        "intensity": 2,
         "tags": [
-          "音乐",
-          "推荐"
+          "破冰",
+          "默契"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "single",
+        "participantMode": "all",
         "source": "ai"
       },
       {
         "id": "spin-ice-09",
         "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "和右边的人一起想一个属于你们两人的碰拳或击掌动作。",
-        "instruction": "两人商量并完成一次动作，不涉及身体接触以外的要求；任何一方可拒绝并跳过。",
-        "intensity": 2,
+        "type": "声音模仿",
+        "content": "模仿一种日常声音（比如闹钟、地铁报站、猫咪），让对方猜。",
+        "instruction": "转动瓶子，瓶口指向的人表演 5 秒；猜不中则换对方表演。不要求夸张或羞辱。",
+        "intensity": 3,
         "tags": [
-          "合作",
-          "默契"
+          "破冰",
+          "表演"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "pair",
+        "participantMode": "single",
         "source": "ai"
       },
       {
         "id": "spin-ice-10",
         "packId": "spin-bottle",
-        "type": "icebreaker",
-        "content": "说出你今天遇到的一件小事，以及它为什么让你感觉不错。",
-        "instruction": "转瓶选中的人分享，其他人倾听；可随时跳过。",
-        "intensity": 1,
+        "type": "未来拼桌",
+        "content": "给这桌今晚取一个组合名，并说一句口号。",
+        "instruction": "两人各出一个字或词，组成组合名；转动瓶子决定谁先提议，最后一起念口号。",
+        "intensity": 2,
         "tags": [
-          "分享",
-          "积极"
+          "破冰",
+          "合作"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "single",
+        "participantMode": "all",
         "source": "ai"
       }
     ]

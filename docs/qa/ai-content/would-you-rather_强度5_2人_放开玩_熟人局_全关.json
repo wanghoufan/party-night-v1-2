@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "熟人局",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3477,
+    "latencyMs": 31472,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,12 +80,12 @@
         "id": "wyr-01",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "每次说笑话前必须先自己笑三声 VS 每次别人讲笑话你必须接一句夸赞",
+        "content": "以后每次聚餐都只能吃火锅，但锅底和配菜随便点。 VS 以后每次聚餐都只能吃烧烤，但肉串和蔬菜随便点。",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 2,
+        "intensity": 1,
         "tags": [
-          "搞笑",
-          "社交"
+          "破冰",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -94,12 +96,12 @@
         "id": "wyr-02",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "接下来十分钟只能用唱歌的方式说话 VS 接下来十分钟只能用比划的方式表达",
+        "content": "接下来一周每天早起一小时，但晚上能多玩一小时。 VS 接下来一周每天晚睡一小时，但早上能多睡一小时。",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 3,
+        "intensity": 1,
         "tags": [
-          "表演",
-          "互动"
+          "日常",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -110,12 +112,12 @@
         "id": "wyr-03",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "让右手边的嘉宾替你决定下一个话题 VS 让左手边的嘉宾替你决定下一个动作",
+        "content": "旅行只能住顶级酒店，但全程没有网络。 VS 旅行只能住普通青旅，但网速快到飞起。",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 3,
+        "intensity": 2,
         "tags": [
-          "互动",
-          "选择"
+          "旅行",
+          "脑洞"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -126,12 +128,12 @@
         "id": "wyr-04",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "用夸张的语气复述你最近一次尴尬经历 VS 用冷静的语气复述你最近一次得意经历",
+        "content": "拥有瞬间移动，但每次落点随机偏差十米。 VS 拥有时间暂停，但每次只能暂停三秒。",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 4,
+        "intensity": 2,
         "tags": [
-          "分享",
-          "表演"
+          "超能力",
+          "脑洞"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -142,12 +144,12 @@
         "id": "wyr-05",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "全场嘉宾一起给你起一个临时绰号 VS 你给全场每位嘉宾各起一个临时绰号",
+        "content": "在熟人局里，你说话永远自带搞笑BGM。 VS 在熟人局里，你走路永远自带夸张特效。",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 3,
         "tags": [
           "搞笑",
-          "互动"
+          "熟人局"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -158,12 +160,12 @@
         "id": "wyr-06",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "选一首歌，让所有人跟着你哼副歌 VS 选一个动作，让所有人跟着你做三遍",
+        "content": "所有饮料都变成你最喜欢的口味，但只能喝常温。 VS 所有饮料都保持最佳温度，但口味每天随机。",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 3,
         "tags": [
-          "音乐",
-          "动作"
+          "选择",
+          "日常"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -174,12 +176,12 @@
         "id": "wyr-07",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "用三个词形容你此刻的心情，并解释其中一个 VS 用三个词形容你对今晚的期待，并解释其中一个",
+        "content": "以后和朋友聊天只能发语音，不能打字。 VS 以后和朋友聊天只能打字，不能发语音。",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 2,
+        "intensity": 3,
         "tags": [
-          "分享",
-          "轻松"
+          "沟通",
+          "二选一"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -190,12 +192,12 @@
         "id": "wyr-08",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "让其他嘉宾投票选出你今晚的‘表情包担当’ VS 让其他嘉宾投票选出你今晚的‘金句担当’",
+        "content": "你能记住所有朋友的生日，但记不住自己的生日。 VS 所有朋友能记住你的生日，但你记不住任何朋友的生日。",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 4,
         "tags": [
-          "投票",
-          "互动"
+          "记忆",
+          "友情"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -206,12 +208,12 @@
         "id": "wyr-09",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "接下来三轮发言前都要先说‘我认真说’ VS 接下来三轮发言前都要先说‘我随便说’",
+        "content": "今晚所有游戏都由你定规则，但你必须第一个上场。 VS 今晚所有游戏都由大家定规则，但你可以最后一个上场。",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 2,
+        "intensity": 4,
         "tags": [
-          "规则",
-          "搞笑"
+          "聚会",
+          "规则"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -222,12 +224,12 @@
         "id": "wyr-10",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "用一句话给左手边的人一个真诚的赞美 VS 用一句话给右手边的人一个真诚的赞美",
+        "content": "在聚会结束前，你要用最夸张的方式夸在场每个人一句。 VS 在聚会结束前，你要让在场每个人用最夸张的方式夸你一句。",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 2,
+        "intensity": 5,
         "tags": [
-          "赞美",
-          "互动"
+          "互动",
+          "高能"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

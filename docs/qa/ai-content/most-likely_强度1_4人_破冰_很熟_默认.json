@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "很熟",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3558,
+    "latencyMs": 18494,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,16 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "ml-001",
+        "id": "ml-01",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在第一次见面时就记住所有人的名字？",
-        "instruction": "所有人同时指向自己认为最可能的人，被指最多的人分享一个记名字的小技巧。",
+        "type": "vote",
+        "content": "谁最可能在看电影时最先猜中结局？",
+        "instruction": "所有人倒数三秒后同时指向一位嘉宾；得票最多者可以用一句话回应或直接跳过，不追问、不强迫。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "观察"
+          "投票",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,15 +94,16 @@
         "source": "ai"
       },
       {
-        "id": "ml-002",
+        "id": "ml-02",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在聚会上主动开启一个新话题？",
-        "instruction": "所有人同时指向自己认为最可能的人，被指最多的人现场开启一个新话题。",
+        "type": "vote",
+        "content": "谁最可能早上闹钟响三次才起床？",
+        "instruction": "所有人倒数三秒后同时指向一位嘉宾；得票最多者可以用一句话回应或直接跳过，不追问、不强迫。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "社交"
+          "投票",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,15 +111,16 @@
         "source": "ai"
       },
       {
-        "id": "ml-003",
+        "id": "ml-03",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在集体照里做出搞笑表情？",
-        "instruction": "所有人同时指向自己认为最可能的人，被指最多的人摆一个搞笑姿势让大家模仿。",
+        "type": "vote",
+        "content": "谁最可能在聊天时讲出最冷的笑话？",
+        "instruction": "所有人倒数三秒后同时指向一位嘉宾；得票最多者可以用一句话回应或直接跳过，不追问、不强迫。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "趣味"
+          "投票",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -123,15 +128,16 @@
         "source": "ai"
       },
       {
-        "id": "ml-004",
+        "id": "ml-04",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在看电影时第一个猜到结局？",
-        "instruction": "所有人同时指向自己认为最可能的人，被指最多的人讲一个自己猜中结局的经历。",
+        "type": "vote",
+        "content": "谁最可能在旅行中迷路却坚持自己认得路？",
+        "instruction": "所有人倒数三秒后同时指向一位嘉宾；得票最多者可以用一句话回应或直接跳过，不追问、不强迫。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "分享"
+          "投票",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -139,15 +145,16 @@
         "source": "ai"
       },
       {
-        "id": "ml-005",
+        "id": "ml-05",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在旅行前做最详细的攻略？",
-        "instruction": "所有人同时指向自己认为最可能的人，被指最多的人分享一个旅行小贴士。",
+        "type": "vote",
+        "content": "谁最可能把零食藏起来独自享用？",
+        "instruction": "所有人倒数三秒后同时指向一位嘉宾；得票最多者可以用一句话回应或直接跳过，不追问、不强迫。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "旅行"
+          "投票",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -155,15 +162,16 @@
         "source": "ai"
       },
       {
-        "id": "ml-006",
+        "id": "ml-06",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在KTV里第一个拿起麦克风？",
-        "instruction": "所有人同时指向自己认为最可能的人，被指最多的人清唱一句喜欢的歌词。",
+        "type": "vote",
+        "content": "谁最可能在唱歌时抢着拿麦克风？",
+        "instruction": "所有人倒数三秒后同时指向一位嘉宾；得票最多者可以用一句话回应或直接跳过，不追问、不强迫。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "音乐"
+          "投票",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -171,15 +179,16 @@
         "source": "ai"
       },
       {
-        "id": "ml-007",
+        "id": "ml-07",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在群聊里发最多表情包？",
-        "instruction": "所有人同时指向自己认为最可能的人，被指最多的人分享一个自己常用的表情包含义。",
+        "type": "vote",
+        "content": "谁最可能因为追剧熬夜到天亮？",
+        "instruction": "所有人倒数三秒后同时指向一位嘉宾；得票最多者可以用一句话回应或直接跳过，不追问、不强迫。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "趣味"
+          "投票",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -187,15 +196,16 @@
         "source": "ai"
       },
       {
-        "id": "ml-008",
+        "id": "ml-08",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在点餐时纠结最久？",
-        "instruction": "所有人同时指向自己认为最可能的人，被指最多的人说出自己最常点的一道菜。",
+        "type": "vote",
+        "content": "谁最可能在点外卖时纠结半小时？",
+        "instruction": "所有人倒数三秒后同时指向一位嘉宾；得票最多者可以用一句话回应或直接跳过，不追问、不强迫。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "美食"
+          "投票",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -203,15 +213,16 @@
         "source": "ai"
       },
       {
-        "id": "ml-009",
+        "id": "ml-09",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在下雨天忘带伞？",
-        "instruction": "所有人同时指向自己认为最可能的人，被指最多的人分享一次忘带伞的经历。",
+        "type": "vote",
+        "content": "谁最可能突然开始学一门新技能然后三分钟热度？",
+        "instruction": "所有人倒数三秒后同时指向一位嘉宾；得票最多者可以用一句话回应或直接跳过，不追问、不强迫。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "分享"
+          "投票",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -219,15 +230,16 @@
         "source": "ai"
       },
       {
-        "id": "ml-010",
+        "id": "ml-10",
         "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在游戏中第一个发现隐藏规则？",
-        "instruction": "所有人同时指向自己认为最可能的人，被指最多的人谈谈自己玩游戏的观察习惯。",
+        "type": "vote",
+        "content": "谁最可能在下雨天忘记带伞？",
+        "instruction": "所有人倒数三秒后同时指向一位嘉宾；得票最多者可以用一句话回应或直接跳过，不追问、不强迫。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "游戏"
+          "投票",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "熟人局",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4287,
+    "latencyMs": 33167,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "tn-001",
+        "id": "td-001",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你最近一次在公共场合做出让自己尴尬的事是什么？",
-        "instruction": "如实回答；若不想说，可以改成讲一个你觉得最搞笑的糗事。",
+        "content": "你最近一次笑到停不下来是什么事？请讲出当时的一个画面。",
+        "instruction": "抽到的人回答，其他人可以追问一次；不想答就跳过。",
         "intensity": 1,
         "tags": [
-          "轻松",
-          "分享"
+          "真心话",
+          "破冰"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,81 +93,15 @@
         "source": "ai"
       },
       {
-        "id": "tn-002",
+        "id": "td-002",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "模仿一位在场嘉宾的经典口头禅或小动作，让大家猜是谁。",
-        "instruction": "表演要善意、不挖苦；被模仿者可以随时喊停。",
-        "intensity": 2,
+        "content": "用最夸张的语气夸奖右边的人30秒，不能重复同一个形容词。",
+        "instruction": "计时30秒，对方可以随时喊停；不想做就跳过。",
+        "intensity": 1,
         "tags": [
-          "模仿",
+          "大冒险",
           "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "tn-003",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "如果明天醒来获得一种超能力，你最想选什么？为什么？",
-        "instruction": "说出选择并解释一个理由；其他人可以追问一次。",
-        "intensity": 1,
-        "tags": [
-          "想象",
-          "聊天"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "tn-004",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "用夸张的播音腔朗读你手机里最近的一条外卖或购物订单备注（隐去地址和电话）。",
-        "instruction": "先确认没有隐私信息再朗读；不想读就换一条无关紧要的备注。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "表达"
-        ],
-        "boundaryTags": [
-          "phone-privacy"
-        ],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "tn-005",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "你最近一次为朋友两肋插刀或默默帮忙的事是什么？",
-        "instruction": "讲出经过和当时的心情；可以只讲能公开的部分。",
-        "intensity": 1,
-        "tags": [
-          "友情",
-          "分享"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "tn-006",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "和右手边的嘉宾合作，用三个词编一个即兴小故事，必须包含“月亮”和“外卖”。",
-        "instruction": "两人各说一部分，轮流接龙；故事不超过一分钟。",
-        "intensity": 2,
-        "tags": [
-          "合作",
-          "创意"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -173,31 +109,15 @@
         "source": "ai"
       },
       {
-        "id": "tn-007",
+        "id": "td-003",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你做过最冲动但事后不后悔的一个决定是什么？",
-        "instruction": "说出决定和结果；如果涉及他人隐私，可以用化名或模糊处理。",
-        "intensity": 2,
-        "tags": [
-          "经历",
-          "聊天"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "tn-008",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "用三个表情符号描述你今天的心情，并让其他嘉宾猜含义。",
-        "instruction": "展示表情符号，不能说话，直到有人猜中或放弃。",
+        "content": "说出你最近最常做的三个休闲活动，并解释其中一个为什么让你放松。",
+        "instruction": "抽到的人回答；不想展开可以只列三个，也可以跳过。",
         "intensity": 1,
         "tags": [
-          "表情",
-          "互动"
+          "真心话",
+          "日常"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -205,31 +125,111 @@
         "source": "ai"
       },
       {
-        "id": "tn-009",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "在熟人局里，你最想改掉自己的一个小习惯是什么？",
-        "instruction": "说出习惯和想改的原因；其他人可以给一条善意建议。",
-        "intensity": 2,
-        "tags": [
-          "自我",
-          "分享"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "tn-010",
+        "id": "td-004",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "邀请全场一起，用一句话接龙编一个“今晚派对”的结局，每人只能说一句。",
-        "instruction": "从嘉宾1开始顺时针接龙；内容要轻松友善，任何人可跳过。",
+        "content": "模仿一位在场嘉宾的正面特点或口头禅，不能指名，让大家猜是谁。",
+        "instruction": "先声明只是善意玩梗，被模仿者可以随时叫停；不想做就跳过。",
+        "intensity": 2,
+        "tags": [
+          "大冒险",
+          "模仿"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你做过最冲动但事后不后悔的决定是什么？只说你能接受公开的部分。",
+        "instruction": "抽到的人回答，其他人不能追问细节；不想答就跳过。",
+        "intensity": 2,
+        "tags": [
+          "真心话",
+          "经历"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "让另一位嘉宾指定一个日常物品，你用即兴广告词推销它60秒，不能笑场。",
+        "instruction": "计时60秒，笑场或卡住就表演一个表情包；也可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "大冒险",
+          "即兴"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果今晚必须放弃一种娱乐方式，你会选哪个？为什么？",
+        "instruction": "抽到的人回答；不想答就跳过。",
+        "intensity": 2,
+        "tags": [
+          "真心话",
+          "选择"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和左边的人对视10秒，先笑的人喝一口水。",
+        "instruction": "不能碰触对方，计时结束就完成；不想做可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "大冒险",
+          "对视"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你人生中最尴尬的一次被认错人的经历是什么？",
+        "instruction": "抽到的人回答，其他人可以笑但不要恶意评价；不想答就跳过。",
+        "intensity": 2,
+        "tags": [
+          "真心话",
+          "尴尬"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "让其他嘉宾一起给你起一个今晚的外号，你必须用这个外号回应直到下一张卡。",
+        "instruction": "外号必须善意、不涉及外貌羞辱；你可以拒绝或随时结束。",
         "intensity": 3,
         "tags": [
-          "全场",
-          "接龙"
+          "大冒险",
+          "互动"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

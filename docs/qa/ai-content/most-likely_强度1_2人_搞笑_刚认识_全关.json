@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "刚认识",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4273,
+    "latencyMs": 15953,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,152 +77,130 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "ml-01",
+        "id": "ml-001",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在第一次见面就把对方的名字记错？",
-        "instruction": "所有人同时用手指向自己认为最可能的人；被指最多的人说一句自我介绍，大家笑一笑就过。",
+        "content": "谁最可能在自我介绍后三秒就忘记对方的名字？",
+        "instruction": "所有人同时指向自己觉得最可能的人；票数最高者用一句话解释，若不想说可以跳过。",
         "intensity": 1,
-        "tags": [
-          "icebreaker"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-02",
+        "id": "ml-002",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在聊天时突然讲一个没人听懂的笑话？",
-        "instruction": "倒数三声后一起指向最可能的人；被指最多的人现场讲一个冷笑话，讲完直接进入下一题。",
+        "content": "谁最可能把冷笑话讲得比热咖啡还认真？",
+        "instruction": "所有人同时指向自己觉得最可能的人；票数最高者用一句话解释，若不想说可以跳过。",
         "intensity": 1,
-        "tags": [
-          "funny"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-03",
+        "id": "ml-003",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能把手机相册里第一张照片当成今天拍的发出来？",
-        "instruction": "同时指认最可能的人；被指最多的人只需描述那张照片大概是什么，不必真的展示手机。",
+        "content": "谁最可能逛超市时推着空购物车迷路？",
+        "instruction": "所有人同时指向自己觉得最可能的人；票数最高者用一句话解释，若不想说可以跳过。",
         "intensity": 1,
-        "tags": [
-          "funny"
-        ],
-        "boundaryTags": [
-          "phone-privacy"
-        ],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "ml-04",
-        "packId": "most-likely",
-        "type": "most-likely",
-        "content": "谁最可能在聚会中偷偷去找零食？",
-        "instruction": "一起指向最可能的人；被指最多的人用一句话辩解，其他人可以起哄但不得强迫做任何事。",
-        "intensity": 1,
-        "tags": [
-          "icebreaker"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-05",
+        "id": "ml-004",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能把“刚认识”说成“我们认识很久了”？",
-        "instruction": "同时指认；被指最多的人对旁边的人说一句夸张的假熟台词，说完即可跳过或继续。",
+        "content": "谁最可能给宠物取一个特别像人类的名字？",
+        "instruction": "所有人同时指向自己觉得最可能的人；票数最高者用一句话解释，若不想说可以跳过。",
         "intensity": 1,
-        "tags": [
-          "funny"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-06",
+        "id": "ml-005",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在游戏里第一个喊“我不会玩”？",
-        "instruction": "倒数后一起指向最可能的人；被指最多的人负责给下一个出题的人比个赞。",
+        "content": "谁最可能看喜剧片时笑到拍自己的大腿？",
+        "instruction": "所有人同时指向自己觉得最可能的人；票数最高者用一句话解释，若不想说可以跳过。",
         "intensity": 1,
-        "tags": [
-          "icebreaker"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-07",
+        "id": "ml-006",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能把表情包当成主要沟通方式？",
-        "instruction": "同时指认；被指最多的人用三个表情包名字描述自己现在的心情，不需要真的发手机。",
+        "content": "谁最可能把闹钟按掉十次还怪闹钟太吵？",
+        "instruction": "所有人同时指向自己觉得最可能的人；票数最高者用一句话解释，若不想说可以跳过。",
         "intensity": 1,
-        "tags": [
-          "funny"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-08",
+        "id": "ml-007",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在合照时闭眼？",
-        "instruction": "一起指向最可能的人；被指最多的人可以选一个人一起摆一个搞怪合照姿势，摆完就结束，不拍照也行。",
+        "content": "谁最可能点外卖时纠结半小时，最后选了昨天那家？",
+        "instruction": "所有人同时指向自己觉得最可能的人；票数最高者用一句话解释，若不想说可以跳过。",
         "intensity": 1,
-        "tags": [
-          "funny"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-09",
+        "id": "ml-008",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能把饮料洒在自己身上？",
-        "instruction": "同时指认最可能的人；被指最多的人用一句话预测自己会洒在哪，其他人不得强迫其做任何动作。",
+        "content": "谁最可能在雨天忘记带伞，却坚称自己是在等雨停？",
+        "instruction": "所有人同时指向自己觉得最可能的人；票数最高者用一句话解释，若不想说可以跳过。",
         "intensity": 1,
-        "tags": [
-          "icebreaker"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "ml-10",
+        "id": "ml-009",
         "packId": "most-likely",
         "type": "most-likely",
-        "content": "谁最可能在聚会结束后才发现自己一直叫错对方的外号？",
-        "instruction": "倒数三声一起指向最可能的人；被指最多的人向对方说一句“对不起，请问怎么称呼”，然后大家进入下一轮。",
+        "content": "谁最可能用表情包完成一整段对话？",
+        "instruction": "所有人同时指向自己觉得最可能的人；票数最高者用一句话解释，若不想说可以跳过。",
         "intensity": 1,
-        "tags": [
-          "funny"
-        ],
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-010",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能把袜子穿成不同颜色，还说是时尚？",
+        "instruction": "所有人同时指向自己觉得最可能的人；票数最高者用一句话解释，若不想说可以跳过。",
+        "intensity": 1,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
@@ -230,14 +210,6 @@
   },
   "screen": {
     "pass": true,
-    "issues": [
-      {
-        "key": "redline:coerced-strip-privacy",
-        "label": "疑似红线（否定/免责语境） · 隐私脱衣非自愿",
-        "severity": "suspect",
-        "cardId": "ml-03",
-        "excerpt": "谁最可能把手机相册里第一张照片当成今天拍的发出来? 同时指认最可能的人;被指最多的人只需描述那张照片大概是什么,不必真的展示手机。"
-      }
-    ]
+    "issues": []
   }
 }

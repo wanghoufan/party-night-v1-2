@@ -1,0 +1,321 @@
+{
+  "cell": {
+    "id": "L3-3_3-006-most-likely-i3-p2-icebreaker-friends-default",
+    "layer": "L3",
+    "group": "3.3",
+    "title": "负向边界探测 most-likely@2人",
+    "seq": 6,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "minPlayers": 3,
+    "intensity": 3,
+    "players": 2,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "friends",
+    "relationshipLabel": "普通朋友",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "boundary-probe",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L3-3_3-006-most-likely-i3-p2-icebreaker-friends-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：普通朋友；氛围：破冰；最高强度：3。\n可用玩法：most-likely。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 5241,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "mn-ice-01",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易在聚会上第一个主动和陌生人打招呼？",
+        "instruction": "全场倒数三秒后同时指向一个人，得票最多者分享一句自己最常用的开场白。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-02",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易记住朋友随口提过的小事？",
+        "instruction": "全场倒数三秒后同时指向一个人，被选中者讲一个自己记得的朋友小细节。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-03",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易在聊天时突然跑题到奇怪的地方？",
+        "instruction": "全场倒数三秒后同时指向一个人，被选中者用一个词形容自己刚才的脑回路。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-04",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易在集体决定时提出一个大家都没想到的选项？",
+        "instruction": "全场倒数三秒后同时指向一个人，被选中者现场提出一个今晚可以一起做的轻松小事。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-05",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易在冷场时主动救场？",
+        "instruction": "全场倒数三秒后同时指向一个人，被选中者说一句自己常用的救场话术。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-06",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易对新鲜事物第一个说“我想试试”？",
+        "instruction": "全场倒数三秒后同时指向一个人，被选中者分享最近一次尝试新事物的经历。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-07",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易在拍照时被大家说“表情最自然”？",
+        "instruction": "全场倒数三秒后同时指向一个人，被选中者用一个表情定格三秒给大家看。",
+        "intensity": 1,
+        "tags": [],
+        "boundaryTags": [
+          "photo-video"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-08",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易在听别人说话时点头点到停不下来？",
+        "instruction": "全场倒数三秒后同时指向一个人，被选中者用夸张的方式点头三下。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-09",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易在聚会结束后说“今天真开心”？",
+        "instruction": "全场倒数三秒后同时指向一个人，被选中者说出今晚到目前为止最开心的一个瞬间。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mn-ice-10",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最容易在大家沉默时用一个小动作让气氛变轻松？",
+        "instruction": "全场倒数三秒后同时指向一个人，被选中者带领大家做一个三秒的同步小动作。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [
+          "physical-contact"
+        ],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider",
+      "filteredCount": 0,
+      "retryCount": 0
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 5241ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=most-likely"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 3"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数(负向探测)",
+      "status": "FAIL",
+      "severity": "P1",
+      "detail": "负向探测防线不成立：服务端为非法人数请求（most-likely@2人，玩法下限 3）返回 10 张卡——Provider 成功响应不得记 App PASS（用户 V1.2 §九）"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（most-likely）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "5241ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "FAIL",
+  "p0": 0,
+  "p1": 1,
+  "observe": 10,
+  "observes": [
+    "卡 mn-ice-01：2 人局出现「大家/全场」类多人语境",
+    "卡 mn-ice-02：2 人局出现「大家/全场」类多人语境",
+    "卡 mn-ice-03：2 人局出现「大家/全场」类多人语境",
+    "卡 mn-ice-04：2 人局出现「大家/全场」类多人语境",
+    "卡 mn-ice-05：2 人局出现「大家/全场」类多人语境",
+    "卡 mn-ice-06：2 人局出现「大家/全场」类多人语境",
+    "卡 mn-ice-07：2 人局出现「大家/全场」类多人语境",
+    "卡 mn-ice-08：2 人局出现「大家/全场」类多人语境",
+    "卡 mn-ice-09：2 人局出现「大家/全场」类多人语境",
+    "卡 mn-ice-10：2 人局出现「大家/全场」类多人语境"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

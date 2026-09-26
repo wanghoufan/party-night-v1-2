@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "第一次见 / 拼桌",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4306,
+    "latencyMs": 21693,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,167 +77,130 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "never-have-001",
+        "id": "nn-01",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在第一次见面时误以为对方是熟人，差点喊错名字。",
-        "instruction": "符合的人举手或轻拍桌子；不符合的人跳过，无需解释。",
+        "content": "我从未因为赶时间，在一天里连续吃过两顿以上的外卖。",
+        "instruction": "轮流说“我从未……”；做过的人举手或说“我有”，可简单分享；不想分享就说“跳过”，不惩罚。",
         "intensity": 1,
-        "tags": [
-          "破冰",
-          "轻松"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "never-have-002",
+        "id": "nn-02",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在拼桌时偷偷观察别人的点单，然后改成一样的。",
-        "instruction": "符合的人举一只手；不想回答的人可以直接说“跳过”。",
+        "content": "我从未在公共场合认错人，还热情地打过招呼。",
+        "instruction": "轮流说“我从未……”；做过的人举手或说“我有”，可简单分享；不想分享就说“跳过”，不惩罚。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nn-03",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未为了追一部剧或动漫，熬到凌晨三点以后。",
+        "instruction": "轮流说“我从未……”；做过的人举手或说“我有”，可简单分享；不想分享就说“跳过”，不惩罚。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nn-04",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在 KTV 里唱过一首自己完全不熟的歌。",
+        "instruction": "轮流说“我从未……”；做过的人举手或说“我有”，可简单分享；不想分享就说“跳过”，不惩罚。",
+        "intensity": 2,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nn-05",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在旅行时临时改行程，去一个原本没计划的地方。",
+        "instruction": "轮流说“我从未……”；做过的人举手或说“我有”，可简单分享；不想分享就说“跳过”，不惩罚。",
+        "intensity": 3,
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nn-06",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在朋友聚会中因为笑得太厉害而呛到。",
+        "instruction": "轮流说“我从未……”；做过的人举手或说“我有”，可简单分享；不想分享就说“跳过”，不惩罚。",
         "intensity": 1,
-        "tags": [
-          "拼桌",
-          "观察"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "never-have-003",
+        "id": "nn-07",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在聚会中假装听懂了一个笑话，其实完全没明白。",
-        "instruction": "符合的人点头即可；其他人可以继续下一题。",
-        "intensity": 1,
-        "tags": [
-          "轻松",
-          "共鸣"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "never-have-004",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从未因为手机快没电而提前离开一场聚会。",
-        "instruction": "符合的人用一句话说出当时最舍不得离开的原因，也可以选择不说。",
-        "intensity": 2,
-        "tags": [
-          "分享",
-          "日常"
-        ],
-        "boundaryTags": [
-          "phone-privacy"
-        ],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "never-have-005",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从未在第一次见面的场合主动加过陌生人联系方式。",
-        "instruction": "符合的人举手；不想展开的人只说“是”即可，其他人不要追问细节。",
-        "intensity": 2,
-        "tags": [
-          "社交",
-          "边界"
-        ],
-        "boundaryTags": [
-          "stranger-contact",
-          "social-account"
-        ],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "never-have-006",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从未在拼桌时遇到过聊得特别投缘、最后一起转场的人。",
-        "instruction": "符合的人可以简短分享地点和活动类型；不涉及具体人名和账号。",
-        "intensity": 2,
-        "tags": [
-          "拼桌",
-          "故事"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "never-have-007",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从未在聚会中因为太投入游戏而忘记回复重要消息。",
-        "instruction": "符合的人点头；其他人可以问一个不涉及隐私的后续问题，比如“当时在玩什么”。",
-        "intensity": 2,
-        "tags": [
-          "游戏",
-          "共鸣"
-        ],
-        "boundaryTags": [
-          "phone-privacy"
-        ],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "never-have-008",
-        "packId": "never-have",
-        "type": "never-have",
-        "content": "我从未在第一次见面的人面前讲过自己最尴尬的糗事。",
-        "instruction": "符合的人用一句话概括糗事类型，不必讲细节；不想说的人直接跳过。",
+        "content": "我从未在第一次见面时，和人聊到忘记时间。",
+        "instruction": "轮流说“我从未……”；做过的人举手或说“我有”，可简单分享；不想分享就说“跳过”，不惩罚。",
         "intensity": 3,
-        "tags": [
-          "分享",
-          "尴尬"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "never-have-009",
+        "id": "nn-08",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在拼桌时因为对方的一个小动作，瞬间判断出我们合不合拍。",
-        "instruction": "符合的人说出那个小动作，但不要指向在场具体的人；被提到的人可以不回应。",
+        "content": "我从未在大庭广众之下摔过一跤，然后假装无事发生。",
+        "instruction": "轮流说“我从未……”；做过的人举手或说“我有”，可简单分享；不想分享就说“跳过”，不惩罚。",
         "intensity": 3,
-        "tags": [
-          "观察",
-          "判断"
-        ],
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "never-have-010",
+        "id": "nn-09",
         "packId": "never-have",
         "type": "never-have",
-        "content": "我从未在聚会结束后，因为想起某句话而一个人笑出声。",
-        "instruction": "符合的人可以分享那句话的大意，但不要复述可能让他人不适的原话；任何人可跳过。",
+        "content": "我从未在随机拼桌时，听到一个让我记到现在的故事。",
+        "instruction": "轮流说“我从未……”；做过的人举手或说“我有”，可简单分享；不想分享就说“跳过”，不惩罚。",
         "intensity": 3,
-        "tags": [
-          "回味",
-          "轻松"
-        ],
+        "tags": [],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nn-10",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在第一次见面时，主动分享过一件自己很少提的糗事。",
+        "instruction": "轮流说“我从未……”；做过的人举手或说“我有”，可简单分享；不想分享就说“跳过”，不惩罚。",
+        "intensity": 4,
+        "tags": [],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",

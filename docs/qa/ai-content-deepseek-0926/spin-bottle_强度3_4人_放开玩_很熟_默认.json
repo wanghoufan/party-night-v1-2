@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 58,
+    "packId": "spin-bottle",
+    "packName": "转瓶子",
+    "origin": "base",
+    "intensity": 3,
+    "players": 4,
+    "vibe": {
+      "key": "wild",
+      "label": "放开玩"
+    },
+    "relationship": {
+      "key": "close",
+      "label": "很熟"
+    },
+    "boundary": {
+      "mode": "default",
+      "label": "默认",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "很熟",
+      "vibes": [
+        "放开玩"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "spin-bottle"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：很熟；氛围：放开玩；最高强度：3。\n可用玩法：spin-bottle。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 5143,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "spin-001",
+        "packId": "spin-bottle",
+        "type": "趣事分享",
+        "content": "说出你最近一次笑到停不下来的瞬间，让大家猜猜是真是假。",
+        "instruction": "转瓶口指向的人先分享，其他人依次投票判断真假，猜错的人做五个深蹲。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-002",
+        "packId": "spin-bottle",
+        "type": "模仿挑战",
+        "content": "模仿在场任意一位嘉宾的经典口头禅或小动作，直到有人猜中是谁。",
+        "instruction": "瓶口指向的人抽取一位嘉宾进行模仿，其他人抢答，被模仿者最后揭晓并给模仿者一个赞。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "模仿"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-003",
+        "packId": "spin-bottle",
+        "type": "默契问答",
+        "content": "和瓶口指向你左边的人同时回答：我们俩谁更可能半夜点外卖？",
+        "instruction": "两人同时亮出答案，答案一致则共同获得一次免罚机会，不一致则各说一个对方的小优点。",
+        "intensity": 1,
+        "tags": [
+          "默契",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-004",
+        "packId": "spin-bottle",
+        "type": "才艺展示",
+        "content": "用最浮夸的方式表演一段无实物吃面，限时二十秒。",
+        "instruction": "瓶口指向的人表演，其他人负责配音效，表演结束后集体鼓掌。",
+        "intensity": 2,
+        "tags": [
+          "表演",
+          "放开玩"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-005",
+        "packId": "spin-bottle",
+        "type": "团队对抗",
+        "content": "分成两队，用身体语言传递一句指定的话，不能出声，看哪队传得更准。",
+        "instruction": "瓶口指向两人各带一队，由主持人给每队一句短句，传递后最后一人说出答案。",
+        "intensity": 1,
+        "tags": [
+          "团队",
+          "游戏"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-006",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "分享一件你最近做过的、让你自己觉得很棒的小事。",
+        "instruction": "瓶口指向的人回答，其他人可以追问一个细节，回答者有权跳过。",
+        "intensity": 1,
+        "tags": [
+          "分享",
+          "正向"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-007",
+        "packId": "spin-bottle",
+        "type": "创意挑战",
+        "content": "用三个词形容你左手边的人，并解释为什么选这三个词。",
+        "instruction": "瓶口指向的人完成，被形容的人可以回应一句，大家举手表决是否贴切。",
+        "intensity": 1,
+        "tags": [
+          "互动",
+          "表达"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-008",
+        "packId": "spin-bottle",
+        "type": "节奏游戏",
+        "content": "所有人依次说一个水果名，不能重复，卡住或重复的人接受一个小惩罚。",
+        "instruction": "从瓶口指向的人开始，顺时针进行，惩罚由大家投票决定，仅限无害表演或做鬼脸。",
+        "intensity": 1,
+        "tags": [
+          "节奏",
+          "集体"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-009",
+        "packId": "spin-bottle",
+        "type": "情景演绎",
+        "content": "和瓶口指向对面的人即兴演一段“在便利店偶遇老同学”的三十秒短剧。",
+        "instruction": "两人即兴表演，不能提前商量台词，其他人在结尾喊“卡”并给一个评价。",
+        "intensity": 2,
+        "tags": [
+          "即兴",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-010",
+        "packId": "spin-bottle",
+        "type": "冷静挑战",
+        "content": "盯着瓶口指向的人的眼睛，先笑的人输，输的人要说一个冷笑话。",
+        "instruction": "两人对视，其他人可以干扰但不能触碰，先笑者讲一个冷笑话后游戏结束。",
+        "intensity": 1,
+        "tags": [
+          "互动",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

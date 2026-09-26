@@ -1,0 +1,334 @@
+{
+  "cell": {
+    "id": "L1-1-043-truth-dare-i4-p4-funny-new-all-off",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 43,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "minPlayers": 2,
+    "intensity": 4,
+    "players": 4,
+    "vibeKey": "funny",
+    "vibeLabel": "搞笑",
+    "relationshipKey": "new",
+    "relationshipLabel": "刚认识",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": false,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": false,
+      "noPublicPosting": false,
+      "noStrangerContact": false,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "全关",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-043-truth-dare-i4-p4-funny-new-all-off",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "刚认识",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 4,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：刚认识；氛围：搞笑；最高强度：4。\n可用玩法：truth-dare。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4644,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-td-001",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近一次在公共场合做过的、现在想起来最想找个地缝钻进去的事是什么？",
+        "instruction": "如实回答，不超过两句话；不想说可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "回忆"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-002",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用你最夸张的播音腔，向在场每个人介绍一个你编造的“隐藏身份”。",
+        "instruction": "每人不超过15秒，嘉宾可以鼓掌起哄。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-003",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果你必须给自己起一个听起来很厉害的江湖绰号，你会叫什么？为什么？",
+        "instruction": "起完绰号后，用这个绰号介绍自己一次。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "脑洞"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-004",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "模仿一种动物，连续叫三声，然后解释它此刻的心情。",
+        "instruction": "动物自选，模仿后必须配一句“内心独白”。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "模仿"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "在场的人里，谁看起来最像会半夜突然发消息说“在吗”的人？为什么？",
+        "instruction": "只描述印象，不评价外貌；被指到的人可以反问一次。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个表情动作，演绎你今天从起床到坐在这里的完整流程。",
+        "instruction": "不能说话，其他人负责猜；猜错的人喝一口水。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你做过最“嘴硬但身体很诚实”的一件事是什么？",
+        "instruction": "可以只讲结果不讲细节；不想回答就跳过。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "自嘲"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "给左手边的人一个不重复的赞美，必须具体到一件小事，不能只说“你很好”。",
+        "instruction": "轮流进行，每人一次；被赞美的人要回一句“收到”。",
+        "intensity": 3,
+        "tags": [
+          "互动",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果现在立刻要你上台讲一段三分钟脱口秀，你的开场白会是什么？",
+        "instruction": "直接说出开场白，不用真的讲三分钟。",
+        "intensity": 3,
+        "tags": [
+          "搞笑",
+          "脑洞"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和右手边的人组成临时搭档，用“推销一件不存在的商品”的方式互相配合30秒。",
+        "instruction": "商品由搭档指定；可以随时喊停换人，不涉及任何身体接触。",
+        "intensity": 4,
+        "tags": [
+          "搞笑",
+          "双人"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4644ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=truth-dare"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 4"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [无] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（truth-dare）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4644ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

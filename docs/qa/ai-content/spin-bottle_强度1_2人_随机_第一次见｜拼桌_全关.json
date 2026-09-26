@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "第一次见 / 拼桌",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3700,
+    "latencyMs": 21083,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,62 +77,14 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "spin-001",
+        "id": "spin-bottle-01",
         "packId": "spin-bottle",
-        "type": "icebreaker",
-        "content": "你的第一印象",
-        "instruction": "转瓶指向的人说出对左手边的人的第一印象，必须包含一个具体细节，如衣着、表情或声音。说完对方可以回应一句。",
+        "type": "破冰问答",
+        "content": "旋转瓶子，瓶口指向的人说出一件最近让自己开心的小事。",
+        "instruction": "瓶口指向的玩家先分享；另一位可以简单回应。不想回答可跳过。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "观察"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-002",
-        "packId": "spin-bottle",
-        "type": "question",
-        "content": "两个选择",
-        "instruction": "转瓶指向的人回答：今晚更想当讲故事的人还是听故事的人？并说出一个理由，不超过两句话。",
-        "intensity": 1,
-        "tags": [
-          "轻松",
-          "偏好"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "spin-003",
-        "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "三词自我介绍",
-        "instruction": "转瓶指向的人用三个词描述自己，然后让其他人各猜一个词背后的故事。被指向者可选择跳过任何一个猜测。",
-        "intensity": 1,
-        "tags": [
-          "自我介绍",
-          "互动"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "spin-004",
-        "packId": "spin-bottle",
-        "type": "question",
-        "content": "最近的小确幸",
-        "instruction": "转瓶指向的人分享最近一周发生的一件开心小事，不需要涉及私人关系或财务细节。",
-        "intensity": 1,
-        "tags": [
-          "分享",
           "轻松"
         ],
         "boundaryTags": [],
@@ -139,15 +93,15 @@
         "source": "ai"
       },
       {
-        "id": "spin-005",
+        "id": "spin-bottle-02",
         "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "表情模仿",
-        "instruction": "转瓶指向的人模仿一个常见的手机表情，让其他人猜是哪一个。猜中后换下一位。",
+        "type": "轻松分享",
+        "content": "旋转瓶子，瓶口指向的人回答：如果明天完全自由，最想怎么安排一天？",
+        "instruction": "瓶口指向的玩家先回答；另一位听完后可以补充自己的版本。任何人不舒服都可以跳过。",
         "intensity": 1,
         "tags": [
-          "模仿",
-          "游戏"
+          "分享",
+          "日常"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -155,14 +109,30 @@
         "source": "ai"
       },
       {
-        "id": "spin-006",
+        "id": "spin-bottle-03",
         "packId": "spin-bottle",
-        "type": "question",
-        "content": "如果会一种技能",
-        "instruction": "转瓶指向的人说：如果今晚能立刻学会一种无害的小技能，会选什么？并说明想用它做什么。",
+        "type": "心情表达",
+        "content": "旋转瓶子，瓶口指向的人用三个词形容此刻心情，并解释其中一个词。",
+        "instruction": "瓶口指向的玩家先说；另一位可轮流用三个词形容自己。若不想解释，直接跳过。",
         "intensity": 1,
         "tags": [
-          "想象",
+          "心情",
+          "轻互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-04",
+        "packId": "spin-bottle",
+        "type": "推荐互动",
+        "content": "旋转瓶子，瓶口指向的人推荐一首最近喜欢的歌或一部剧。",
+        "instruction": "瓶口指向的玩家推荐后，另一位可以问一个轻松的小问题。不想被追问可跳过。",
+        "intensity": 1,
+        "tags": [
+          "推荐",
           "聊天"
         ],
         "boundaryTags": [],
@@ -171,31 +141,15 @@
         "source": "ai"
       },
       {
-        "id": "spin-007",
+        "id": "spin-bottle-05",
         "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "共同点接龙",
-        "instruction": "从转瓶指向的人开始，每人说一个与上一位的共同点。重复或无法继续者跳过，由下一位重新开始。",
+        "type": "想象题",
+        "content": "旋转瓶子，瓶口指向的人回答：如果拥有一种没有危险的超能力，最想选什么？",
+        "instruction": "瓶口指向的玩家先回答；另一位可以接着说自己会选什么。任何人不舒服都可以跳过。",
         "intensity": 1,
         "tags": [
-          "接龙",
-          "合作"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "spin-008",
-        "packId": "spin-bottle",
-        "type": "question",
-        "content": "今晚的BGM",
-        "instruction": "转瓶指向的人推荐一首适合现在气氛的歌，并说一句推荐理由。不需要播放或分享账号。",
-        "intensity": 1,
-        "tags": [
-          "音乐",
-          "推荐"
+          "想象",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -203,15 +157,31 @@
         "source": "ai"
       },
       {
-        "id": "spin-009",
+        "id": "spin-bottle-06",
         "packId": "spin-bottle",
-        "type": "challenge",
-        "content": "反向提问",
-        "instruction": "转瓶指向的人向任意一位参与者提一个轻松问题，对方回答后可以反问一个问题。问题不得涉及隐私、金钱或联系方式。",
+        "type": "旅行话题",
+        "content": "旋转瓶子，瓶口指向的人说出一个最想去但还没去的地方，以及想在那里做什么。",
+        "instruction": "瓶口指向的玩家先分享；另一位可以简单回应或分享自己的想去地点。不想回答可跳过。",
         "intensity": 1,
         "tags": [
-          "提问",
-          "互动"
+          "旅行",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-07",
+        "packId": "spin-bottle",
+        "type": "默契小游戏",
+        "content": "旋转瓶子，瓶口指向的人先说一种可能两人都喜欢的食物；之后两人轮流补充，不能重复。",
+        "instruction": "瓶口指向的玩家先开始；另一位接着说。说不出来或不想继续时可以随时停止。",
+        "intensity": 1,
+        "tags": [
+          "默契",
+          "食物"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -219,19 +189,51 @@
         "source": "ai"
       },
       {
-        "id": "spin-010",
+        "id": "spin-bottle-08",
         "packId": "spin-bottle",
-        "type": "question",
-        "content": "理想周末",
-        "instruction": "转瓶指向的人描述一个不需要花钱、不涉及饮酒的理想周末安排，其他人可以补充一个细节。",
+        "type": "话题发起",
+        "content": "旋转瓶子，瓶口指向的人指定一个轻松话题，例如天气、宠物、游戏或电影。",
+        "instruction": "瓶口指向的玩家指定话题后，两人各用一句话分享。若话题让任何人不舒服，可以立即换一个。",
         "intensity": 1,
         "tags": [
-          "分享",
-          "轻松"
+          "话题",
+          "互动"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-09",
+        "packId": "spin-bottle",
+        "type": "心情比喻",
+        "content": "旋转瓶子，瓶口指向的人先用天气比喻今天的心情，再由另一位也比喻一次。",
+        "instruction": "瓶口指向的玩家先比喻；另一位接着比喻。不想比喻或想跳过都可以直接说。",
+        "intensity": 1,
+        "tags": [
+          "比喻",
+          "心情"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-10",
+        "packId": "spin-bottle",
+        "type": "友善回应",
+        "content": "旋转瓶子，瓶口指向的人给对方一个基于刚才聊天的真诚、非外貌的欣赏点。",
+        "instruction": "瓶口指向的玩家先说出欣赏点；另一位听完后可以简单回应。若觉得为难，直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "友善",
+          "回应"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
         "source": "ai"
       }
     ]

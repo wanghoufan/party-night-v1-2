@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L2-2_1-005-most-likely-i5-p4-random-first-meet-default",
+    "layer": "L2",
+    "group": "2.1",
+    "title": "Intensity 5 全量",
+    "seq": 5,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "minPlayers": 3,
+    "intensity": 5,
+    "players": 4,
+    "vibeKey": "random",
+    "vibeLabel": "随机",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_1-005-most-likely-i5-p4-random-first-meet-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "随机"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：随机；最高强度：5。\n可用玩法：most-likely。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4387,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "ml-01",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在聚会中第一个主动和陌生人打招呼？",
+        "instruction": "所有人同时指向自己认为最符合的人；被指最多的人分享一个自己主动破冰的小故事，不想说可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-02",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能因为沉迷一部剧而熬夜到天亮？",
+        "instruction": "投票后，得票最高者说说最近追的剧或书，其他嘉宾可以猜是真是假。",
+        "intensity": 1,
+        "tags": [
+          "兴趣",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-03",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在旅行时把行程安排得精确到分钟？",
+        "instruction": "投票后，得票最高者分享一次旅行计划，若没有可以改为分享一个想去的城市。",
+        "intensity": 1,
+        "tags": [
+          "旅行",
+          "习惯"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-04",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在一群人里默默记住所有人的名字？",
+        "instruction": "投票后，被选中的人尝试复述在场每个人的名字和一个小特征，说错可以跳过。",
+        "intensity": 2,
+        "tags": [
+          "记忆",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-05",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在点餐时纠结超过五分钟？",
+        "instruction": "投票后，得票最高者现场为全桌推荐一道菜或一种口味的零食。",
+        "intensity": 2,
+        "tags": [
+          "生活",
+          "选择"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-06",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在收到礼物时先看包装纸？",
+        "instruction": "投票后，得票最高者描述自己收到过的最特别的一件礼物，不用透露送礼人隐私。",
+        "intensity": 2,
+        "tags": [
+          "礼物",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-07",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在 KTV 里一直帮别人点歌？",
+        "instruction": "投票后，得票最高者清唱一句自己最喜欢的歌，或指定一位嘉宾一起哼一句。",
+        "intensity": 2,
+        "tags": [
+          "音乐",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-08",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能把手机相册整理成按颜色分类？",
+        "instruction": "投票后，得票最高者说说自己整理东西的一个小习惯，不展示任何屏幕内容。",
+        "intensity": 2,
+        "tags": [
+          "习惯",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-09",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在聚会结束后发一条感谢消息？",
+        "instruction": "投票后，被选中的人现场用一句话感谢今晚的某位嘉宾，具体内容由自己决定。",
+        "intensity": 1,
+        "tags": [
+          "礼貌",
+          "破冰"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-10",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在下雨天突然想出门散步？",
+        "instruction": "投票后，得票最高者分享一个自己喜欢的天气和原因，其他嘉宾可以举手表示同感。",
+        "intensity": 1,
+        "tags": [
+          "天气",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4387ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=most-likely"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（most-likely）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4387ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 10/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

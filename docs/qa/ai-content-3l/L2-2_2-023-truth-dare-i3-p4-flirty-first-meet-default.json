@@ -1,0 +1,324 @@
+{
+  "cell": {
+    "id": "L2-2_2-023-truth-dare-i3-p4-flirty-first-meet-default",
+    "layer": "L2",
+    "group": "2.2",
+    "title": "暧昧全量",
+    "seq": 23,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "minPlayers": 2,
+    "intensity": 3,
+    "players": 4,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_2-023-truth-dare-i3-p4-flirty-first-meet-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：暧昧；最高强度：3。\n可用玩法：truth-dare。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4205,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-td-01",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "在你见过的所有人里，谁的第一次微笑最让你心跳漏一拍？",
+        "instruction": "由左手边第一位嘉宾回答；不想回答可以跳过。",
+        "intensity": 1,
+        "tags": [
+          "icebreaker"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-02",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用一句不超过十个字的话，向右手边的嘉宾表达此刻最真实的第一印象。",
+        "instruction": "只说出那句话，不解释，不追问，听众不回评。",
+        "intensity": 1,
+        "tags": [
+          "icebreaker"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-03",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果今晚只能记住一个人的声音，你会选谁，为什么？",
+        "instruction": "回答者可以点名，也可以描述特征不点名。",
+        "intensity": 2,
+        "tags": [
+          "flirt"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-04",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "与对面嘉宾对视五秒，然后各自说一个对视时闪过脑中的词。",
+        "instruction": "双方同意才进行；任何一方可随时闭眼或喊停。",
+        "intensity": 2,
+        "tags": [
+          "eye-contact"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-05",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你觉得自己身上哪个小习惯最容易被刚认识的人记住？",
+        "instruction": "由最近一次笑出声的嘉宾回答。",
+        "intensity": 1,
+        "tags": [
+          "icebreaker"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-06",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "给全场每个人一个只属于今晚的临时称呼，并说明理由。",
+        "instruction": "称呼需友善、不涉及外貌评价；被称呼者可要求更换。",
+        "intensity": 2,
+        "tags": [
+          "flirt"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-07",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "在这张桌上，你最想和谁交换一个秘密级别的爱好？",
+        "instruction": "只回答爱好类型即可，不必说出具体秘密。",
+        "intensity": 2,
+        "tags": [
+          "flirt"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-08",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个词形容此刻的氛围，然后指定一位嘉宾接龙补充一个词。",
+        "instruction": "接龙者可以拒绝补充，直接跳过。",
+        "intensity": 1,
+        "tags": [
+          "icebreaker"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-09",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果今晚的相遇是一首歌的前奏，你希望它是什么节奏？",
+        "instruction": "用慢、中、快之一回答，并可加一个形容词。",
+        "intensity": 1,
+        "tags": [
+          "icebreaker"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-10",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "向全场说一句你平时不太敢说的、但今晚愿意说的真心话式开场白。",
+        "instruction": "内容不得涉及隐私、评价他人外貌或任何不适话题；说完可立即跳过。",
+        "intensity": 3,
+        "tags": [
+          "flirt"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4205ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=truth-dare"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 3"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤4"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（truth-dare）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4205ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

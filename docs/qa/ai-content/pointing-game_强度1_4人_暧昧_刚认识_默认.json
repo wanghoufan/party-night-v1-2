@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "刚认识",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 2879,
+    "latencyMs": 21483,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,16 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "pn-01",
+        "id": "pointing-01",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向今晚你最想多了解一点的人。不用解释，指完就放下手。",
+        "content": "指向你觉得今晚最有眼缘的人；不想指就跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "icebreaker",
-          "social"
+          "破冰",
+          "暧昧",
+          "指人"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -91,15 +94,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-02",
+        "id": "pointing-02",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向你觉得声音最好听的人。",
+        "content": "指向你最想多聊一句话的人；不想指就跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "icebreaker",
-          "social"
+          "破冰",
+          "暧昧",
+          "指人"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -107,15 +111,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-03",
+        "id": "pointing-03",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向此刻坐姿最放松的人。",
+        "content": "指向你最先记住名字的人；不想指就跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "icebreaker",
-          "observation"
+          "破冰",
+          "暧昧",
+          "指人"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -123,15 +128,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-04",
+        "id": "pointing-04",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向你觉得最会聊天的人。",
+        "content": "指向你觉得声音最温柔的人；不想指就跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "icebreaker",
-          "social"
+          "破冰",
+          "暧昧",
+          "指人"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -139,15 +145,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-05",
+        "id": "pointing-05",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向今晚笑得最自然的人。",
+        "content": "指向你想和谁并肩走一段路的人；不想指就跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "icebreaker",
-          "observation"
+          "破冰",
+          "暧昧",
+          "指人"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -155,15 +162,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-06",
+        "id": "pointing-06",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向你最想和对方交换一个安静眼神的人。",
+        "content": "指向你觉得最会照顾气氛的人；不想指就跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "mood",
-          "social"
+          "破冰",
+          "暧昧",
+          "指人"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -171,15 +179,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-07",
+        "id": "pointing-07",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向你觉得最有可能讲出好故事的人。",
+        "content": "指向你最想交换一个兴趣的人；不想指就跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "icebreaker",
-          "social"
+          "破冰",
+          "暧昧",
+          "指人"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -187,15 +196,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-08",
+        "id": "pointing-08",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向此刻你最想坐在旁边的人。",
+        "content": "指向你觉得笑起来最好看的人；不想指就跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "mood",
-          "social"
+          "破冰",
+          "暧昧",
+          "指人"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -203,15 +213,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-09",
+        "id": "pointing-09",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向你觉得最会照顾气氛的人。",
+        "content": "指向你今晚最想了解的人；不想指就跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "icebreaker",
-          "observation"
+          "破冰",
+          "暧昧",
+          "指人"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -219,15 +230,16 @@
         "source": "ai"
       },
       {
-        "id": "pn-10",
+        "id": "pointing-10",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指向今晚你最想再见到的人。不想指也可以直接说跳过。",
+        "content": "指向你希望下次聚会还能见到的人；不想指就跳过。",
         "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
-          "closing",
-          "social"
+          "破冰",
+          "暧昧",
+          "指人"
         ],
         "boundaryTags": [],
         "minPlayers": 3,

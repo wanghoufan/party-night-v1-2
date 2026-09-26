@@ -1,12 +1,12 @@
 # PRODUCT_PLAN｜Party Night V2 Relationship Engine
 
 - Plan Version：`PRODUCT_PLAN_V2.0`
-- PROJECT_PHASE：`PLAN`（Human Gate 已批准；待 Human 明确口令“第二阶段，开发”后再由 TM 切换为 `DEVELOP`）
-- CHANGE_REQUEST：`C｜核心抽卡、Session 关系状态与内容真源升级`
+- PROJECT_PHASE：`DEVELOP`（Human Gate 已批准；当前按 Change B 同步局部接线，不重开 Plan）
+- CHANGE_REQUEST：`B｜Coverage、Single-Anchor、Mutual UI 与人数边界局部同步`
 - DEV_BASELINE：`PRODUCT_PLAN_V2.0`
 - PLAN_READINESS_SCORE：`83/100｜Human 例外有条件批准`（P0=`0`；blocking P1=`0`；剩余 7 分转 Release 前强制 Gate）
 - 输入基线：当前生产 V1.6 brownfield + `docs/content/v6/2026-09-24 - MAC - ChatGPT - Party Night V1.3冻结基线-备份 - V1.1.zip` 内 V1.3 Frozen（schema 2.3）
-- 文档状态：Human Gate 终版；R1=`PASS`（冻结包内部一致性前置证据）；P0-01=`CLOSED / PASS`（生产旧 350 ↔ V1.3 Frozen 350 外部机器审计）；R2=`PASS AFTER PATCH`（31/31 PASS）；R4/R5 复审=`PASS`（计划契约层关闭，实现证据转 DEVELOP 必过门禁）。Human 已决 D1=切换 V1.3 内容真源、D2=切换 V2 Router 且旧 Router 退役、D3=A、D4=A、D5=每人 active MATCH 上限 2、D6=neutral/expansion 不推进关系、D7=A、D8=A+。`PLAN_GATE=APPROVED`；83 分按 Human 例外有条件批准，剩余验证全部转为 Release 前强制 Gate。未收到明确“第二阶段，开发”前仍不授权 Builder、业务代码修改或 Release
+- 文档状态：Human Gate 终版已进入 DEVELOP；R1=`PASS`（冻结包内部一致性前置证据）；P0-01=`CLOSED / PASS`（生产旧 350 ↔ V1.3 Frozen 350 外部机器审计）；R2=`PASS AFTER PATCH`（31/31 PASS）；R4/R5 复审=`PASS`（计划契约层关闭，实现证据转 DEVELOP 必过门禁）。Human 已决 D1=切换 V1.3 内容真源、D2=切换 V2 Router 且旧 Router 退役、D3=A、D4=A、D5=每人 active MATCH 上限 2、D6=neutral/expansion 不推进关系、D7=A、D8=A+。`PLAN_GATE=APPROVED`；83 分按 Human 例外有条件批准，剩余验证全部转为 Release 前强制 Gate。Change B 只补实际接线与 RG-02 fixture；`DEV_BASELINE=PRODUCT_PLAN_V2.0` 不变，不据此宣称可 Release
 
 ## PlanConsistency｜V2.0 终版六项收敛结论
 
@@ -92,6 +92,11 @@ Human Gate 已在 Phase1 P0=0、blocking P1=0 的前提下批准四项剩余决�
 2. `expansion`：40 张扩圈卡，使用 10b 元数据，不进入 Pair Score/MATCH；completed 轮计入 `sessionCompletedRounds`，但不推进 Heat/Signal/mutual interval。
 3. `neutral`：AI 即兴、转瓶子、自定义包及未声明 V2 metadata 的玩法；completed 轮计入 `sessionCompletedRounds`，可继续正常玩，但不推进 Heat/Signal/mutual interval；切回 relationship-aware 后从原关系状态继续。
 4. 同一 Session 切包不重新录玩家、不重置 Relationship State、不重复初始化保障窗口。
+
+#### Change B 补充（2026-09-26）｜人数与空候选池
+
+- 两人局不得进入 `most-likely`、`pointing-game` 等人数不合法玩法；组局、快速开局和主局切包均按在场人数过滤。mixed 候选池为空时留在当前流程并明确提示，不复活已关闭或人数不合法的玩法；原危险回落已删除。
+- 人数下限以玩法 pack 契约的 `minPlayers` 为唯一真源；AI 卡自报下限只可更严，不可低于 pack 下限。服务端归一与过滤同口径。Matrix §3.3 的 `pointing-game@2`、`most-likely@2` 仅作 `NEGATIVE_BOUNDARY_PROBE`，服务端滤空回落属防线成立，不计合法 App 通过率。
 
 ### C. Heat 与计数契约
 
@@ -357,6 +362,12 @@ pairMode = eligiblePairCount > 0 ? "ACTIVE" : "NO_ELIGIBLE_PAIR";
 5. Host 修改 `pairGender` 后先重算资格，再允许任何新的 Pair/MATCH/5 档专属动作。
 6. 普通玩法回合、暂离期和迁移过程都不得倒推、补算或伪造 pair signal。
 
+#### Change B 补充（2026-09-26）｜Coverage、Single-Anchor 与 Pair Routing 接线
+
+1. **Coverage 软排序**：`selectTargetPair` 将既有 `relationship.playerCoverage` 传给 `rankPairs` 第 5 参；缺省 `{}` 保持原排序。四字段 `offeredTargeted / completedTargeted / consecutiveTargetedSkips / lowParticipation` 继续共用同一 Coverage 状态，其中 `coverageExposure` 取封顶的 offered、是否连续跳过、是否低参与；`coveragePenalty` 按 pair 两端 Exposure 形成至多 `0.4` 的软扣分，小于最小非零 Signal 步长 `0.5`。先形成的合法 pair 候选集合、硬合法和 cooldown 均不因 Coverage 改变；同等条件下让已获定向机会较少的多数方优先。skip 不制造 Signal，跳过后的 Coverage 让位避免因未完成立即再集中同一人。
+2. **Single-Anchor Guard**：`SINGLE_ANCHOR_TABLE` 仅在本局 active 且已录入 `pairGender` 的人数满足 `min(maleCount,femaleCount)==1 && max(...)>=3` 时命中；`null` 不计入，也不猜测。Guard 的 Exposure 以已展示的 pair opportunity 为准，编排态仅增加可选标量 `lastTargetedPairKey`；展示后 skip 也不撤销本轮 Exposure。当前实现按轮记录 pair opportunity，轮内如实际展示全桌卡也可能多隔一轮，方向保守；卡片级精确口径列 P2 backlog。`2男2女/2男3女/3男2女` 不触发 Guard。
+3. **D7 两层调度**：第一层由 `scheduleTargetPair` 决定是否进入 pair opportunity；上轮 anchor 定向展示后若可抽到合法非定向卡，本轮先走非定向，Router 以 `requireNonTargetedOpportunity=true` 只取全桌卡，该轮不计 qualifying，pending tracker 不清零、不消耗。第二层只在已选中的合法 pair opportunity 内执行冻结 D7：合法 5 档及两次合格机会的要求优先于 Coverage/Signal 软排序。无合法非定向候选时受控 bypass，回传 `reason=NO_LEGAL_NON_TARGETED_CANDIDATE`，继续既有出卡或安全耗尽路径，不死锁。这是先决定机会类型、再在 pair 内执行 D7 的两层语义，并非简单的“D7 > Guard”优先级。
+
 ### E. Signal / Mutual / MATCH / Consent
 
 1. Shared / Compatibility / Crowd / Personal / Mutual 分库存储、分别封顶、不得互相升级。
@@ -367,6 +378,11 @@ pairMode = eligiblePairCount > 0 ? "ACTIVE" : "NO_ELIGIBLE_PAIR";
 6. `PN-MOST-050` 只允许一次最高 4 档的安全 pair 加赛，不创建 MATCH，不进入 5 档。
 7. 每名玩家在同一 Session 最多同时拥有 `2` 个 active MATCH；MATCH 为非排他状态。创建新 MATCH 前必须原子校验双方 active MATCH 数均 `<2`；任一方已达上限时，本次 mutual 结果只以中性 no-action 收尾，不公开哪一方达到上限、不排队、不覆盖旧 MATCH、不转移 signal。
 8. 玩家退出、pair policy 失效或 MATCH 合法撤销时，对应 active MATCH 终止并释放名额；暂离只暂停，不释放名额。恢复重放不得重复创建 MATCH 或重复占用名额。
+
+#### Change B 补充（2026-09-26）｜单候选 Mutual UI 与隐私边界
+
+- `mutualPartnerIds` 从当前合法 pair 池取得候选；某玩家当前**只有 1 个合法异性候选**时，显示原文“今晚到现在，你愿意继续了解 TA 吗？”及“愿意 / 暂时没有”，分别提交该唯一候选 / `null`。零候选不给非法选项，多候选沿用选择列表；UI 保留候选快照并在提交前重验当前边合法性。此分支只由本人当前候选数决定，与 `min==1 && max>=3` 的 Guard 阈值解耦。
+- 冻结私密语义照旧：**仅双向才形成 MATCH；单向结果不公开；每人 active MATCH≤2；raw unilateral choice 不落盘**。`pairGender`、性别数量结构、anchor 标志仅供本地关系引擎使用，不进入 AI payload/prompt、日志或导出；真实姓名没有应用域字段。Host 输入的 `Player.displayName` 是昵称，进入 AI prompt 沿用 V1.0 已冻结行为，不把该昵称口径误写成“所有姓名都不进 prompt”。
 
 ### F. 5 档保障
 
@@ -576,12 +592,14 @@ Session.participants[playerId]
 > 这是 Human 有条件批准的硬门禁，不是 P2 建议。以下 `RG-01`～`RG-07` 必须 `7/7 PASS`，证据须记录发布候选版本、commit、设备/系统、参与人数、现场条件、步骤、结果与问题处置；任一项未通过均禁止 Release，不得以 unit/E2E、模拟器或口头确认替代真机/真人证据。
 
 - [ ] **RG-01｜真机发布候选与离线恢复**：在实际目标手机安装/打开发布候选，验证 PWA 启动、断网完成 relationship-aware 抽卡、刷新/崩溃后恢复、重新联网无重复计数；确认单向秘密选择未进入 IndexedDB、日志、导出、缓存、analytics 或 AI。
-- [ ] **RG-02｜真人弱光 4 人完整局**：4 名成年真人在目标酒吧/清吧弱光与现场噪声条件下完成至少 20 个 `sessionCompletedRounds`；记录组局、pairGender 录入、单手操作、读字、点击、节奏、跳过与提前结束是否可理解。
+- [ ] **RG-02｜真人弱光 4 人完整局**：4 名成年真人在目标酒吧/清吧弱光与现场噪声条件下完成至少 20 个 `sessionCompletedRounds`；记录组局、pairGender 录入、单手操作、读字、点击、节奏、跳过与提前结束是否可理解。Change B fixture 固定为 `1男3女` 或 `1女3男`；凑不齐保持 `PENDING`，不得用 `2男2女` 替代并宣称通过。
 - [ ] **RG-03｜真人弱光 5 人完整局**：5 名成年真人在同类现场完成至少 20 个 `sessionCompletedRounds`，并实际走一次“再玩 5 轮”至 25；验证 Heat 不回退、第三次 regular mutual 重评与 Session 结算边界。
 - [ ] **RG-04｜真人私密传手机与拒绝安全**：在 4 人或 5 人局实际完成一次 `SYSTEM_MUTUAL_CHECK`；逐人确认身份、遮罩、旁观防泄露、提交耗时、单向结果清除、无交集 no-action、跳过/拒绝无惩罚，参与者口头确认没有被公开或被二次施压。
 - [ ] **RG-05｜真人 Pair 降级与 MATCH 上限 2**：真人验证无合法男女 pair 时中性降级普通玩法且不暴露字段；再以经参与者知情同意的受控路径形成多 MATCH，确认每人 active MATCH 最大为 2、第三个不创建且不泄露达到上限的一方，退出释放名额、暂离不释放名额。
 - [ ] **RG-06｜真人 neutral/expansion 与扩圈 fallback**：在同一局切入 neutral 和 expansion，确认 completed 只推进 `sessionCompletedRounds`，不推进 Heat/Signal/mutual interval；切回后关系状态续接；实际拒绝一次外邀并命中对应 table-only fallback，不二次邀请、不暴露拒绝者。
 - [ ] **RG-07｜真人 5 档保障、耗尽与安全收尾**：在全员清醒、自愿、Intensity=5 且合法 MATCH 的受控局中验证 2 次合格 pair opportunity 内展示合法 5 档、动作级 current consent 与 skip/no-action 不补发；再验证软去重 `5→0`、Host“结束/洗牌再玩”、洗牌保留关系态且旧 Router 不可达，并覆盖 final mutual 的执行或 recent-check suppression。
+
+Change B fixture 补充：RG-03 保持上述原契约，性别比例不新增硬门槛；`1男5女` 本轮只要求自动化验证，不能用其自动化结果替代 RG-02/03 真人证据。
 
 Release Gate 结论只能为：`PASS（7/7，有完整证据）` 或 `BLOCKED（列出未通过项）`；不存在“部分通过后先发版”。
 
@@ -606,6 +624,8 @@ Release Gate 结论只能为：`PASS（7/7，有完整证据）` 或 `BLOCKED（
 
 ### P2
 
+- [ ] Change B backlog：Single-Anchor Exposure 现按 pair opportunity 轮记录，可能把轮内展示的全桌卡也视为 anchor Exposure；若需按实际展示卡精确判定，另核 Router 回传口径。RG-02 真人局观察非定向插入后 pair opportunity 减半的节奏，由用户判断是否接受。
+- [ ] Change B backlog：`playerCoverage.offeredTargeted` 仍在 `REL_CARD_COMPLETED / REL_CARD_SKIPPED` 终态归约；展示后连续换题可能低估已获机会。若改为展示时幂等计数，须避免与终态重复计数；本轮不据此改写冻结 D7 的 `CARD_PRESENTED -> offered` 终态定义。
 - [ ] 根据真人局调整 drawBands、首次/间隔卡数、cooldown、small-pool 权重与保障窗口，但不改变引擎语义。
 - [ ] 优化 H3/H4、MATCH 与无 MATCH 的文案和动效；弱光、单手、传手机遮罩可用性打磨。
 - [ ] 为长期内容迭代建立 V1.3 JSON → 生成物 → 产品包的可视化 diff 报告。
@@ -647,4 +667,4 @@ Release Gate 结论只能为：`PASS（7/7，有完整证据）` 或 `BLOCKED（
 
 `APPROVED`
 
-原因：`PLAN_READINESS_SCORE=83`，Phase1 可解冲突已全部关闭，P0=0、计划契约层 blocking P1=0；Human 明确批准 D1/D2/D5/D6，并对 90 分门槛作一次性有条件例外。缺失的真机、真人与体验证据已完整转入 Release 前强制 Gate，只有 `RG-01`～`RG-07` 取得 `7/7 PASS` 才允许 Release。`DEV_BASELINE=PRODUCT_PLAN_V2.0` 已建立；未收到明确“第二阶段，开发”前仍不启动 Builder。
+原因：`PLAN_READINESS_SCORE=83`，Phase1 可解冲突已全部关闭，P0=0、计划契约层 blocking P1=0；Human 明确批准 D1/D2/D5/D6，并对 90 分门槛作一次性有条件例外。缺失的真机、真人与体验证据已完整转入 Release 前强制 Gate，只有 `RG-01`～`RG-07` 取得 `7/7 PASS` 才允许 Release。`DEV_BASELINE=PRODUCT_PLAN_V2.0` 已建立；当前 Phase2 Change B 局部同步不改变此基线。

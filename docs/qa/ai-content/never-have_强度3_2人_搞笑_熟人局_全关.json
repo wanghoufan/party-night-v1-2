@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "熟人局",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4120,
+    "latencyMs": 19505,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "nh-001",
+        "id": "nh-01",
         "packId": "never-have",
         "type": "statement",
-        "content": "我曾在熟人群里发错消息",
-        "instruction": "没做过的人举手；做过的人不用说明细节，直接跳到下一张。",
+        "content": "我从未因为想多睡五分钟而把闹钟按掉三次以上。",
+        "instruction": "所有人一起玩：念出卡片后，符合情况的人举手或喊“有”，不符合的人喊“没有”。任何一轮都可跳过，不惩罚、不强迫。",
         "intensity": 1,
         "tags": [
-          "搞笑",
-          "社交"
+          "日常",
+          "搞笑"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,14 +93,94 @@
         "source": "ai"
       },
       {
-        "id": "nh-002",
+        "id": "nh-02",
         "packId": "never-have",
         "type": "statement",
-        "content": "我曾在群聊里把发给别人的话发到了错误的人那里",
-        "instruction": "做过的人举手，然后由右手边的人指定他做一个搞怪表情，也可以跳过。",
-        "intensity": 1,
+        "content": "我从未唱歌时破音，还硬着头皮把整首歌唱完。",
+        "instruction": "所有人一起玩：念出卡片后，符合情况的人举手或喊“有”，不符合的人喊“没有”。任何一轮都可跳过，不惩罚、不强迫。",
+        "intensity": 2,
         "tags": [
           "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-03",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从未假装听懂别人的话，然后偷偷去查到底是什么意思。",
+        "instruction": "所有人一起玩：念出卡片后，符合情况的人举手或喊“有”，不符合的人喊“没有”。任何一轮都可跳过，不惩罚、不强迫。",
+        "intensity": 2,
+        "tags": [
+          "社交",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-04",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从未在家对着镜子演过一段根本不存在的获奖感言。",
+        "instruction": "所有人一起玩：念出卡片后，符合情况的人举手或喊“有”，不符合的人喊“没有”。任何一轮都可跳过，不惩罚、不强迫。",
+        "intensity": 3,
+        "tags": [
+          "脑洞",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-05",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从未把同一集综艺或剧集看了三遍以上，只为等一个名场面。",
+        "instruction": "所有人一起玩：念出卡片后，符合情况的人举手或喊“有”，不符合的人喊“没有”。任何一轮都可跳过，不惩罚、不强迫。",
+        "intensity": 1,
+        "tags": [
+          "娱乐",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-06",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从未在吃火锅时捞了半天，最后只捞到一片姜。",
+        "instruction": "所有人一起玩：念出卡片后，符合情况的人举手或喊“有”，不符合的人喊“没有”。任何一轮都可跳过，不惩罚、不强迫。",
+        "intensity": 1,
+        "tags": [
+          "美食",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-07",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从未发消息打错字，发现后立刻撤回，并祈祷没人看见。",
+        "instruction": "所有人一起玩：念出卡片后，符合情况的人举手或喊“有”，不符合的人喊“没有”。任何一轮都可跳过，不惩罚、不强迫。",
+        "intensity": 2,
+        "tags": [
+          "社交",
           "尴尬"
         ],
         "boundaryTags": [],
@@ -107,49 +189,31 @@
         "source": "ai"
       },
       {
-        "id": "nh-003",
+        "id": "nh-08",
         "packId": "never-have",
         "type": "statement",
-        "content": "我曾假装听懂了一个完全不懂的梗",
-        "instruction": "没做过的人要现场编一个假梗，其他人判断真假。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "表演"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-004",
-        "packId": "never-have",
-        "type": "statement",
-        "content": "我曾在拍照时故意抢镜",
-        "instruction": "做过的人模仿当时抢镜的动作，所有人投票最搞笑的一个。",
+        "content": "我从未立志早睡，结果凌晨还在看“最后一个视频”。",
+        "instruction": "所有人一起玩：念出卡片后，符合情况的人举手或喊“有”，不符合的人喊“没有”。任何一轮都可跳过，不惩罚、不强迫。",
         "intensity": 2,
         "tags": [
-          "搞笑",
-          "照片"
+          "日常",
+          "熬夜"
         ],
-        "boundaryTags": [
-          "photo-video"
-        ],
+        "boundaryTags": [],
         "minPlayers": 2,
         "participantMode": "all",
         "source": "ai"
       },
       {
-        "id": "nh-005",
+        "id": "nh-09",
         "packId": "never-have",
         "type": "statement",
-        "content": "我曾把别人的名字叫错还坚持自己没叫错",
-        "instruction": "做过的人用最理直气壮的语气重复一次错名字，然后立刻道歉。",
+        "content": "我从未买了新东西却放很久不拆，假装自己一点都不好奇。",
+        "instruction": "所有人一起玩：念出卡片后，符合情况的人举手或喊“有”，不符合的人喊“没有”。任何一轮都可跳过，不惩罚、不强迫。",
         "intensity": 1,
         "tags": [
-          "搞笑",
-          "社交"
+          "日常",
+          "搞笑"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -157,79 +221,15 @@
         "source": "ai"
       },
       {
-        "id": "nh-006",
+        "id": "nh-10",
         "packId": "never-have",
         "type": "statement",
-        "content": "我曾为了逃避发言假装信号不好",
-        "instruction": "做过的人表演一段“喂喂喂听不见”的戏，限时五秒。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "表演"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-007",
-        "packId": "never-have",
-        "type": "statement",
-        "content": "我曾把外卖备注写成段子",
-        "instruction": "没做过的人要即兴给一个虚构外卖写一句搞笑备注，不涉及真实隐私。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "创作"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-008",
-        "packId": "never-have",
-        "type": "statement",
-        "content": "我曾在KTV里抢过别人的歌",
-        "instruction": "做过的人清唱一句最拿手的歌，可以只哼旋律，也可以跳过。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "音乐"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-009",
-        "packId": "never-have",
-        "type": "statement",
-        "content": "我曾把闹钟按掉后又睡过头",
-        "instruction": "做过的人用最夸张的方式表演“惊醒”，其他人给反应打分。",
-        "intensity": 1,
-        "tags": [
-          "搞笑",
-          "表演"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "nh-010",
-        "packId": "never-have",
-        "type": "statement",
-        "content": "我曾在熟人面前讲冷笑话然后自己先笑",
-        "instruction": "没做过的人要讲一个冷笑话，讲完必须自己先笑，否则接受一个搞怪惩罚。",
+        "content": "我从未在朋友面前吹牛说“这个我会”，结果当场翻车。",
+        "instruction": "所有人一起玩：念出卡片后，符合情况的人举手或喊“有”，不符合的人喊“没有”。任何一轮都可跳过，不惩罚、不强迫。",
         "intensity": 3,
         "tags": [
-          "搞笑",
-          "挑战"
+          "熟人局",
+          "搞笑"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

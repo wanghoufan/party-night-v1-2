@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "第一次见 / 拼桌",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3511,
+    "latencyMs": 54003,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,12 +80,12 @@
         "id": "compat-001",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果现在立刻点一份外卖，你猜对方会选什么？两人同时说出一个菜名。",
+        "content": "同时回答：第一次见面时，你通常先记住对方的名字还是脸？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
           "破冰",
-          "轻松"
+          "第一印象"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -94,10 +96,11 @@
         "id": "compat-002",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "周末更想出门还是宅家？",
+        "content": "如果今晚只能点一首歌当背景音乐，你会选哪一首？两人同时说出歌名，看看是否撞歌。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
+          "音乐",
           "破冰"
         ],
         "boundaryTags": [],
@@ -109,12 +112,12 @@
         "id": "compat-003",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "第一次见面时，你先注意到对方的哪个细节？两人同时说出一个部位以外的特征。",
+        "content": "桌上只能留一种零食，你选哪个？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "破冰",
-          "观察"
+          "选择",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -125,12 +128,12 @@
         "id": "compat-004",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果要一起旅行，选海边、山里还是城市？",
+        "content": "同时回答：聊天时你更怕冷场，还是更怕对方太热情？",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
+        "intensity": 2,
         "tags": [
-          "破冰",
-          "旅行"
+          "社交",
+          "默契"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -141,12 +144,12 @@
         "id": "compat-005",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "派对里最舒服的角落是：沙发、吧台还是门口？",
+        "content": "如果现在要给自己起一个今晚的派对外号，你会叫什么？同时说，看看风格像不像。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
-          "派对",
-          "轻松"
+          "外号",
+          "创意"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -157,12 +160,12 @@
         "id": "compat-006",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "你猜对方更喜欢早起还是熬夜？两人同时回答。",
+        "content": "第一次见面的最佳破冰方式，选一个：",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
+        "intensity": 2,
         "tags": [
           "破冰",
-          "习惯"
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -173,12 +176,12 @@
         "id": "compat-007",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果只能带一样东西去荒岛，你猜对方会带什么？同时说出答案。",
+        "content": "同时回答：如果这桌变成一档综艺，你觉得你们俩更像什么角色？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
-          "想象",
-          "默契"
+          "角色",
+          "脑洞"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -189,12 +192,12 @@
         "id": "compat-008",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "聊天时更常发表情包还是文字？",
+        "content": "用三个词形容你心中最舒服的聚会氛围，两人同时说，看看有几个词一样。",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
+        "intensity": 2,
         "tags": [
-          "破冰",
-          "习惯"
+          "氛围",
+          "默契"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -205,11 +208,11 @@
         "id": "compat-009",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "今晚更想玩桌游、唱歌还是纯聊天？",
+        "content": "同时回答：点饮料时，你更倾向于永远点熟悉的，还是每次都试没喝过的？",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 2,
+        "intensity": 1,
         "tags": [
-          "派对",
+          "饮料",
           "选择"
         ],
         "boundaryTags": [],
@@ -221,12 +224,12 @@
         "id": "compat-010",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "用一个词形容你此刻的心情，两人同时说，看是否撞词。",
+        "content": "如果只能用一个不接触对方的动作表达‘我同意’，你会做什么？两人同时做出来，看看对方能否秒懂。",
         "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
+        "intensity": 3,
         "tags": [
-          "破冰",
-          "心情"
+          "动作",
+          "默契"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

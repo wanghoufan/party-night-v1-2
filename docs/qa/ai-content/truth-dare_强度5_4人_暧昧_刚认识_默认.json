@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "刚认识",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4600,
+    "latencyMs": 28600,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,31 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "td-01",
+        "id": "pn-td-001",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你觉得在场谁的穿搭最让你想多看一眼？",
-        "instruction": "回答时说出一个具体细节，例如颜色、配饰或风格；不愿回答可跳过。",
-        "intensity": 1,
-        "tags": [
-          "观察",
-          "初印象"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "td-02",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "用三个词形容此刻的氛围，并加上一个适合今晚的手势。",
-        "instruction": "说完后保持手势三秒，让其他人猜你的心情；可随时跳过。",
+        "content": "说出你对在场某位嘉宾的第一印象，用一个形容词加一句原因。",
+        "instruction": "可跳过。只描述印象，不评价缺点，不追问对方不想说的事。",
         "intensity": 1,
         "tags": [
           "破冰",
-          "表达"
+          "第一印象"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,31 +93,15 @@
         "source": "ai"
       },
       {
-        "id": "td-03",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "如果今晚只能和一个人多聊十分钟，你会选谁，想聊什么话题？",
-        "instruction": "说出选择和一个安全、轻松的话题方向；不必解释深层原因。",
-        "intensity": 2,
-        "tags": [
-          "偏好",
-          "话题"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "td-04",
+        "id": "pn-td-002",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "给右手边的人一个真诚但不涉及外表的赞美。",
-        "instruction": "赞美要具体，例如对方的语气、想法或幽默感；对方可礼貌回应。",
+        "content": "选择一位嘉宾，用一句不超过十五个字的话夸TA今晚的一个细节。",
+        "instruction": "可跳过。可以夸语气、笑容、穿搭或反应，但不要追问对方不想说的事。",
         "intensity": 2,
         "tags": [
           "赞美",
-          "互动"
+          "暧昧"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -139,15 +109,15 @@
         "source": "ai"
       },
       {
-        "id": "td-05",
+        "id": "pn-td-003",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "你最近一次因为别人一句话而开心，是什么样的话？",
-        "instruction": "只分享让你舒服的部分，不需要说出说话者是谁。",
-        "intensity": 2,
+        "content": "如果今晚的聚会是一部电影，你希望和谁演一场暧昧但克制的对手戏？说出场景和一句台词。",
+        "instruction": "可跳过。只用语言描述，保持含蓄。",
+        "intensity": 3,
         "tags": [
-          "情绪",
-          "回忆"
+          "想象",
+          "暧昧"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -155,15 +125,15 @@
         "source": "ai"
       },
       {
-        "id": "td-06",
+        "id": "pn-td-004",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "和对面的人轮流说出一个今晚想一起做的低强度活动，比如听歌、散步或拼图。",
-        "instruction": "每人说一个，不能重复；对方可以点头或摇头，不必承诺执行。",
-        "intensity": 2,
+        "content": "对一位嘉宾说：‘如果我们早就认识，今晚你会怎么开场？’然后等TA回答或示意跳过。",
+        "instruction": "可跳过。只是语言互动，不要求对方必须回答。",
+        "intensity": 3,
         "tags": [
-          "共同想象",
-          "轻松"
+          "对话",
+          "开场"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -171,47 +141,15 @@
         "source": "ai"
       },
       {
-        "id": "td-07",
+        "id": "pn-td-005",
         "packId": "truth-dare",
         "type": "truth",
-        "content": "在一段刚认识的关系里，你最容易因为什么小动作产生好感？",
-        "instruction": "描述一个安全、不涉及身体接触的细节，例如记得你说过的话。",
-        "intensity": 3,
-        "tags": [
-          "好感",
-          "细节"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "single",
-        "source": "ai"
-      },
-      {
-        "id": "td-08",
-        "packId": "truth-dare",
-        "type": "dare",
-        "content": "用一句话描述你对今晚的期待，然后让其他人各给一个回应。",
-        "instruction": "期待要轻松、可公开；其他人只回应感受，不追问隐私。",
-        "intensity": 3,
-        "tags": [
-          "期待",
-          "交流"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "td-09",
-        "packId": "truth-dare",
-        "type": "truth",
-        "content": "你觉得在场谁的声音或说话方式最让你放松？为什么？",
-        "instruction": "说出一个具体特点，例如语速或笑声；被提到的人可以只微笑回应。",
-        "intensity": 3,
+        "content": "说出一种让你觉得某人很有魅力的声音或说话方式，并现场用中性语气示范一句。",
+        "instruction": "可跳过。示范内容要友善，不模仿他人缺陷。",
+        "intensity": 2,
         "tags": [
           "声音",
-          "放松"
+          "魅力"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -219,19 +157,83 @@
         "source": "ai"
       },
       {
-        "id": "td-10",
+        "id": "pn-td-006",
         "packId": "truth-dare",
         "type": "dare",
-        "content": "请在场每个人用一个词形容你，你再选一个最意外的词说说感受。",
-        "instruction": "其他人只说一个安全、善意的词；你只需回应感受，不必辩解。",
-        "intensity": 4,
+        "content": "选一位嘉宾，和TA轮流说出一个适合雨夜聊天的地点，不能重复；你先开始。",
+        "instruction": "可跳过。只聊虚构或公共场景，不约定私下见面。",
+        "intensity": 2,
         "tags": [
-          "反馈",
-          "自我感受"
+          "轮流",
+          "雨夜"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
-        "participantMode": "all",
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果必须用一种颜色形容今晚的气氛，你会选什么？为什么？可以顺便说一位让你产生这个感觉的人。",
+        "instruction": "可跳过。不想点名时，可以用‘某位嘉宾’代替。",
+        "intensity": 3,
+        "tags": [
+          "气氛",
+          "颜色"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个词形容你理想中‘暧昧但不越界’的瞬间，并解释最后一个词。",
+        "instruction": "可跳过。解释时只用抽象描述，不展开具体场景。",
+        "intensity": 3,
+        "tags": [
+          "边界",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "在场谁最让你好奇？说一个与今晚感受有关、但你还不好意思问的问题，然后请对方决定是否回答。",
+        "instruction": "可跳过。对方可以拒绝回答，不得追问。",
+        "intensity": 4,
+        "tags": [
+          "好奇",
+          "克制"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "pn-td-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "对一位嘉宾说一句含蓄的晚安台词，要求温柔但不承诺、不越界；说完后可以解释这只是游戏。",
+        "instruction": "可跳过。只用语言，保持轻松，对方可只回‘晚安’。",
+        "intensity": 4,
+        "tags": [
+          "晚安",
+          "台词"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
         "source": "ai"
       }
     ]

@@ -1,4 +1,5 @@
 import { SESSION_SCHEMA_VERSION, gameSessionSchema, type GamePackDefinition, type GameSession, type Intensity, type SessionConfig } from "@/lib/domain/schemas";
+import { deckGenerationSource } from "@/lib/domain/generation-source";
 import { resolvePackCapability } from "@/lib/domain/pack-capability";
 import { getGamePack, packIsCardless } from "@/lib/game-packs/registry";
 import { createSessionParticipants } from "@/lib/v2-relationship/v2-participants";
@@ -39,6 +40,7 @@ export function createSession(
     mode: config.mode,
     config,
     deckSnapshot: structuredClone(deckSnapshot),
+    ...(deckSnapshot.length ? { generationSource: deckGenerationSource(deckSnapshot) } : {}),
     usedCardIds: [],
     rounds: [],
     currentPackId: config.enabledPackIds[0],
@@ -51,9 +53,17 @@ export function createSession(
   });
 }
 
+/** 整局生成落定：Deck 与 generationSource 同一入口写入（`generating` → `active` 的唯一路径）。 */
 export function activateSession(session: GameSession, cards: GameCard[]): GameSession {
   const timestamp = now();
-  return { ...session, status: "active", deckSnapshot: structuredClone(cards), startedAt: session.startedAt ?? timestamp, updatedAt: timestamp };
+  return {
+    ...session,
+    status: "active",
+    deckSnapshot: structuredClone(cards),
+    generationSource: deckGenerationSource(cards),
+    startedAt: session.startedAt ?? timestamp,
+    updatedAt: timestamp,
+  };
 }
 
 export interface StartRoundOptions {

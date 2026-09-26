@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 57,
+    "packId": "spin-bottle",
+    "packName": "转瓶子",
+    "origin": "base",
+    "intensity": 3,
+    "players": 2,
+    "vibe": {
+      "key": "flirty",
+      "label": "暧昧"
+    },
+    "relationship": {
+      "key": "familiar",
+      "label": "熟人局"
+    },
+    "boundary": {
+      "mode": "all-off",
+      "label": "全关",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "熟人局",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "spin-bottle"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：熟人局；氛围：暧昧；最高强度：3。\n可用玩法：spin-bottle。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4411,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "spin-01",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "说出你对在场某位嘉宾第一印象中最特别的一个细节。",
+        "instruction": "瓶口指向谁，谁回答；不想说可以跳过，改由你向另一位嘉宾提一个轻松问题。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "回忆"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-02",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "用三个形容词描述你此刻的心情，并让其他嘉宾猜哪个最不准。",
+        "instruction": "瓶口指向谁，谁完成；可以只做描述环节，跳过猜测。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "表达"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-03",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "如果今晚只能和一个人多聊十分钟，你会选谁？只说出理由的一半。",
+        "instruction": "瓶口指向谁，谁回答；可以只说理由的一半，另一半保留。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "选择"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-04",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "与瓶口指向的嘉宾对视五秒，然后各自用一个词形容刚才的感觉。",
+        "instruction": "双方自愿参与；任一方可随时喊停，喊停后改为各自说一个词。",
+        "intensity": 2,
+        "tags": [
+          "对视",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-05",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "说一件你最近做过、但没告诉在场任何人的小事。",
+        "instruction": "瓶口指向谁，谁回答；不涉及隐私细节，可随时跳过。",
+        "intensity": 2,
+        "tags": [
+          "分享",
+          "秘密"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-06",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "给在场的一位嘉宾起一个只属于今晚的昵称，并解释由来。",
+        "instruction": "瓶口指向谁，谁完成；被起昵称的嘉宾可以拒绝接受。",
+        "intensity": 2,
+        "tags": [
+          "昵称",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-07",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "你更相信一见钟情还是日久生情？用今晚在场的人举例说明倾向。",
+        "instruction": "瓶口指向谁，谁回答；举例时不需要点名具体人。",
+        "intensity": 2,
+        "tags": [
+          "感情观",
+          "讨论"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-08",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "用一句不直接说喜欢的话，向瓶口指向的嘉宾表达一点好感。",
+        "instruction": "双方自愿；被表达方可选择只回一个微笑或一个字。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "表达"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-09",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "此刻如果现场安静十秒，你最想对谁说什么？只说第一句。",
+        "instruction": "瓶口指向谁，谁回答；可以只说第一句，也可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "真心话"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-10",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "和瓶口指向的嘉宾各自说一件今晚最想一起做的小事，不要求真的去做。",
+        "instruction": "双方自愿；只是口头约定，任何一方可随时结束这个话题。",
+        "intensity": 3,
+        "tags": [
+          "约定",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

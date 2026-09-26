@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "普通朋友",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4123,
+    "latencyMs": 33245,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -78,12 +80,12 @@
         "id": "wyr-001",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "整晚只能和同一个人聊天，其他人都只能点头微笑 VS 整晚可以和每个人聊，但每段对话只能持续三分钟",
+        "content": "和在场最会照顾人的人交换一天身份 VS 和在场最会逗人笑的人交换一天身份",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 1,
+        "intensity": 2,
         "tags": [
-          "暧昧",
-          "社交"
+          "社交",
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -94,12 +96,12 @@
         "id": "wyr-002",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "在聚会上被大家轮流真诚夸一句 VS 在聚会上被大家轮流提一个无伤大雅的小缺点",
+        "content": "深夜收到一句“睡了吗”，你希望对方只是想聊天 VS 深夜收到一句“睡了吗”，你希望对方是想见你",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 2,
+        "intensity": 3,
         "tags": [
           "暧昧",
-          "自我暴露"
+          "心动"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -110,12 +112,12 @@
         "id": "wyr-003",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "和心动的人玩一局真心话，但问题由其他人决定 VS 和心动的人玩一局大冒险，但动作由自己选择",
+        "content": "和喜欢的人一起逛夜市 VS 和喜欢的人一起看一场安静的电影",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 3,
+        "intensity": 2,
         "tags": [
-          "暧昧",
-          "心跳"
+          "约会",
+          "偏好"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -126,12 +128,12 @@
         "id": "wyr-004",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "收到一条匿名表白，但永远不知道是谁 VS 收到一条实名表白，但对方只是普通朋友",
+        "content": "被一直看着你的人吸引 VS 被一直逗你笑的人吸引",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 2,
+        "intensity": 3,
         "tags": [
           "暧昧",
-          "情感"
+          "吸引"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -142,12 +144,12 @@
         "id": "wyr-005",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "和在场某人交换手机壁纸一天 VS 和在场某人交换一句只有彼此懂的暗号",
+        "content": "对方记得你的小习惯 VS 对方主动制造独处机会",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 3,
         "tags": [
           "暧昧",
-          "互动"
+          "心动"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -158,12 +160,12 @@
         "id": "wyr-006",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "在聚会上公开说出自己最想被怎样温柔对待 VS 在聚会上悄悄告诉一个人自己最想被怎样温柔对待",
+        "content": "收到一段长长的匿名告白文字 VS 收到一首只唱给你听的匿名歌",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 3,
+        "intensity": 2,
         "tags": [
-          "暧昧",
-          "坦诚"
+          "告白",
+          "浪漫"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -174,12 +176,12 @@
         "id": "wyr-007",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "和一个人对视十秒，期间不能说话 VS 和一个人背对背坐一分钟，期间可以说话",
+        "content": "在关系未明时直接问清楚 VS 在关系未明时继续享受猜测",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 4,
+        "intensity": 3,
         "tags": [
-          "暧昧",
-          "近距离"
+          "关系",
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -190,12 +192,12 @@
         "id": "wyr-008",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "让在场的人投票选出今晚最有魅力的嘉宾 VS 让在场的人投票选出今晚最想再约一次的嘉宾",
+        "content": "聚会结束后和最聊得来的人顺路回家 VS 聚会结束后和最让你心跳加速的人顺路回家",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 4,
+        "intensity": 3,
         "tags": [
           "暧昧",
-          "投票"
+          "选择"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -206,12 +208,12 @@
         "id": "wyr-009",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "在聚会上用三个词形容自己对某人的第一印象 VS 在聚会上用三个词形容自己希望别人对自己的第一印象",
+        "content": "暧昧对象在众人面前对你特别 VS 暧昧对象只在私下对你特别",
         "instruction": "一起倒数三秒，说出你的选择",
-        "intensity": 2,
+        "intensity": 4,
         "tags": [
           "暧昧",
-          "印象"
+          "偏好"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -222,12 +224,12 @@
         "id": "wyr-010",
         "packId": "would-you-rather",
         "type": "would-you-rather",
-        "content": "今晚主动发起一次真诚的赞美，对象由抽签决定 VS 今晚主动发起一次真诚的提问，对象由抽签决定",
+        "content": "让在场某个人知道你对他或她有一点好感 VS 把这点好感完全藏在心里，不让任何人发现",
         "instruction": "一起倒数三秒，说出你的选择",
         "intensity": 5,
         "tags": [
           "暧昧",
-          "主动"
+          "心意"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

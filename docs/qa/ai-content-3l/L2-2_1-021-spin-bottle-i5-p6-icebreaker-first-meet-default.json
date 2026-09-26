@@ -1,0 +1,336 @@
+{
+  "cell": {
+    "id": "L2-2_1-021-spin-bottle-i5-p6-icebreaker-first-meet-default",
+    "layer": "L2",
+    "group": "2.1",
+    "title": "Intensity 5 全量",
+    "seq": 21,
+    "packId": "spin-bottle",
+    "packName": "转瓶子",
+    "minPlayers": 2,
+    "intensity": 5,
+    "players": 6,
+    "vibeKey": "icebreaker",
+    "vibeLabel": "破冰",
+    "relationshipKey": "first-meet",
+    "relationshipLabel": "第一次见 / 拼桌",
+    "boundaryFlags": {
+      "noPhysicalContact": false,
+      "noAlcoholPenalty": true,
+      "noExPartners": false,
+      "noSexualHistory": false,
+      "noMoneyIncome": false,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": false,
+      "noSocialAccounts": false
+    },
+    "boundaryLabel": "默认",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L2-2_1-021-spin-bottle-i5-p6-icebreaker-first-meet-default",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "spin-bottle"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：第一次见 / 拼桌；氛围：破冰；最高强度：5。\n可用玩法：spin-bottle。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4770,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "spin-ice-01",
+        "packId": "spin-bottle",
+        "type": "question",
+        "content": "说出你最近学会的一个小技能，或者最近想学的一个小技能。",
+        "instruction": "由转瓶指向的玩家回答，其他人可以追问一个细节。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "轻分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-02",
+        "packId": "spin-bottle",
+        "type": "challenge",
+        "content": "用三个词形容你现在的心情，并解释其中一个词。",
+        "instruction": "转瓶指向的玩家完成，若不想解释可以只说出三个词。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "表达"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-03",
+        "packId": "spin-bottle",
+        "type": "interaction",
+        "content": "和左手边的人互相说出对方一个第一印象。",
+        "instruction": "两人轮流说，只说正面或中性的观察，不评价外貌细节。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "互评"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-04",
+        "packId": "spin-bottle",
+        "type": "question",
+        "content": "如果今晚只能推荐一首歌给大家，你会推荐哪首？为什么？",
+        "instruction": "转瓶指向的玩家回答，其他人可记录歌名。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "音乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-05",
+        "packId": "spin-bottle",
+        "type": "challenge",
+        "content": "模仿一种常见动物的叫声，让其他人猜是什么动物。",
+        "instruction": "转瓶指向的玩家表演，猜中后换下一位。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-06",
+        "packId": "spin-bottle",
+        "type": "interaction",
+        "content": "所有人同时举起一只手，说出自己今天做过的一件小事，最普通的人获胜。",
+        "instruction": "全员参与，由主持人判断谁说的最普通。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "全员"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-07",
+        "packId": "spin-bottle",
+        "type": "question",
+        "content": "你更喜欢早起还是熬夜？说出一个理由。",
+        "instruction": "转瓶指向的玩家回答，其他人可以点头或摇头表示认同。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "偏好"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-08",
+        "packId": "spin-bottle",
+        "type": "challenge",
+        "content": "用一句话夸赞右边的人，不能重复前面用过的词。",
+        "instruction": "转瓶指向的玩家完成，被夸的人说谢谢即可。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "夸赞"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-09",
+        "packId": "spin-bottle",
+        "type": "interaction",
+        "content": "两人一组，互相说出自己最喜欢的一种食物，并找出一个共同点。",
+        "instruction": "转瓶指向的玩家与对面的人组队，限时一分钟。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "组队"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 4,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-ice-10",
+        "packId": "spin-bottle",
+        "type": "question",
+        "content": "如果明天放假，你最想做的第一件事是什么？",
+        "instruction": "转瓶指向的玩家回答，其他人不追问私人安排。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "想象"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 4770ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=spin-bottle"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 5"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [alcohol,phone-privacy,public-posting,stranger-contact] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤6"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（spin-bottle）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "4770ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 1,
+  "observes": [
+    "I5 格出现 10/10 张低档卡（≤I2）：可能尺度偏软，记录不阻断"
+  ],
+  "statusHistory": [
+    200
+  ]
+}

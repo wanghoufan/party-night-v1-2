@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "刚认识",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 3788,
+    "latencyMs": 24136,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,15 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "compat-01",
+        "id": "comp-001",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果周末只能选一种放松方式，你们会选：在家看电影、出门散步、还是睡到自然醒？",
+        "content": "同时说出一种最适合今晚聚会点的外卖口味。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "轻松",
-          "日常"
+          "icebreaker",
+          "food"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -91,15 +93,15 @@
         "source": "ai"
       },
       {
-        "id": "compat-02",
+        "id": "comp-002",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "第一次见面时，你更先注意到对方的：说话方式、衣着风格、还是整体气场？",
+        "content": "如果只能选一种，你们同时回答：周末更想宅家还是出门？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "初印象",
-          "观察"
+          "preference",
+          "weekend"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -107,15 +109,14 @@
         "source": "ai"
       },
       {
-        "id": "compat-03",
+        "id": "comp-003",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果现在立刻出发去一个短途目的地，你们会同时想到海边还是山里？",
+        "content": "同时说出一个最想拥有的超能力。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 1,
         "tags": [
-          "旅行",
-          "偏好"
+          "imagination"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -123,63 +124,14 @@
         "source": "ai"
       },
       {
-        "id": "compat-04",
+        "id": "comp-004",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "你更喜欢哪种聚会节奏：热闹一直聊，还是安静轮流说？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
-        "tags": [
-          "氛围",
-          "偏好"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compat-05",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "如果只能保留一种手机通知，你会保留：消息、日历提醒、还是天气？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
-        "tags": [
-          "生活",
-          "选择"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compat-06",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "面对一道没吃过的菜，你通常会先问食材还是先尝一口？",
-        "instruction": "两人同时回答，看是否一样",
-        "intensity": 1,
-        "tags": [
-          "饮食",
-          "习惯"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 2,
-        "participantMode": "pair",
-        "source": "ai"
-      },
-      {
-        "id": "compat-07",
-        "packId": "compatibility-test",
-        "type": "compatibility",
-        "content": "你觉得认识新朋友时，最舒服的破冰方式是：聊兴趣、聊最近做的事、还是直接玩游戏？",
+        "content": "你们同时回答：聚会时更愿意当组织者还是参与者？",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
-          "社交",
-          "破冰"
+          "social-style"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -187,15 +139,15 @@
         "source": "ai"
       },
       {
-        "id": "compat-08",
+        "id": "comp-005",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "如果今晚只能选一个环节，你们会同时选：一起做一个小任务，还是各自分享一个冷知识？",
+        "content": "同时从‘猫’‘狗’‘鸟’中选一个最想养的宠物。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
-          "互动",
-          "选择"
+          "preference",
+          "pets"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -203,15 +155,15 @@
         "source": "ai"
       },
       {
-        "id": "compat-09",
+        "id": "comp-006",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "你认为一段刚认识的关系里，更重要的是：共同笑点、共同节奏、还是共同目标？",
+        "content": "同时说出一个最近让你笑出声的小事。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 2,
         "tags": [
-          "关系",
-          "价值观"
+          "story",
+          "light"
         ],
         "boundaryTags": [],
         "minPlayers": 2,
@@ -219,15 +171,63 @@
         "source": "ai"
       },
       {
-        "id": "compat-10",
+        "id": "comp-007",
         "packId": "compatibility-test",
         "type": "compatibility",
-        "content": "现在同时说出一个你们觉得最适合今晚的背景音乐类型：流行、轻音乐、还是复古？",
+        "content": "如果现在立刻放假一天，你们同时选择：睡觉、看电影、逛公园。",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 2,
+        "tags": [
+          "hypothetical",
+          "relax"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "comp-008",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "同时回答：吃火锅时，更接受清汤还是辣汤？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 1,
+        "tags": [
+          "food",
+          "preference"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "comp-009",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "同时说出一种你最喜欢的中文歌类型或歌手风格。",
         "instruction": "两人同时回答，看是否一样",
         "intensity": 3,
         "tags": [
-          "音乐",
-          "默契"
+          "music",
+          "taste"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "comp-010",
+        "packId": "compatibility-test",
+        "type": "compatibility",
+        "content": "你们同时回答：遇到新朋友时，更习惯先听还是先说？",
+        "instruction": "两人同时回答，看是否一样",
+        "intensity": 3,
+        "tags": [
+          "social-style",
+          "communication"
         ],
         "boundaryTags": [],
         "minPlayers": 2,

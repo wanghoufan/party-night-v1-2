@@ -35,7 +35,7 @@
     "service": "http://127.0.0.1:3000",
     "endpoint": "/api/generate-session",
     "targetCardCount": 10,
-    "provider": "deepseek-official/deepseek-flash",
+    "provider": "opencode-go/deepseek-v4.1-flash",
     "sessionConfig": {
       "relationship": "第一次见 / 拼桌",
       "vibes": [
@@ -66,8 +66,10 @@
   "response": {
     "status": 200,
     "attempts": 1,
-    "latencyMs": 4525,
+    "latencyMs": 30506,
+    "provider": "opencode-go",
     "code": null,
+    "generationSource": "ai",
     "meta": {
       "generatedCount": 10,
       "provider": "configured-provider"
@@ -75,15 +77,17 @@
     "cardCount": 10,
     "cards": [
       {
-        "id": "pn-001",
+        "id": "pnt-001",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指到谁，谁就用最正经的语气宣布一件自己最不正经的糗事。",
-        "instruction": "被指到的人要假装自己是主持人，用最正经的语气宣布一件最不正经的糗事，其他人可以起哄，也可以直接跳过。",
+        "content": "请所有人同时指向：此刻表情最像刚听到一个烂梗的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
           "搞笑",
-          "破冰"
+          "破冰",
+          "指人",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -91,15 +95,17 @@
         "source": "ai"
       },
       {
-        "id": "pn-002",
+        "id": "pnt-002",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指到谁，谁就用夸张口音推销一件桌上的物品，限时二十秒。",
-        "instruction": "被指到的人要用方言或夸张口音模仿一个电视购物主持人，推销一件桌上的物品，限时二十秒。",
+        "content": "请所有人同时指向：如果大家组队演小品，最像负责忘词的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
           "搞笑",
-          "表演"
+          "破冰",
+          "指人",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -107,15 +113,17 @@
         "source": "ai"
       },
       {
-        "id": "pn-003",
+        "id": "pnt-003",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指到谁，谁就即兴编一句关于今晚拼桌的押韵顺口溜。",
-        "instruction": "被指到的人要即兴编一句押韵的顺口溜，主题是“今晚的拼桌”，说完大家一起鼓掌。",
+        "content": "请所有人同时指向：说话节奏最像综艺节目旁白的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
           "搞笑",
-          "即兴"
+          "破冰",
+          "指人",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -123,15 +131,17 @@
         "source": "ai"
       },
       {
-        "id": "pn-004",
+        "id": "pnt-004",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指到谁，谁就用最浮夸的方式赞美一位同桌的外套或发型。",
-        "instruction": "被指到的人要选一位同桌，用最浮夸的赞美夸奖对方的外套或发型，被夸的人必须回一句“谢谢，我也这么觉得”。",
+        "content": "请所有人同时指向：看起来最会把桌游规则讲成悬疑故事的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 2,
         "tags": [
           "搞笑",
-          "互动"
+          "破冰",
+          "指人",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -139,15 +149,17 @@
         "source": "ai"
       },
       {
-        "id": "pn-005",
+        "id": "pnt-005",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指到谁，谁就无声表演一个“第一次见网友”的尴尬瞬间，让大家猜。",
-        "instruction": "被指到的人要表演一个“第一次见网友”的尴尬瞬间，全程不说话，只用表情和动作，让大家猜。",
+        "content": "请所有人同时指向：笑起来最有喜剧配乐感的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 2,
         "tags": [
           "搞笑",
-          "表演"
+          "破冰",
+          "指人",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -155,15 +167,35 @@
         "source": "ai"
       },
       {
-        "id": "pn-006",
+        "id": "pnt-006",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指到谁，谁就快速说出三个拼桌时最怕遇到的场景，并配上叹气。",
-        "instruction": "被指到的人要快速说出三个“拼桌时最怕遇到”的场景，每说一个都要配一个夸张的叹气。",
+        "content": "请所有人同时指向：如果现场开一场即兴喜剧，最像第一位上台的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "破冰",
+          "指人",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pnt-007",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向：现在坐姿最像在等颁奖结果的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 1,
         "tags": [
           "搞笑",
-          "聊天"
+          "破冰",
+          "指人",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -171,47 +203,17 @@
         "source": "ai"
       },
       {
-        "id": "pn-007",
+        "id": "pnt-008",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指到谁，谁就当十秒表情包生成器，按大家喊的情绪词立刻做表情。",
-        "instruction": "被指到的人要当十秒“表情包生成器”，根据大家喊出的情绪词（如尴尬、狂喜、无语）立刻做出对应表情。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "反应"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-008",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指到谁，谁就用最严肃的语气做一段关于吃最后一块小吃的学术报告。",
-        "instruction": "被指到的人要用最严肃的语气，给“如何优雅地吃完最后一块小吃”做一段三十秒的学术报告。",
-        "intensity": 2,
-        "tags": [
-          "搞笑",
-          "即兴"
-        ],
-        "boundaryTags": [],
-        "minPlayers": 3,
-        "participantMode": "all",
-        "source": "ai"
-      },
-      {
-        "id": "pn-009",
-        "packId": "pointing-game",
-        "type": "pointing",
-        "content": "指到谁，谁就邀请一位同桌，一起演十秒“外星人第一次吃地球小吃”。",
-        "instruction": "被指到的人要邀请一位同桌，两人一起用“外星人第一次吃地球小吃”的设定演十秒，其他人负责配音效。",
+        "content": "请所有人同时指向：最能用一个表情演完一整部喜剧的人。",
+        "instruction": "倒数三秒，一起指向那个人",
         "intensity": 3,
         "tags": [
           "搞笑",
-          "双人"
+          "破冰",
+          "指人",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,
@@ -219,15 +221,35 @@
         "source": "ai"
       },
       {
-        "id": "pn-010",
+        "id": "pnt-009",
         "packId": "pointing-game",
         "type": "pointing",
-        "content": "指到谁，谁就带全员喊口号“今晚拼桌，快乐加倍”，不齐就再来一次。",
-        "instruction": "被指到的人要发起一个全员参与的口号：大家一起喊“今晚拼桌，快乐加倍”，喊得不齐就再来一次，最多三次。",
-        "intensity": 1,
+        "content": "请所有人同时指向：如果大家演一段搞笑短剧，最像负责搞怪的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 2,
         "tags": [
           "搞笑",
-          "全员"
+          "破冰",
+          "指人",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pnt-010",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "请所有人同时指向：今晚最像会突然说出金句的人。",
+        "instruction": "倒数三秒，一起指向那个人",
+        "intensity": 3,
+        "tags": [
+          "搞笑",
+          "破冰",
+          "指人",
+          "轻松"
         ],
         "boundaryTags": [],
         "minPlayers": 3,

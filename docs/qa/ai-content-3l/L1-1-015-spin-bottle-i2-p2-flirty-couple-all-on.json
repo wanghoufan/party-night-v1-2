@@ -1,0 +1,334 @@
+{
+  "cell": {
+    "id": "L1-1-015-spin-bottle-i2-p2-flirty-couple-all-on",
+    "layer": "L1",
+    "group": "1",
+    "title": "pairwise 两两正交",
+    "seq": 15,
+    "packId": "spin-bottle",
+    "packName": "转瓶子",
+    "minPlayers": 2,
+    "intensity": 2,
+    "players": 2,
+    "vibeKey": "flirty",
+    "vibeLabel": "暧昧",
+    "relationshipKey": "couple",
+    "relationshipLabel": "情侣 / 暧昧",
+    "boundaryFlags": {
+      "noPhysicalContact": true,
+      "noAlcoholPenalty": true,
+      "noExPartners": true,
+      "noSexualHistory": true,
+      "noMoneyIncome": true,
+      "noPhonePrivacy": true,
+      "noPublicPosting": true,
+      "noStrangerContact": true,
+      "noPhotoVideo": true,
+      "noSocialAccounts": true
+    },
+    "boundaryLabel": "全开",
+    "customText": "",
+    "targetCardCount": 10,
+    "mode": "normal",
+    "probes": [],
+    "auth": "env-key",
+    "monoGroup": null,
+    "illegalReason": null
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionId": "m3l-L1-1-015-spin-bottle-i2-p2-flirty-couple-all-on",
+    "targetCardCount": 10,
+    "sessionConfig": {
+      "relationship": "情侣 / 暧昧",
+      "vibes": [
+        "暧昧"
+      ],
+      "intensity": 2,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "spin-bottle"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：情侣 / 暧昧；氛围：暧昧；最高强度：2。\n可用玩法：spin-bottle。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3455,
+    "provider": "deepseek-official",
+    "code": null,
+    "generationSource": "ai",
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "spin-1",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "说出你对嘉宾2的第一印象，越具体越好。",
+        "instruction": "转瓶决定回答者，若不想回答可跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "回忆"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-2",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "用一句话形容嘉宾2今天最吸引你的地方，说完后保持沉默三秒。",
+        "instruction": "转瓶决定执行者，若不想执行可跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "赞美"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-3",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "如果今晚只能和对方说一句悄悄话，你会说什么？",
+        "instruction": "转瓶决定回答者，若不想回答可跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "悄悄话"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-4",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "和嘉宾2对视十秒，先笑或先移开视线的人要接受一个小惩罚：夸对方一句。",
+        "instruction": "转瓶决定执行者，若不想执行可跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "对视"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-5",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "你觉得嘉宾2身上最让你心动的一个小习惯是什么？",
+        "instruction": "转瓶决定回答者，若不想回答可跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "心动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-6",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "用三个词描述你此刻对嘉宾2的感觉，不能重复之前用过的词。",
+        "instruction": "转瓶决定执行者，若不想执行可跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "表达"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-7",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "如果你们的关系是一首歌，你觉得现在播放的是哪一首？为什么？",
+        "instruction": "转瓶决定回答者，若不想回答可跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "比喻"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-8",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "为嘉宾2倒一杯水或饮料，并说一句祝词。",
+        "instruction": "转瓶决定执行者，若不想执行可跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "照顾"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-9",
+        "packId": "spin-bottle",
+        "type": "真心话",
+        "content": "你觉得嘉宾2什么时候最可爱？说一个具体场景。",
+        "instruction": "转瓶决定回答者，若不想回答可跳过。",
+        "intensity": 1,
+        "tags": [
+          "暧昧",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-10",
+        "packId": "spin-bottle",
+        "type": "大冒险",
+        "content": "给嘉宾2一个只属于你们两人的暗号，并解释它的含义。",
+        "instruction": "转瓶决定执行者，若不想执行可跳过。",
+        "intensity": 2,
+        "tags": [
+          "暧昧",
+          "暗号"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ],
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    }
+  },
+  "replay": null,
+  "assertions": [
+    {
+      "id": "1-http",
+      "name": "HTTP",
+      "status": "PASS",
+      "severity": null,
+      "detail": "200 · 3455ms"
+    },
+    {
+      "id": "2-schema",
+      "name": "schema",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10 张卡全部通过响应级+卡级 schema"
+    },
+    {
+      "id": "3-pack",
+      "name": "串包",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 10 张 packId=spin-bottle"
+    },
+    {
+      "id": "4-intensity",
+      "name": "超强度",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 ≤ 2"
+    },
+    {
+      "id": "5-boundary",
+      "name": "雷区",
+      "status": "PASS",
+      "severity": null,
+      "detail": "已开雷区 [physical-contact,alcohol,ex-partner,sexual-history,money,phone-privacy,public-posting,stranger-contact,photo-video,social-account] 零命中"
+    },
+    {
+      "id": "6-players",
+      "name": "人数",
+      "status": "PASS",
+      "severity": null,
+      "detail": "全部 minPlayers≤2"
+    },
+    {
+      "id": "7-empty",
+      "name": "空卡",
+      "status": "PASS",
+      "severity": null,
+      "detail": "10/10 张，无空卡"
+    },
+    {
+      "id": "8-redline",
+      "name": "红线",
+      "status": "PASS",
+      "severity": null,
+      "detail": "零命中"
+    },
+    {
+      "id": "9-semantic",
+      "name": "语义",
+      "status": "PASS",
+      "severity": null,
+      "detail": "题型断言通过（spin-bottle）"
+    },
+    {
+      "id": "10-latency",
+      "name": "latency",
+      "status": "PASS",
+      "severity": null,
+      "detail": "3455ms（尝试 1 次）"
+    },
+    {
+      "id": "11-source",
+      "name": "生成来源",
+      "status": "PASS",
+      "severity": null,
+      "detail": "generationSource=ai"
+    }
+  ],
+  "verdict": "PASS",
+  "p0": 0,
+  "p1": 0,
+  "observe": 0,
+  "observes": [],
+  "statusHistory": [
+    200
+  ]
+}

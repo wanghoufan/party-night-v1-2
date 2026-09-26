@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 64,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "origin": "extra",
+    "intensity": 1,
+    "players": 2,
+    "vibe": {
+      "key": "wild",
+      "label": "放开玩"
+    },
+    "relationship": {
+      "key": "close",
+      "label": "很熟"
+    },
+    "boundary": {
+      "mode": "all-off",
+      "label": "全关",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "很熟",
+      "vibes": [
+        "放开玩"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：很熟；氛围：放开玩；最高强度：1。\n可用玩法：never-have。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4266,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "never-have-1",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有因为刷手机而错过重要的约定时间。",
+        "instruction": "承认做过的人请举手，然后由举手者分享一次最离谱的迟到经历。",
+        "intensity": 1,
+        "tags": [
+          "日常",
+          "时间管理"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-2",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有在洗澡时突然忘词，把歌唱成完全不同的另一首歌。",
+        "instruction": "做过的人请现场哼一句当时唱错的歌，其他人猜原曲。",
+        "intensity": 1,
+        "tags": [
+          "趣味",
+          "音乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-3",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有为了追一部剧而通宵到天亮。",
+        "instruction": "做过的人描述当时追的剧名，没做过的人投票猜评分。",
+        "intensity": 1,
+        "tags": [
+          "娱乐",
+          "熬夜"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-4",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有把发给别人的消息错发到另一个群聊。",
+        "instruction": "做过的人说出发错内容的类型（文字、表情、图片），不用读原文。",
+        "intensity": 1,
+        "tags": [
+          "社交",
+          "趣事"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-5",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有在公共场合不小心摔倒或滑倒。",
+        "instruction": "做过的人分享当时最尴尬的一秒，其他人给予掌声安慰。",
+        "intensity": 1,
+        "tags": [
+          "日常",
+          "糗事"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-6",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有因为贪吃而把第二天的早餐提前吃掉。",
+        "instruction": "做过的人说出偷吃的是什么，大家投票是否值得。",
+        "intensity": 1,
+        "tags": [
+          "生活",
+          "美食"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-7",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有在KTV里抢过别人的麦克风。",
+        "instruction": "做过的人现场清唱两句，其他人打分，最高分可指定下一轮谁先答。",
+        "intensity": 1,
+        "tags": [
+          "聚会",
+          "音乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-8",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有假装听懂一个其实完全不懂的话题。",
+        "instruction": "做过的人说出那个话题的关键词，其他人猜他当时到底懂了多少。",
+        "intensity": 1,
+        "tags": [
+          "社交",
+          "幽默"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-9",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有把闹钟按掉后又睡过头。",
+        "instruction": "做过的人分享当时有没有成功赶上重要的事，其他人举牌判断真假。",
+        "intensity": 1,
+        "tags": [
+          "日常",
+          "起床"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "never-have-10",
+        "packId": "never-have",
+        "type": "statement",
+        "content": "我从来没有在旅行中因为迷路而意外发现好玩的地方。",
+        "instruction": "做过的人说出那个地方的类型（公园、小店、街道），不用透露具体位置。",
+        "intensity": 1,
+        "tags": [
+          "旅行",
+          "惊喜"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}
