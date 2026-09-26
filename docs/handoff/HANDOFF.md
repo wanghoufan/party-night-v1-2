@@ -2,7 +2,7 @@
 
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
-- Captured at（YYYY-MM-DD HH:MM）：2026-09-27 00:40（Change B 收口大交接：用户 V1.2《RC冻结前最终收口》16 节全部落地——Matrix 对账+销项、2人局漏洞 CLOSED、Coverage 接入 Router、Single-Anchor Guard PASS、D7 两层消解、Mutual 单候选 UI、隐私回归、普通桌回归、Plan/QA 文档同步、三轮 reviewer + 三轮 qa + supervisor 终检全过；全门禁绿（lint0/typecheck0/unit902/E2E94+4skip/build/selfcheck）；`pnpm android:release` 已跑通。**卡在两处物理依赖**：①本机无 JDK21（只有 openjdk@17，gradle 报"无效的源发行版：21"）→ 新 release APK 未出；②11T Pro+ 无线不可达（ping 192.168.31.63 全丢包、adb connect 超时）→ 新构建 machine smoke 未做。HEAD 741e2e9 全部未提交）
+- Captured at（YYYY-MM-DD HH:MM）：2026-09-27 02:55（**NEW RC 已重冻：commit `49d6c75`（main，已 push）**；Change B 全链落地并真机 smoke PASS；门禁 lint0/tsc0/unit902/E2E94+4skip/build/矩阵 selfcheck 全绿；三轮 reviewer + 三轮 qa + supervisor 终检 P0=0 blocking P1=0；Matrix P0 已销项（合法分母174=171PASS+3EXPECTED-ERROR，3.3 两格防线成立）；版本号未 bump 仍 1.5.0 三处同值；RG-01~RG-07 仍 NOT_STARTED）
 - PROJECT_PHASE：（DEVELOP：RELEASE_GATE_VALIDATION；RELEASE_GATE NOT_STARTED）
 - PLAN_VERSION：（PRODUCT_PLAN_V2.0）
 - PLAN_READINESS_SCORE：（83＋Human例外有条件批准）
@@ -11,9 +11,9 @@
 - CHANGE_REQUEST：（B：用户 2026-09-26 V1.2 收口提示词；局部 Requirement/DoD 增量见 docs/pm/PRODUCT_PLAN_V2.0-CHANGE-B.md，基线与 Plan 版本不变）
 - Stage ID（本阶段叫什么）：V2.0-Relationship Engine（Human已决D1换真源/D2切Router/D3=A20+5/D4=A异性/D5上限2/D6中性不推进/D7=A展示即给过/D8=A+；Release前强制Gate RG-01~RG-07须7/7）
  - 剩 P0（没完的才列，多一条都不行）：
-  - **Change B 收口（用户 V1.2 §十五）已全部满足，只剩 2 项物理依赖卡住重冻**：① **新 release APK 未出**——本机只有 openjdk@17，`android/gradlew assembleRelease` 报「无效的源发行版：21」，需 JDK21（用户 V1.2 §十三 明确要求新 RC 重跑最小机器 smoke，旧 RC 证据不得顶替）；② **新构建 machine smoke 未做**——11T Pro+（IN9LZTAYV4UGU4JF）无线不可达（ping 192.168.31.63 100% 丢包、adb connect 超时），USB 上只挂着禁碰的 12 Pro（indq5xfi6hovay4d）。两项都不是代码问题，回来了就能一次跑完。
-  - RG-01~RG-07（RELEASE_GATE NOT_STARTED）：7/7 PASS才Release；RG-01须RC重冻后、由真人手点；RG-02 真人 fixture 已按 Change B 固定为 1男3女/1女3男（凑不齐保持 PENDING，不得用 2男2女 替代宣称）；RG-02~07需真人4/5人局（用户令：现在不排）。
-- RC状态：cce4306已作废；**未重冻**——工作区全部未提交（HEAD 741e2e9）。Change B 代码/文档/门禁/评审/QA/supervisor 全绿，Matrix 侧 P0 已销项；只等 JDK21 出新 APK + 11T Pro+ 跑新构建 machine smoke → 才 commit+push(main)+重冻 NEW RC（7/7前禁版本号升级/正式部署；本轮不 bump，三处仍 1.5.0）。
+  - **收口清单已清零**：Change B 16 节全部落地；两处物理依赖（JDK21、11T Pro+ 无线）已解决——`brew install openjdk@21`（用户批准）→ 新自包含 web 资产 + debug 签名包装机；11T Pro+ USB 装机 → 新构建 machine smoke PASS（详见 docs/qa/RG-01-NEWRC-SMOKE.md）。
+  - **仅剩真人 Gate（不是代码任务）**：
+- RC状态：**NEW RC = `49d6c75`（2026-09-27 02:55 重冻，main 已 push）**；cce4306 与 741e2e9 均已作废。RC 已就绪，可通知用户开 RG-01（真人手点，机器不得代点）。7/7 前禁版本号升级、禁正式部署。
 - 当前 Task：暂停于「新构建 machine smoke」前。已完成：Matrix 三波对账与 P0 销项（docs/qa/AI-MATRIX-RESULT.md，合法分母 174=171 PASS+3 EXPECTED-ERROR，3.3 两格 NEGATIVE_BOUNDARY_PROBE 防线成立 filteredCount 25/20）；B1 2人局+mixed 空池不复活（危险回落已物理删除，三入口同口径）；B2a Coverage 进 rankPairs（软排序，扣分上界 0.4 < 最小 Signal 步长 0.5，硬合法未动）；B2b Single-Anchor Guard + Anchor Exposure + D7 两层消解 + 受控 bypass（reason=NO_LEGAL_NON_TARGETED_CANDIDATE）；B3 Mutual 单候选 Yes/No + 隐私回归（真实边界捕获 9 例）；B4 矩阵 3.3 改负向探测；B5 pack 契约 minPlayers 下限收口（**修掉了 3.3 探测抓出的真实漏洞：most-likely@2 曾返回 10 张卡，非法玩法可进入**）；B6 修 `pnpm android:release` 被单测 import 卡死（`scripts/build-static-export.mjs` 暂存清单扩展 + 异常自愈，已连跑两次通过 + SIGKILL 自愈实测）。
 - 未闭环评审意见：CODE_REVIEW-CHANGE-B-ROUTING.md 过（P0=0/blocking P1=0，P2×3 P3×2）；CODE_REVIEW-CHANGE-B-UI-SAFETY.md 过（P0=0/blocking P1=0，P2×2 P3×3）；CODE_REVIEW-MATRIX-3L.md 的 P1×2 已由复评关闭（新增 P2-5 backlog）；CODE_REVIEW-DEADLOCK-P1.md 过；CODE_REVIEW-AI-GEN-STABILITY.md 过。
 - docs 落盘清单：
@@ -25,7 +25,7 @@
    - V1.6：评审`docs/review/CODE_REVIEW-V1.6.md`（PASS，commit 4ba3d13）、QA`docs/qa/BUGS-V1.6.md`（lint0/typecheck0/511/E2E80+4skip/三处1.5.0）、把关`docs/content/题库把关/`9件（00总览旧180审计+01–07+08新题纲）、终稿`docs/content/题库终稿/`9件（00总览§一终稿350分布3/5/7/14/21+01–07各50+08新题纲）；旧`docs/content/题库审查/`已删（文档搬家映射）；账本35行至V1.6补遗（dup删后27行自验口径作废，以现35行为准）
  - V2-B3：评审`docs/review/CODE_REVIEW-V2-B3.md`（FAIL→返工→复验PASS）、QA`docs/qa/BUGS-V2-B3.md`（lint0/typecheck0/610）；账本随行。
  - 2026-09-26 收口链：评审`docs/review/CODE_REVIEW-AI-GEN-STABILITY.md`（过）/`CODE_REVIEW-DEADLOCK-P1.md`（过）/`CODE_REVIEW-MATRIX-3L.md`（过，P1×2待整改+P2×4）；QA`docs/qa/BUGS-AI-GEN-STABILITY.md`（PASS，终审待更新）/`AI-MATRIX-FULL.md`（OpenCode 80/80，72合法）/`AI-MATRIX-PHONE.md`（24/24，origin运行时口径）/`AI-MATRIX-RESULT.md`（三层 DeepSeek 176合法 98.3% P0=0）/`AI-GEN-DIAG-0926.md`；三层逐格`docs/qa/ai-content-3l/`（176）+修复前备份`ai-content-3l-pre-fix/`+OpenCode旧证据`ai-content/`+DeepSeek旧证据`ai-content-deepseek-0926/`；harness `tests/mac/ai-matrix-3l.ts|ai-matrix-full.ts|ai-matrix-redline.ts`、`tests/phone/ai-matrix-phone.ts`；真机截图`test-results/phone/ai-matrix/`25张（gitignore本地证据）。
- - 下一步（Next Single Action）：① 装 JDK21（`brew install openjdk@21`）→ `android/gradlew assembleRelease` 出新自包含 APK；② 11T Pro+ 回网（`adb connect 192.168.31.63:5555` 验 `ro.serialno=IN9LZTAYV4UGU4JF`）→ install -r + 最小机器 smoke（离线启动/组局页/杀进程重启恢复，Key 与开局抽卡留用户手点）→ 把结果补进 `docs/qa/RG-01-NEWRC-SMOKE.md`；③ 两步都过 → commit+push(main)+重冻 NEW RC+回填本文件 NEW_RC_COMMIT → 通知用户开 RG-01。
+ - 下一步（Next Single Action）：通知用户「NEW RC `49d6c75` 已就绪，可开 RG-01」→ 用户在 11T Pro+ 真人手点跑 RG-01 10 项（含开局抽卡～mutual/MATCH/隐私，机器不得代点）→ RG-02 需 1男3女/1女3男 真人局（凑不齐保持 PENDING）；RG-01~RG-07 仍须 7/7 PASS 才 Release。
 - 人要拍什么板：
   - **装 JDK21 需用户点头**（`brew install openjdk@21`，本机只有 17；不装则新 APK 出不来、smoke 无从做起，RC 不能重冻）。
   - **11T Pro+ 需开机回同一 Wi-Fi**（或插 USB）；12 Pro indq5xfi6hovay4d 仍禁碰，本轮全程未碰。
