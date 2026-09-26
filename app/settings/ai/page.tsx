@@ -68,7 +68,11 @@ export default function AISettingsPage() {
       if (secret) {
         const mode = await aiProviderRepository.saveSecret(activeId, secret, persist);
         secretRef.current?.clear(); setConfigured(true);
-        setNotice(mode === "persistent" ? "配置已加密保存到本设备" : "当前浏览器无法安全持久化，仅本次会话使用");
+        setNotice(mode === "persistent"
+          ? "配置已加密保存到本设备"
+          : mode === "persistent-failed"
+            ? "加密保存失败，Key仅本次会话有效，重启APP会丢失，请重试或联系"
+            : "当前浏览器无法安全持久化，仅本次会话使用");
       } else setNotice("配置已保存");
       setProfiles(await aiProviderRepository.listProfiles());
     } catch {

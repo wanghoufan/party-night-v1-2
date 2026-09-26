@@ -1,0 +1,73 @@
+# RESEARCH_REVIEW（Phase1 专用；内部 role ID `product-reviewer` 不变）
+
+- Plan Version（评的是哪版 PRODUCT_PLAN）：`PRODUCT_PLAN_V2.0-DRAFT.3`
+- Review Round（第几轮）：D3（终审；只评 DRAFT.3 相对 D2 的六项收敛，不重做全量外部研究）
+- Result：FAIL｜计划契约层 P0=0、blocking P1=0（有条件），但正文残留旧段（Human Decisions/Readiness/PLAN_GATE/P1 复选框/Risks 标签）与头图/PlanConsistency 矛盾，独立 Readiness 83/100 未达 90，不进 WAITING，打回 Planner 做纯文字同步＋证据抽查。
+- P0 / P1 / P2：
+  - P0：
+    - P0-01｜生产 350↔V1.3 逐卡差异矩阵：CLOSED（计划契约层，有条件）。DRAFT.3 Scope A 已收敛：唯一证据改为 V1.2 外部包（审查报告 `.md`＋机器证据 `.json`＋双向矩阵 `.xlsx` 路径已列）；结论 `同序号 exact 0/350、同玩法任意位置 exact 0/350、bigram≥0.55 0/350、最大相似度 0.2857、同序号档位改变 254/350`、自动等价映射 `NONE`、六条 migration policy、C01–C06 转 DEVELOP 固定输入、R1 仅保留冻结内 350/350 前置证据且明确不得替代 P0-01。有条件原因：本轮按任务指令禁读包外文件，上述报告/JSON/XLSX 未独立开包验存在性/hash/数字；HANDOFF 仍停留在 2026-09-22 V1.5/V1.6、无 DRAFT.3 痕迹，不能作证。Human D1 拍板前必须补一次存在性＋抽查复核。
+    - P0-02｜扩圈 fallback 单一口径：CLOSED（计划契约层）。R2 40/40 table-only 全表＋规范性 T037=`switch-to-table-version`＋作废 v6 旧冲突句已落字。残留：table-only 结构化 SSOT＋新受控 JSON 快照重签（R5§5），属 DEVELOP 前置，不阻计划闭合。
+    - P0-03｜Heat 计数定义：CLOSED（计划契约层）。R3 双计数器事件表＋D3=A（fixed-20-plus-5）＋Heat `0–3/4–7/8–12/13+`＋mutual `9/14/19`＋final 抑制（H3+、Coverage、合法 pair、距上次 ≥5 有效卡；不足则抑制且不补）＋终态互斥＋`eventId` 幂等＋runtimeRules 冻结值已统一；neutral/expansion/legacy 不推进关系计数且 D6 TBD 约束已显性。残留：新快照 SHA256，属 DEVELOP 前置。
+    - P0-04｜Pair 范围与数据来源：CLOSED（计划契约层）。R4 全文并入：D4=A、当局 `pairGender=male|female|null`、禁猜测、eligiblePair 谓词＋pairKey、pairMode、异常态（无候选/单目标性别/退出终止/暂离暂停）＋6 条不变式。残留 E2E 转 DEVELOP；Human Decisions D4 描述仍写旧三选一建议，属小修。
+  - P1：
+    - blocking P1-01｜5 档保障：CLOSED（计划契约层）。D7=A（`CARD_PRESENTED` 即 offered、`LIMIT=2`、tracker `none→pending⇄paused→offered|expired`、`seen=2 且非 offered` 不可持久化）已冻结；多 MATCH 全序＋cooldown 不绕行已落字。实现 fixture（4/5 人、无 pair/单 pair/多 MATCH/降档/skip）转 DEVELOP 门禁。但正文 P1 复选框仍 `[ ]`、Risks 表仍标 `blocking P1`，与头图“契约层已无 blocking P1”矛盾，必须同步为 `[x]（契约）`＋标签改 `契约已关/实现门禁`。
+    - blocking P1-02｜耗尽策略：CLOSED（计划契约层）。D8=A+（四层链、低档回退、`5→4→3→2→1→0` 放宽、`AWAITING_HOST_EXHAUSTION_DECISION`、洗牌只清普通 used、幂等键、永不回退 V1.6 Router）已冻结；状态机/离线/旧 Router spy 转 DEVELOP 门禁。同上需同步复选框＋Risks 标签。
+    - blocking P1-03｜私密数据生命周期：CLOSED（计划契约层）。R4 复审 PASS（遮罩/清理/不公开/one-off 隔离契约）已声明；IndexedDB/log/export/cache/analytics 否定测试转 DEVELOP 门禁。同上需同步复选框＋Risks 标签。
+    - blocking P1-04｜单 Router 与迁移原子性：CLOSED（计划契约层）。R5 复审 PASS（单 Router、迁移原子性、SSOT 契约；CAS 回滚/hash/状态机 fixture 转 DEVELOP 门禁）已声明。同上需同步复选框＋Risks 标签。
+    - 非 blocking P1-05｜多 MATCH 公平：OPEN 非阻塞，转 DEVELOP fixture。
+    - 非 blocking P1-06｜neutral/expansion 切换提示：OPEN 非阻塞，受 D6 TBD 约束，转 UI 提示＋真人验证。
+    - 非 blocking P1-07｜调参可观测性：OPEN 非阻塞，本地匿名口径，转实现。
+  - P2：同意 Plan P2 范围，不阻 Gate。
+- Key Assumptions（逐条列＋是否成立）：
+  - A1 生产旧 350＋旧 selector 仍可达：成立（D2 沿用，DRAFT.3 未推翻）。
+  - A2 V1.3 Frozen 350+40/hash 已核验、R2–R4 新契约待新快照：成立；“原 ZIP 不可变＋新快照重签＋禁手抄常量”门禁已落字。
+  - A3 单设备传手机可接受：部分成立，需真人节奏测试。
+  - A4 Host 可录入当局 pairGender、无 pair 降级可理解：部分成立（D4=A 数据契约已决），需真人验证。
+  - A5 expansion/neutral 默认不推进 Heat：保守成立，D6 TBD 未代选，正确。
+  - A6 5 档保障不压制公平：契约成立（D7=A＋状态机），命中率/体感待 fixture＋真人局。
+  - A7 D8=A+ 洗牌保留关系态＋Host 显式决策：契约成立，现场文案/节奏待真人局。
+- Verified Facts（已验证事实＋证据）：
+  - V1：DRAFT.3 头图＋PlanConsistency 六条与 Scope A/C/F/H/R5 口径一致：P0-01 证据纠偏＋NONE＋C01–C06、D7=A/D8=A+ 全文禁写 TBD、双计数器单一口径、final 抑制单一口径、契约≠实现重收敛、D3/D4/D7/D8=A（A+）已决＋D1/D2/D5/D6 TBD 及四项阻止影响已显性。
+  - V2：R1=PASS（冻结内 350/350）仅作前置证据、R2=PASS AFTER PATCH（31/31）引用边界正确，未被冒充为 P0-01。
+  - V3：DEV_BASELINE=NOT_SET、不授权 Builder/代码/Release 已落字，正确。
+  - V4（反向验证）：Human Decisions 节仍写“8 项均为待决定”（D3/D4/D7/D8 旧建议未同步）、Readiness 节仍 `71/100`＋P0=4＋blocking P1=4、PLAN_GATE 仍 `IN_PROGRESS`、P1-01~04 仍 `[ ]`、Risks 表 P1-01~04 仍标 `blocking P1`——五处与头图/PlanConsistency 实质矛盾，D3 落盘不完整。
+  - V5：HANDOFF 仍为 2026-09-22 V1.5/V1.6 口径，无 DRAFT.3/外部包/D7/D8 拍板痕迹，不能作为本轮证据；TM 后续需更新（非本轮动作）。
+- External Sources（Web Search / Web Fetch / 官方文档 / 官方 GitHub / 第三方 / 社区反馈，附链接）：本轮按任务指令禁联网、禁读四文件之外，无新增独立外部验证；V1.2 外部包与 R1/R2 报告均视为 Plan 引用的包内证据，本轮未独立开包。
+- Competitor Findings（竞品现状＋对本 Plan 的启示）：未验证。沿用内部结论：分阶段披露、Crowd/Personal 禁冒充 Mutual；独立竞品桌面研究、真实酒吧 4/5 人局节奏、私密传手机耗时、5 档命中率/尴尬泄露观察仍缺，计入扣分，不得用内部文档自评代替。
+- Counter-evidence（反对证据＋成功的相反做法）：
+  - 若 D7 选 completed 才 offered，保障更严但易致施压感；展示即 offered 更安全但需防形式主义（DRAFT.3 已选后者，正确）。
+  - 若 D8 选自动洗牌，不断游更顺但违背结束预期；Host 显式选择更尊重现场（DRAFT.3 已选后者，正确）。
+  - 若 expansion/neutral 允许推进 Heat，节奏更快但污染主线信号；保守默认＋D6 TBD 更安全（DRAFT.3 处理正确）。
+- Unverified Items（未验证项＋验证方法）：
+  - U1 V1.2 外部包三件存在性＋数字抽查（0/350、0.2857、254/350）：按路径开包＋hash/抽查。
+  - U2 R2/R3/R4 新受控 JSON 快照＋重签 SHA256＋Research Reviewer 复核：内容基线入库。
+  - U3 R3 幂等全事件覆盖＋Heat/mutual 单调：unit/property/integration。
+  - U4 R4 无 pair/单 pair/暂离/返回/退出/字段修改 E2E。
+  - U5 5 档＋多 MATCH/cooldown/降档 fixture；U6 耗尽离线 E2E＋去重 `5→0`；U7 私密零持久化 denylist＋refresh/crash/log/export/cache/analytics。
+  - U8 真人局：弱光 4 人局＋5 人局各一轮（传手机隐私/节奏/5 档时机/耗尽提示）。
+- Required Fixes（Planner 必须改项，打回依据；纯文字同步，不重开语义）：
+  - R1 同步 Human Decisions：D3=A、D4=A、D7=A、D8=A+ 改已决（含建议更新）；D1/D2/D5/D6 维持 TBD 并保留 PlanConsistency§6 四项阻止影响；删除“8 项均为待决定”旧句。
+  - R2 同步 P1-01~04 复选框为 `[x]（契约已关，实现转 DEVELOP 门禁）`＋Risks 表四行标签改 `契约已关/实现门禁`；DoD Phase1-1 加“契约层”定语。
+  - R3 同步 Readiness 为本轮独立分（见下）＋PLAN_GATE 原因重写（残留旧 `71/P0=4/blocking=4` 字样清零）；HANDOFF 由 TM 后续补 DRAFT.3 痕迹（非 Planner 文字义务，但 Human Gate 前需可读）。
+  - R4 在 Human Gate 前补 U1 存在性抽查一行回执；U2–U8 维持 DEVELOP 门禁，不得再统计为 Phase1 blocking。
+- Plan Readiness Score（分项打分＋合计，口径以 PRODUCT_PLAN.template.md 为准；Planner 自评 71 已过期）：
+  - 产品目标与用户需求（20）：19/20（D3/D4/D7/D8 已决、D1/D2/D5/D6 TBD＋阻止影响显性；pair 包容待 Human，扣 1）。
+  - 核心方案完整性（20）：18/20（双计数器/final/R4/R2/T037/5 档/耗尽契约统一；五处旧段未同步，扣 2）。
+  - 外部事实与竞品验证（20）：12/20（P0-01 外部包引用＋指标＋NONE＋C01–C06 相对 D2 +2；本轮未独立开包＋零独立竞品＋零真人局，扣 8）。
+  - 技术可行性（15）：12/15（SSOT 路径/hash/Gate＋六条迁移 policy＋单 Router/CAS/幂等门禁 explicit；路径 mapping/原型未完成，扣 3；相对 D2 +1）。
+  - 风险与异常场景（10）：9/10（契约≠实现重收敛 explicit；Risks 标签未同步，扣 1）。
+  - 开发范围与 DoD（10）：9/10（分层 DoD 清；P1 复选框/DoD 定语未同步，扣 1）。
+  - 未决问题（5）：4/5（实质 P0=0、blocking（契约）=0、Human TBD=4 且显性；旧段自称 P0=4/blocking=4/TBD=8，呈现扣 1）。
+  - 合计：83/100（D2 75→D3 83，+8；Gate 要求≥90 AND P0=0 AND blocking P1=0 仍未同时满足：分数未达 90，主因外部独立验证与真人局缺口）。
+- Human-only Decisions（只需人类拍板项）：D3=A、D4=A、D7=A、D8=A+ 确认已决（以头图/PlanConsistency/Scope 为准，Human Decisions 旧段作废）；D1/D2/D5/D6 维持 TBD 不代拍，其中 D1 阻止内容真源切换授权、D2 阻止 V2 Router 生产切换授权、D5 阻止 active MATCH 上限固定为 1 或 2、D6 阻止 neutral/expansion 关系推进策略写入 DEV_BASELINE。
+- Next Action：回 Planner 修订（R1–R4 纯文字同步＋U1 抽查回执；禁进 WAITING_HUMAN_APPROVAL，禁建 DEV_BASELINE，禁 Builder/代码/Release；同步稿回本通道再审，通过后由 Human 对 D1/D2/D5/D6＋90 分缺口例外一并拍板）。
+
+## D4确认复审（2026-09-25，仅核验五处旧段同步＋U1回执，不重做语义评审）
+- C1 Human Decisions旧段已消除：Plan Human Decisions节已写D3=A、D4=A、D7=A、D8=A+已决、D1/D2/D5/D6为TBD，“8项均为待决定”旧句已删除。
+- C2 Readiness旧段已消除：Plan Readiness已同步为19+18+12+12+9+9+4=83/100，旧71/P0=4/blocking=4字样已清零。
+- C3 PLAN_GATE旧因已消除：Plan PLAN_GATE仍为IN_PROGRESS但原因已重写为83分+P0=0+契约层blocking=0+D1/D2/D5/D6待Human+缺独立竞品/真人局，与头图一致。
+- C4 P1复选框已同步：Plan P1-01~04已为[x]（契约已关，实现转DEVELOP门禁），P1-05~07仍为[ ]非阻塞。
+- C5 Risks标签已同步：Plan Risks表P1-01~04已改为“契约已关/实现门禁”、P0项改为“P0已关闭/契约已关”，无blocking P1残留。
+- C6 U1回执已补：Plan Scope A已列V1.2包三件路径并追加抽查回执行，三件均存在且数字0/350、0/350、bigram≥0.55为0/350、最大0.2857、同序号档位254/350一致。
+- C7 分数与TBD核验：Plan合计83/100与本轮独立分一致；D1/D2/D5/D6仍为TBD且阻止影响显性，未被代拍。
+- 最终结论：PASS——五处旧段已消除、U1回执已补、分数83与D1/D2/D5/D6仍TBD均成立，但83未达90仍保持IN_PROGRESS不进WAITING。

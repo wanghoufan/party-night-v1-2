@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">PartyNight</string>
+    <string name="title_activity_main">PartyNight</string>
+    <string name="package_name">night.party.app</string>
+    <string name="custom_url_scheme">night.party.app</string>
+</resources>

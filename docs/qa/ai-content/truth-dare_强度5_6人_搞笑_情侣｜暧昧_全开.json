@@ -1,0 +1,246 @@
+{
+  "cell": {
+    "index": 77,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "origin": "extra",
+    "intensity": 5,
+    "players": 6,
+    "vibe": {
+      "key": "funny",
+      "label": "搞笑"
+    },
+    "relationship": {
+      "key": "couple",
+      "label": "情侣 / 暧昧"
+    },
+    "boundary": {
+      "mode": "all-on",
+      "label": "全开",
+      "flags": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "情侣 / 暧昧",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：情侣 / 暧昧；氛围：搞笑；最高强度：5。\n可用玩法：truth-dare。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4201,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "td-001",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近一次在朋友圈发错内容后秒删，发的是什么？",
+        "instruction": "如实回答，或者选择跳过。其他嘉宾可以追问一个细节。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "社交"
+        ],
+        "boundaryTags": [
+          "public-posting",
+          "social-account"
+        ],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-002",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "模仿一位在场嘉宾的经典口头禅或招牌动作，让大家投票像不像。",
+        "instruction": "表演不超过30秒，被模仿者可以反驳或加戏。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "模仿"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "td-003",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你和身边这位暧昧对象第一次聊天时，你心里给TA打的初始分是多少？满分10分。",
+        "instruction": "说出分数并解释一个加分项或减分项，允许跳过。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "真心话"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-004",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用最深情的语气对右手边的人念一句搞笑广告词，直到对方笑出声。",
+        "instruction": "坚持10秒，如果对方笑了就算成功；失败则接受一个轻量搞笑惩罚，比如学猫叫。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你曾经因为哪件小事和伴侣或暧昧对象生闷气，但最后发现是自己想多了？",
+        "instruction": "描述事件但不指名道姓，允许跳过。",
+        "intensity": 2,
+        "tags": [
+          "情侣",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "现场编一句土味情话，说给左边的人听，要求对方给出评分。",
+        "instruction": "情话必须原创或改编，不能涉及身体接触；评分低于5分则再编一句。",
+        "intensity": 3,
+        "tags": [
+          "暧昧",
+          "土味"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "td-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果明天醒来获得一种超能力，但只能用来整蛊在场的人，你选什么能力？",
+        "instruction": "说出能力和第一个整蛊对象，大家可投票是否通过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "脑洞"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个表情包形容你现在的感情状态，让大家猜是什么意思。",
+        "instruction": "只能用表情或动作，不能说话；猜错的人喝一口水。",
+        "intensity": 2,
+        "tags": [
+          "情侣",
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你在恋爱或暧昧中最离谱的一次吃醋原因是什么？",
+        "instruction": "说出来但不要提及具体隐私信息，允许跳过。",
+        "intensity": 4,
+        "tags": [
+          "暧昧",
+          "吃醋"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "td-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和右手边的人合作，用搞笑的语气演一段“分手后偶遇”的短剧，限时1分钟。",
+        "instruction": "只许搞笑演绎，不能有身体接触或侮辱性台词；观众举手表决是否合格。",
+        "intensity": 4,
+        "tags": [
+          "情侣",
+          "短剧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

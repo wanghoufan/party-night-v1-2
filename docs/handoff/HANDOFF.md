@@ -2,18 +2,19 @@
 
 > 旧版字段（governance-state / Evidence / Human Gate / Promotion / Dispatch ID）已废弃，不填。
 
-- Captured at（YYYY-MM-DD HH:MM）：2026-09-22 上午
-- PROJECT_PHASE：（PLAN：V2 Phase1 接管推进中，DRAFT.2唯一基线，R1/R2不重跑）
+- Captured at（YYYY-MM-DD HH:MM）：2026-09-26（RC清障P2-01+P2-02闭环：lint0/typecheck0/unit737/E2E86+4skip，reviewer+supervisor PASS；READY_FOR_RC_COMMIT，停等commit指令）
+- PROJECT_PHASE：（DEVELOP：READY_FOR_RC_FREEZE；RG-01~RG-07 NOT_STARTED）
 - Captured at（YYYY-MM-DD HH:MM）：2026-09-22 15:30
-- PLAN_VERSION：（PRODUCT_PLAN_V1.5）
-- PLAN_READINESS_SCORE：（98）
-- PLAN_GATE：（APPROVED）
-- DEV_BASELINE：（PRODUCT_PLAN_V1.5）
-- CHANGE_REQUEST：（B：题库互动纲重写先行文档包＋耗尽不断游L1L2＋开关重设计＋尺度放开；本次只做文档包，不碰业务代码）
-- Stage ID（本阶段叫什么）：V1.1-玩法扩展与主局整合开发
+- PLAN_VERSION：（PRODUCT_PLAN_V2.0）
+- PLAN_READINESS_SCORE：（83＋Human例外有条件批准）
+- PLAN_GATE：（APPROVED，V2.0 Human Gate终版）
+- DEV_BASELINE：（PRODUCT_PLAN_V2.0）
+- CHANGE_REQUEST：（NONE）
+- Stage ID（本阶段叫什么）：V2.0-Relationship Engine（Human已决D1换真源/D2切Router/D3=A20+5/D4=A异性/D5上限2/D6中性不推进/D7=A展示即给过/D8=A+；Release前强制Gate RG-01~RG-07须7/7）
 - 剩 P0（没完的才列，多一条都不行）：
-  - GAP-04 真机弱光验收（唯一 P0）：请在手机上打开生产站走一局新玩法（二选一→切转瓶子→规则库看小姐牌），确认弱光可读、好按、切换不丢局；回“放行”即 Release。
-- 当前 Task（正干到哪）（累计打回 n/2）：Phase1连续推进R3→R4→R5（Planner↔Reviewer自动循环；Human已决D7=A展示即给过、D8=A+软去重5+放宽窗口+主持人洗牌+禁回退V1.6、D4=A、D3=A；P0-01走外部机器审计；禁Builder/代码/commit/自动过Gate）。
+  - GAP-04 真机弱光验收（唯一 P0，RG-01~RG-07 NOT_STARTED）：RC commit后走7/7 Gate才Release。
+- RC清障（2026-09-26 CLOSED）：P2-01 EXIT/AWAY接线已核对（participants三分+deal唯一入口+reducer语义，补D5释放断言1处；局内无“移出本局”入口属产品阻塞另报，不拦RC）；P2-02已MATCH过滤先于D5 cap（补cooldown/guarantee不重建断言）；评审CODE_REVIEW-V2-RC-FIX.md PASS P0=0；QA BUGS-V2-RC-FIX.md lint0/typecheck0/737，codex沙箱EPERM后TM本窗口补跑E2E 86pass+4skip；supervisor PASS；三处1.5.0同值；AI Phone Matrix external/flaky不判P0。
+- 当前 Task（正干到哪）（累计打回 n/2）：V2-B7~B10全闭环（supervisor有条件PASS：reviewer三链全过+QA728+账本格式已修+E2E 85pass+4skip）；局域网APK在3台真机首页验证通过。builder通道codebuddy deepseek为用户指定（override偏离已授权）。
 - 下一步（Next Single Action）：文档包落盘 → TM验数 → 发用户审查（绝对路径），用户点头才进内容重写。
 - 链入热修证据（TM实证）：空牌堆点真心话复现pack=spin-bottle/round=none/chain.returning+exhausted/无报错；修后lint0/typecheck0/unit500；spin+desktop E2E 11项过；reviewer 4项成立无必须修。
 - 宽屏热修证据：lint0/typecheck0/unit497；桌面1280x800 E2E 4项过（座位最小间隙21.2px/长昵称5.8px/无巨型元素/无溢出；/、/packs居中390）。
@@ -26,6 +27,7 @@
   - 事实备份：`docs/handoff/HANDOFF.md.旧版-2026-09-13`（V1.2 真源）；`docs/pm/V1.3-讨论稿.md`（挂起：7 待定+酒罚默认含决策）
   - 账本：`docs/model/TASK-MODEL-LOG.jsonl`（示例行已清）；`docs/model/DISPATCH-LOG.jsonl`（空，首个真实派工前由 TM 写）
    - V1.6：评审`docs/review/CODE_REVIEW-V1.6.md`（PASS，commit 4ba3d13）、QA`docs/qa/BUGS-V1.6.md`（lint0/typecheck0/511/E2E80+4skip/三处1.5.0）、把关`docs/content/题库把关/`9件（00总览旧180审计+01–07+08新题纲）、终稿`docs/content/题库终稿/`9件（00总览§一终稿350分布3/5/7/14/21+01–07各50+08新题纲）；旧`docs/content/题库审查/`已删（文档搬家映射）；账本35行至V1.6补遗（dup删后27行自验口径作废，以现35行为准）
+ - V2-B3：评审`docs/review/CODE_REVIEW-V2-B3.md`（FAIL→返工→复验PASS）、QA`docs/qa/BUGS-V2-B3.md`（lint0/typecheck0/610）；账本随行。
 - 下一步（Next Single Action）：V1.5 主链全过 → commit+push+生产验证 → 用户真机验收（GAP-04）回“放行”即收工。
 - 执行链：本窗口 TM 直驱 + codebuddy builder + 本窗口reviewer + codex Luna qa(+TM接管E2E) + opencode supervisor（打回1/2→返工→打回2/2停线→TM删账本重复1行自验27行无dup→按停线结论放行）。
 - supervisor 终检：除账本dup外全PASS；dup已删（27行/dups{} /JSON合法，TM自验）；其余无需重跑；sha记P2不阻塞。

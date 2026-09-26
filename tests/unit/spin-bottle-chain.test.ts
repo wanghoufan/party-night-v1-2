@@ -9,7 +9,7 @@ import { COMPATIBILITY_PACK_ID } from "@/lib/game-packs/compatibility-test";
 import { readSpinBottleState, readSpinChain, recordSpinResult, SPIN_BOTTLE_PACK_ID, spinBottleStateSchema } from "@/lib/game-packs/spin-bottle";
 import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
 import { DEFAULT_BOUNDARIES } from "@/lib/domain/constants";
-import { PACK_PLAYABLE_THRESHOLD } from "@/lib/ai/generate-deck";
+import { PACK_PLAYABLE_THRESHOLD, refillPackFromSeeds } from "@/lib/ai/generate-deck";
 
 const players = (spec: Array<[string, string, boolean]>): Player[] =>
   spec.map(([id, displayName, active]) => ({ id, displayName, active, createdAt: "x", lastUsedAt: "x" }));
@@ -223,7 +223,11 @@ describe("题卡耗尽：L1 洗牌不断游 + 真缺口才回瓶子 (V1.6)", () 
   });
 
   it("两类都出过 → L1 把请求那类洗回来继续出题（题目会重复，不断游）", () => {
-    const session = { ...spinSession(), usedCardIds: TRUTH_DARE_CARDS.map((card) => card.id) } as GameSession;
+    // D1 之后 truth-dare 的本地池 = 旧档 seed 卡（history-only 兼容）+ SSOT 主线补位卡；
+    // 把两段一起出光，才是「两类都出过」的真实口径。
+    const base = spinSession();
+    const fullPool = refillPackFromSeeds(base.deckSnapshot, base.config, SPIN_CHAIN_PACK_ID);
+    const session = { ...base, deckSnapshot: fullPool, usedCardIds: fullPool.map((card) => card.id) } as GameSession;
     // 新鲜卡为 0：直接判可用确实两类都判死
     expect(availableSpinChainKinds(session)).toEqual([]);
     expect(spinChainAvailability(session).recycled).toEqual(["truth", "dare"]);

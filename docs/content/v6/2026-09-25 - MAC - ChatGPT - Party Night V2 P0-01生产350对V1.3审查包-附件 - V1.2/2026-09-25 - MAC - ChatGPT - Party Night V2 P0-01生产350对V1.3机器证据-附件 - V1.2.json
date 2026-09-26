@@ -1,0 +1,51 @@
+{
+  "audit": "P0-01 production-350 vs V1.3-Frozen bidirectional card matrix",
+  "repo": "wanghoufan/party-night-v1-2",
+  "commit": "b08ceb84ff3ced97d6c694106f6be6f32cb0dfe1",
+  "phase": "PLAN",
+  "business_code_changed_by_audit": false,
+  "sources": {
+    "production": "lib/game-packs/built-in-seeds/index.ts",
+    "frozen_archive": "docs/content/v6/2026-09-24 - MAC - ChatGPT - Party Night V1.3冻结基线-备份 - V1.1.zip",
+    "frozen_member": "Party Night V1.3 冻结基线/10-卡片元数据.json",
+    "schemaVersion": "2.3",
+    "frozen_member_bytes": 236263
+  },
+  "counts": {
+    "production_cards": 350,
+    "v13_cards": 350,
+    "types": 7,
+    "cards_per_type": 50,
+    "coordinate_orphans_old": 0,
+    "coordinate_orphans_new": 0
+  },
+  "text_audit": {
+    "normalization": "NFKC + lowercase + remove whitespace/punctuation/symbols",
+    "same_ordinal_exact": 0,
+    "same_type_exact_anywhere": 0,
+    "char_bigram_jaccard_threshold": 0.55,
+    "near_match_ge_threshold": 0,
+    "below_threshold": 350,
+    "max_similarity": 0.2857,
+    "max_similarity_example": {
+      "old_id": "seed-truth-dare-dare-2",
+      "new_id": "PN-DARE-038",
+      "note": "lexical-only candidate; NOT a semantic or migration mapping"
+    }
+  },
+  "intensity_audit": {
+    "same_ordinal_same": 96,
+    "same_ordinal_changed": 254
+  },
+  "migration_policy": {
+    "automatic_content_equivalence_id_map": "NONE",
+    "same_type_ordinal": "audit coordinate only; never migration equivalence",
+    "legacy_history": "keep legacy IDs/text for historical display",
+    "legacy_usedCardIds": "do not translate by ordinal",
+    "legacy_current_card": "may complete/skip once as neutral, then V2 Router",
+    "legacy_future_deck": "discard",
+    "new_rounds": "PN-* SSOT only"
+  },
+  "verdict": "PASS",
+  "planner_action": "merge this evidence into P0-01, then close P0-01; keep R1 as separate frozen-internal consistency evidence"
+}

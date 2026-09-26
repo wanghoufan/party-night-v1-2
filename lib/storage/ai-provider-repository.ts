@@ -35,7 +35,7 @@ export const aiProviderRepository = {
     const db = await getDb();
     await db.put("aiProviderProfiles", aiProviderProfileSchema.parse(profile));
   },
-  async saveSecret(providerId: string, secret: string, persist: boolean): Promise<"persistent" | "session-only"> {
+  async saveSecret(providerId: string, secret: string, persist: boolean): Promise<"persistent" | "session-only" | "persistent-failed"> {
     if (!secret.trim()) throw new Error("empty-secret");
     if (!persist) { sessionSecrets.set(providerId, secret); return "session-only"; }
     try {
@@ -47,8 +47,10 @@ export const aiProviderRepository = {
       sessionSecrets.delete(providerId);
       return "persistent";
     } catch {
+      // 用户勾了「保存到本机」但加密持久化失败：仍退化为会话内存，但必须回报第三种状态，
+      // 让设置页给出强提醒（重启即丢），不得静默当作正常 session-only。
       sessionSecrets.set(providerId, secret);
-      return "session-only";
+      return "persistent-failed";
     }
   },
   async getSecret(providerId: string): Promise<string | undefined> {

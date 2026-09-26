@@ -3,7 +3,15 @@ import { filterCards } from "./safety-filter";
 import { dedupeCards } from "./normalize";
 import type { AIProviderProfile } from "./provider";
 import type { GameCard, SessionConfig } from "@/lib/domain/schemas";
-import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
+import { mainlineSsotCards, mainlineSsotCardsByPack } from "@/lib/v2-content/v2-card-bridge";
+
+/**
+ * 运行期本地内容真源（D1）：V1.3 Frozen SSOT 生成物（350 张 PN-*）。
+ * 旧 `seed-*` 种子（lib/game-packs/built-in-seeds）从此只作 history-only 兼容：
+ * 旧 Session 已落库的 seed 卡照旧可读可展示，但新牌堆与新补位一律从 SSOT 取卡，
+ * 不再产出 seed-* id（迁移 policy：自动等价 ID 映射 = NONE）。
+ */
+const localMainlineCards = (): readonly GameCard[] => mainlineSsotCards();
 
 /** 每个玩法在局内要保住的可玩卡下限；低于它就立即用 seed 补位，保证现场不卡。 */
 export const PACK_PLAYABLE_THRESHOLD = 3;
@@ -29,9 +37,9 @@ export function buildPlayableDeck(raw: unknown, config: SessionConfig, targetCou
   const parsed = aiDeckResponseSchema.safeParse(raw);
   const aiCards = parsed.success ? parsed.data.cards : [];
   const allowedAI = playable(aiCards.filter((card) => config.enabledPackIds.includes(card.packId)), config);
-  const seeds = playable(BUILTIN_SEED_CARDS.filter((card) => config.enabledPackIds.includes(card.packId)), config);
+  const local = playable(localMainlineCards().filter((card) => config.enabledPackIds.includes(card.packId)), config);
   const allowedCustom = playable(customCards.filter((card) => config.enabledPackIds.includes(card.packId)), config);
-  const pool = dedupeCards([...allowedAI, ...allowedCustom, ...seeds]);
+  const pool = dedupeCards([...allowedAI, ...allowedCustom, ...local]);
   // 按启用玩法 round-robin 轮流取牌：每轮每个玩法各取一张，先保证 7 个玩法都有份，再轮到第二轮；
   // 避免单玩法（或 AI 一整包）把 targetCount 填满、其余玩法一张都进不来。总量仍为 targetCount。
   const byPack = new Map<string, GameCard[]>();
@@ -79,10 +87,10 @@ export function countPlayablePackCards(deck: GameCard[], config: SessionConfig, 
   return playable(deck.filter((card) => card.packId === packId && !usedCardIds.includes(card.id)), config).length;
 }
 
-/** pack-specific seed 补位：同步、离线可用；按 id/题面去重，只补目标玩法。 */
+/** pack-specific 本地补位（历史函数名，内容源已切到 V2 SSOT）：同步、离线可用；按 id/题面去重，只补目标玩法。 */
 export function refillPackFromSeeds(deck: GameCard[], config: SessionConfig, packId: string): GameCard[] {
-  const seeds = playable(BUILTIN_SEED_CARDS.filter((card) => card.packId === packId), config);
-  return dedupeCards([...deck, ...seeds]);
+  const local = playable([...mainlineSsotCardsByPack(packId)], config);
+  return dedupeCards([...deck, ...local]);
 }
 
 /**

@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 66,
+    "packId": "spin-bottle",
+    "packName": "转瓶子",
+    "origin": "extra",
+    "intensity": 3,
+    "players": 4,
+    "vibe": {
+      "key": "icebreaker",
+      "label": "破冰"
+    },
+    "relationship": {
+      "key": "first-meet",
+      "label": "第一次见 / 拼桌"
+    },
+    "boundary": {
+      "mode": "all-off",
+      "label": "全关",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "第一次见 / 拼桌",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "spin-bottle"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：第一次见 / 拼桌；氛围：破冰；最高强度：3。\n可用玩法：spin-bottle。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3467,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "spin-bottle-ice-01",
+        "packId": "spin-bottle",
+        "type": "破冰",
+        "content": "用一个动物形容自己此刻的心情，并说出理由。",
+        "instruction": "轮流转盘，瓶口指向的人完成回答；不想回答可跳过。",
+        "intensity": 1,
+        "tags": [
+          "自我介绍",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-ice-02",
+        "packId": "spin-bottle",
+        "type": "破冰",
+        "content": "说出一个你最近学会的小技能或小知识。",
+        "instruction": "瓶口指向的人分享，其他人可以追问一句。",
+        "intensity": 1,
+        "tags": [
+          "分享",
+          "兴趣"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-ice-03",
+        "packId": "spin-bottle",
+        "type": "破冰",
+        "content": "用三个词描述你理想中的周末。",
+        "instruction": "瓶口指向的人说出三个词，并简单解释。",
+        "intensity": 1,
+        "tags": [
+          "兴趣",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-ice-04",
+        "packId": "spin-bottle",
+        "type": "破冰",
+        "content": "和左手边的人互相说出对方一个第一印象。",
+        "instruction": "两人依次说，注意只描述正面或中性的印象。",
+        "intensity": 2,
+        "tags": [
+          "互动",
+          "第一印象"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-ice-05",
+        "packId": "spin-bottle",
+        "type": "破冰",
+        "content": "分享一首你最近常听的歌，并说出喜欢它的原因。",
+        "instruction": "瓶口指向的人分享，其他人可记录歌名。",
+        "intensity": 1,
+        "tags": [
+          "音乐",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-ice-06",
+        "packId": "spin-bottle",
+        "type": "破冰",
+        "content": "说出一个你一直想尝试但还没做的事。",
+        "instruction": "瓶口指向的人回答，其他人不评价、不追问隐私。",
+        "intensity": 2,
+        "tags": [
+          "愿望",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-ice-07",
+        "packId": "spin-bottle",
+        "type": "破冰",
+        "content": "和右手边的人一起想一个共同点。",
+        "instruction": "两人合作说出一个共同点，限时30秒。",
+        "intensity": 2,
+        "tags": [
+          "互动",
+          "合作"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-ice-08",
+        "packId": "spin-bottle",
+        "type": "破冰",
+        "content": "用一句话夸夸在场任意一位嘉宾。",
+        "instruction": "瓶口指向的人选择一位嘉宾，说出真诚的赞美。",
+        "intensity": 1,
+        "tags": [
+          "赞美",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-ice-09",
+        "packId": "spin-bottle",
+        "type": "破冰",
+        "content": "大家同时说出自己最喜欢的食物，看看有没有重复的。",
+        "instruction": "全体一起说，重复的人可以击掌。",
+        "intensity": 1,
+        "tags": [
+          "全体",
+          "轻松"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-ice-10",
+        "packId": "spin-bottle",
+        "type": "破冰",
+        "content": "说出你最近遇到的一件小幸运。",
+        "instruction": "瓶口指向的人分享，其他人可以鼓掌。",
+        "intensity": 1,
+        "tags": [
+          "分享",
+          "正能量"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

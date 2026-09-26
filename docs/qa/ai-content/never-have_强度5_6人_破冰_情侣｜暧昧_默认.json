@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 71,
+    "packId": "never-have",
+    "packName": "我从来没有",
+    "origin": "extra",
+    "intensity": 5,
+    "players": 6,
+    "vibe": {
+      "key": "icebreaker",
+      "label": "破冰"
+    },
+    "relationship": {
+      "key": "couple",
+      "label": "情侣 / 暧昧"
+    },
+    "boundary": {
+      "mode": "default",
+      "label": "默认",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "情侣 / 暧昧",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "never-have"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：情侣 / 暧昧；氛围：破冰；最高强度：5。\n可用玩法：never-have。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4331,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "nh-ice-01",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在第一次见面时就记住对方的名字，还主动复述了一遍。",
+        "instruction": "如果做过，请举手并分享当时的场合和小尴尬，不想说就跳过。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "记忆"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-ice-02",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聚会中假装听懂了一个笑话，其实完全没明白。",
+        "instruction": "做过的人举手，然后可以请一位嘉宾用更简单的话复述那个笑话。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "幽默"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-ice-03",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未因为紧张，把本来想说的话说成了完全相反的意思。",
+        "instruction": "做过的人举手，并说出当时想表达的真实意思，可跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "表达"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-ice-04",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在集体合照时偷偷踮脚或站到更靠前的位置。",
+        "instruction": "做过的人举手，并分享当时最想靠近谁或想显得更上镜的原因。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "合照"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-ice-05",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在聊天时把同一个故事讲给同一个人听了两遍。",
+        "instruction": "做过的人举手，然后请其他嘉宾猜猜是什么故事，被猜到可跳过分享。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-ice-06",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在喜欢的人面前故意表现得很忙或很冷淡。",
+        "instruction": "做过的人举手，并说出当时最想掩饰的心情，也可以只举手不解释。",
+        "intensity": 3,
+        "tags": [
+          "破冰",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-ice-07",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在约会前反复修改过要穿的衣服，最后又换回第一套。",
+        "instruction": "做过的人举手，并分享第一套和最终选择之间的纠结，可跳过。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "约会"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-ice-08",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未因为对方一句普通的关心，自己脑补出一整段浪漫剧情。",
+        "instruction": "做过的人举手，并用一句话概括脑补的剧情，被点到的嘉宾可以跳过。",
+        "intensity": 3,
+        "tags": [
+          "破冰",
+          "暧昧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-ice-09",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在群体活动中偷偷观察某个人，想知道对方是不是也在看我。",
+        "instruction": "做过的人举手，然后可以只回答“是或否”表示是否被对方发现，无需展开。",
+        "intensity": 3,
+        "tags": [
+          "破冰",
+          "观察"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "nh-ice-10",
+        "packId": "never-have",
+        "type": "never-have",
+        "content": "我从未在道别后回头看过某个人，哪怕对方已经走远。",
+        "instruction": "做过的人举手，并分享当时回头的原因，或选择跳过分享。",
+        "intensity": 4,
+        "tags": [
+          "破冰",
+          "道别"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

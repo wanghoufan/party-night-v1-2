@@ -4,6 +4,7 @@ import { COMPATIBILITY_PACK_ID, COMPATIBILITY_STATE_KEY } from "@/lib/game-packs
 import { getGamePack } from "@/lib/game-packs/registry";
 import { isRandomLauncherPackId } from "@/lib/game-packs/random-launcher";
 import { SPIN_BOTTLE_PACK_ID, SPIN_BOTTLE_STATE_KEY } from "@/lib/game-packs/spin-bottle";
+import { withSessionParticipants } from "@/lib/v2-relationship/v2-participants";
 
 export const CURRENT_SESSION_SCHEMA_VERSION = SESSION_SCHEMA_VERSION;
 
@@ -71,7 +72,9 @@ function withSessionAuditFields(session: GameSession): GameSession {
 }
 
 function normalizeSession(session: GameSession): GameSession | undefined {
-  return stripRetiredLauncher(withSessionAuditFields(withBackfilledPackState(session)));
+  const normalized = stripRetiredLauncher(withSessionAuditFields(withBackfilledPackState(session)));
+  // V2 D4 / R4 §2.3：旧 Session 缺 participants、或 pairGender 缺失/非法时补齐为 null，幂等且不阻止恢复。
+  return normalized ? withSessionParticipants(normalized) : undefined;
 }
 
 function nonEmptyString(value: unknown): string | undefined {

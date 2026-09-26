@@ -12,3 +12,6 @@ test-results/
 .vercel
 # 治理软链（指母版，跨机器悬空）：本地保留，不入仓
 USER_MODEL_OVERRIDE.md
+
+# 项目临时材料（不入仓、不参与后续处理）
+temp/

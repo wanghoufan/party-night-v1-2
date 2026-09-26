@@ -1,7 +1,10 @@
 import { SESSION_SCHEMA_VERSION, gameSessionSchema, type GamePackDefinition, type GameSession, type Intensity, type SessionConfig } from "@/lib/domain/schemas";
 import { resolvePackCapability } from "@/lib/domain/pack-capability";
 import { getGamePack, packIsCardless } from "@/lib/game-packs/registry";
-import { recordRejection, selectCard } from "./card-selector";
+import { createSessionParticipants } from "@/lib/v2-relationship/v2-participants";
+import type { SessionParticipant } from "@/lib/v2-relationship/v2-state";
+import { recordRejection } from "./card-eligibility";
+import { drawDeckCard, withV2State } from "./v2-deal";
 import { selectParticipants } from "./player-selector";
 import { getSessionStage, getStagePackPreference } from "./stage-controller";
 import type { GameCard, PackTransitionCause, RandomSource } from "./types";
@@ -18,7 +21,16 @@ export function segmentRoundNo(session: GameSession): number {
   return session.rounds.filter((round) => round.status === "completed" && round.segmentId === session.currentSegmentId).length + 1;
 }
 
-export function createSession(config: SessionConfig, deckSnapshot: GameCard[] = []): GameSession {
+/**
+ * 新建 Session。
+ * @param participants 当局参与者投影（V2 D4：`pairGender` 仅限当局）。不传时按 config.players
+ *   生成，`pairGender` 一律 null（不猜、不回写 Player 档案）——旧调用方行为不变。
+ */
+export function createSession(
+  config: SessionConfig,
+  deckSnapshot: GameCard[] = [],
+  participants: SessionParticipant[] = [],
+): GameSession {
   const timestamp = now();
   return gameSessionSchema.parse({
     schemaVersion: SESSION_SCHEMA_VERSION,
@@ -33,6 +45,7 @@ export function createSession(config: SessionConfig, deckSnapshot: GameCard[] = 
     currentSegmentId: uid(),
     currentPackState: {},
     recentRejectedFingerprints: [],
+    participants: participants.length ? structuredClone(participants) : createSessionParticipants(config.players),
     startedAt: deckSnapshot.length ? timestamp : undefined,
     updatedAt: timestamp,
   });
@@ -54,11 +67,34 @@ export interface StartRoundOptions {
   reuseLogicalRoundId?: string;
 }
 
+/** 一对目标参与者（V2 Pair Routing 选中的 pairKey）→ 本轮 participantIds。 */
+function participantsForCard(
+  card: GameCard,
+  targetPairKey: string | null,
+  session: GameSession,
+  random: RandomSource,
+): string[] {
+  if (card.participantMode === "pair" && targetPairKey) {
+    const ids = targetPairKey
+      .split("::")
+      .filter((id) => session.config.players.some((player) => player.id === id && player.active));
+    if (ids.length === 2) return ids;
+  }
+  return selectParticipants(card.participantMode, session.config.players, session.rounds, random);
+}
+
+/**
+ * 出一题（B8 / D2）：唯一出卡入口是 V2 编排器 `drawV2SessionCard`（经 `lib/engine/v2-deal`），
+ * 三层计数（bucket/pack/global）在**本局牌堆**上算。V1.6 加权 selector 不再参与。
+ *
+ * 抽不到卡时**不自动结束**，而是把编排态写回 Session：
+ * - `AWAITING_HOST_EXHAUSTION_DECISION`：交 Host 显式选择「结束本局 / 洗牌再玩」；
+ * - `PACK_EXHAUSTED` / `RELATIONSHIP_GLOBAL_EXHAUSTED`：给中性指引，允许切换其他有卡玩法。
+ */
 export function startRound(session: GameSession, random: RandomSource = Math.random, options: StartRoundOptions = {}): GameSession {
   if (session.status !== "active" || session.currentRound) return session;
   // 纯本地玩法（转瓶子）不需要题卡：结果由 player-selector 现场决定，也不该被别的 pack 的卡顶掉。
   if (packIsCardless(session.currentPackId)) return session;
-  const activePlayers = session.config.players.filter((player) => player.active);
   // single 模式只从当前玩法出卡；mixed 模式沿用 V1.0 的阶段混合出卡，currentPackId 跟随抽到的题卡。
   const single = session.config.mode === "single";
   const preferredPackIds = single
@@ -66,28 +102,28 @@ export function startRound(session: GameSession, random: RandomSource = Math.ran
     : options.preferPackIds?.length
       ? options.preferPackIds
       : getStagePackPreference(getSessionStage(session));
-  const card = selectCard({
-    cards: session.deckSnapshot,
-    usedCardIds: session.usedCardIds,
-    enabledPackIds: single ? [session.currentPackId] : session.config.enabledPackIds,
-    playerCount: activePlayers.length,
-    intensity: session.config.intensity,
-    boundaries: session.config.boundaries,
+  const enabledPackIds = single ? [session.currentPackId] : session.config.enabledPackIds;
+
+  const { outcome, card } = drawDeckCard({
+    session,
     preferredPackIds,
-    preferredCardTypes: options.preferCardTypes,
-    recentRejectedFingerprints: session.recentRejectedFingerprints ?? [],
-    random,
+    enabledPackIds,
+    cardTypes: options.preferCardTypes,
   });
-  if (!card) return session;
+  if (outcome.kind !== "CARD" || !card) return withV2State(session, outcome.state);
+
+  const used = [...session.usedCardIds, card.id];
+  const dealt = withV2State(session, outcome.state);
   return {
-    ...session,
+    ...dealt,
     currentPackId: card.packId,
-    usedCardIds: [...session.usedCardIds, card.id],
+    usedCardIds: used,
+    relationshipState: dealt.relationshipState ? { ...dealt.relationshipState, usedCardIds: used } : dealt.relationshipState,
     currentRound: {
       id: uid(),
       cardId: card.id,
       packId: card.packId,
-      participantIds: options.participantIds ?? selectParticipants(card.participantMode, session.config.players, session.rounds, random),
+      participantIds: options.participantIds ?? participantsForCard(card, outcome.targetPairKey, session, random),
       startedAt: now(),
       segmentId: session.currentSegmentId,
       logicalRoundId: options.reuseLogicalRoundId ?? uid(),
@@ -166,6 +202,7 @@ export function updatePackState(session: GameSession, packId: string, value: Rec
   return { ...session, currentPackState: { ...session.currentPackState, [packId]: value }, updatedAt: now() };
 }
 
-export function updatePlayers(session: GameSession, players: SessionConfig["players"]): GameSession {
-  return { ...session, config: { ...session.config, players }, updatedAt: now() };
-}
+// 局中改玩家名册不走本模块：R4 §4.3/§4.4 要求区分「真离开（终止）」与「暂离（暂停）」，
+// 唯一落盘入口是 `applyPlayerRosterChange`（lib/engine/v2-deal.ts，EXIT 删边+保障 expired+释放 D5；
+// AWAY 保留 MATCH/signal/cooldown+保障 paused）。这里不再提供只改 config.players 的旁路写法，
+// 免得被误用成「万物皆暂离」。

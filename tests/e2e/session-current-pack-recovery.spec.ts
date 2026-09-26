@@ -59,11 +59,13 @@ test("刷新后仍停在没有可玩题卡的玩法上，不白屏也不自动�
   await seedSession(page, emptyDeckSession());
   await page.goto("/game?session=e2e-empty-deck-session");
 
-  await expect(page.getByRole("heading", { name: /暂时没有可玩的题卡/ })).toBeVisible();
+  // B8/D8：空牌堆走耗尽Host流程（结束本局/洗牌再玩），不白屏也不自动切玩法。
+  await expect(page.locator("h1")).toHaveText("可玩的题都出完了");
+  await expect(page.getByRole("button", { name: "结束本局" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "洗牌再玩" })).toBeVisible();
 
   await page.reload();
 
-  await expect(page.getByRole("heading", { name: /暂时没有可玩的题卡/ })).toBeVisible();
-  await expect(page.getByRole("link", { name: "返回首页" })).toBeVisible();
+  await expect(page.locator("h1")).toHaveText("可玩的题都出完了");
   expect((await readSession(page, "e2e-empty-deck-session")).currentPackId).toBe("never-have");
 });

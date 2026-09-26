@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 16,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "origin": "base",
+    "intensity": 5,
+    "players": 4,
+    "vibe": {
+      "key": "funny",
+      "label": "搞笑"
+    },
+    "relationship": {
+      "key": "close",
+      "label": "很熟"
+    },
+    "boundary": {
+      "mode": "default",
+      "label": "默认",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "很熟",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": true,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 4
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4；关系：很熟；氛围：搞笑；最高强度：5。\n可用玩法：most-likely。\n已开启的结构化雷区：alcohol、phone-privacy、public-posting、stranger-contact；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 3901,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "ml-01",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在KTV里把副歌唱成原创歌词？",
+        "instruction": "所有人同时指向一个人，被指最多的人说一句最离谱的改编歌词。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "音乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-02",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在群里发完消息立刻撤回？",
+        "instruction": "投票后，得票最高的人模仿一次自己撤回时的表情。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-03",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能把外卖备注写成小作文？",
+        "instruction": "投票后，得票最高的人现场编一句最长的外卖备注。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "生活"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-04",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在拍照时永远闭眼？",
+        "instruction": "投票后，被选中的人展示一张自己最满意的闭眼照（可跳过）。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "拍照"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-05",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能把闹钟按掉后继续睡到中午？",
+        "instruction": "投票后，得票最高的人用一句话总结自己的赖床哲学。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "日常"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-06",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在电梯里对陌生人点头微笑到尴尬？",
+        "instruction": "投票后，被选中的人演示一次最尴尬的电梯问候。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-07",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能把追剧进度当成人生进度？",
+        "instruction": "投票后，得票最高的人用一句话安利自己最近追的剧。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "追剧"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-08",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在点奶茶时纠结五分钟？",
+        "instruction": "投票后，被选中的人快速说出三种最爱的配料。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "美食"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-09",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能把表情包当成主要沟通语言？",
+        "instruction": "投票后，得票最高的人用三个表情包名字回答“今晚吃什么”。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "ml-10",
+        "packId": "most-likely",
+        "type": "vote",
+        "content": "谁最可能在聚会上突然开始讲冷笑话？",
+        "instruction": "投票后，被选中的人讲一个冷笑话，冷场就算成功。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "聚会"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

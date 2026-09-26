@@ -37,3 +37,63 @@
 {"date":"2026-09-25","task":"V2 R3审查(Pair/Signal)","role":"product-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"opencode","result":"PASS","note":"用户指定通道；FAIL打回，3PASS/4FAIL；P1-05数值fixture待补"}
 {"date":"2026-09-25","task":"V2 R3复审","role":"product-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"opencode","result":"PASS","note":"R3 PASS 7/7"}
 {"date":"2026-09-25","task":"V2 R4复审","role":"product-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"opencode","result":"PASS","note":"R4 PASS 7/7"}
+{"date":"2026-09-25","task":"V2 P0-01并入DRAFT.3","role":"planner","model":"codex/gpt-5.6-sol","used":"主","runtime":"codex","result":"PASS","note":"用户指定5.6-sol；P0-01 CLOSED+六项收敛"}
+{"date":"2026-09-25","task":"V2.0-DRAFT.3终审","role":"product-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"opencode","result":"PASS","note":"FAIL打回，83/100；五处旧段+U1抽查"}
+{"date":"2026-09-25","task":"V2 D3确认复审","role":"product-reviewer","model":"opencode/muse-spark-1.3-contributor-free","used":"主","runtime":"opencode","result":"PASS","note":"五处同步+U1回执成立；83未达90留IN_PROGRESS"}
+{"date":"2026-09-25","task":"V2 DRAFT.3文字同步","role":"planner","model":"codex/gpt-5.6-sol","used":"主","runtime":"codex","result":"PASS","note":"用户指定5.6-sol；五处旧段+U1回执；83/100"}
+{"date":"2026-09-25","task":"V2终版PLAN落盘","role":"planner","model":"codex/gpt-5.6-sol","used":"主","runtime":"codex","result":"PASS","note":"用户指定5.6-sol；D1/D2/D5/D6落位；GATE=APPROVED；BASELINE=V2.0"}
+{"date":"2026-09-25","task":"V2-B1内容真源","role":"builder","model":"volcengine-plan/ark-code-latest","used":"主","runtime":"opencode","result":"PASS","note":"T11主路；SHA256双门禁+350/40；lint0/typecheck0/543"}
+{"date":"2026-09-25","task":"V2-B1返工collectIds洞","role":"builder","model":"volcengine-plan/ark-code-latest","used":"主","runtime":"opencode","result":"PASS","note":"独立Set+全局唯一+非字符串拒绝；lint0/typecheck0/13"}
+{"date":"2026-09-25","task":"V2-B1返工复审","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"洞闭合；旧6项保持；P2三条记账"}
+{"date":"2026-09-25","task":"V2-B1返工QA全量","role":"qa","model":"radeon-mimo/MiMo-V2.6-Flash","used":"主","runtime":"opencode","result":"PASS","note":"T11主路；lint0/typecheck0/544；旧链无挂"}
+{"date":"2026-09-25","task":"V2-B2a关系状态类型","role":"builder","model":"volcengine-plan/ark-code-latest","used":"主","runtime":"opencode","result":"PASS","note":"v2-state+Session增量扩展；lint0/typecheck0/560"}
+{"date":"2026-09-25","task":"V2-B2b事件reducer","role":"builder","model":"volcengine-plan/ark-code-latest","used":"主","runtime":"opencode","result":"PASS","note":"v2-reducer+17例；typecheck0"}
+{"date":"2026-09-25","task":"V2-B2b返工lint","role":"builder","model":"volcengine-plan/ark-code-latest","used":"主","runtime":"opencode","result":"PASS","note":"2 prefer-const；lint0"}
+{"date":"2026-09-25","task":"V2-B2复核","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"FAIL打回P1×8；33单测过骨架对"}
+{"date":"2026-09-25","task":"V2-B2返工P1前4项","role":"builder","model":"volcengine-plan/ark-code-latest","used":"主","runtime":"opencode","result":"PASS","note":"Host事件/20-25上限/D5原子校验/skip-swap入used；36单测过"}
+{"date":"2026-09-25","task":"V2-B2返工P1之5+7","role":"builder","model":"volcengine-plan/ark-code-latest","used":"主","runtime":"opencode","result":"PASS","note":"coverage+cooldown递减；24单测过"}
+{"date":"2026-09-25","task":"V2-B2返工P1之6+8","role":"builder","model":"volcengine-plan/ark-code-latest","used":"主","runtime":"opencode","result":"PASS","note":"due四条件门+SSOT gate测试；592全过"}
+{"date":"2026-09-25","task":"V2-B2返工复审2","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"FAIL打回P1×2；6/8闭合"}
+{"date":"2026-09-25","task":"V2-B2返工P1×2收尾","role":"builder","model":"volcengine-plan/ark-code-latest","used":"主","runtime":"opencode","result":"PASS","note":"swap收窄+cooldown REL限定；593全过"}
+{"date":"2026-09-25","task":"V2-B2返工P1×2复验","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"两处落地；29单测过"}
+{"date":"2026-09-25","task":"V2-B2终检条件放行","role":"supervisor","model":"opencode-go/muse-spark-1.3-contributor","used":"主","runtime":"opencode","result":"PASS","note":"三笔落盘即PASS：复验附录/DISPATCH清洗/HANDOFF同步"}
+{"date":"2026-09-25","task":"builder切备用MiMo","role":"task-manager","model":"本窗口直驱","used":"主","runtime":"本窗口","result":"PASS","note":"用户令：ark-code-latest→radeon-mimo/MiMo-V2.6-Flash"}
+{"date":"2026-09-25","task":"V2-B3a Pair路由","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"用户指定切回codebuddy；routing+6例过"}
+{"date":"2026-09-25","task":"V2-B3b 5档保障tracker","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"advanceGuarantee+7例过"}
+{"date":"2026-09-25","task":"V2-B3复核","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"FAIL打回P1×2；范围3/4记TM"}
+{"date":"2026-09-25","task":"V2-B3返工","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"present终态+personal封顶；17例过"}
+{"date":"2026-09-25","task":"V2-B3返工复验","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"两项落地；17例过"}
+{"date":"2026-09-25","task":"V2-B3 QA全量","role":"qa","model":"radeon-mimo/MiMo-V2.6-Flash","used":"主","runtime":"opencode","result":"PASS","note":"T11主路；lint0/typecheck0/610"}
+{"date":"2026-09-25","task":"V2-B4私密流程","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"v2-private纯内存+8例过；无storage import"}
+{"date":"2026-09-25","task":"V2-B4复核","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"无必须修；备忘2条不阻塞"}
+{"date":"2026-09-25","task":"V2-B4 QA全量","role":"qa","model":"radeon-mimo/MiMo-V2.6-Flash","used":"主","runtime":"opencode","result":"PASS","note":"T11主路；lint0/typecheck0/618；增量吻合"}
+{"date":"2026-09-25","task":"V2-B5耗尽控制器","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"assess/widen/applyHost+8例过；TM裁定分层口径待修"}
+{"date":"2026-09-25","task":"V2-B5耗尽控制器","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"TM裁定分层后；五层级+放宽+reshuffle；9例"}
+{"date":"2026-09-25","task":"V2-B5复核","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"无必须修；建议3条记B6调用方"}
+{"date":"2026-09-25","task":"V2-B5 QA全量","role":"qa","model":"radeon-mimo/MiMo-V2.6-Flash","used":"主","runtime":"opencode","result":"PASS","note":"lint0/typecheck0/627；增量+9吻合"}
+{"date":"2026-09-25","task":"V2-B5复核补文档","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"CODE_REVIEW-V2-B5.md落盘；P0=0P1=0"}
+{"date":"2026-09-25","task":"V2-B5复检","role":"supervisor","model":"opencode-go/muse-spark-1.3-contributor","used":"主","runtime":"opencode","result":"PASS","note":"P0-1补齐；B5闭环B6可派"}
+{"date":"2026-09-25","task":"V2-B5复核补文档","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"P0-1补齐"}
+{"date":"2026-09-25","task":"V2-B6调用方集成","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"v2-session+14例；641全过"}
+{"date":"2026-09-25","task":"V2-B6复核","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"P0=0P1=0；P2x2/P3x3 backlog"}
+{"date":"2026-09-25","task":"APK打包(Capacitor debug)","role":"task-manager","model":"本窗口直驱","used":"主","runtime":"本窗口","result":"PASS","note":"cap7.6.9/JDK21/AGP8.7.2/compile35；app-debug.apk 5.1MB debug签"}
+{"date":"2026-09-25","task":"APK推送5台手机","role":"task-manager","model":"本窗口直驱","used":"主","runtime":"本窗口","result":"FAIL","note":"5台均INSTALL_FAILED_USER_RESTRICTED；待用户在手机上允许USB安装后重推"}
+{"date":"2026-09-25","task":"APK推送3台手机重推","role":"task-manager","model":"本窗口直驱","used":"主","runtime":"本窗口","result":"PASS","note":"3台Success+monkey拉起均有pid"}
+{"date":"2026-09-25","task":"APK切局域网版重推3台","role":"task-manager","model":"本窗口直驱","used":"主","runtime":"本窗口","result":"PASS","note":"手机DNS污染vercel.app；Mac起:3000供局域网；3台Success+截图验首页正常"}
+{"date":"2026-09-25","task":"V2-B7对外生效","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"setup性别+draft+D1切换；32例"}
+{"date":"2026-09-25","task":"V2-B7复核","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"P0=0P1=0；P2x2（D2 App层收口待B8）"}
+{"date":"2026-09-25","task":"V2-B8复核","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"P0=0；删tmp config残留"}
+{"date":"2026-09-25","task":"V2-B9B10联合复核","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"P0=0；P2x2 backlog"}
+{"date":"2026-09-25","task":"V2-B9B10 QA全量","role":"qa","model":"radeon-mimo/MiMo-V2.6-Flash","used":"主","runtime":"opencode","result":"PASS","note":"lint0/typecheck0/728；增量+3/+44"}
+{"date":"2026-09-25","task":"V2-B7B8B9B10终检","role":"supervisor","model":"opencode-go/muse-spark-1.3-contributor","used":"主","runtime":"opencode","result":"PASS","note":"有条件放行E2E+真机；TASK-LOG格式P1由TM修"}
+{"date":"2026-09-25","task":"V2-B7B10 E2E回归","role":"qa","model":"本窗口直驱","used":"主","runtime":"本窗口","result":"PASS","note":"85pass+4skip；旧服务端口冲突另修"}
+{"date":"2026-09-26","task":"SW离线修复","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"仅public/sw.js；smoke转绿"}
+{"date":"2026-09-26","task":"SW离线复核","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"P0=0P1=0；P2x2"}
+{"date":"2026-09-26","task":"V2收尾QA","role":"qa","model":"radeon-mimo/MiMo-V2.6-Flash","used":"主","runtime":"opencode","result":"PASS","note":"lint0/typecheck0/728；E2E86+4skip"}
+{"date":"2026-09-26","task":"Key三态+AI矩阵","role":"builder","model":"codebuddy/deepseek-v4.1-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"80组全绿；内容留存80JSON"}
+{"date":"2026-09-26","task":"AI矩阵复核","role":"code-reviewer","model":"codebuddy/glm-5.3-flash","used":"主","runtime":"codebuddy","result":"PASS","note":"P0=0P1=0；P2x2"}
+{"date": "2026-09-26", "task": "RC清障P2-01+P2-02整改", "role": "builder", "model": "codebuddy/deepseek-v4.1-flash", "used": "主", "runtime": "codebuddy", "result": "PASS", "note": "接线核对无改实现+2处测试断言补齐;737全过"}
+{"date": "2026-09-26", "task": "RC清障复核", "role": "code-reviewer", "model": "codebuddy/glm-5.3-flash", "used": "主", "runtime": "codebuddy", "result": "PASS", "note": "CODE_REVIEW-V2-RC-FIX.md;P0=0P1=0"}
+{"date": "2026-09-26", "task": "RC清障QA回归", "role": "qa", "model": "codex/gpt-6-luna", "used": "主", "runtime": "codex", "result": "FAIL", "note": "lint0/typecheck0/737过;E2E沙箱EPERM 0执行;TM本窗口补跑86+4"}
+{"date": "2026-09-26", "task": "RC清障E2E补跑", "role": "qa", "model": "本窗口直驱", "used": "主", "runtime": "本窗口", "result": "PASS", "note": "TM接管(codex沙箱EPERM):86pass+4skip含v2-mutual-flow"}
+{"date": "2026-09-26", "task": "RC清障终检", "role": "supervisor", "model": "opencode-go/muse-spark-1.3-contributor", "used": "主", "runtime": "opencode", "result": "PASS", "note": "PASS可放行;QA文档E2E追记一笔"}

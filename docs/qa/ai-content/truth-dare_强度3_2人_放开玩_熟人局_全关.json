@@ -1,0 +1,245 @@
+{
+  "cell": {
+    "index": 3,
+    "packId": "truth-dare",
+    "packName": "真心话大冒险",
+    "origin": "base",
+    "intensity": 3,
+    "players": 2,
+    "vibe": {
+      "key": "wild",
+      "label": "放开玩"
+    },
+    "relationship": {
+      "key": "familiar",
+      "label": "熟人局"
+    },
+    "boundary": {
+      "mode": "all-off",
+      "label": "全关",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "熟人局",
+      "vibes": [
+        "放开玩"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "truth-dare"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：熟人局；氛围：放开玩；最高强度：3。\n可用玩法：truth-dare。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4287,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "tn-001",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近一次在公共场合做出让自己尴尬的事是什么？",
+        "instruction": "如实回答；若不想说，可以改成讲一个你觉得最搞笑的糗事。",
+        "intensity": 1,
+        "tags": [
+          "轻松",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "tn-002",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "模仿一位在场嘉宾的经典口头禅或小动作，让大家猜是谁。",
+        "instruction": "表演要善意、不挖苦；被模仿者可以随时喊停。",
+        "intensity": 2,
+        "tags": [
+          "模仿",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "tn-003",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "如果明天醒来获得一种超能力，你最想选什么？为什么？",
+        "instruction": "说出选择并解释一个理由；其他人可以追问一次。",
+        "intensity": 1,
+        "tags": [
+          "想象",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "tn-004",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用夸张的播音腔朗读你手机里最近的一条外卖或购物订单备注（隐去地址和电话）。",
+        "instruction": "先确认没有隐私信息再朗读；不想读就换一条无关紧要的备注。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "表达"
+        ],
+        "boundaryTags": [
+          "phone-privacy"
+        ],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "tn-005",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你最近一次为朋友两肋插刀或默默帮忙的事是什么？",
+        "instruction": "讲出经过和当时的心情；可以只讲能公开的部分。",
+        "intensity": 1,
+        "tags": [
+          "友情",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "tn-006",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "和右手边的嘉宾合作，用三个词编一个即兴小故事，必须包含“月亮”和“外卖”。",
+        "instruction": "两人各说一部分，轮流接龙；故事不超过一分钟。",
+        "intensity": 2,
+        "tags": [
+          "合作",
+          "创意"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "tn-007",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "你做过最冲动但事后不后悔的一个决定是什么？",
+        "instruction": "说出决定和结果；如果涉及他人隐私，可以用化名或模糊处理。",
+        "intensity": 2,
+        "tags": [
+          "经历",
+          "聊天"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "tn-008",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "用三个表情符号描述你今天的心情，并让其他嘉宾猜含义。",
+        "instruction": "展示表情符号，不能说话，直到有人猜中或放弃。",
+        "intensity": 1,
+        "tags": [
+          "表情",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "tn-009",
+        "packId": "truth-dare",
+        "type": "truth",
+        "content": "在熟人局里，你最想改掉自己的一个小习惯是什么？",
+        "instruction": "说出习惯和想改的原因；其他人可以给一条善意建议。",
+        "intensity": 2,
+        "tags": [
+          "自我",
+          "分享"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "tn-010",
+        "packId": "truth-dare",
+        "type": "dare",
+        "content": "邀请全场一起，用一句话接龙编一个“今晚派对”的结局，每人只能说一句。",
+        "instruction": "从嘉宾1开始顺时针接龙；内容要轻松友善，任何人可跳过。",
+        "intensity": 3,
+        "tags": [
+          "全场",
+          "接龙"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

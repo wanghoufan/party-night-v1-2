@@ -1,4 +1,11 @@
 import { z } from "zod";
+import {
+  relationshipStateSchema,
+  sessionParticipantSchema,
+  v2OrchestrationStateSchema,
+  type RelationshipState,
+  type V2OrchestrationState,
+} from "@/lib/v2-relationship/v2-state";
 
 /** 本地持久化 schema 版本：V1 记录读取时必须先经 lib/storage/session-migration 迁移。 */
 export const SESSION_SCHEMA_VERSION = 2 as const;
@@ -152,6 +159,23 @@ export const gameSessionSchema = z.object({
   currentPackState: z.record(z.string(), z.record(z.string(), z.unknown())).optional(),
   /** 最近“换一个”拒绝的指纹，用于短期避免重复题面。 */
   recentRejectedFingerprints: z.array(z.string()).optional(),
+  /**
+   * V2.0 Relationship State（增量可选，旧 Session 原样可读）：
+   * Signal/MATCH/关系状态不在旧轮次或历史行为中补算，旧 Session 无本字段即从空开始。
+   * 校验走 `relationshipStateSchema`，类型直接取 `RelationshipState`（含 readonly 数组），
+   * 避免 zod 推断把只读元组放宽成可变元组。
+   */
+  relationshipState: z.custom<RelationshipState>((value) => relationshipStateSchema.safeParse(value).success).optional(),
+  /**
+   * V2.0 当局参与者快照（pairGender 仅限当局，禁止回写 Player 档案）。
+   * 旧 Session 缺失时读取路径补遍历 config.players 并置 pairGender=null。
+   */
+  participants: z.array(sessionParticipantSchema).optional(),
+  /**
+   * V2.0 Session 级编排态（B8）：软去重窗口、耗尽等待态与 Host 决策幂等账本。
+   * 旧 Session 缺失即从初始档开始；无本字段不影响恢复。
+   */
+  v2Orchestration: z.custom<V2OrchestrationState>((value) => v2OrchestrationStateSchema.safeParse(value).success).optional(),
   startedAt: z.string().optional(),
   endedAt: z.string().optional(),
   updatedAt: z.string(),

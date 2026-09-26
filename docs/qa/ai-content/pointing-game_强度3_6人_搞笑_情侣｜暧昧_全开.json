@@ -1,0 +1,255 @@
+{
+  "cell": {
+    "index": 41,
+    "packId": "pointing-game",
+    "packName": "指人游戏",
+    "origin": "base",
+    "intensity": 3,
+    "players": 6,
+    "vibe": {
+      "key": "funny",
+      "label": "搞笑"
+    },
+    "relationship": {
+      "key": "couple",
+      "label": "情侣 / 暧昧"
+    },
+    "boundary": {
+      "mode": "all-on",
+      "label": "全开",
+      "flags": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "情侣 / 暧昧",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 3,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "pointing-game"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：情侣 / 暧昧；氛围：搞笑；最高强度：3。\n可用玩法：pointing-game。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4783,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "pn-point-01",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "大家一起数三二一，同时指向全场最会讲冷笑话的人，被指到最多的人学猫叫。",
+        "instruction": "被点到的人要立刻模仿一种动物的叫声，持续 5 秒，其他人可以配合鼓掌。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "模仿"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-02",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "同时指向今晚穿得最像要出门约会的人，被指到最多的人站起来夸自己十秒。",
+        "instruction": "主持人喊开始后同时指，被指到的人要站起来用最夸张的语气夸自己一句。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "夸夸"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-03",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "同时指向反应最慢的人，被指到最多的人找一个搭档一起摆一个搞笑姿势，保持到下一轮开始。",
+        "instruction": "被点到的人要选择一个搭档，一起摆一个搞笑合影姿势保持 5 秒，之后可自愿决定是否真的拍照。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "合作"
+        ],
+        "boundaryTags": [
+          "photo-video"
+        ],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-04",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "同时指向最会接梗的人，被指到最多的人用一句歌词回答“今晚开心吗”。",
+        "instruction": "被点到的人用一句歌词回答“今晚开心吗”，其他人可以跟唱副歌。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "唱歌"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-05",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "同时指向坐在最左边的人，被指到最多的人即兴编一个 15 秒搞笑小故事，主角是在场某人。",
+        "instruction": "被点到的人要即兴编一个 15 秒的小故事，主角必须是在场某人，但不得提及隐私或尴尬往事。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "即兴"
+        ],
+        "boundaryTags": [
+          "ex-partner",
+          "sexual-history",
+          "money"
+        ],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-06",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "同时指向笑声最大的人，被指到最多的人用播音腔念一句“今晚的派对由我守护”。",
+        "instruction": "被点到的人可以选择自己或指定一位嘉宾，用夸张的播音腔念一句“今晚的派对由我守护”。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "播音"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-07",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "同时指向最安静的人，被指到最多的人带领全场做一个 10 秒的无接触搞笑动作。",
+        "instruction": "被点到的人要带领全场做一个 10 秒的无声搞笑动作，动作不得涉及身体接触。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "带动"
+        ],
+        "boundaryTags": [
+          "physical-contact"
+        ],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-08",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "同时指向看起来最像“知识渊博”的人，被指到最多的人分享一个无用但有趣的小知识。",
+        "instruction": "被点到的人要说出自己最近学会的一个无用但有趣的小知识，其他人可以投票是否相信。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "冷知识"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-09",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "同时指向今天表情最丰富的人，被指到最多的人用三个动作描述自己今天的心情。",
+        "instruction": "被点到的人要用三个表情包动作描述自己今天的心情，其他人猜是什么意思。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表情"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "pn-point-10",
+        "packId": "pointing-game",
+        "type": "pointing",
+        "content": "同时指向全场最会演的人，被指到最多的人邀请一位嘉宾一起用“外星语”对话 15 秒。",
+        "instruction": "被点到的人要邀请一位嘉宾一起用“外星语”对话 15 秒，内容不得涉及任何隐私话题。",
+        "intensity": 2,
+        "tags": [
+          "搞笑",
+          "双人"
+        ],
+        "boundaryTags": [
+          "ex-partner",
+          "sexual-history",
+          "money"
+        ],
+        "minPlayers": 3,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

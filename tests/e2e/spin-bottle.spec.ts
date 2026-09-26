@@ -1,10 +1,16 @@
 import { expect, test, type Page } from "@playwright/test";
 import { currentSessionId, readSession, seedSession, startPackGame } from "./helpers";
 import { BUILTIN_SEED_CARDS } from "@/lib/game-packs/built-in-seeds";
+import { mainlineSsotCardsByPack } from "@/lib/v2-content/v2-card-bridge";
 import type { GameCard, GameSession, Intensity } from "@/lib/domain/schemas";
 
 const SESSION_ID = "e2e-spin-bottle-session";
 const TRUTH_DARE_CARDS = BUILTIN_SEED_CARDS.filter((card) => card.packId === "truth-dare");
+/**
+ * truth-dare 的完整本地池（D1 之后）＝旧档 seed 卡 + SSOT 主线卡。
+ * 「两类都出完」这类用例必须把整池都出光，否则链内补位会再补出 SSOT 新卡，构不成耗尽。
+ */
+const TRUTH_DARE_FULL_POOL = [...TRUTH_DARE_CARDS, ...mainlineSsotCardsByPack("truth-dare")];
 
 /** 转瓶子是纯本地玩法：题卡只有现有 truth-dare，转瓶子自己不占卡（US6 / T121）。 */
 function spinSession(inactiveEmma = false): GameSession {
@@ -223,7 +229,12 @@ test("转瓶子：真心话出完 → L1 洗牌接着出（不断游），结果
 });
 
 test("转瓶子：两类都出完 → L1 洗牌重来，两个去向都还能进（题目会重复，不静默）", async ({ page }) => {
-  const exhausted = { ...spinSession(), usedCardIds: TRUTH_DARE_CARDS.map((card) => card.id) } as GameSession;
+  // 把本地全池（seed 历史卡 + SSOT 主线卡）都记为已出，才是真实的两类都出完。
+  const exhausted = {
+    ...spinSession(),
+    deckSnapshot: TRUTH_DARE_FULL_POOL,
+    usedCardIds: TRUTH_DARE_FULL_POOL.map((card) => card.id),
+  } as GameSession;
   await openSession(page, exhausted);
   await spinWithFixedRandom(page, () => spinButton(page).click());
   await expect(target(page)).toHaveText("🎯 Alex");

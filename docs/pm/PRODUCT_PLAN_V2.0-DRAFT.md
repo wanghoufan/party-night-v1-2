@@ -1,11 +1,20 @@
 # PRODUCT_PLAN｜Party Night V2 Relationship Engine
 
-- Plan Version：`PRODUCT_PLAN_V2.0-DRAFT.2`
+- Plan Version：`PRODUCT_PLAN_V2.0-DRAFT.3`
 - PROJECT_PHASE：`PLAN`
 - CHANGE_REQUEST：`C｜核心抽卡、Session 关系状态与内容真源升级`
 - DEV_BASELINE：`NOT_SET`；Human Gate 前禁止建立
 - 输入基线：当前生产 V1.6 brownfield + `docs/content/v6/2026-09-24 - MAC - ChatGPT - Party Night V1.3冻结基线-备份 - V1.1.zip` 内 V1.3 Frozen（schema 2.3）
-- 文档状态：Planner Draft.2；R1=`PASS`；R2=`PASS AFTER PATCH`（P0=0、blocking P1=0、已知死锁=0、自动断言 31/31 PASS）；R3/R4/R5 冻结全文已并入。Human D3=A、D4=A 已决；D1/D2/D5/D6/D7/D8 保持 `TBD`。当前只允许规划与审查，不授权 Builder、业务代码修改或 Release
+- 文档状态：Planner Draft.3 PlanConsistency 收敛稿；R1=`PASS`（冻结包内部一致性前置证据）；P0-01=`CLOSED / PASS`（生产旧 350 ↔ V1.3 Frozen 350 外部机器审计）；R2=`PASS AFTER PATCH`（31/31 PASS）；R4/R5 复审=`PASS`（计划契约层关闭，实现证据转 DEVELOP 必过门禁）。Human 已决 D3=A、D4=A、D7=A、D8=A+；D1/D2/D5/D6 保持 `TBD`。当前只允许规划与审查，不授权 Builder、业务代码修改或 Release
+
+## PlanConsistency｜DRAFT.3 六项收敛结论
+
+1. **P0-01 证据纠偏**：P0-01 唯一关闭证据改为 `docs/content/v6/2026-09-25 - MAC - ChatGPT - Party Night V2 P0-01生产350对V1.3审查包-附件 - V1.2/`内的审查报告、机器证据 JSON 与双向矩阵；结论为自动内容等价 ID 映射 `NONE`，旧卡仅 `history-only`，C01–C06 全部纳入迁移契约。R1 仅保留为冻结 Markdown ↔ 冻结 JSON 内部一致性的前置证据，不再代表 P0-01。
+2. **D7/D8 已决**：D7=`A`，合法 5 档卡 `CARD_PRESENTED` 即视为 offered；D8=`A+`，固定软去重 5、`5→4→3→2→1→0` 逐步放宽、仅 Host 显式选择洗牌、永不回退 V1.6 Router。全文禁止再写 D7/D8 TBD。
+3. **R2/R3 双计数器单一口径**：`sessionCompletedRounds` 只管 Session 20+5 结算边界，任意玩法的 completed 轮（含 neutral/expansion）都 `+1`；`relationshipEffectiveCardCount` 只有 completed relationship-aware 卡 `+1`，且是 Heat 与 regular mutual interval 的唯一计数器。neutral/expansion “不消耗”只指不消耗关系有效计数，不是不消耗 Session completed round。
+4. **Final mutual 抑制单一口径**：final 是独立的 Session-end 系统事件，但不是无条件强制执行；只在 H3+、Coverage Gate 通过、存在合法 pair，且距上次 mutual 至少 `minimumEffectiveCardsBetweenRuns=5` 个关系有效卡时执行。刚完成 regular mutual 则 final 视为已覆盖并抑制；被抑制不补计数、不补 MATCH、不建 5 档保障。
+5. **契约关闭 ≠ 实现已验证**：R4 复审 PASS 关闭私密遮罩/清理/不公开/one-off 隔离的 Phase1 契约；R5 复审 PASS 关闭 D7/D8、单 Router、迁移原子性与 SSOT 契约。IndexedDB/log/export/cache 否定测试、旧 selector 不可达、CAS 回滚、哈希及状态机 fixture 全部转为 DEVELOP 门禁，不再统计为 Phase1 blocking P1。
+6. **Human 真实拍板状态**：D3=A、D4=A、D7=A、D8=A+ 已决；D1/D2/D5/D6 无 Human 拍板证据，明确为 `TBD`。影响分别为：D1 阻止内容真源切换授权；D2 阻止 V2 Router 生产切换授权；D5 阻止将每人 active MATCH 有效上限固定为 1 或 2；D6 阻止将 neutral/expansion 的关系推进策略写入 DEV_BASELINE。
 
 ## Product Goal
 
@@ -26,15 +35,15 @@
 
 当前生产与 V1.3 Frozen 之间不是“同一批 350 题换个抽法”，而是存在内容、元数据、数据结构和运行机制四层差异：
 
-1. R1 已证明 V1.3 冻结基线内 `01–07` Markdown 350 题与 `10-卡片元数据.json` 350 条在 cardId、题面、档位、gameType/number、18 个必填字段和 schema 2.3 上全部一一对应，异常 `0`。这不等于生产旧 `seed-*` 与新 `PN-*` 的内容等价；旧 ID/历史 Session 迁移仍受“单 Router＋迁移原子性”门禁约束。
+1. R1 已证明 V1.3 冻结基线内 `01–07` Markdown 350 题与 `10-卡片元数据.json` 350 条内部一致；P0-01 外部机器审计另行证明生产旧 `seed-*` 350 与 V1.3 `PN-*` 350 在同序号题面、同玩法任意位置题面上的 normalized exact 均为 `0/350`，词面近似度 ≥0.55 为 `0/350`，同序号档位改变 `254/350`。因此自动内容等价 ID 映射必须为 `NONE`，同类序号仅是审计坐标，不是 migration map。
 2. 生产 `lib/engine/card-selector.ts` 仍使用 `INTENSITY_WEIGHT={1:1,2:2,3:4,4:8,5:16}`；V1.3 要求 Heat、Coverage、Pair、Signal、MATCH、Consent 参与逐轮动态路由，旧 selector 不能双跑。
 3. 生产 `Player` 当前只有 `id/displayName/active/createdAt/lastUsedAt`。Human D4=A 已决定：V2.0 在本局参与者上增加最小 `pairGender=male|female`，默认只生成男女 pair；无合法 pair 时降级为普通玩法，不运行 Pair/MATCH/5 档。禁止根据姓名、顺序或模型猜测。
-4. Human D3=A 已决定：采用双计数器。`sessionCompletedRounds` 管理默认 20 轮与一次 +5 轮的 Session 结算边界；`relationshipEffectiveCardCount` 仅由 completed relationship-aware 卡推进，管理 Heat 与 mutual interval。Heat 锁定为 `0–3 / 4–7 / 8–12 / 13+`且单调不降；20 轮结算点先选“结束 / 再玩 5 轮”，+5 后重新评估第三次 regular mutual，不回退 Heat。
+4. Human D3=A 已决定：采用双计数器。`sessionCompletedRounds` 由任意玩法的 completed 轮推进，管理默认 20 轮与一次 +5 轮的 Session 结算边界；`relationshipEffectiveCardCount` 仅由 completed relationship-aware 卡推进，管理 Heat 与 mutual interval。Heat 锁定为 `0–3 / 4–7 / 8–12 / 13+`且单调不降；20 轮结算点先选“结束 / 再玩 5 轮”，+5 后重新评估第三次 regular mutual，不回退 Heat。
 5. V1.3 Frozen 明确扩圈 40/40 的 `fallbackPolicy=switch-to-table-version`。DRAFT.3 已把规范性 T037 统一为 `switch-to-table-version`，并冻结 40/40 table-only 映射；v6 历史文档仅作审计记录，不再是 V2 执行口径。
-6. “新 MATCH 后 2 次合格 pair opportunity 内至少优先 1 张合法 5 档”尚缺少消耗、暂停、过期、无合法卡与多 MATCH 竞争的状态机口径。
-7. 动态候选池耗尽时，现稿只写“向较低合法档回退”，未定义全部合法卡已用尽、单玩法耗尽、pair 专属池耗尽、换题耗尽及是否洗牌复用。
+6. Human D7=A 已把 5 档保障冻结为“2 次合格 pair opportunity 内展示 1 张合法 5 档”，`CARD_PRESENTED` 即进入 `offered` 终态；无合法卡、Intensity 下调、cooldown、暂离不消耗机会，退出/边失效/Session end 才 `expired`。
+7. Human D8=A+ 已把耗尽冻结为 `BUCKET_EMPTY -> PACK_EXHAUSTED -> RELATIONSHIP_GLOBAL_EXHAUSTED -> AWAITING_HOST_EXHAUSTION_DECISION`；软去重窗口按 `5→4→3→2→1→0` 放宽，全局硬合法集仍空时才由 Host 选“结束 / 洗牌再玩”，且洗牌不得回退 V1.6 Router。
 
-因此当前不能直接建立 DEV_BASELINE；必须先完成全计划剩余 blocking P1、关键核心假设验证，并由 Human Gate 拍板 D1/D2/D5/D6/D7/D8。
+因此当前不能直接建立 DEV_BASELINE：Phase1 契约层已无 blocking P1，但仍需 Human Gate 拍板 D1/D2/D5/D6，并需 Research Reviewer 对本次 P0-01＋PlanConsistency 合并稿做最终一致性复审；所有代码级证据保留为 DEVELOP 必过门禁。
 
 ## Core Value
 
@@ -63,41 +72,50 @@
 ### A. 内容真源与逐卡迁移
 
 1. V1.3 Frozen `10-卡片元数据.json`（350）与 `10b-扩圈元数据.json`（40）是 V2 内容与运行参数的唯一候选 SSOT；精确 archive member 路径与 hash 门禁见「Data / API → JSON SSOT 与 Hash Gate」。实现前不得直接覆盖生产题库。
-2. **R1｜PASS（2026-09-25，不重跑）**：V1.3 冻结基线的 `01–07` 七套 Markdown 350 题与 `10-卡片元数据.json` 350 条一一对应；cardId、题面、档位、gameType/number、18 个逐卡必填字段、schemaVersion 2.3、Heat 边界、5 档解锁、Signal 与 Consent 约束全部通过，异常 `0`，冻结 SHA256 清单 `18/18 PASS`。
+2. **R1｜PASS（2026-09-25，不重跑，仅作前置证据）**：V1.3 冻结基线的 `01–07` 七套 Markdown 350 题与 `10-卡片元数据.json` 350 条一一对应；cardId、题面、档位、gameType/number、18 个逐卡必填字段、schemaVersion 2.3、Heat 边界、5 档解锁、Signal 与 Consent 约束全部通过，异常 `0`，冻结 SHA256 清单 `18/18 PASS`。
    - 报告：`docs/content/v6/2026-09-25 - MAC - ChatGPT - Party Night V2 R1逐题对账报告-附件 - V1.1.md`
    - 逐题 CSV：`docs/content/v6/2026-09-25 - MAC - ChatGPT - Party Night V2 R1逐题对账矩阵-附件 - V1.1.csv`
-3. **R1 证据边界**：R1 证明冻结 Markdown ↔ 冻结 JSON 的 350/350 内容完整性，不证明生产旧 `seed-*` ↔ V1.3 `PN-*` 题面等价。生产历史兼容不做逐字替换；由迁移适配器保留旧 ID/题面用于历史展示，新一轮只从 `PN-*` SSOT 抽卡。
-4. **迁移影响**：active Session 已展示的 legacy current card 只允许中性收尾一次，旧 future deck 丢弃，历史显示保留旧 ID，`usedCardIds` 不得靠同序号盲转；fixture 必须同时覆盖旧 `seed-*` 与新 `PN-*`。
-5. **迁移门禁**：DEVELOP 前必须冻结“旧卡仅历史保留/新卡作运行真源”的 ID policy、单 Router 不可达测试与事务迁移回滚测试；不将 R1 扩大解读为旧生产 350 题内容等价。
+3. **P0-01｜CLOSED / PASS（2026-09-25）**：生产旧 `seed-*` 350 ↔ V1.3 Frozen `PN-*` 350 双向审计已完成；两边均为 7 类×50，双向坐标 orphan=`0`，同序号 exact=`0/350`，同玩法任意位置 exact=`0/350`，字符 bigram Jaccard ≥0.55=`0/350`，最大相似度仅 `0.2857`，同序号档位改变 `254/350`。
+   - 审查报告：`docs/content/v6/2026-09-25 - MAC - ChatGPT - Party Night V2 P0-01生产350对V1.3审查包-附件 - V1.2/2026-09-25 - MAC - ChatGPT - Party Night V2 P0-01生产350对V1.3审查报告-附件 - V1.2.md`
+   - 机器证据：`docs/content/v6/2026-09-25 - MAC - ChatGPT - Party Night V2 P0-01生产350对V1.3审查包-附件 - V1.2/2026-09-25 - MAC - ChatGPT - Party Night V2 P0-01生产350对V1.3机器证据-附件 - V1.2.json`
+   - 双向矩阵：`docs/content/v6/2026-09-25 - MAC - ChatGPT - Party Night V2 P0-01生产350对V1.3审查包-附件 - V1.2/2026-09-25 - MAC - ChatGPT - Party Night V2 P0-01生产350对V1.3双向矩阵-附件 - V1.2.xlsx`
+   - U1 抽查回执（2026-09-25）：V1.2 外部包的审查报告 `.md`、机器证据 `.json`、双向矩阵 `.xlsx` 三件均存在；报告与机器证据抽查一致：同序号 exact／同玩法任意位置 exact／bigram≥0.55 均为 `0/350`，最大相似度 `0.2857`，同序号档位改变 `254/350`。
+4. **P0-01 唯一 migration policy（六条）**：①自动内容等价 ID 映射=`NONE`；②同类序号仅是审计坐标，不得视为等价映射；③旧 ID/旧题面仅为 RoundHistory 历史展示保留；④旧 `usedCardIds` 不得按类别/序号翻译为 `PN-*`；⑤active legacy current card 最多中性 completed/skip 一次，不写 V2 Heat/Signal/Coverage/MATCH/5 档计数；⑥旧 future deck 丢弃，新回合只从 `PN-*` SSOT 经 V2 Router 产生。
+5. **P0-01 conflicts C01–C06**：C01=内容全量重写；C02=ID namespace 从 `seed-*` 全换为 `PN-*`；C03=`254/350` 同序号档位重分层；C04=旧 GameCard 缺少 schema 2.3 关系路由元数据；C05=active legacy current 只能一次性 neutral 收尾；C06=旧 selector/future deck 与 V2 Router 互斥。C01–C06 不是未决问题，而是 DEVELOP 迁移、不可达与回滚测试的固定输入。
+6. **R1 证据边界**：R1 只证明冻结 Markdown ↔ 冻结 JSON 的 350/350 内容完整性，不证明生产旧 `seed-*` ↔ V1.3 `PN-*` 题面等价，不得再用 R1 代替 P0-01 证据。
+7. **迁移门禁**：上述 ID policy 已在计划契约层冻结；DEVELOP 必须用单 Router 不可达、旧 selector spy=`0`、CAS 事务回滚、可重入迁移与 history-only fixture 提供实现证据。
 
 ### B. Pack Capability
 
 1. `relationship-aware`：V1.3 核心 7 类，可推进 Heat/Coverage/Signal/Pair/MATCH/5 档。
-2. `expansion`：40 张扩圈卡，使用 10b 元数据，不进入 Pair Score/MATCH；Heat 与 mutual interval 是否推进以 Human Decision D6 为准。
-3. `neutral`：AI 即兴、转瓶子、自定义包及未声明 V2 metadata 的玩法；继续可玩，但默认暂停 Relationship Engine。
+2. `expansion`：40 张扩圈卡，使用 10b 元数据，不进入 Pair Score/MATCH；completed 轮计入 `sessionCompletedRounds`。其不推进 Heat/Signal/mutual interval 是当前唯一规划分支，但 D6 仍为 `TBD`，Human Gate 拍板前不得写入 DEV_BASELINE。
+3. `neutral`：AI 即兴、转瓶子、自定义包及未声明 V2 metadata 的玩法；completed 轮计入 `sessionCompletedRounds`，可继续正常玩，但当前规划分支暂停 Relationship Engine。该关系推进口径同样受 D6=`TBD` 约束。
 4. 同一 Session 切包不重新录玩家、不重置 Relationship State、不重复初始化保障窗口。
 
 ### C. Heat 与计数契约
 
-#### R3｜`effectiveCardCount` 事件表冻结（全文并入）
+#### R3｜双计数器事件表冻结（以 PlanConsistency 口径为准）
 
 > 状态：FROZEN  
 > 决策：Human D3=A  
-> 适用范围：V2.0 relationship-aware Session 计数、Heat 与 mutual check 调度  
+> 适用范围：V2.0 Session 结算计数、relationship-aware Heat 与 mutual check 调度  
 > 规范优先级：本表是 R3 的唯一执行口径；Builder 不得按交互文案、页面动作或历史实现自行推导计数。
 
 ##### 一、唯一计数事件表
 
-| 事件 | 生效条件 | 是否计入 `effectiveCardCount` | Delta | Coverage / used / 状态副作用 | Heat / mutual 影响 |
-|---|---|---|---:|---|---|
-| `REL_CARD_COMPLETED` | relationship-aware 普通卡已展示且完成 | **计** | `+1` | 合格定向卡 `offered +1`、`completed +1`；`cardId` 进入 used | 唯一可推进 Heat、20/25 回合上限与常规 mutual interval 的卡事件 |
-| `REL_CARD_SKIPPED` | relationship-aware 普通卡已展示后跳过 | **不计** | `+0` | 合格定向卡 `offered +1`、`completed +0`；`cardId` 进入 used；可记 low-participation | 不推进 Heat，不推进常规 mutual interval，不消耗 20/25 限额 |
-| `REL_CARD_SWAPPED` | 换题并放弃已展示卡 | **不计** | `+0` | `offered/completed` 均 `+0`；旧 `cardId` 进入 used，防止立即重现 | 不推进 Heat，不推进常规 mutual interval，不消耗 20/25 限额 |
-| `NEUTRAL_CARD_RESOLVED` | neutral pack 完成、跳过或换题 | **不计** | `+0` | 不改 Relationship Coverage；只更新 neutral 自身历史 | Relationship Engine 暂停；不推进 Heat/常规 mutual interval，不消耗 20/25 限额 |
-| `EXPANSION_CARD_RESOLVED` | expansion 原版或 table-only 版执行、跳过 | **不计** | `+0` | 不改 Pair/Coverage/Signal；记录 expansion used ID | 不推进 Heat/常规 mutual interval，不消耗 20/25 限额 |
-| `LEGACY_CURRENT_RESOLVED` | 升级时已展示的旧 current card 完成或跳过一次 | **不计** | `+0` | 不建 V2 Signal/Coverage；标记 legacy consumed；之后必须进入 V2 Router | 不推进 Heat，不推进常规 mutual interval，不消耗 20/25 限额 |
-| `SYSTEM_MUTUAL_CHECK_*` | `due/start/submit/complete/cancel/final` 任一系统互选事件 | **不计** | `+0` | 不进入 `usedCardIds`；只更新 scheduler 与 mutual 结果 | 不直接推进 Heat；系统事件本身不得再次触发常规 mutual interval |
-| `EVENT_REPLAYED_OR_DUPLICATE` | 恢复时重放同一 `eventId`，或双点、重试、重复提交 | **不计** | `+0` | count、Coverage、used、scheduler 及其他副作用全部 `+0` | 完全幂等，不推进 Heat，不重复触发任何 mutual check |
+| 事件 | 生效条件 | `sessionCompletedRounds` | `relationshipEffectiveCardCount` | Coverage / used / 状态副作用 | Heat / mutual 影响 |
+|---|---|---:|---:|---|---|
+| `REL_CARD_COMPLETED` | relationship-aware 普通卡已展示且完成 | `+1` | `+1` | 合格定向卡 `offered +1`、`completed +1`；`cardId` 进入 used | 唯一可推进 Heat 与 regular mutual interval 的卡事件；同时消耗 20/25 Session 轮次 |
+| `REL_CARD_SKIPPED` | relationship-aware 普通卡已展示后跳过 | `+0` | `+0` | 合格定向卡 `offered +1`、`completed +0`；`cardId` 进入 used；可记 low-participation | 不推进 Heat/regular mutual，不消耗 Session 轮次 |
+| `REL_CARD_SWAPPED` | 换题并放弃已展示卡 | `+0` | `+0` | `offered/completed` 均 `+0`；旧 `cardId` 进入 used，防止立即重现 | 不推进 Heat/regular mutual，不消耗 Session 轮次 |
+| `NEUTRAL_CARD_COMPLETED` | neutral pack 完成 | `+1` | `+0` | 不改 Relationship Coverage；只更新 neutral 历史 | 消耗 20/25 Session 轮次；不推进 Heat/regular mutual/Signal（关系推进分支待 D6 拍板） |
+| `NEUTRAL_CARD_SKIPPED_OR_SWAPPED` | neutral pack 跳过或换题 | `+0` | `+0` | 只更新 neutral 自身展示/used 历史 | 不消耗 Session 轮次，不推进 Relationship Engine |
+| `EXPANSION_CARD_COMPLETED` | expansion 原版或 table-only 版完成 | `+1` | `+0` | 不改 Pair/Coverage/Signal；记录 expansion used ID | 消耗 20/25 Session 轮次；不推进 Heat/regular mutual/Signal（关系推进分支待 D6 拍板） |
+| `EXPANSION_CARD_SKIPPED_OR_SWAPPED` | expansion 跳过或换题 | `+0` | `+0` | 记录 expansion 展示/used ID | 不消耗 Session 轮次，不推进 Relationship Engine |
+| `LEGACY_CURRENT_COMPLETED` | 升级时已展示旧 current card 完成一次 | `+1` | `+0` | 不建 V2 Signal/Coverage；标记 legacy consumed；之后必须进 V2 Router | 仅消耗 Session 轮次，不推进 Relationship Engine |
+| `LEGACY_CURRENT_SKIPPED` | 升级时已展示旧 current card 跳过一次 | `+0` | `+0` | 标记 legacy consumed；之后必须进 V2 Router | 不消耗 Session 轮次，不推进 Relationship Engine |
+| `SYSTEM_MUTUAL_CHECK_*` | `due/start/submit/complete/cancel/final` 任一系统互选事件 | `+0` | `+0` | 不进入 `usedCardIds`；只更新 scheduler 与 mutual 结果 | 系统事件本身不得再次触发 regular mutual |
+| `EVENT_REPLAYED_OR_DUPLICATE` | 恢复时重放同一 `eventId`，或双点、重试、重复提交 | `+0` | `+0` | 两计数器、Coverage、used、scheduler 及其他副作用全部 `+0` | 完全幂等，不推进 Heat，不重复触发任何 mutual check |
 
 补充冻结：`CONSENT_*`（`request/submit/intersection/no-action`）同样不计，Delta=`+0`；不改 Coverage/used，不推进 Heat 或 mutual interval，partial 只保留在内存。
 
@@ -107,22 +125,22 @@
 2. 同一 `interactionId` 只能接受 `completed`、`skipped`、`swapped` 三种终态之一；首个合法终态落盘后，其余终态一律视为重复事件，Delta=`+0`。
 3. reducer 必须先检查持久化的有界 `processedEventIds`（或等价去重结构），再在同一事务内写入 count、Coverage、used 与 scheduler。
 4. 页面刷新、崩溃恢复、离线恢复、消息重投、按钮双击或重复提交均不得重复计数，也不得重复产生任何副作用。
-5. 只有首次处理的 `REL_CARD_COMPLETED` 可以令 `effectiveCardCount +1`；不存在由 UI 回合数、抽卡数、展示数或系统事件反推有效回合的第二口径。
+5. 只有首次处理的 completed 玩法轮可令 `sessionCompletedRounds +1`；其中只有 `REL_CARD_COMPLETED` 可令 `relationshipEffectiveCardCount +1`。不存在由 UI 回合数、抽卡数、展示数或系统事件反推任一计数器的第二口径。
 
-##### 三、D3=A：固定 20＋可再玩 5 个有效回合
+##### 三、D3=A：固定 20＋可再玩 5 个 Session completed rounds
 
 1. V2.0 唯一模式为 `fixed-20-plus-5`。
-2. Session 创建时冻结 `baseEffectiveCardLimit=20`；默认在第 20 个有效回合完成后进入结束选择。
-3. Host 可结束，或仅一次开启 `extensionEffectiveCardLimit=5`；`maxExtensions=1`，整局最大 `25` 个有效回合。
-4. 加玩开启后不得再次加玩；第 25 个有效回合完成后不再接受新的 relationship-aware 普通卡完成事件。
+2. Session 创建时冻结 `baseSessionCompletedRoundLimit=20`；默认在 `sessionCompletedRounds=20` 后进入结束选择。
+3. Host 可结束，或仅一次开启 `extensionSessionCompletedRoundLimit=5`；`maxExtensions=1`，整局最大 `sessionCompletedRounds=25`。
+4. 加玩开启后不得再次加玩；`sessionCompletedRounds=25` 后不再接受新的 gameplay completed 事件。
 5. 提前结束不得补写或伪造 completed，不得强升 Heat；仅在其他资格合法时执行 final mutual check。
-6. skipped、swapped、neutral、expansion、legacy、system、consent 与恢复重放事件均不消耗 20/25 限额。
+6. skipped、swapped、system、consent 与恢复重放事件不消耗 20/25 Session 限额；neutral、expansion 与 legacy current 若是 completed 则消耗 Session 限额，但始终不消耗 `relationshipEffectiveCardCount`。
 
 ##### 四、Heat 绝对阈值锁
 
-Heat 只由首次合法处理的 `REL_CARD_COMPLETED` 后的 `effectiveCardCount` 决定：
+Heat 只由首次合法处理的 `REL_CARD_COMPLETED` 后的 `relationshipEffectiveCardCount` 决定：
 
-| Heat | `effectiveCardCount` |
+| Heat | `relationshipEffectiveCardCount` |
 |---|---:|
 | `H1` | `0–3` |
 | `H2` | `4–7` |
@@ -131,16 +149,17 @@ Heat 只由首次合法处理的 `REL_CARD_COMPLETED` 后的 `effectiveCardCount
 
 - Intensity 1～5 仅代表用户允许的内容上限，不等于 Heat。
 - Heat 使用绝对阈值，不按 20 或 25 重新计算比例。
-- 开启加玩不重算、不回退 Heat；第 21～25 个有效回合保持 `H4`。
+- 开启加玩不重算、不回退 Heat；但不得用 `sessionCompletedRounds` 的 21～25 直接推导 Heat，Heat 仍只看 `relationshipEffectiveCardCount`。
 - 未计数事件不得改变 Heat。
 
-##### 五、第 9/14/19 个有效回合互选节奏锁
+##### 五、第 9/14/19 个 relationship-effective 互选节奏与 final 抑制锁
 
-1. 常规 mutual check 分别在 `effectiveCardCount` 首次达到 `9`、`14`、`19` 后标记 due。
+1. regular mutual check 分别在 `relationshipEffectiveCardCount` 首次达到 `9`、`14`、`19` 后标记 due，但还必须满足 `targetSessionCompletedRounds - sessionCompletedRounds >= FIVE_TIER_GUARANTEE_QUALIFYING_LIMIT(2)`，避免新 MATCH 在本段 Session 内无法获得保障窗口。
 2. 每个阈值最多触发一次，整局最多三次常规 mutual check；恢复重放不得重复触发。
-3. 第 20 回合结束选择与加玩 5 回合不新增第四个常规 mutual check。
-4. Session 实际结束时仍执行 final mutual check；final 是独立系统事件，不与 9/14/19 中任一常规事件合并或去重。
-5. 提前结束时只可在其他资格合法的前提下执行 final mutual check；不得通过 final 事件补足 `effectiveCardCount` 或推进 Heat。
+3. `sessionCompletedRounds=20` 选择“再玩 5 轮”时不执行 final，将 target 改为 25 后重新评估第三次 regular mutual；整局仍最多三次 regular mutual。
+4. final mutual 是独立 Session-end 系统事件，但必须同时满足：Heat≥H3、Coverage Gate 通过、存在合法 pair、且 `relationshipEffectiveCardCount - lastMutualCheckAtEffectiveCount >= minimumEffectiveCardsBetweenRuns(5)`。
+5. 若刚做过 regular mutual 而间隔不足 5，final 视为已覆盖并抑制；不创建 mutual run，不重问、不补 MATCH、不建 5 档 guarantee。
+6. 提前结束也执行同一资格与 recent-check suppression；final 无论执行还是被抑制，都不得补足任一计数器或推进 Heat。
 
 ##### 六、Runtime 冻结值
 
@@ -148,12 +167,13 @@ Heat 只由首次合法处理的 `REL_CARD_COMPLETED` 后的 `effectiveCardCount
 {
   "runtimeRules": {
     "effectiveCardCounting": {
-      "countedEventTypes": ["REL_CARD_COMPLETED"],
+      "sessionCompletedRoundEventTypes": ["REL_CARD_COMPLETED", "NEUTRAL_CARD_COMPLETED", "EXPANSION_CARD_COMPLETED", "LEGACY_CURRENT_COMPLETED"],
+      "relationshipEffectiveCardEventTypes": ["REL_CARD_COMPLETED"],
       "terminalEventExclusivity": true,
       "idempotencyKey": "eventId",
       "mode": "fixed-20-plus-5",
-      "baseEffectiveCardLimit": 20,
-      "extensionEffectiveCardLimit": 5,
+      "baseSessionCompletedRoundLimit": 20,
+      "extensionSessionCompletedRoundLimit": 5,
       "maxExtensions": 1,
       "heatThresholds": {
         "H1": [0, 3],
@@ -162,6 +182,9 @@ Heat 只由首次合法处理的 `REL_CARD_COMPLETED` 后的 `effectiveCardCount
         "H4": [13, null]
       },
       "mutualCheckCounts": [9, 14, 19],
+      "minimumEffectiveCardsBetweenRuns": 5,
+      "minimumRemainingSessionRoundsForRegularMutual": 2,
+      "finalMutualRecentCheckSuppression": true,
       "neutralAdvances": false,
       "expansionAdvances": false,
       "legacyAdvances": false,
@@ -345,10 +368,10 @@ pairMode = eligiblePairCount > 0 ? "ACTIVE" : "NO_ELIGIBLE_PAIR";
 ### F. 5 档保障
 
 1. 资格前置：全局 Intensity=5、当前 pair 已 MATCH、卡片 `matchRequired/targetMode/heat/边界/同意` 全部合法。
-2. **blocking P1-01 状态机草案**：`none -> pending -> offered | paused | expired`；`paused -> pending | expired`。每个 MATCH pair 独立一个 tracker，`createdAtEffectiveCount`、`qualifyingOpportunitiesSeen`、`status`、`pauseReason`、`terminalReason` 均可序列化，但不序列化 consent 原始选择。
+2. **Phase1 契约已关闭（原 blocking P1-01）**：Human D7=A；`FIVE_TIER_GUARANTEE_QUALIFYING_LIMIT=2`、`FIVE_TIER_GUARANTEE_OFFER_EVENT=CARD_PRESENTED`。每个 canonical pair 最多一个 tracker，状态为 `none -> pending <-> paused -> offered | expired`；`offered/expired` 是终态。`createdAtEffectiveCount`、`qualifyingOpportunitiesSeen`、`status`、`pauseReason`、`terminalReason` 可序列化，但不序列化 consent 原始选择。
 3. `QUALIFYING_PAIR_OPPORTUNITY`只在 Router 实际选中该 pair，且完成 Intensity/Heat/boundary/consent-mode/matchRequired/used/cooldown 过滤后仍有至少 1 张合法 5 档卡时产生；每个独立 pair 回合最多 `+1`。只“考虑过”、被 cooldown 挡住、无卡、非当前 pair 均不消耗。
-4. `pending`在 Intensity<5、pair 暂离、无合法 5 档时进 `paused`，条件恢复后回 `pending`且计数不清零；player 退出、MATCH 被合法撤销、Session 结束进 `expired`。多 MATCH 按 `matchedAt` 最早＋Coverage 欠账最高排序，但不绕过 cooldown。
-5. **D7 待人拍板**：展示合法 5 档即进 `offered`，还是必须 completed 才进 `offered`。Planner 默认建议前者：skip 仍是成功提供选择，不强迫补做；若人选后者，也禁止立即重发同卡或连续施压。
+4. `pending`在 Intensity<5、pair 暂离、无合法 5 档时进 `paused`，条件恢复后回 `pending`且计数不清零；cooldown 期间不消耗；player 退出、pair policy 使边失效、MATCH 合法撤销、Session 结束进 `expired`。多 MATCH 竞争使用 R5 稳定全序，且不绕过硬 cooldown。
+5. **D7=A 终态**：合法 5 档卡发出 `CARD_PRESENTED` 即进 `offered`；之后 completed/skip/swap/consent no-action 都不回滚、不补发、不连续施压。第 1 次 qualifying 未展示 5 档时 `seen=1`，第 2 次若仍有合法 5 档则必须展示；不得存在 `seen=2` 且非 `offered` 的可持久化状态。
 6. 保障是“至少提供一次合法 5 档机会”，不是保证完成动作；70/30 只是 MATCH 专属回合的抽取带宽，不得覆盖 consent 与公平规则。
 
 ### G. 扩圈 fallback 统一
@@ -385,16 +408,17 @@ pairMode = eligiblePairCount > 0 ? "ACTIVE" : "NO_ELIGIBLE_PAIR";
 
 ### H. 候选池耗尽策略
 
-1. **blocking P1-02 分层契约**：`BUCKET_EMPTY -> PACK_EXHAUSTED -> RELATIONSHIP_GLOBAL_EXHAUSTED`；每层只能由统一 Exhaustion Controller 处理，Pack 不得自定义另一套回退。
+1. **Phase1 契约已关闭（原 blocking P1-02）**：Human D8=A+；`BUCKET_EMPTY -> PACK_EXHAUSTED -> RELATIONSHIP_GLOBAL_EXHAUSTED -> AWAITING_HOST_EXHAUSTION_DECISION`；每层只能由统一 Exhaustion Controller 处理，Pack 不得自定义另一套回退。
 2. `BUCKET_EMPTY`：只允许在同 Heat 下向**较低且仍合法**档位搜索并对存量档重新归一化；永不越权到更高档、被禁边界、未 MATCH 的 5 档或旧 selector。
-3. Planner 建议默认（D8 未拍板前为 `TBD default`）：
+3. D8=A+ 冻结行为：
    - 当前 bucket 空：同 Heat 内按配置向较低合法 bucket 回退；
    - 当前玩法合法未用卡空：提示“本玩法本局已玩完”，允许切换其他有卡玩法；
-   - 所有 relationship-aware 合法未用卡空：Host 明确选择“结束本局”或“洗牌再玩”；
-   - 洗牌再玩只清普通 `usedCardIds`，保留 Heat、Coverage、Signals、MATCH、cooldown 与 5 档保障；最近 N 张继续去重，避免立即重复；
+   - 所有 relationship-aware 硬合法集在软去重窗口放宽到 0 后仍空：Host 明确选择“结束本局”或“洗牌再玩”；
+   - `recentCardIds` 按 `CARD_PRESENTED` 记录 Session 级最近 5 张；若硬合法集非空但全被软去重挡住，按 `5 -> 4 -> 3 -> 2 -> 1 -> 0` 逐步放宽，不得误报耗尽；
+   - 洗牌再玩只清 relationship-aware 普通 `usedCardIds`，保留最近 5 张 `recentCardIds`、Heat、Coverage、Signals、MATCH、cooldown 与 5 档保障；
    - 自动 AI 补题不得作为 V2 核心主线的隐式 fallback。
-4. Host 未选择时状态为 `AWAITING_HOST_EXHAUSTION_DECISION`，暂停抽卡但 Session 可保存/恢复；不自动洗牌、不自动结束。洗牌用 `exhaustionCycle+1` 作幂等键，重放不得多次清除。
-5. D8 需拍板最近去重窗口 `N`、是否允许“Host 选择后洗牌”以及旧 Session 迁移口径。Planner 默认：`N=5`、只允许 Host 明确选择后洗牌；该默认不是拍板。测试覆盖低开放度、雷区过滤、多次换题、5档池耗尽、离线、恢复后幂等。
+4. Host 未选择时状态为 `AWAITING_HOST_EXHAUSTION_DECISION`，暂停抽卡但 Session 可保存/恢复；不自动洗牌、不自动结束。洗牌用 `sessionId + exhaustionCycle + 1` 作幂等键，重放不得多次清除或多加 cycle。
+5. 软去重放宽与洗牌后都只能回到 V2 统一 Router；旧 future deck、`16:8:4:2:1`、`INTENSITY_WEIGHT`、固定高档陡坡、全桌 H5 与 DOUBLE MATCH 不得成为任何 empty/error catch 的 fallback。对应状态机、离线/恢复与旧 Router spy 验证转 DEVELOP 门禁。
 
 ### I. Brownfield 迁移与回归
 
@@ -435,11 +459,12 @@ Session.relationshipState
   version
   heat: H1 | H2 | H3 | H4
   heatProgressMode: fixed-20-plus-5
-  effectiveCardCount
-  baseEffectiveCardLimit: 20
-  extensionEffectiveCardLimit: 5
+  sessionCompletedRounds
+  relationshipEffectiveCardCount
+  baseSessionCompletedRoundLimit: 20
+  extensionSessionCompletedRoundLimit: 5
   extensionActivated: boolean
-  lastMutualCheckAtCount
+  lastMutualCheckAtEffectiveCount
   regularMutualCheckRuns
   playerCoverage[playerId]
     offeredTargeted
@@ -494,7 +519,7 @@ Session.participants[playerId]
 4. Host 能为当局参与者完成最小“男/女”字段录入；无合法 pair 的普通玩法降级仍需真人验证是否易理解。
 5. expansion/neutral 默认不推进 Heat 是保守方案，不代表已完成用户研究验证。
 6. 5档保障能提升高潮可达性，但不会压制全桌公平；需用 4人/5人、多 MATCH fixture 与真人局验证。
-7. 洗牌复用保留关系状态比整局重置更符合现场预期；仍需 Human Gate 拍板。
+7. D8=A+ 已确认洗牌复用保留关系状态、最近 5 张软去重与 Host 显式决策；现场文案与节奏仍需真人局验证，但不再是契约未决。
 
 ## Competitor / Research Summary
 
@@ -507,15 +532,15 @@ Session.participants[playerId]
 
 | 风险 | 级别 | 影响 | 缓解 / Gate |
 |---|---|---|---|
-| 生产旧 `seed-*` 直接当成新 `PN-*` 导致题面、ID、历史与测试断裂 | blocking P1 | 数据/内容回归 | 旧卡只作历史保留＋新 Router 只读 PN SSOT＋迁移回滚测试 |
+| 生产旧 `seed-*` 直接当成新 `PN-*` 导致题面、ID、历史与测试断裂 | 契约已关/实现门禁 | 数据/内容回归 | 旧卡只作历史保留＋新 Router 只读 PN SSOT＋迁移回滚测试 |
 | 扩圈 fallback 冲突 | P0已关闭 | 拒绝后流程违反 Frozen 安全规则 | R2 40/40 映射＋DRAFT.3 规范性 T037；旧冲突句作废 |
 | Heat 有效卡计数不唯一 | P0已关闭 | Heat、mutual、final 时序漂移 | Human D3=A＋冻结事件表＋20+5＋9/14/19＋幂等契约 |
 | 无法从当前 Player 推导合法异性 pair | P0已关闭 | Pair/MATCH 不可实现或错误猜测 | Human D4=A＋Session `pairGender`＋无 pair 普通玩法降级 |
 | SSOT 被同名解压件或手写常量替代 | P0已关闭（计划契约） | 运行参数漂移、内容不可追溯 | R5 精确 archive member＋SHA256 fail-closed Gate＋provenance |
-| 5档保障定义不完整 | blocking P1 | 保证失真、垄断或强迫感 | 资格/消耗/暂停/过期状态机与多 MATCH 测试 |
-| 候选池耗尽无统一策略 | blocking P1 | 空转、重复、越权卡或旧 selector 回流 | Exhaustion Controller＋Host 明确选择＋离线测试 |
-| 私密数据进入 IndexedDB/log/export/cache | blocking P1 | 严重隐私事故 | persistence denylist＋刷新/崩溃/日志测试 |
-| 旧 router 与 V2 router 双跑 | blocking P1 | 不可预测抽卡 | 单一入口＋legacy reachability test |
+| 5档保障定义不完整 | 契约已关/实现门禁 | 保证失真、垄断或强迫感 | 资格/消耗/暂停/过期状态机与多 MATCH 测试 |
+| 候选池耗尽无统一策略 | 契约已关/实现门禁 | 空转、重复、越权卡或旧 selector 回流 | Exhaustion Controller＋Host 明确选择＋离线测试 |
+| 私密数据进入 IndexedDB/log/export/cache | 契约已关/实现门禁 | 严重隐私事故 | persistence denylist＋刷新/崩溃/日志测试 |
+| 旧 router 与 V2 router 双跑 | 契约已关/实现门禁 | 不可预测抽卡 | 单一入口＋legacy reachability test |
 | MATCH pair 垄断小局 | P1 非 blocking | 其他玩家变观众 | small-pool 降权、cooldown、coverage、公平 E2E |
 | neutral/expansion 语义与用户直觉不符 | P1 非 blocking | 切包后节奏困惑 | UI 提示＋真人局验证＋参数可调 |
 | H4/5档节奏参数不佳 | P2 | 体验偏平或过猛 | 本地匿名计数与真人调参，不重写引擎 |
@@ -524,7 +549,7 @@ Session.participants[playerId]
 
 ### Phase 1 Plan DoD（进入 Human Review 前）
 
-1. P0-01～P0-04 全部关闭，证据路径写入 Plan/Review；blocking P1=0。
+1. P0-01～P0-04 全部关闭，证据路径写入 Plan/Review；计划契约层 blocking P1=0。
 2. R1 冻结 Markdown ↔ JSON 350/350 对账证据有效；旧生产卡按“仅历史保留”迁移，不冒充内容等价映射。
 3. 扩圈 fallback 在 Frozen、Plan、SPEC、TASKS、测试口径中完全一致。
 4. Heat 计数、pair 范围、5档保障、耗尽策略均有唯一状态/事件定义并进入 runtime/schema 契约。
@@ -554,10 +579,10 @@ Session.participants[playerId]
 
 ### P1
 
-- [ ] **blocking P1-01｜5档保障状态机**：定义合格机会、消耗、skip、暂停/恢复、无卡、多 MATCH、cooldown、Intensity 下调与 Session end。
-- [ ] **blocking P1-02｜耗尽策略**：定义 bucket/pack/global 三级耗尽、低档回退、Host 结束/洗牌选择、状态保留、最近去重与离线行为。
-- [ ] **blocking P1-03｜私密数据生命周期**：形成持久化 allowlist/denylist，并覆盖 refresh/crash/log/export/cache/analytics。
-- [ ] **blocking P1-04｜单 Router 与迁移原子性**：V2 主线启用后旧 selector 不可达；迁移失败不删数据、不半写。
+- [x] **blocking P1-01｜5档保障状态机（契约已关，实现转 DEVELOP 门禁）**：定义合格机会、消耗、skip、暂停/恢复、无卡、多 MATCH、cooldown、Intensity 下调与 Session end。
+- [x] **blocking P1-02｜耗尽策略（契约已关，实现转 DEVELOP 门禁）**：定义 bucket/pack/global 三级耗尽、低档回退、Host 结束/洗牌选择、状态保留、最近去重与离线行为。
+- [x] **blocking P1-03｜私密数据生命周期（契约已关，实现转 DEVELOP 门禁）**：形成持久化 allowlist/denylist，并覆盖 refresh/crash/log/export/cache/analytics。
+- [x] **blocking P1-04｜单 Router 与迁移原子性（契约已关，实现转 DEVELOP 门禁）**：V2 主线启用后旧 selector 不可达；迁移失败不删数据、不半写。
 - [ ] **非 blocking P1-05｜多 MATCH 公平**：小池降权、cooldown、Coverage 与保障窗口竞争规则经 fixture 验证。
 - [ ] **非 blocking P1-06｜neutral/expansion 切换提示**：用户能理解“正常可玩但关系推进暂停”。
 - [ ] **非 blocking P1-07｜调参可观测性**：仅本地匿名记录 Heat 停留、bucket 命中、skip、mutual 次数与耗尽事件，不含 player→target。
@@ -572,27 +597,27 @@ Session.participants[playerId]
 
 ## Human Decisions Needed
 
-> 以下 8 项必须由 Human Gate 明确拍板；当前均为“待决定”，不能由 Builder代选。
+> D3=`A`、D4=`A`、D7=`A`、D8=`A+` 已由 Human 拍板；D1/D2/D5/D6 仍为 `TBD`，不能由 Builder 代选。
 
-1. **D1｜内容切换**：是否同意 V1.3 Frozen 350+40 成为 V2 运行真源，并以逐卡矩阵确认后的 migration map 替换生产旧 350？Planner 建议：同意，但矩阵未闭环前不批准替换。
-2. **D2｜动态 Router**：是否同意 relationship-aware 主线彻底停止固定 future deck/`16:8:4:2:1`，改为本地逐轮动态路由？Planner 建议：同意；neutral pack 可保留现有 deck 能力。
-3. **D3｜Heat 计数**：是否同意只有 relationship-aware completed 普通卡计入 `effectiveCardCount`，skip/swap/neutral/expansion/legacy/system event 不计；fixed 与 open-ended 只选一种驱动？Planner 建议：同意该默认，并由 runtime 配置模式。
-4. **D4｜Pair 范围**：V2.0 如何产生合法 pair：Host 手动设置 pair pool、增加性别＋对象偏好，还是仅支持预设“异性局”？Planner 建议：V2.0 采用 Host 明确设置 eligible pair pool，避免猜测且兼容更多关系；UI 成本需单独评估。
-5. **D5｜秘密互选与 MATCH**：是否同意单设备传手机作为受控例外，并允许同一玩家在同一 Session 有多个非排他 MATCH？Planner 建议：同意；必须配套隐私遮罩与小局公平限制。
-6. **D6｜Expansion / Neutral**：是否同意两者默认不推进 Heat/Signal/mutual interval，扩圈拒绝统一执行 table-only fallback？Planner 建议：同意；扩圈 fallback 文案须逐卡可执行。
-7. **D7｜5档保障**：是否同意新 MATCH 在后续 2 次合格 pair opportunity 内至少“提供”1张合法5档；展示后即使玩家 skip 也视为保障已提供、不强迫补做？Planner 建议：同意。
-8. **D8｜耗尽与迁移**：是否同意全局耗尽时由 Host 选择结束或洗牌再玩；洗牌只清普通 used IDs、保留关系状态；旧 Session 的 V2 signals/MATCH 从空开始且删除旧关系路由？Planner 建议：同意。
+1. **D1｜内容切换｜`TBD`**：是否同意 V1.3 Frozen 350+40 成为 V2 运行真源，并按 P0-01 已冻结的自动等价映射 `NONE` 与六条 migration policy 替换生产旧 350？Planner 建议：同意。未拍板前不授权切换内容真源。
+2. **D2｜动态 Router｜`TBD`**：是否同意 relationship-aware 主线彻底停止固定 future deck/`16:8:4:2:1`，改为本地逐轮动态路由？Planner 建议：同意；neutral pack 可保留现有 deck 能力。未拍板前不授权 V2 Router 生产切换。
+3. **D3｜Heat 计数｜已决 `A`**：采用双计数器与 `fixed-20-plus-5`；任意玩法 completed 轮推进 `sessionCompletedRounds`，仅 relationship-aware completed 普通卡推进 `relationshipEffectiveCardCount`，skip/swap/system/consent 不计。
+4. **D4｜Pair 范围｜已决 `A`**：V2.0 仅在当局 Session participant 上增加 `pairGender=male|female|null`，默认只生成男女 pair；禁止猜测，无合法 pair 时降级为普通玩法。
+5. **D5｜秘密互选与 MATCH｜`TBD`**：是否同意单设备传手机作为受控例外，并允许同一玩家在同一 Session 有多个非排他 MATCH？Planner 建议：同意；必须配套隐私遮罩与小局公平限制。未拍板前不将每人 active MATCH 有效上限固定为 1 或 2。
+6. **D6｜Expansion / Neutral｜`TBD`**：是否同意两者默认不推进 Heat/Signal/mutual interval，扩圈拒绝统一执行 table-only fallback？Planner 建议：同意；扩圈 fallback 文案须逐卡可执行。未拍板前不将 neutral/expansion 的关系推进策略写入 DEV_BASELINE。
+7. **D7｜5档保障｜已决 `A`**：新 MATCH 在后续 2 次合格 pair opportunity 内至少提供 1 张合法 5 档；`CARD_PRESENTED` 即进入 `offered` 终态，之后 skip/swap/consent no-action 均不补发。
+8. **D8｜耗尽与迁移｜已决 `A+`**：软去重窗口按 `5→4→3→2→1→0` 逐步放宽；全局硬合法集仍空时由 Host 显式选择“结束本局 / 洗牌再玩”，洗牌保留关系状态且永不回退 V1.6 Router。
 
 ## Readiness Score（Plan Readiness Score / 计划成熟度，满分 100）
 
-- 产品目标与用户需求（20）：`18/20`。目标、用户、价值与安全边界清楚；pair 包容范围仍待人决策。
-- 核心方案完整性（20）：`14/20`。Relationship Engine 主链完整，但 Heat、pair、保障、耗尽仍有阻断口径。
-- 外部事实与竞品验证（20）：`10/20`。V1.3 内部全量审查充分；缺少本轮外部竞品研究与真人酒吧局验证。
-- 技术可行性（15）：`11/15`。生产旧 350/selector 与 Player Schema 已核验；逐卡矩阵、最终路径 mapping、迁移原型未完成。
-- 风险与异常场景（10）：`8/10`。核心隐私、迁移、耗尽、多人小局风险已列；尚未通过独立 Reviewer 验证。
-- 开发范围与 DoD（10）：`9/10`。范围、分层 DoD 与优先级清楚；需在决策后转成最终可执行 TASKS/traceability。
-- 未决问题（5）：`1/5`。仍有 4 个 P0、4 个 blocking P1 与 8 项 Human Decision。
-- 合计：`71/100`
+- 产品目标与用户需求（20）：`19/20`。D3/D4/D7/D8 已决，D1/D2/D5/D6 `TBD` 及阻止影响已显性；pair 包容范围待 Human 拍板。
+- 核心方案完整性（20）：`18/20`。双计数器、final 抑制、R2/R4、5 档保障与耗尽契约已统一；实现与真人验证留待 DEVELOP。
+- 外部事实与竞品验证（20）：`12/20`。P0-01 V1.2 外部包三件存在且数字已抽查；仍缺独立竞品研究与真人酒吧 4/5 人局验证。
+- 技术可行性（15）：`12/15`。SSOT 路径/hash/Gate、六条迁移 policy、单 Router/CAS/幂等门禁已明确；实际路径 mapping 与迁移原型未完成。
+- 风险与异常场景（10）：`9/10`。契约关闭与实现门禁已分层；实现级否定测试仍待 DEVELOP。
+- 开发范围与 DoD（10）：`9/10`。分层 DoD 清晰，P1-01～04 已标记契约关闭；仍需在 Human 决策后转成最终可执行 TASKS/traceability。
+- 未决问题（5）：`4/5`。实质 P0=0、计划契约层 blocking P1=0；仅 D1/D2/D5/D6 四项 Human Decision 仍为 `TBD`。
+- 合计：`83/100`
 - Gate（进 Human Review 条件）：Readiness >= 90 AND P0 = 0 AND blocking P1 = 0 AND 关键事实已验证 AND 核心假设已合理验证
 
 ## Research Review Round（第几轮/Reviewer 结论摘要）
@@ -604,4 +629,4 @@ Session.participants[playerId]
 
 `IN_PROGRESS`
 
-原因：`PLAN_READINESS_SCORE=71`，P0=4，blocking P1=4，关键事实“生产350↔V1.3逐卡差异”尚未验证，Human Decisions 尚未拍板；不满足 Research Review/Human Review Gate。
+原因：`PLAN_READINESS_SCORE=83`，P0=0，计划契约层 blocking P1=0，但分数未达 90，且 D1/D2/D5/D6 仍待 Human 拍板，独立竞品研究与真人 4/5 人局验证仍缺；因此保持 `IN_PROGRESS`，不进入 `WAITING_HUMAN_APPROVAL`。

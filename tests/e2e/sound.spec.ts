@@ -68,6 +68,8 @@ test("局中设置的音效开关与设置页共用同一份偏好", async ({ pa
 
   await toggle.click();
   await expect(toggle).not.toBeChecked();
+  // 局中开关是内存态即时变、IndexedDB异步落盘：等落盘再跨页，否则设置页hydrate读到旧值（时序竞态）。
+  await page.waitForTimeout(500);
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toHaveCount(0);
 

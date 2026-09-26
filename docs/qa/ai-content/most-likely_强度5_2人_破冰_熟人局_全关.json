@@ -1,0 +1,243 @@
+{
+  "cell": {
+    "index": 15,
+    "packId": "most-likely",
+    "packName": "谁最可能",
+    "origin": "base",
+    "intensity": 5,
+    "players": 2,
+    "vibe": {
+      "key": "icebreaker",
+      "label": "破冰"
+    },
+    "relationship": {
+      "key": "familiar",
+      "label": "熟人局"
+    },
+    "boundary": {
+      "mode": "all-off",
+      "label": "全关",
+      "flags": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "熟人局",
+      "vibes": [
+        "破冰"
+      ],
+      "intensity": 5,
+      "boundaries": {
+        "noPhysicalContact": false,
+        "noAlcoholPenalty": false,
+        "noExPartners": false,
+        "noSexualHistory": false,
+        "noMoneyIncome": false,
+        "noPhonePrivacy": false,
+        "noPublicPosting": false,
+        "noStrangerContact": false,
+        "noPhotoVideo": false,
+        "noSocialAccounts": false,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "most-likely"
+      ],
+      "mode": "single",
+      "playerCount": 2
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2；关系：熟人局；氛围：破冰；最高强度：5。\n可用玩法：most-likely。\n已开启的结构化雷区：无；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4130,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "mnl-001",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在聚会上第一个主动打开话题？",
+        "instruction": "所有人同时指向自己认为最符合的人，被指最多的人分享一件最近发生的小事。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-002",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能记住在场每个人的名字和喜好？",
+        "instruction": "所有人同时指认，被指最多的人可以指定下一位提问者。",
+        "intensity": 1,
+        "tags": [
+          "破冰",
+          "观察力"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-003",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在陌生场合迅速交到新朋友？",
+        "instruction": "所有人同时指认，被指最多的人说一个自己常用的开场白。",
+        "intensity": 2,
+        "tags": [
+          "破冰",
+          "社交"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-004",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能为了追一部剧熬夜到天亮？",
+        "instruction": "所有人同时指认，被指最多的人分享一部最近在追的作品。",
+        "intensity": 2,
+        "tags": [
+          "日常",
+          "娱乐"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-005",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在旅行时把行程安排得井井有条？",
+        "instruction": "所有人同时指认，被指最多的人简单说说自己旅行前必做的一件事。",
+        "intensity": 2,
+        "tags": [
+          "日常",
+          "旅行"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-006",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在群里发消息后没人回复还继续发？",
+        "instruction": "所有人同时指认，被指最多的人模仿一次自己发消息的语气。",
+        "intensity": 3,
+        "tags": [
+          "社交",
+          "幽默"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-007",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在看电影时第一个猜出结局？",
+        "instruction": "所有人同时指认，被指最多的人分享一部自己猜中结局的电影。",
+        "intensity": 3,
+        "tags": [
+          "娱乐",
+          "观察力"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-008",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在聚会结束后主动收拾场地？",
+        "instruction": "所有人同时指认，被指最多的人可以指定两个人一起完成一个简单的模仿动作。",
+        "intensity": 3,
+        "tags": [
+          "破冰",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-009",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在点外卖时纠结超过十分钟？",
+        "instruction": "所有人同时指认，被指最多的人说出自己最常点的一道菜。",
+        "intensity": 4,
+        "tags": [
+          "日常",
+          "幽默"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "mnl-010",
+        "packId": "most-likely",
+        "type": "most-likely",
+        "content": "谁最可能在朋友需要帮助时第一个出现？",
+        "instruction": "所有人同时指认，被指最多的人接受大家的一句真诚夸奖。",
+        "intensity": 5,
+        "tags": [
+          "破冰",
+          "情感"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}

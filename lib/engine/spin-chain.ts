@@ -1,6 +1,6 @@
 import type { CustomGamePack, GameCard, GameSession } from "@/lib/domain/schemas";
 import { ensurePackPlayable } from "@/lib/ai/generate-deck";
-import { isCardAllowed } from "./card-selector";
+import { isCardAllowed } from "./card-eligibility";
 import { switchPackAndDeal } from "./pack-switcher";
 import { completeRound, startRound, swapRound, switchPack, updatePackState } from "./session-engine";
 import type { RandomSource } from "./types";

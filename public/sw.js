@@ -2,7 +2,7 @@
 // 缓存契约（T189 / FR-041 / FR-043）：
 //   1) cache 名带应用版本；activate 时清掉所有旧版本 cache，旧 bundle 不会锁死新版本。
 //   2) AI/Provider 接口与任何导出/备份数据永不进 cache（路径前缀 + Cache-Control 双重拦截）。
-//   3) 只缓存同源 GET 的 2xx 响应；离线导航回落到外壳，不白屏。
+//   3) 只缓存同源 GET 的 2xx 响应；导航文档网络优先、按 URL 留一份离线副本，离线导航先回退同路径，再回退外壳，不白屏。
 // 改这里的缓存名单时同步改 public/sw.js 的 CACHE_VERSION 与 package.json 的 version。
 const CACHE_VERSION = "1.5.0";
 const CACHE_NAME = `party-night-shell-v${CACHE_VERSION}`;
@@ -14,15 +14,13 @@ const CACHEABLE_STATIC_PREFIXES = ["/_next/static/"];
 
 const isNeverCached = (url) => NEVER_CACHE_PREFIXES.some((prefix) => url.pathname.startsWith(prefix));
 const isCacheableStatic = (url) => CACHEABLE_STATIC_PREFIXES.some((prefix) => url.pathname.startsWith(prefix));
-/** 声明不可缓存（no-store/private）的子资源一律不落盘；导航 HTML 永不缓存（只网络，离线才回退外壳），杜绝旧页面阴魂不散。 */
-const forbidsCache = (request, response) => {
-  if (request.mode === "navigate") return true;
-  const header = response.headers.get("Cache-Control") || "";
-  return /no-store|private/i.test(header);
-};
+/** 声明不可缓存（no-store/private）的子资源一律不落盘。 */
+const forbidsCache = (response) => /no-store|private/i.test(response.headers.get("Cache-Control") || "");
+/** 导航文档按「网络优先 + 离线回退同路径缓存」落盘：在线永远拿最新 HTML（旧页面不会阴魂不散），离线才用回访过的同一路径。 */
+const isDocument = (request) => request.mode === "navigate";
 const isCacheable = (request, url, response) =>
-  request.method === "GET" && url.origin === self.location.origin && !isNeverCached(url) && !forbidsCache(request, response)
-  && response.ok && (isCacheableStatic(url) || SHELL.includes(url.pathname));
+  request.method === "GET" && url.origin === self.location.origin && !isNeverCached(url) && !forbidsCache(response)
+  && response.ok && (isDocument(request) || isCacheableStatic(url) || SHELL.includes(url.pathname));
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL)).then(() => self.skipWaiting()));

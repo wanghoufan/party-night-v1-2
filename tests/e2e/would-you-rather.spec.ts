@@ -46,7 +46,7 @@ test("二选一：出 A/VS/B 题面，下一题记 completed、换一个记 swap
   await expect(options(page).nth(0)).toContainText(a);
   await expect(options(page).nth(1)).toContainText(b);
   await expect(page.locator(".would-you-rather__vs")).toHaveText("VS");
-  await expect(page.getByRole("status")).toContainText("3 · 2 · 1");
+  await expect(page.locator(".would-you-rather__countdown")).toContainText("3 · 2 · 1");
   // 可选短倒计时：默认按 3/2/1 三步动画播放；reduced-motion 时不出现数字，直接停在静态提示
   await expect(page.locator(".would-you-rather__count")).toHaveCount(3);
   await page.emulateMedia({ reducedMotion: "reduce" });

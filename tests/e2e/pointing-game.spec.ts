@@ -68,12 +68,22 @@ test("10 轮指人游戏：指令卡 + 3/2/1 + 指，不输入票数也能一路
     await expect(page.locator(".pointing-game input, .pointing-game textarea, .pointing-game select")).toHaveCount(0);
 
     await pointFast(page);
-    await expect(page.getByRole("status")).toContainText("指！");
+    await expect(page.getByRole("status", { name: "一起指" })).toContainText("指！");
     await page.getByRole("button", { name: "下一题" }).click();
     if (round < ROUNDS) await expect(page.getByText(`第 ${round + 1} / ${ROUNDS} 轮`)).toBeVisible();
   }
 
-  await expect(page).toHaveURL(new RegExp(`/summary\\?session=${SESSION_ID}`));
+  // B8/D8：牌堆见底可能直接结算，也可能进Host双选（时序）；双选出现就点结束本局。
+  const finish = page.getByRole("button", { name: "结束本局" });
+  await Promise.race([
+    page.waitForURL(new RegExp(`/summary\\?session=${SESSION_ID}`), { timeout: 15000 }).catch(() => undefined),
+    finish.waitFor({ state: "visible", timeout: 15000 }).catch(() => undefined),
+  ]);
+  if (await finish.isVisible().catch(() => false)) {
+    await finish.click();
+  }
+
+  await expect(page).toHaveURL(new RegExp(`/summary\\?session=${SESSION_ID}`), { timeout: 15000 });
   expect(new Set(seen).size).toBe(ROUNDS);
 
   const stored = await readSession(page, SESSION_ID);

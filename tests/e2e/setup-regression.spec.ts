@@ -62,7 +62,7 @@ test("尺度 slider 保持 1–5 五档与现有档位文案", async ({ page }) 
   }
 });
 
-test("组局草稿继承所选关系、氛围与强度，不改字段名", async ({ page }) => {
+test("组局草稿继承所选关系、氛围与强度，不改 SessionConfig 字段名", async ({ page }) => {
   await page.goto("/setup");
   await sectionOf(page, "你们之间是什么关系？").getByRole("button", { name: "情侣 / 暧昧" }).click();
   await sectionOf(page, "今晚的氛围是？").getByRole("button", { name: "搞笑" }).click();
@@ -71,13 +71,41 @@ test("组局草稿继承所选关系、氛围与强度，不改字段名", async
   await page.getByRole("button", { name: /下一步：雷区设置/ }).click();
   await expect(page).toHaveURL(/\/boundaries/);
 
+  // B7/D4：草稿外层多了当局参与者段（性别只随本局走），SessionConfig 字段名与形状保持不变。
   const draft = await page.evaluate(() => JSON.parse(sessionStorage.getItem("party-night-session-draft") ?? "null") as {
-    relationship: string; vibes: string[]; intensity: number; boundaries: Record<string, unknown>;
+    config: { relationship: string; vibes: string[]; intensity: number; boundaries: Record<string, unknown> };
+    participants: Array<{ playerId: string; active: boolean; pairGender: string | null }>;
   });
-  expect(draft.relationship).toBe("couple");
-  expect(draft.vibes).toEqual(["flirty"]);
-  expect(draft.intensity).toBe(5);
+  expect(draft.config.relationship).toBe("couple");
+  expect(draft.config.vibes).toEqual(["flirty"]);
+  expect(draft.config.intensity).toBe(5);
   // 雷区沿用既有 SessionConfig.boundaries，不新增第二套字段。
-  expect(Object.keys(draft.boundaries)).toContain("noPhysicalContact");
-  expect(Object.keys(draft.boundaries)).toContain("customText");
+  expect(Object.keys(draft.config.boundaries)).toContain("noPhysicalContact");
+  expect(Object.keys(draft.config.boundaries)).toContain("customText");
+  // 未选择时一律 null（默认不填），且人数与玩家数一致。
+  expect(draft.participants.length).toBeGreaterThanOrEqual(2);
+  expect(draft.participants.every((item) => item.pairGender === null)).toBe(true);
+});
+
+test("组局页可逐人录性别（男/女/不填三态），录入随当局草稿传递", async ({ page }) => {
+  await page.goto("/setup");
+
+  const first = page.getByRole("group", { name: "玩家 1 性别（可留空）" });
+  const second = page.getByRole("group", { name: "玩家 2 性别（可留空）" });
+  await expect(first.getByRole("button", { name: "不填" })).toHaveAttribute("aria-pressed", "true");
+  await first.getByRole("button", { name: "男" }).click();
+  await second.getByRole("button", { name: "女" }).click();
+  await expect(first.getByRole("button", { name: "男" })).toHaveAttribute("aria-pressed", "true");
+  await expect(second.getByRole("button", { name: "女" })).toHaveAttribute("aria-pressed", "true");
+
+  await page.getByRole("button", { name: /下一步：雷区设置/ }).click();
+  await expect(page).toHaveURL(/\/boundaries/);
+
+  const participants = await page.evaluate(() =>
+    (JSON.parse(sessionStorage.getItem("party-night-session-draft") ?? "null") as {
+      participants: Array<{ pairGender: string | null }>;
+    }).participants.map((item) => item.pairGender),
+  );
+  expect(participants.slice(0, 2)).toEqual(["male", "female"]);
+  expect(participants.slice(2).every((gender) => gender === null)).toBe(true);
 });

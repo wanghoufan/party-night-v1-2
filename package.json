@@ -15,9 +15,13 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "export:questions": "vite-node -c vitest.config.ts scripts/export-builtin-question-bank.ts"
+    "export:questions": "vite-node -c vitest.config.ts scripts/export-builtin-question-bank.ts",
+    "build:v2-ssot": "vite-node --script scripts/build-v2-ssot.ts"
   },
   "dependencies": {
+    "@capacitor/android": "7.6.9",
+    "@capacitor/cli": "7.6.9",
+    "@capacitor/core": "7.6.9",
     "idb": "^8.0.3",
     "next": "16.3.3",
     "react": "^19.2.0",

@@ -1,0 +1,242 @@
+{
+  "cell": {
+    "index": 56,
+    "packId": "spin-bottle",
+    "packName": "转瓶子",
+    "origin": "base",
+    "intensity": 1,
+    "players": 6,
+    "vibe": {
+      "key": "funny",
+      "label": "搞笑"
+    },
+    "relationship": {
+      "key": "friends",
+      "label": "普通朋友"
+    },
+    "boundary": {
+      "mode": "all-on",
+      "label": "全开",
+      "flags": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true
+      }
+    }
+  },
+  "request": {
+    "service": "http://127.0.0.1:3000",
+    "endpoint": "/api/generate-session",
+    "targetCardCount": 10,
+    "provider": "deepseek-official/deepseek-flash",
+    "sessionConfig": {
+      "relationship": "普通朋友",
+      "vibes": [
+        "搞笑"
+      ],
+      "intensity": 1,
+      "boundaries": {
+        "noPhysicalContact": true,
+        "noAlcoholPenalty": true,
+        "noExPartners": true,
+        "noSexualHistory": true,
+        "noMoneyIncome": true,
+        "noPhonePrivacy": true,
+        "noPublicPosting": true,
+        "noStrangerContact": true,
+        "noPhotoVideo": true,
+        "noSocialAccounts": true,
+        "customText": ""
+      },
+      "enabledPackIds": [
+        "spin-bottle"
+      ],
+      "mode": "single",
+      "playerCount": 6
+    },
+    "promptEcho": "玩家：嘉宾1、嘉宾2、嘉宾3、嘉宾4、嘉宾5、嘉宾6；关系：普通朋友；氛围：搞笑；最高强度：1。\n可用玩法：spin-bottle。\n已开启的结构化雷区：physical-contact、alcohol、ex-partner、sexual-history、money、phone-privacy、public-posting、stranger-contact、photo-video、social-account；生成内容必须避开这些主题。\n自定义雷区：无；只需避开，不得把自定义文字写入 boundaryTags。"
+  },
+  "response": {
+    "status": 200,
+    "attempts": 1,
+    "latencyMs": 4083,
+    "code": null,
+    "meta": {
+      "generatedCount": 10,
+      "provider": "configured-provider"
+    },
+    "cardCount": 10,
+    "cards": [
+      {
+        "id": "spin-bottle-001",
+        "packId": "spin-bottle",
+        "type": "搞笑挑战",
+        "content": "用最夸张的播音腔念出你手机里最近一条外卖订单的名称。",
+        "instruction": "被转到的玩家完成；若不想做可说“跳过”，大家鼓掌放过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-002",
+        "packId": "spin-bottle",
+        "type": "模仿秀",
+        "content": "模仿一种动物的叫声，让其他玩家猜是什么动物。",
+        "instruction": "被转到的玩家完成；猜中后换下一位。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "模仿"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-003",
+        "packId": "spin-bottle",
+        "type": "集体问答",
+        "content": "说出三种你认为是“最没用的超能力”，其他人投票选出最离谱的一个。",
+        "instruction": "所有人依次发言，然后举手投票。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "脑洞"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-004",
+        "packId": "spin-bottle",
+        "type": "表情挑战",
+        "content": "用表情和动作演一个“刚发现袜子穿反了”的人。",
+        "instruction": "被转到的玩家完成；允许跳过。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-005",
+        "packId": "spin-bottle",
+        "type": "双人合作",
+        "content": "两人合作，用“因为……所以……”造一个关于今天聚会的搞笑句子。",
+        "instruction": "被转到的玩家和其左边的人一起完成。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "合作"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-006",
+        "packId": "spin-bottle",
+        "type": "快速抢答",
+        "content": "说出五个带“子”字的物品名称，不能重复，限时十秒。",
+        "instruction": "被转到的玩家完成；其他人可以倒计时。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "反应"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-007",
+        "packId": "spin-bottle",
+        "type": "故事接龙",
+        "content": "每人说一句话，编一个“冰箱里住着小精灵”的搞笑故事。",
+        "instruction": "从被转到的玩家开始，顺时针每人一句。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "故事"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-008",
+        "packId": "spin-bottle",
+        "type": "无声表演",
+        "content": "只用动作表演“在超市找不到购物车”，让大家猜。",
+        "instruction": "被转到的玩家完成；猜中后换下一位。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "表演"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "single",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-009",
+        "packId": "spin-bottle",
+        "type": "夸夸挑战",
+        "content": "用三个夸张的比喻夸一夸你右边的人，但必须听起来很好笑。",
+        "instruction": "被转到的玩家完成；被夸的人要回一句“谢谢，我也觉得”。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "互动"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "pair",
+        "source": "ai"
+      },
+      {
+        "id": "spin-bottle-010",
+        "packId": "spin-bottle",
+        "type": "集体投票",
+        "content": "投票选出今晚“最可能因为看剧哭鼻子”的人，并给一个搞笑理由。",
+        "instruction": "所有人参与投票，被选中的人可以选择跳过或接受。",
+        "intensity": 1,
+        "tags": [
+          "搞笑",
+          "投票"
+        ],
+        "boundaryTags": [],
+        "minPlayers": 2,
+        "participantMode": "all",
+        "source": "ai"
+      }
+    ]
+  },
+  "screen": {
+    "pass": true,
+    "issues": []
+  }
+}
